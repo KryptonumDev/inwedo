@@ -1,0 +1,96 @@
+@import url("./typography/index.css");
+
+:root {
+    --color-white: #F8F9FA;
+    --color-black: #262626;
+    --color-accent: linear-gradient(84.56deg, #0B5CD6 12.23%, #21AEFC 94.22%);
+
+    --margin-section: 128px;
+    --margin-xl: 64px;
+    --margin-l: 48px;
+    --margin-m: 32px;
+    --margin-s: 16px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    font-family: 'Lexend Deca' sans-serif;
+}
+
+.h1 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 151%;
+}
+
+.h1.display{
+    font-family: 'Lexend';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 80px;
+}
+
+.h1.bold {
+    font-weight: 600;
+}
+
+.h1.medium {
+    font-weight: 500;
+}
+
+.h1.special {
+    font-weight: 600;
+    line-height: 162%;
+
+    text-align: center;
+    background: var(--color-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.h2 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 151%;
+}
+
+.h3 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 151%;
+}
+
+.p {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    font-feature-settings: 'ss01' on;
+}
+
+.button {
+    padding: 12px 22px;
+    background-color: var(--color-accent);
+    font-family: 'Lexend';
+    font-weight: 400;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.01em;
+}
+
+.button.left {}
+
+.button.right {}
