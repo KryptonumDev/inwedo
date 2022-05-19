@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Container } from '../../style'
+import Type1 from './title_p_button'
 import Type2 from './title_button'
 import Type4 from './white_title_button'
 
@@ -11,13 +12,13 @@ export default function CallToAction({ data: { typeOfCta, title, text, form, but
                 {(() => {
                     switch (typeOfCta) {
                         case 'one':
-                            return null
+                            return <Type1 title={title} text={text} button={button} />
                         case 'two':
                             return <Type2 title={title} button={button} />
                         case 'three':
                             return null
                         case 'four':
-                            return <Type4 title={title} button={button}/>
+                            return <Type4 title={title} button={button} />
                         case 'five':
                             return null
                         case 'six':

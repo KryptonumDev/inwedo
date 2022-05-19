@@ -1,0 +1,59 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\sheva\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add react-slick
+
+PATH: 
+  C:\Users\sheva\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\sheva\bin;C:\Python310\Scripts;C:\Python310;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Users\sheva\AppData\Local\Microsoft\WindowsApps;C:\Users\sheva\AppData\Roaming\npm;C:\Users\sheva\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\heroku\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.18
+
+Node version: 
+  16.14.2
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'C:\Users\sheva\Desktop\projects\inwedo\node_modules\msgpackr-extract-win32-x64\node.abi93.node'
+
+npm manifest: 
+  {
+    "name": "inwedo",
+    "version": "1.0.0",
+    "private": true,
+    "description": "inwedo",
+    "author": "Bogdan Shevchenko",
+    "keywords": [
+      "gatsby"
+    ],
+    "scripts": {
+      "develop": "gatsby develop",
+      "start": "gatsby develop",
+      "build": "gatsby build",
+      "serve": "gatsby serve",
+      "clean": "gatsby clean"
+    },
+    "dependencies": {
+      "babel-plugin-styled-components": "^2.0.7",
+      "gatsby": "^4.14.0",
+      "gatsby-plugin-image": "^2.14.1",
+      "gatsby-plugin-manifest": "^4.14.0",
+      "gatsby-plugin-react-helmet": "^5.14.0",
+      "gatsby-plugin-sharp": "^4.14.1",
+      "gatsby-plugin-sitemap": "^5.14.0",
+      "gatsby-plugin-styled-components": "^5.14.0",
+      "gatsby-source-filesystem": "^4.14.0",
+      "gatsby-source-wordpress": "^6.14.1",
+      "gatsby-transformer-sharp": "^4.14.0",
+      "react": "^17.0.1",
+      "react-dom": "^17.0.1",
+      "react-helmet": "^6.1.0",
+      "styled-components": "^5.3.5"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

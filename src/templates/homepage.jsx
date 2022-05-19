@@ -5,6 +5,8 @@ import Hero from "../components/hero/homepage"
 import Services from "../components/services"
 import CallToAction from "../components/cta"
 import NumbersAndImages from "../components/numbers-and-image-grid"
+import Testomontials from "../components/testomontials-slider"
+import FAQ from "../components/faq"
 
 const IndexPage = ({ data: { allWpPage } }) => {
   let { homepage } = allWpPage.nodes[0]
@@ -16,6 +18,9 @@ const IndexPage = ({ data: { allWpPage } }) => {
       <CaseStudyRepeater data={homepage.caseStudies} />
       <CallToAction data={homepage.callToActionCopy} />
       <NumbersAndImages data={homepage.impactNumbersAndImgGrid} />
+      <Testomontials data={homepage.testomontials} />
+      <CallToAction data={homepage.callToActionCopyCopy} />
+      <FAQ data={homepage.faq} />
     </main>
   )
 }
@@ -34,11 +39,29 @@ export const query = graphql`
                 name
                 url
               }
-              img {
-                altText
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
+              imgGridH {
+                imageLeft{
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                imageRightTop{
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                imageRightBottom{
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
                   }
                 }
               }
@@ -190,6 +213,57 @@ export const query = graphql`
                     }
                   }
                 }
+              }
+            }
+            testomontials {
+              title
+              text
+              testomontialsItem {
+                author {
+                  authorName
+                  authorPosition
+                  userIconPng {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                }
+                testomontialText
+                companyLogo {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+            }
+            callToActionCopyCopy {
+              typeOfCta
+              title
+              text
+              form {
+                submitButtonText
+                inputPlaceholder
+              }
+              button {
+                url
+                name
+              }
+              downloadFile {
+                publicUrl
+                sourceUrl
+              }
+            }
+            faq {
+              title
+              faqElement {
+                answer
+                question
               }
             }
         }

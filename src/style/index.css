@@ -16,6 +16,11 @@
 
 html {
     background-color: var(--color-white);
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
 }
 
 * {

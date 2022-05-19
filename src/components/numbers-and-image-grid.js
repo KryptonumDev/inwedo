@@ -38,6 +38,7 @@ export default function NumbersAndImages({ data: { imgGrid, numbersContent, text
                                     </div>
                                 )
                             }
+                            return null
                         })}
                     </NumbersGrid>
                 </Numbers>
@@ -140,8 +141,11 @@ const NumbersGrid = styled.div`
 `
 
 const Grid = styled.div`
+
+    --shadow: drop-shadow(0px 76px 121px rgba(0, 0, 0, 0.06)) drop-shadow(0px 31.751px 50.5509px rgba(0, 0, 0, 0.0431313)) drop-shadow(0px 16.9756px 27.0269px rgba(0, 0, 0, 0.0357664)) drop-shadow(0px 9.51638px 15.1511px rgba(0, 0, 0, 0.03)) drop-shadow(0px 5.05408px 8.04662px rgba(0, 0, 0, 0.0242336)) drop-shadow(0px 2.10311px 3.34838px rgba(0, 0, 0, 0.0168687));;
+
     position: absolute;
-    right: -180px;
+    right: -210px;
     top: 0;
 
     width: 862px;
@@ -152,23 +156,27 @@ const Grid = styled.div`
         border-radius: 8px;
         left: 50px;
         top: 182px;
+        filter: var(--shadow);
     }
     .rt{
         position: absolute;
         border-radius: 8px;
         right: 92px;
         top: 0; 
+        filter: var(--shadow);
     }
     .lb{
         position: absolute;
         border-radius: 8px;
         left: 0;
         bottom: 0;
+        filter: var(--shadow);
     }
     .rb{
         position: absolute;
         border-radius: 8px;
         right: 0;
         bottom: 92px;
+        filter: var(--shadow);
     }
 `
