@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Hero from "../components/hero/services"
 import DevelopmentCards from "../components/development-cards"
 import CallToAction from "../components/cta"
-import TwoColumnFlex from "../components/two-column-flex"
+import TwoColumnFlex from "../components/two-column/two-column-services"
 import Testomontials from "../components/testomontials-slider"
 
 const ServicesPage = ({ data: { allWpPage } }) => {

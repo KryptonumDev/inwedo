@@ -101,4 +101,30 @@ exports.createPages = async ({
       },
     });
   });
+
+  // CONTACT
+
+  const { data: { allWpPage: { aboutNodes } } } = await graphql(`
+          query {
+            allWpPage(filter: {template: {templateName: {eq: "About"}}}) {
+              aboutNodes: nodes {
+                id
+                language {
+                  slug
+                }
+              }
+            }
+          }
+        `);
+
+  aboutNodes.forEach(({ id, language: { slug } }) => {
+    createPage({
+      path: slug === defaultLocale ? '/about-us/' : '/' + slug + '/about-us/',
+      component: resolve('src/templates/about.jsx'),
+      context: {
+        id,
+        slug,
+      },
+    });
+  });
 }
