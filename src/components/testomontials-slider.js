@@ -17,7 +17,9 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
         <Wrapper>
             <Container>
                 <h2 className="h1">{title}</h2>
-                <p className="p">{text}</p>
+                {text
+                    ? <p className="p">{text}</p>
+                    : null}
                 <Slider {...settings}>
                     {testomontialsItem.map(el => (
                         <Item>
@@ -63,10 +65,11 @@ const Wrapper = styled.section`
     .p{
         text-align: center;
         max-width: 550px;
-        margin: 0 auto 64px auto;
+        margin: 0 auto 0 auto;
     }
 
     .slick-list{
+        margin-top: 64px;
         margin-bottom: -32px;
         padding-bottom: 32px;
     }

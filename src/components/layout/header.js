@@ -34,14 +34,21 @@ export default function Header({ location }) {
     `)
     const locale = activeLanguage(location)
     const localeData = data.allWpPage.nodes.filter(el => el.language.slug === locale)
+    const type = (() => {
+        if (location.pathname === '/') {
+            return 'main'
+        }
+    })()
     const { siteLogo, headerNavigation } = localeData[0].header
 
     return (
-        <Wrapper>
+        <Wrapper type={type}>
             <Container>
                 <Content>
-                    <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
-                    <Navigation>
+                    <Link ariaLabel='homepage link' to="/">
+                        <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
+                    </Link>
+                    <Navigation type={type}>
                         <ul>
                             {headerNavigation.map(el => (
                                 <li>
@@ -65,7 +72,7 @@ const Wrapper = styled.header`
     padding: 28px 0;
 
     .logo{
-        filter: brightness(0) invert(1)
+        filter: ${props => props.type === 'main' ? 'brightness(0) invert(1)' : 'null'};
     }
 `
 
@@ -82,7 +89,7 @@ const Navigation = styled.nav`
 
         li{
             a{
-                color: #fff;
+                color: ${props => props.type === 'main' ? '#fff' : 'var(--color-black)'};
                 font-weight: 400;
                 font-size: 16px;
                 line-height: 24px;
@@ -91,11 +98,20 @@ const Navigation = styled.nav`
 
             :last-child{
                 a{
-                    padding: 12px 22px;
-                    background: #fff;
+                    padding: 12px 22px; 
+                    background: ${props => props.type === 'main' ? '#fff' : 'transparent'};
                     border-radius: 6px;
                     color: #495057;
-                    box-shadow: 0px 2px 21px rgba(13, 150, 225, 0.07);
+                    box-shadow: ${props => props.type === 'main' ? '0px 2px 21px rgba(13, 150, 225, 0.07)' : 'null'};
+                    ${props =>
+        props.type !== 'main'
+            ? `
+                    background: var(--color-accent);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    text-fill-color: transparent;`
+            : null}
                 }
             }
         }
