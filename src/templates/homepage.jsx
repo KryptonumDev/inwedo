@@ -12,7 +12,7 @@ const IndexPage = ({ data: { allWpPage } }) => {
   let { homepage } = allWpPage.nodes[0]
   return (
     <main>
-      <Hero data={homepage.hero} />
+      <Hero data={homepage.heroHomepage} />
       <Services data={homepage.services} />
       <CallToAction data={homepage.callToAction} />
       <CaseStudyRepeater data={homepage.caseStudies} />
@@ -32,7 +32,7 @@ export const query = graphql`
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         homepage {
-            hero {
+            heroHomepage {
               title
               subTitle
               button {
