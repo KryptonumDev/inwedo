@@ -202,6 +202,14 @@ query ServicesPageQuery($id: String!) {
               publicUrl
               sourceUrl
             }
+            image {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
           }
           twoColumnFlex {
             title

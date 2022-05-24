@@ -90,6 +90,14 @@ export const query = graphql`
                        publicUrl
                        sourceUrl
                      }
+                     image {
+                       altText
+                       localFile {
+                         childImageSharp {
+                           gatsbyImageData
+                         }
+                       }
+                     }
                    }
                    testomontialsAnimated {
                      text
@@ -180,6 +188,14 @@ export const query = graphql`
                      downloadFile {
                        publicUrl
                        sourceUrl
+                     }
+                     image {
+                       altText
+                       localFile {
+                         childImageSharp {
+                           gatsbyImageData
+                         }
+                       }
                      }
                    }
                 }

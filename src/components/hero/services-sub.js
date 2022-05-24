@@ -4,12 +4,14 @@ import React from "react"
 import styled from "styled-components"
 import { Container } from "../../style"
 
-export default function Hero({ data: { text, pageTitle, button, image } }) {
+export default function Hero({ data: { text, pageTitle, button, icon } }) {
     return (
         <Wrapper>
             <Container>
                 <Content>
-                    <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
+                    <Image>
+                        <GatsbyImage image={icon.localFile.childImageSharp.gatsbyImageData} alt={icon.altText} />
+                    </Image>
                     <TextPart>
                         <h1 className="h4 line">{pageTitle}</h1>
                         <p className="h1">{text}</p>
@@ -32,11 +34,13 @@ const Content = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 90px;
+    gap: 128px;
 `
 
-const Image = styled(GatsbyImage)`
-    border-radius: 8px 100px 0px 8px;
+const Image = styled.div`
+    padding: 43px 58px;
+    background-color: var(--color-white);
+    border-radius: 8px;
     filter: var(--shadow);
 `
 
@@ -45,6 +49,7 @@ const TextPart = styled.div`
 
     .h4{
         margin-bottom: 24px;
+        opacity: .5;
     }
 
     .h1{

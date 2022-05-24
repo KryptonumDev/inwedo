@@ -4,8 +4,10 @@ import { Container } from '../../style'
 import Type1 from './title_p_button'
 import Type2 from './title_button'
 import Type4 from './white_title_button'
+import Type5 from './white_title_button_photo'
+import Type8 from './title_foto_file'
 
-export default function CallToAction({ data: { typeOfCta, title, text, form, button, downloadFile } }) {
+export default function CallToAction({ data: { typeOfCta, title, text, form, button, downloadFile, image, buttonText } }) {
     return (
         <Wrapper>
             <Container>
@@ -20,11 +22,13 @@ export default function CallToAction({ data: { typeOfCta, title, text, form, but
                         case 'four':
                             return <Type4 title={title} button={button} />
                         case 'five':
-                            return null
+                            return <Type5 title={title} button={button} image={image} />
                         case 'six':
                             return null
                         case 'seven':
                             return null
+                        case 'eight':
+                            return <Type8 title={title} downloadFile={downloadFile} image={image} button={buttonText}/>
                     }
                 })()}
             </Container>

@@ -7,7 +7,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        "url": "http://inwedo.test/graphql"
+        "url": "https://datainwedo.com/graphql"
       }
     },
     "gatsby-plugin-styled-components", 

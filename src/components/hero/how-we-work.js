@@ -4,17 +4,18 @@ import React from "react"
 import styled from "styled-components"
 import { Container } from "../../style"
 
-export default function Hero({ data: { text, pageTitle, button, image } }) {
+export default function Hero({ data: { text, pageTitle, subTitle, button, image } }) {
     return (
         <Wrapper>
             <Container>
                 <Content>
-                    <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                     <TextPart>
                         <h1 className="h4 line">{pageTitle}</h1>
-                        <p className="h1">{text}</p>
+                        <p className="h1">{subTitle}</p>
+                        <p className="h4">{text}</p>
                         <Link className="button" to={button.url}>{button.name}</Link>
                     </TextPart>
+                    <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                 </Content>
             </Container>
         </Wrapper>
@@ -36,18 +37,23 @@ const Content = styled.div`
 `
 
 const Image = styled(GatsbyImage)`
-    border-radius: 8px 100px 0px 8px;
+    border-radius: 8px;
     filter: var(--shadow);
 `
 
 const TextPart = styled.div`
-    max-width: 780px;
+    max-width: 620px;
 
-    .h4{
-        margin-bottom: 24px;
+    h1{
+        margin-bottom: 16px;
+        opacity: .5;
     }
 
     .h1{
-        margin-bottom: 40px;
+        margin-bottom: 16px;
+    }
+
+    p.h4{
+        margin-bottom: 32px;
     }
 `
