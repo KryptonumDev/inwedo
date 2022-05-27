@@ -63,6 +63,7 @@ query TeamExtensionsPageQuery($id: String!) {
             techStackTeamExtensions{
                 sectionTitle
                 technologies{
+                  technologieUrl
                     techologieIcon{
                         altText
                         localFile {

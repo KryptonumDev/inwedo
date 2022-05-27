@@ -4,13 +4,16 @@ import { Container } from "../../style"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-export default function TwoColumnFlex({ data: { image, title, subTitle, text, button } }) {
+export default function TwoColumnFlex({ data: { image, title, subTitle, text, button }, technology }) {
     return (
         <Wrapper>
             <Container>
                 <Flex>
                     <div className="text">
-                        <h2 className="h4 line">{title}</h2>
+                        {technology
+                            ? <h2 className="h1">{title}</h2>
+                            : <h2 className="h4 line">{title}</h2>}
+
                         <p className="h3">{subTitle}</p>
                         <div className="p" dangerouslySetInnerHTML={{ __html: text }}></div>
                         {button.url
@@ -41,7 +44,10 @@ const Flex = styled.div`
 
     .text{
         max-width: 610px;
-
+        .h1{
+            margin-bottom: 0;
+        }
+        
         .h4{
             margin-bottom: 16px;
             opacity: .5;

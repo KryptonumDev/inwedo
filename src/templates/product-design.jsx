@@ -158,6 +158,7 @@ query ProductDesignPageQuery($id: String!) {
             techStackProductDesign{
                 sectionTitle
                 technologies{
+                  technologieUrl
                     techologieIcon{
                         altText
                         localFile {

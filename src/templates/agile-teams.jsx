@@ -112,6 +112,7 @@ query AgileTeamsPageQuery($id: String!) {
             techStack{
                 sectionTitle
                 technologies{
+                    technologieUrl
                     techologieIcon{
                         altText
                         localFile {
