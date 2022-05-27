@@ -74,8 +74,15 @@ const ImageWrapper = styled.div`
     filter: var(--shadow);
     width: fit-content;
     margin-bottom: 30px;
-    padding: 13px 19px;
+    width: 120px;
+    height: 104px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .image{
+        max-width: 80px;
+        width: fit-content;
+        height: fit-content;
     }
 `

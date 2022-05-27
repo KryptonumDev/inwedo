@@ -10,23 +10,27 @@ import SuccessStories from "../components/success-stories"
 import TwoColumnFlex from "../components/two-column/two-column-about"
 import TestomontialDivider from "../components/testomontial-divider"
 import CallToAction from "../components/cta"
+import RelatedServices from "../components/related-services"
+import FAQ from "../components/faq"
 
 const AgileTeamsPage = ({ data: { allWpPage } }) => {
-    let { agileTeams } = allWpPage.nodes[0]
-    return (
-        <main>
-            <Hero data={agileTeams.heroAgileTeams} />
-            <OurFocuses data={agileTeams.ourFocusesAgileTeams} />
-            <MiniFaq data={agileTeams.miniFaqAgileTeams} />
-            <TeamSizes data={agileTeams.teamSizes} />
-            <TechStack data={agileTeams.techStack} />
-            <ImageDivider data={agileTeams.imageDivider} />
-            <SuccessStories data={agileTeams.successStoriesAgileTeams} />
-            <TwoColumnFlex data={agileTeams.twoColumnFlexAgileTeams} />
-            <TestomontialDivider data={agileTeams.testomontialDividerAgileTeams}/>
-            <CallToAction data={agileTeams.callToActionAgileTeams}/>
-        </main>
-    )
+  let { agileTeams } = allWpPage.nodes[0]
+  return (
+    <main>
+      <Hero data={agileTeams.heroAgileTeams} />
+      <OurFocuses data={agileTeams.ourFocusesAgileTeams} />
+      <MiniFaq data={agileTeams.miniFaqAgileTeams} />
+      <TeamSizes data={agileTeams.teamSizes} />
+      <TechStack data={agileTeams.techStack} />
+      <ImageDivider data={agileTeams.imageDivider} />
+      <SuccessStories data={agileTeams.successStoriesAgileTeams} />
+      <TwoColumnFlex data={agileTeams.twoColumnFlexAgileTeams} />
+      <TestomontialDivider data={agileTeams.testomontialDividerAgileTeams} />
+      <CallToAction data={agileTeams.callToActionAgileTeams} />
+      <RelatedServices data={agileTeams.relatedServicesAgileTeams} />
+      <FAQ data={agileTeams.faqAgileTeams} />
+    </main>
+  )
 }
 
 export default AgileTeamsPage
@@ -210,6 +214,32 @@ query AgileTeamsPageQuery($id: String!) {
                     gatsbyImageData
                   }
                 }
+              }
+            }
+            relatedServicesAgileTeams {
+              sectionTitle
+              services {
+                servisTitle
+                servisText
+                button {
+                  name
+                  url
+                }
+                servisIcon {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+            }
+            faqAgileTeams {
+              title
+              faqElement {
+                answer
+                question
               }
             }
         }

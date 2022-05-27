@@ -231,4 +231,82 @@ exports.createPages = async ({
       },
     });
   });
+
+  // SERVICES - TEAM EXTENSIONS
+
+  const { data: { allWpPage: { teamExtensionsNodes } } } = await graphql(`
+          query {
+            allWpPage(filter: {template: {templateName: {eq: "Team Extensions"}}}) {
+              teamExtensionsNodes: nodes {
+                id
+                language {
+                  slug
+                }
+              }
+            }
+          }
+        `);
+
+  teamExtensionsNodes.forEach(({ id, language: { slug } }) => {
+    createPage({
+      path: slug === defaultLocale ? '/team-extensions/' : '/' + slug + '/team-extensions/',
+      component: resolve('src/templates/team-extensions.jsx'),
+      context: {
+        id,
+        slug,
+      },
+    });
+  });
+
+  // SERVICES - PRODUCT DESIGN
+
+  const { data: { allWpPage: { productDesignNodes } } } = await graphql(`
+          query {
+            allWpPage(filter: {template: {templateName: {eq: "Product Design"}}}) {
+              productDesignNodes: nodes {
+                id
+                language {
+                  slug
+                }
+              }
+            }
+          }
+        `);
+
+  productDesignNodes.forEach(({ id, language: { slug } }) => {
+    createPage({
+      path: slug === defaultLocale ? '/product-design/' : '/' + slug + '/product-design/',
+      component: resolve('src/templates/product-design.jsx'),
+      context: {
+        id,
+        slug,
+      },
+    });
+  });
+
+  // SERVICES - PRODUCT DEVELOPMENT
+
+  const { data: { allWpPage: { productDevelopmentNodes } } } = await graphql(`
+          query {
+            allWpPage(filter: {template: {templateName: {eq: "Product Development"}}}) {
+              productDevelopmentNodes: nodes {
+                id
+                language {
+                  slug
+                }
+              }
+            }
+          }
+        `);
+
+  productDevelopmentNodes.forEach(({ id, language: { slug } }) => {
+    createPage({
+      path: slug === defaultLocale ? '/product-development/' : '/' + slug + '/product-development/',
+      component: resolve('src/templates/product-development.jsx'),
+      context: {
+        id,
+        slug,
+      },
+    });
+  });
 }

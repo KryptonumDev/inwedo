@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Container } from "../../style"
 import Mark from './../../images/list-mark.svg'
+import Cirkle from './../../images/cirkle-mark.svg'
 
 export default function TwoColumnFlex({ data: { sectionTitle, subTitle, text, list } }) {
     return (
@@ -13,7 +14,7 @@ export default function TwoColumnFlex({ data: { sectionTitle, subTitle, text, li
                         <p className="h1">{subTitle}</p>
                         <p className="p">{text}</p>
                     </TextPart>
-                    <Card mark={Mark} dangerouslySetInnerHTML={{ __html: list }} />
+                    <Card cirkle={Cirkle} mark={Mark} dangerouslySetInnerHTML={{ __html: list }} />
                 </Content>
             </Container>
         </Wrapper>
@@ -84,6 +85,26 @@ const Card = styled.div`
 
             &::before{
                 content: url(${props => props.mark});
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+
+    ol{
+        display: grid;
+        grid-gap: 24px;
+        li{
+            padding-left: 40px;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 26px;
+            font-feature-settings: 'ss01' on;
+            position: relative;
+
+            &::before{
+                content: url(${props => props.cirkle});
                 position: absolute;
                 left: 0;
                 top: 0;

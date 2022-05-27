@@ -4,11 +4,11 @@ import { Container } from "../../style"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-export default function TwoColumnFlex({ data: { image, sectionTitle, text, teamMembers } }) {
+export default function TwoColumnFlex({ data: { image, sectionTitle, text, teamMembers }, reverse }) {
     return (
         <Wrapper>
             <Container>
-                <Flex>
+                <Flex reverse={reverse}>
                     <Image className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                     <div className="text">
                         <h2 className="h4 line">{sectionTitle}</h2>
@@ -37,6 +37,7 @@ const Wrapper = styled.section`
 
 const Flex = styled.div`
     display: flex;
+    flex-direction: ${props => props.reverse ? 'row-reverse' : 'row'};
     justify-content: space-between;
     align-items: center;
     gap: 128px;

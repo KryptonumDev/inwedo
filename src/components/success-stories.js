@@ -5,7 +5,6 @@ import styled from "styled-components"
 import { Container } from "../style"
 
 export default function SuccessStories({ data: { sectionTitle, success } }) {
-    debugger
     return (
         <Wrapper>
             <Container>
