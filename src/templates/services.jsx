@@ -8,6 +8,7 @@ import Testomontials from "../components/testomontials-slider"
 
 const ServicesPage = ({ data: { allWpPage } }) => {
   let { services } = allWpPage.nodes[0]
+  debugger
   return (
     <main>
       <Hero data={services.heroServices} />
@@ -15,9 +16,9 @@ const ServicesPage = ({ data: { allWpPage } }) => {
       <CallToAction data={services.callToActionServices} />
       <DevelopmentCards data={services.developmentCardsSecond} />
       <CallToAction data={services.callToActionServicesCopy} />
-      <TwoColumnFlex data={services.twoColumnFlex} />
+      <TwoColumnFlex data={services.twoColumnFlexServices} />
       <Testomontials data={services.testomontialsServices} />
-      <TwoColumnFlex data={services.twoColumnFlexSecond} />
+      <TwoColumnFlex data={services.twoColumnFlexServicesSecond} />
     </main>
   )
 }
@@ -211,7 +212,7 @@ query ServicesPageQuery($id: String!) {
               }
             }
           }
-          twoColumnFlex {
+          twoColumnFlexServices {
             title
             subTitle
             text
@@ -255,7 +256,7 @@ query ServicesPageQuery($id: String!) {
               }
             }
           }
-          twoColumnFlexSecond {
+          twoColumnFlexServicesSecond {
             title
             subTitle
             text

@@ -40,6 +40,9 @@ const Flex = styled.div`
         filter: var(--shadow);
         border-radius: 24px;
         padding: 54px 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .text{
@@ -58,4 +61,7 @@ const Flex = styled.div`
 `
 
 const Image = styled(GatsbyImage)`
+    width: fit-content;
+    height: fit-content;
+    max-width: 210px;
 `
