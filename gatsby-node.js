@@ -362,5 +362,61 @@ exports.createPages = async ({
       },
     });
   });
-  
+
+  // Portfolio archive
+
+  const { data: { allWpPage: { portfolioArchiveNodes } } } = await graphql(`
+          {
+            allWpPage(filter: {template: {templateName: {eq: "Portfolio Archive"}}}) {
+              portfolioArchiveNodes: nodes {
+                id
+                language {
+                  slug
+                }
+              }
+            }
+          }
+        `);
+
+  portfolioArchiveNodes.forEach(({ id, language: { slug } }) => {
+    createPage({
+      path: slug === defaultLocale ? urlSystem.caseStudies.en : urlSystem.caseStudies.pl,
+      component: resolve('src/templates/portfolio-archive.jsx'),
+      context: {
+        id,
+        slug,
+      },
+    });
+  });
+
+  // Portfolio page
+
+  const { data: { allWpCaseStudies: { portfolioPageNodes } } } = await graphql(`
+          {
+            allWpCaseStudies(filter: {template: {templateName: {eq: "Case Studies"}}}) {
+              portfolioPageNodes: nodes {
+                id
+                language {
+                  slug
+                }
+                caseStudies {
+                  currentPostUrl
+                }
+              }
+            }
+          }
+        `);
+
+  portfolioPageNodes.forEach(({ id, language: { slug }, caseStudies: { currentPostUrl } }) => {
+    createPage({
+      path: currentPostUrl,
+      component: resolve('src/templates/portfolio-post.jsx'),
+      context: {
+        id,
+        slug,
+      },
+    });
+  });
+
+
 }
