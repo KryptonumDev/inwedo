@@ -19,7 +19,7 @@ export default function Solution({ data: { sectionTitle, subTitle, text, solutio
                                 <h3 className='h3'>{el.stepTitle}</h3>
                                 <p className='p'>{el.stepText}</p>
                             </div>
-                            <ImagePart>
+                            <ImagePart x={el.stepImage.localFile.childImageSharp.gatsbyImageData.width} y={el.stepImage.localFile.childImageSharp.gatsbyImageData.height}>
                                 <GatsbyImage className='image' image={el.stepImage.localFile.childImageSharp.gatsbyImageData} alt={el.stepImage.altText} />
                             </ImagePart>
                         </Item>
@@ -79,7 +79,7 @@ const Item = styled.div`
 `
 
 const ImagePart = styled.div`
-    
+    position: relative;
     padding: 64px;
     border-radius: 24px;
     background-color: var(--color-white);

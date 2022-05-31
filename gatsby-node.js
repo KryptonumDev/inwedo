@@ -3,27 +3,27 @@ const { resolve } = require('path');
 const { get } = require('https');
 
 const urlSystem = {
-  homepage: { pl: '/pl', en: '/' },
-  services: { pl: '/uslugi', en: '/services' },
-  productDevelopment: { pl: '/uslugi/product-development', en: '/services/product-development' },
-  discoveryWorkshop: { pl: '/uslugi/warsztaty-discovery-workshops', en: '/services/discovery-workshops' },
-  productDesign: { pl: '/uslugi/projektowanie-design-produktu-digital-ux-ui', en: '/services/digital-product-design-ux-ui' },
-  webAppDevelopment: { pl: '/uslugi/web-development', en: '/services/web-development' },
-  agileTeamsOnDemand: { pl: '/uslugi/outsourcing-it-dedykowane-zespoly-agile', en: '/services/dedicated-team-it-outsourcing-agile-teams-on-demand' },
-  teamExtensions: { pl: '/uslugi/outsourcing-it-team-extension', en: '/services/it-outsourcing-team-extension' },
-  aboutUs: { pl: '/o-nas', en: '/about-us' },
-  HowWeWork: { pl: '/jak-dzialamy', en: '/how-we-work' },
-  contact: { pl: '/kontakt', en: '/contact' },
+  homepage: { pl: '/pl/', en: '/' },
+  services: { pl: '/uslugi/', en: '/services/' },
+  productDevelopment: { pl: '/uslugi/product-development/', en: '/services/product-development/' },
+  discoveryWorkshop: { pl: '/uslugi/warsztaty-discovery-workshops/', en: '/services/discovery-workshops/' },
+  productDesign: { pl: '/uslugi/projektowanie-design-produktu-digital-ux-ui/', en: '/services/digital-product-design-ux-ui/' },
+  webAppDevelopment: { pl: '/uslugi/web-development/', en: '/services/web-development/' },
+  agileTeamsOnDemand: { pl: '/uslugi/outsourcing-it-dedykowane-zespoly-agile/', en: '/services/dedicated-team-it-outsourcing-agile-teams-on-demand/' },
+  teamExtensions: { pl: '/uslugi/outsourcing-it-team-extension/', en: '/services/it-outsourcing-team-extension/' },
+  aboutUs: { pl: '/o-nas/', en: '/about-us/' },
+  HowWeWork: { pl: '/jak-dzialamy/', en: '/how-we-work/' },
+  contact: { pl: '/kontakt/', en: '/contact/' },
 
-  netDevelopment: { pl: '/uslugi/web-development/dotnet', en: '/services/web-development/dotnet' },
-  angularDevelopment: { pl: '/uslugi/web-development/angular', en: '/services/web-development/angular' },
-  nodeDevelopment: { pl: '/uslugi/web-development/node-js', en: '/services/web-development/node-js' },
-  reactDevelopment: { pl: '/uslugi/web-development/react-js', en: '/services/web-development/react-js' },
-  typescriptDevelopment: { pl: '/uslugi/web-development/typescript', en: '/services/web-development/typescript' },
-  vueDevelopment: { pl: '/uslugi/web-development/vue-js', en: '/services/web-development/vue-js' },
+  netDevelopment: { pl: '/uslugi/web-development/dotnet/', en: '/services/web-development/dotnet/' },
+  angularDevelopment: { pl: '/uslugi/web-development/angular/', en: '/services/web-development/angular/' },
+  nodeDevelopment: { pl: '/uslugi/web-development/node-js/', en: '/services/web-development/node-js/' },
+  reactDevelopment: { pl: '/uslugi/web-development/react-js/', en: '/services/web-development/react-js/' },
+  typescriptDevelopment: { pl: '/uslugi/web-development/typescript/', en: '/services/web-development/typescript/' },
+  vueDevelopment: { pl: '/uslugi/web-development/vue-js/', en: '/services/web-development/vue-js/' },
 
-  caseStudies: { pl: '/case-studies', en: '/case-studies' },
-  blog: { pl: '/pl/blog', en: '/blog' },
+  caseStudies: { pl: '/pl/case-studies/', en: '/case-studies/' },
+  blog: { pl: '/pl/blog/', en: '/blog/' },
 }
 
 exports.createPages = async ({
@@ -65,7 +65,7 @@ exports.createPages = async ({
 
   homepageNodes.forEach(({ id, language: { slug } }) => {
     createPage({
-      path: slug === defaultLocale ? urlSystem.homepage.en : urlSystem.homepage.pl,
+      path: urlSystem.homepage[slug],
       component: resolve('src/templates/homepage.jsx'),
       context: {
         id,
@@ -91,7 +91,7 @@ exports.createPages = async ({
 
   servicesNodes.forEach(({ id, language: { slug } }) => {
     createPage({
-      path: slug === defaultLocale ? urlSystem.services.en : urlSystem.services.pl,
+      path: urlSystem.services[slug],
       component: resolve('src/templates/services.jsx'),
       context: {
         id,
@@ -117,7 +117,7 @@ exports.createPages = async ({
 
   contactNodes.forEach(({ id, language: { slug } }) => {
     createPage({
-      path: slug === defaultLocale ? urlSystem.contact.en : urlSystem.contact.pl,
+      path: urlSystem.contact[slug],
       component: resolve('src/templates/contact.jsx'),
       context: {
         id,
@@ -143,7 +143,7 @@ exports.createPages = async ({
 
   aboutNodes.forEach(({ id, language: { slug } }) => {
     createPage({
-      path: slug === defaultLocale ? urlSystem.aboutUs.en : urlSystem.aboutUs.pl,
+      path: urlSystem.aboutUs[slug],
       component: resolve('src/templates/about.jsx'),
       context: {
         id,
@@ -169,7 +169,7 @@ exports.createPages = async ({
 
   howWeWorkNodes.forEach(({ id, language: { slug } }) => {
     createPage({
-      path: slug === defaultLocale ? urlSystem.HowWeWork.en : urlSystem.HowWeWork.pl,
+      path: urlSystem.HowWeWork[slug],
       component: resolve('src/templates/how-we-work.jsx'),
       context: {
         id,
@@ -195,7 +195,7 @@ exports.createPages = async ({
 
   workshopNodes.forEach(({ id, language: { slug } }) => {
     createPage({
-      path: slug === defaultLocale ? urlSystem.discoveryWorkshop.en : urlSystem.discoveryWorkshop.pl,
+      path: urlSystem.discoveryWorkshop[slug],
       component: resolve('src/templates/discovery-workshop.jsx'),
       context: {
         id,
@@ -221,7 +221,7 @@ exports.createPages = async ({
 
   webAppNodes.forEach(({ id, language: { slug } }) => {
     createPage({
-      path: slug === defaultLocale ? urlSystem.webAppDevelopment.en : urlSystem.webAppDevelopment.pl,
+      path: urlSystem.webAppDevelopment[slug],
       component: resolve('src/templates/web-app.jsx'),
       context: {
         id,
@@ -247,7 +247,7 @@ exports.createPages = async ({
 
   agileTeamsNodes.forEach(({ id, language: { slug } }) => {
     createPage({
-      path: slug === defaultLocale ? urlSystem.agileTeamsOnDemand.en : urlSystem.agileTeamsOnDemand.pl,
+      path: urlSystem.agileTeamsOnDemand[slug],
       component: resolve('src/templates/agile-teams.jsx'),
       context: {
         id,
@@ -273,7 +273,7 @@ exports.createPages = async ({
 
   teamExtensionsNodes.forEach(({ id, language: { slug } }) => {
     createPage({
-      path: slug === defaultLocale ? urlSystem.teamExtensions.en : urlSystem.teamExtensions.pl,
+      path: urlSystem.teamExtensions[slug],
       component: resolve('src/templates/team-extensions.jsx'),
       context: {
         id,
@@ -299,7 +299,7 @@ exports.createPages = async ({
 
   productDesignNodes.forEach(({ id, language: { slug } }) => {
     createPage({
-      path: slug === defaultLocale ? urlSystem.productDesign.en : urlSystem.productDesign.pl,
+      path: urlSystem.productDesign[slug],
       component: resolve('src/templates/product-design.jsx'),
       context: {
         id,
@@ -325,7 +325,7 @@ exports.createPages = async ({
 
   productDevelopmentNodes.forEach(({ id, language: { slug } }) => {
     createPage({
-      path: slug === defaultLocale ? urlSystem.productDevelopment.en : urlSystem.productDevelopment.pl,
+      path: urlSystem.productDevelopment[slug],
       component: resolve('src/templates/product-development.jsx'),
       context: {
         id,
@@ -363,7 +363,7 @@ exports.createPages = async ({
     });
   });
 
-  // Portfolio archive
+  // PORTFOLIO ARCHIVE
 
   const { data: { allWpPage: { portfolioArchiveNodes } } } = await graphql(`
           {
@@ -378,22 +378,52 @@ exports.createPages = async ({
           }
         `);
 
+
+
+  const { data: { categoryParents: { categoryArchiveNodes } } } = await graphql(`
+  {
+    categoryParents: allWpCategoryPortfolio(
+      filter: {wpParent: {node: {slug: {eq: null}}}}
+    ) {
+      categoryArchiveNodes: nodes {
+        catSlug: slug
+        language {
+          slug
+        }
+      }
+    }
+  }
+  `);
+
   portfolioArchiveNodes.forEach(({ id, language: { slug } }) => {
+
     createPage({
-      path: slug === defaultLocale ? urlSystem.caseStudies.en : urlSystem.caseStudies.pl,
+      path: urlSystem.caseStudies[slug],
       component: resolve('src/templates/portfolio-archive.jsx'),
       context: {
         id,
         slug,
       },
     });
+
+
+    categoryArchiveNodes.forEach(({ language: { catLangSlug }, catSlug }) => {
+      createPage({
+        path: urlSystem.caseStudies[slug] + catSlug,
+        component: resolve('src/templates/portfolio-archive.jsx'),
+        context: {
+          id,
+          slug,
+        },
+      });
+    });
   });
 
-  // Portfolio page
+  // PORTFOLIO PAGE (CASE STUDIES)
 
   const { data: { allWpCaseStudies: { portfolioPageNodes } } } = await graphql(`
           {
-            allWpCaseStudies(filter: {template: {templateName: {eq: "Case Studies"}}}) {
+            allWpCaseStudies {
               portfolioPageNodes: nodes {
                 id
                 language {
@@ -418,5 +448,59 @@ exports.createPages = async ({
     });
   });
 
+  // BLOG ARCHIVE
+
+  const { data: { allWpPage: { blogArchiveNodes } } } = await graphql(`
+          query {
+            allWpPage(filter: {template: {templateName: {eq: "Blog Archive"}}}) {
+              blogArchiveNodes: nodes {
+                id
+                language {
+                  slug
+                }
+              }
+            }
+          }
+        `);
+
+  blogArchiveNodes.forEach(({ id, language: { slug } }) => {
+    createPage({
+      path: urlSystem.blog[slug],
+      component: resolve('src/templates/blog-archive.jsx'),
+      context: {
+        id,
+        slug,
+      },
+    });
+  });
+
+  // BLOG PAGE (POST)
+
+  const { data: { allWpPost: { PostPageNodes } } } = await graphql(`
+          {
+            allWpPost {
+              PostPageNodes: nodes {
+                id
+                language {
+                  slug
+                }
+                blogPost {
+                  currentPostUrl
+                }
+              }
+            }
+          }
+        `);
+
+  PostPageNodes.forEach(({ id, language: { slug }, blogPost: { currentPostUrl } }) => {
+    createPage({
+      path: currentPostUrl,
+      component: resolve('src/templates/blog-post.jsx'),
+      context: {
+        id,
+        slug,
+      },
+    });
+  });
 
 }

@@ -6,6 +6,7 @@ import Type2 from './title_button'
 import Type4 from './white_title_button'
 import Type5 from './white_title_button_photo'
 import Type6 from './downalod_form'
+import Type7 from './newsletter'
 import Type8 from './title_foto_file'
 
 export default function CallToAction({ data: { typeOfCta, title, text, form, button, downloadFile, image, buttonText } }) {
@@ -27,7 +28,7 @@ export default function CallToAction({ data: { typeOfCta, title, text, form, but
                         case 'six':
                             return <Type6 title={title} text={text} image={image} form={form} />
                         case 'seven':
-                            return null
+                            return <Type7 title={title} form={form}/>
                         case 'eight':
                             return <Type8 title={title} downloadFile={downloadFile} image={image} button={buttonText} />
                     }

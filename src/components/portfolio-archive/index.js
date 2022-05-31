@@ -2,10 +2,22 @@ import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import Filter from "./filter"
 import PostsGrid from "./posts-grid"
+import { useUrlUpdate } from './../../helpers/useUrlUpdate'
+import { checkLanguageUrl } from "../../helpers/checkLanguageUrl"
 
-export default function Archive({ parentCategories, children, posts, data }) {
+export default function Archive({ parentCategories, children, posts, data, location }) {
 
-    const [currentFilter, changeCurrentFilter] = useState('all')
+    const [currentFilter, changeCurrentFilter] = useState(() => {
+        let url = 'all'
+
+        parentCategories.nodes.forEach(el => {
+            if (location.pathname.includes(el.slug)) {
+                url = el.slug
+            }
+        })
+
+        return url
+    })
     const [currentSubFilter, changeCurrentSubFilter] = useState('all')
 
     const changeFilters = (slug) => {
@@ -13,9 +25,22 @@ export default function Archive({ parentCategories, children, posts, data }) {
         changeCurrentSubFilter('all')
     }
 
-    const [defaultPosts] = useState(posts.nodes)
-    const [filtredPosts, changeFiltredPosts] = useState(posts.nodes)
     const [showCount, changeShowCount] = useState(9)
+    const [defaultPosts] = useState(posts.nodes)
+    const [filtredPosts, changeFiltredPosts] = useState(() => {
+        if (currentFilter === 'all') {
+            return posts.nodes
+        }
+
+        return defaultPosts.filter(el => {
+            for (let i = 0; i < el.categoriesPortfolio.nodes.length; i++) {
+                if (el.categoriesPortfolio.nodes[i].slug === currentFilter) {
+                    changeCurrentFilter(currentFilter)
+                    return true
+                }
+            }
+        })
+    })
 
     useEffect(() => {
         changeFiltredPosts(defaultPosts.filter(el => {
@@ -26,6 +51,7 @@ export default function Archive({ parentCategories, children, posts, data }) {
             if (currentSubFilter === 'all') {
                 for (let i = 0; i < el.categoriesPortfolio.nodes.length; i++) {
                     if (el.categoriesPortfolio.nodes[i].slug === currentFilter) {
+                        changeCurrentFilter(currentFilter)
                         return true
                     }
                 }
@@ -41,6 +67,9 @@ export default function Archive({ parentCategories, children, posts, data }) {
         }))
     }, [currentFilter, currentSubFilter])
 
+    const url = checkLanguageUrl(location, '/case-studies/')
+    useUrlUpdate(currentFilter !== 'all' ? url + currentFilter : url)
+
     return (
         <>
             <Filter
@@ -50,9 +79,13 @@ export default function Archive({ parentCategories, children, posts, data }) {
                 changeFilters={changeFilters}
                 changeCurrentSubFilter={changeCurrentSubFilter}
             />
-            <PostsGrid data={filtredPosts} from={'0'} to={'3'} />
+            {filtredPosts.length > 0
+                ? <PostsGrid data={filtredPosts} from={'0'} to={'3'} />
+                : null}
             {children}
-            <PostsGrid data={filtredPosts} from={'4'} to={showCount} />
+            {filtredPosts.length > 0
+                ? <PostsGrid data={filtredPosts} from={'4'} to={showCount} />
+                : null}
             {filtredPosts.length > changeShowCount + 1
                 ? <Button onClick={() => { changeShowCount(showCount + 4) }} className="button">{data.loadMoreText}</Button>
                 : null}

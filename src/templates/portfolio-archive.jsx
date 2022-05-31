@@ -6,17 +6,17 @@ import Testomontials from "../components/testomontials-slider"
 import CallToAction from "../components/cta"
 import Archive from "../components/portfolio-archive"
 
-const PortfolioArchivePage = ({ data: { allWpPage, categoryParents, allWpCaseStudies } }) => {
+const PortfolioArchivePage = ({ data: { allWpPage, categoryParents, allWpCaseStudies }, location }) => {
   const portfolio = allWpPage.nodes[0].portfolioArchive
   return (
     <main>
       <Hero data={portfolio.heroPortfolio} />
       <ClientCases data={portfolio.clientsPortfolio} />
-      <Archive data={portfolio.posts} parentCategories={categoryParents} posts={allWpCaseStudies}>
-        <CallToAction data={portfolio.callToActionPortfolio} />
+      <Archive location={location} data={portfolio.posts} parentCategories={categoryParents} posts={allWpCaseStudies}>
+        <CallToAction data={portfolio.callToActionPortfolioArchive} />
       </Archive>
       <Testomontials data={portfolio.testomontialsPortfolio} />
-      <CallToAction data={portfolio.callToActionPortfolioSecond} />
+      <CallToAction data={portfolio.callToActionPortfolioArchiveSecond} />
     </main>
   )
 }
@@ -25,7 +25,7 @@ export default PortfolioArchivePage
 
 
 export const query = graphql`
-query PortfolioArchivePageQuery($id: String!) {
+query PortfolioArchivePageQuery($id: String!, $slug: String!) {
     allWpPage(filter: {id: {eq: $id}}) {
       nodes{
         portfolioArchive {
@@ -84,7 +84,7 @@ query PortfolioArchivePageQuery($id: String!) {
               }
             }
           }
-          callToActionPortfolio{
+          callToActionPortfolioArchive{
             typeOfCta
             title
             text
@@ -110,7 +110,7 @@ query PortfolioArchivePageQuery($id: String!) {
               }
             }
           }
-          callToActionPortfolioSecond{
+          callToActionPortfolioArchiveSecond{
             typeOfCta
             title
             text
@@ -139,7 +139,7 @@ query PortfolioArchivePageQuery($id: String!) {
         }
       }
     }
-    categoryChildrens : allWpCategoryPortfolio(filter: {wpParent: {node: {slug: {ne: null}}}}) {
+    categoryChildrens : allWpCategoryPortfolio(filter: {wpParent: {node: {slug: {ne: null}}}, language: {slug: {eq: $slug}}}) {
         nodes {
           name
           slug
@@ -150,7 +150,7 @@ query PortfolioArchivePageQuery($id: String!) {
           }
         }
       }
-    categoryParents : allWpCategoryPortfolio(filter: {wpParent: {node: {slug: {eq: null}}}}) {
+    categoryParents : allWpCategoryPortfolio(filter: {wpParent: {node: {slug: {eq: null}}}, language: {slug: {eq: $slug}}} ) {
         nodes {
             slug
             name

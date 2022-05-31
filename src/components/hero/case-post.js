@@ -148,6 +148,7 @@ const GlassCard = styled.div`
             filter: var(--shadow);
             border-radius: 8px;
             display: flex;
+            gap: 16px;
             justify-content: space-between;
             align-items: center;
             width: fit-content;

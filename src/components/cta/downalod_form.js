@@ -2,16 +2,15 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from 'styled-components'
+import GetForm from "../forms/cta-file"
 
-export default ({ title, text, image, from }) => (
+export default ({ title, text, image, form }) => (
     <ContentWrapper>
         <Content>
             <div className="content">
                 <Title className="h1">{title}</Title>
                 <Text className="h4">{text}</Text>
-                {/* <Button download href={file} className='button-white'>
-                    <span>{button}</span>
-                </Button> */}
+                <GetForm data={form}/>
             </div>
             <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
         </Content>
@@ -33,6 +32,7 @@ const Content = styled.div`
 
     .content{
         max-width: 650px;
+        width: 100%;
     }
 `
 
