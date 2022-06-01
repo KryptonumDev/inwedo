@@ -22,13 +22,18 @@ const ContentWrapper = styled.div`
 const Content = styled.div`
     max-width: 756px;
     margin: 0 auto;
-    padding: 100px 30px;
+    padding: clamp(64px, 10.68vw, 100px) 30px;
 `
 
 const Title = styled.h2`
     color: var(--color-white);
     text-align: center;
     margin-bottom: 32px;
+
+    &.h1{
+        font-weight: 600px;
+        font-size: clamp(20px, 3.385vw, 32px);
+    }
 `
 
 const Button = styled(Link)`

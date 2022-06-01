@@ -67,6 +67,17 @@ export const query = graphql`
               }
             }
             services {
+              card{
+                cardLink
+                cardImage{
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
               clientsTitle
               clientsItems {
                 logoClients {
@@ -135,7 +146,12 @@ export const query = graphql`
                 }
                 techologies {
                   companyLogo {
-                    sourceUrl
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
                   }
                 }
                 firmLogo {

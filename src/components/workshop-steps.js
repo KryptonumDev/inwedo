@@ -75,7 +75,7 @@ const Item = styled.div`
 const Number = styled.span`
     position: absolute;
     font-weight: 500;
-    font-size: 81px;
+    font-size: clamp(32px, 7.16vw, 81px);
     line-height: 151%;
     left: -60px;
     top: 0;
@@ -88,11 +88,13 @@ const TextPart = styled.div`
     position: relative;
 
     h2.h1{
-        margin-bottom: 24px;
+        margin-bottom: clamp(16px, 2.6vw, 24px);
+        font-size: clamp(20px, 3.38vw, 32px);
     }
 
     p.h4{
-        margin-bottom: 48px;
+        margin-bottom: clamp(28px, 4.94vw, 48px);
+        font-size: clamp(14px, 2.08vw, 18px);
     }
 `
 
@@ -101,11 +103,12 @@ const SubSteps = styled.div`
     max-width: 450px;
 
     h3.h4{
-        margin-bottom: 16px;
+        margin-bottom: clamp(12px, 1.82vw, 16px);
+        font-size: clamp(14px, 2.08vw, 18px);
     }
 
     p.p{
-
+        margin-bottom: clamp(14px, 1.95vw, 16px);
     }
 
     &:first-child{
@@ -128,7 +131,8 @@ const SubSteps = styled.div`
 
 const Plate = styled.span`
     position: absolute;
-    bottom: -30px;
+    bottom: 0;
+    transform: translateY(100%);
     right: 0;
     padding: 24px 32px;
     border-radius: 24px;

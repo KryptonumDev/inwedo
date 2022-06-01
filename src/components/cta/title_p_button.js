@@ -16,8 +16,14 @@ export default ({ title, text, button }) => (
 
 const ContentWrapper = styled.div`
     background: var(--color-accent);
-    border-radius: 24.5221px;
+    border-radius: 24px;
     filter: var(--shadow);
+
+    @media (max-width: 1024px) {
+        border-radius: 0;
+        width: calc(100% + 64px);
+        transform: translateX(-32px);
+    }
 `
 
 const Content = styled.div`
@@ -30,6 +36,11 @@ const Title = styled.h2`
     color: var(--color-white);
     text-align: center;
     margin-bottom: 24px;
+
+    &.h1{
+        font-weight: 600px;
+        font-size: clamp(20px, 3.385vw, 32px);
+    }
 `
 
 const Text = styled.p`
@@ -37,6 +48,9 @@ const Text = styled.p`
     text-align: center;
     margin-bottom: 32px;
 
+    &.p{
+        font-size: clamp(14px, 2.083vw, 18px);
+    }
 `
 
 const Button = styled(Link)`

@@ -8,40 +8,42 @@ export default function NumbersAndImages({ data: { imgGrid, numbersContent, text
     return (
         <Wrapper>
             <LocalContainer>
-                <Content>
-                    <h2 className="h4 line">{textContent.title}</h2>
-                    <h3 className="h1">{textContent.subTitle}</h3>
-                    <div dangerouslySetInnerHTML={{ __html: textContent.textContent }} />
-                    <Link className="button" to={textContent.button.url}>{textContent.button.name}</Link>
-                </Content>
-                <Numbers>
-                    <NumbersMainItem>
-                        <span className="h1 display colored">
-                            {numbersContent[0].number}
-                            {numbersContent[0].addPlusSymbol ? '+' : null}
-                        </span>
-                        <span className="h3">
-                            {numbersContent[0].numberDescription}
-                        </span>
-                    </NumbersMainItem>
-                    <NumbersGrid>
-                        {numbersContent.map((el, index) => {
-                            if (index > 0) {
-                                return (
-                                    <div>
-                                        <span className="number">
-                                            {el.number}{numbersContent[0].addPlusSymbol === null ? null : '+'}
-                                        </span>
-                                        <span className="descr p">
-                                            {el.numberDescription}
-                                        </span>
-                                    </div>
-                                )
-                            }
-                            return null
-                        })}
-                    </NumbersGrid>
-                </Numbers>
+                <div>
+                    <Content>
+                        <h2 className="h4 line">{textContent.title}</h2>
+                        <h3 className="h1">{textContent.subTitle}</h3>
+                        <div dangerouslySetInnerHTML={{ __html: textContent.textContent }} />
+                        <Link className="button" to={textContent.button.url}>{textContent.button.name}</Link>
+                    </Content>
+                    <Numbers>
+                        <NumbersMainItem>
+                            <span className="h1 display colored">
+                                {numbersContent[0].number}
+                                {numbersContent[0].addPlusSymbol ? '+' : null}
+                            </span>
+                            <span className="h3">
+                                {numbersContent[0].numberDescription}
+                            </span>
+                        </NumbersMainItem>
+                        <NumbersGrid>
+                            {numbersContent.map((el, index) => {
+                                if (index > 0) {
+                                    return (
+                                        <div>
+                                            <span className="number">
+                                                {el.number}{numbersContent[0].addPlusSymbol === null ? null : '+'}
+                                            </span>
+                                            <span className="descr p">
+                                                {el.numberDescription}
+                                            </span>
+                                        </div>
+                                    )
+                                }
+                                return null
+                            })}
+                        </NumbersGrid>
+                    </Numbers>
+                </div>
                 <Grid>
                     <GatsbyImage className="lt" image={imgGrid.leftTopImage.localFile.childImageSharp.gatsbyImageData} alt={imgGrid.leftTopImage.altText} />
                     <GatsbyImage className="rt" image={imgGrid.rightTopImage.localFile.childImageSharp.gatsbyImageData} alt={imgGrid.rightTopImage.altText} />
@@ -64,6 +66,11 @@ const Wrapper = styled.section`
 
 const LocalContainer = styled(Container)`
     position: relative;
+
+    @media (max-width: 920px){
+        display: flex;
+        flex-direction: column-reverse;
+    }
 `
 
 const Content = styled.div`
@@ -73,10 +80,12 @@ const Content = styled.div`
     .h4{
         opacity: .5;
         margin-bottom: 16px;
+        font-size: clamp(14px, 2.08vw, 18px);
     }
 
     .h1{
-        margin-bottom: 32px;
+        margin-bottom: clamp(22px, 3.385vw, 32px);
+        font-size: clamp(20px, 3.385vw, 32px);
     }
 
     div{
@@ -91,11 +100,20 @@ const Content = styled.div`
             font-feature-settings: 'ss01' on;
         }
     }
+
+    @media (max-width: 920px){
+        margin: 0 auto;
+    }
 `
 
 const Numbers = styled.div`
     max-width: 533px;
-    margin-top: 96px;
+    margin-top: clamp(22px, 6.25vw, 96px);
+
+    @media (max-width: 920px){
+        margin: 0 auto;
+        margin-top: clamp(22px, 6.25vw, 96px);
+    }
 `
 
 const NumbersMainItem = styled.div`
@@ -109,7 +127,11 @@ const NumbersMainItem = styled.div`
     background-color: var(--color-white);
 
     .h1{
-        font-size: 70px;
+        font-size: clamp(42px, 7.29vw, 70px);
+    }
+
+    .h3{
+        font-size: clamp(14px, 2.47vw, 24px);
     }
 `
 
@@ -117,26 +139,31 @@ const NumbersGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 48px;
-    margin-top: 36px;
+    margin-top: clamp(22px, 3.77vw, 36px);
     .number{
         aspect-ratio: 1/1;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 18px;
+        margin-bottom: clamp(12px, 1.95vw, 18px);
 
         filter: var(--shadow);
         border-radius: 24px;
         background-color: var(--color-white);
         font-weight: 600;
-        font-size: 54px;
-        line-height: 70px;
+        font-size: clamp(32px, 5.338vw, 54px);
+        line-height: 130%;
 
     }
 
     .descr{
         text-align: center;
         display: block;
+        font-size: clamp(10px, 1.69vw, 16px);
+    }
+
+    @media (max-width: 420px) {
+        grid-gap: 32px;
     }
 `
 
@@ -157,6 +184,8 @@ const Grid = styled.div`
         left: 50px;
         top: 182px;
         filter: var(--shadow);
+        width: 300px;
+        height: 382px;
     }
     .rt{
         position: absolute;
@@ -164,6 +193,8 @@ const Grid = styled.div`
         right: 92px;
         top: 0; 
         filter: var(--shadow);
+        width: 387px;
+        height: 439px;
     }
     .lb{
         position: absolute;
@@ -171,6 +202,8 @@ const Grid = styled.div`
         left: 0;
         bottom: 0;
         filter: var(--shadow);
+        width: 348px;
+        height: 303px;
     }
     .rb{
         position: absolute;
@@ -178,5 +211,48 @@ const Grid = styled.div`
         right: 0;
         bottom: 92px;
         filter: var(--shadow);
+        width: 479px;
+        height: 348px;
+    }
+
+    @media (max-width: 1240px) {
+        right: unset;
+        left: 594px;
+    }
+
+    @media (max-width: 920px) {
+        position: relative;
+        left: 0;
+        margin: 0 auto;
+        margin-bottom: 48px;
+
+        width: calc(100% + 120px);
+        transform: translateX(-46px);
+        aspect-ratio: 1/1.09;
+        height: unset;
+
+        .lt{
+            width: 34.52%;
+            height: fit-content;
+            left: 5.75%;
+            top: 20.94%;
+        }
+
+        .rt{
+            width: 44.53%;
+            height: fit-content;
+            right: 10.58%;
+        }
+
+        .lb{
+            width: 40.04%;
+            height: fit-content;
+        }
+
+        .rb{
+            width: 55.12%;
+            height: fit-content;
+            bottom: 10.586%;
+        }
     }
 `

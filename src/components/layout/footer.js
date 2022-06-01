@@ -68,6 +68,13 @@ export default function Footer({ location }) {
                                 <p>{el.row}</p>
                             ))}
                         </div>
+                        <Social>
+                            {socialLinks.map(el => (
+                                <a href={el.link} ariaLabel={el.ariaLabel}>
+                                    <img src={el.icon.sourceUrl} alt={el.icon.altText} />
+                                </a>
+                            ))}
+                        </Social>
                     </div>
                     {navigation.map(el => (
                         <div>
@@ -80,13 +87,7 @@ export default function Footer({ location }) {
                         </div>
                     ))}
                 </Content>
-                <Social>
-                    {socialLinks.map(el => (
-                        <a href={el.link} ariaLabel={el.ariaLabel}>
-                            <img src={el.icon.sourceUrl} alt={el.icon.altText} />
-                        </a>
-                    ))}
-                </Social>
+
                 <Copyright>
                     <p>{copyright.copyright}</p>
                     <ul>
@@ -147,6 +148,13 @@ const Content = styled.div`
             }
         }
     }
+
+    @media (max-width: 1024px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 32px;
+        margin-bottom: 32px;
+    }
 `
 
 const Social = styled.div`
@@ -160,7 +168,7 @@ const Social = styled.div`
 `
 
 const Copyright = styled.div`
-    padding: 32px 0 32px 90px;
+    padding: 32px 22px 32px 22px;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -191,4 +199,6 @@ const Copyright = styled.div`
         background-color: #000;
         opacity: .1;
     }
+
+
 `

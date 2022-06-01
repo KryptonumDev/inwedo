@@ -15,20 +15,31 @@ export default ({ title, button }) => (
 
 const ContentWrapper = styled.div`
     background: var(--color-accent);
-    border-radius: 24.5221px;
+    border-radius: 24px;
     filter: var(--shadow);
+
+    @media (max-width: 1024px) {
+        border-radius: 0;
+        width: calc(100% + 64px);
+        transform: translateX(-32px);
+    }
 `
 
 const Content = styled.div`
     max-width: 756px;
     margin: 0 auto;
-    padding: 100px 30px;
+    padding: clamp(54px, 10.68vw, 100px) 30px;
 `
 
 const Title = styled.h2`
     color: var(--color-white);
     text-align: center;
     margin-bottom: 32px;
+
+    &.h1{
+        font-weight: 600px;
+        font-size: clamp(20px, 3.385vw, 32px);
+    }
 `
 
 const Button = styled(Link)`

@@ -11,7 +11,21 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
         infinite: true,
         speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 2,
+              }
+            },
+            {
+              breakpoint: 640,
+              settings: {
+                slidesToShow: 1,
+              }
+            },
+          ]
     };
     return (
         <Wrapper>
@@ -46,7 +60,8 @@ const Wrapper = styled.section`
     .h1{
         text-align: center;
         position: relative;
-        padding: 16px 0;
+        padding: clamp(8px, 1.5625vw, 16px) 0;
+        font-size: clamp(18px, 3.125vw, 32px);
         max-width: 850px;
         margin: 0 auto;
 
@@ -66,12 +81,13 @@ const Wrapper = styled.section`
         text-align: center;
         max-width: 550px;
         margin: 0 auto 0 auto;
+        font-size: clamp(14px, 1.953125vw, 16px);
     }
 
     .slick-list{
         margin-top: 64px;
-        margin-bottom: -32px;
-        padding-bottom: 32px;
+        margin-bottom: -16px;
+        padding-bottom: 16px;
     }
 
 `
@@ -81,8 +97,8 @@ const Item = styled.blockquote`
     background-color: var(--color-white);
     box-shadow: 0px 2px 21px rgba(13, 150, 225, 0.07);
 
-    width: calc(100% - 64px) !important;
-    margin: 0 32px;
+    width: calc(100% - 24px) !important;
+    margin: 0 12px;
     padding: 40px 20px;
     border-radius: 24px;
 
@@ -100,23 +116,21 @@ const Item = styled.blockquote`
 
             &.name{
                 font-weight: 400;
-                font-size: 14px;
-                line-height: 21px;
-
+                font-size: clamp(12px, 1.82vw, 14px);
+                line-height: 150%;
             }
 
             &.place{
                 font-weight: 300;
-                font-size: 12px;
-                line-height: 16px;
-
+                font-size: clamp(10px, 1.5625vw, 12px);
+                line-height: 131%;
             }
         }
     }
 
     .text{
         margin: 0 0 48px 0;
-
+        font-size: clamp(13px, 1.82vw, 16px);
     }
 `
 

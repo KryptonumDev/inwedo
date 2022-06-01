@@ -39,9 +39,13 @@ const Wrapper = styled.section`
 const Title = styled.h2`
     text-align: center;
     position: relative;
-    padding: 16px 0;
     max-width: 850px;
     margin: 0 auto 64px auto;
+    padding: clamp(8px, 1.5625vw, 16px) 0;
+
+    &.h1{
+        font-size: clamp(18px, 3.125vw, 32px);
+    }
 
     &::before{
         content: '';
@@ -57,36 +61,51 @@ const Title = styled.h2`
 `
 
 const Repeater = styled.div`
-    margin: 0 100px;
+    margin: 0 auto;
+    max-width: 1040px;
 `
 
 const Item = styled.details`
     position: relative;
-    padding-left: 90px;
-    padding-bottom: 32px;
+    padding-left: clamp(50px, 8.46vw, 90px);
+    padding-bottom: clamp(20px, 3.385vw, 32px);
+
+    @media (max-width: 660px){
+        padding-left: 40px;
+    }
 
     &::after{
         content: url(${props => props.Arrow});
         position: absolute;
-        left: 40px;
+        left: clamp(20px, 3.255vw, 40px);
         top: 38px;
         transition: transform .2s cubic-bezier(0.215, 0.610, 0.355, 1);
+
+        @media (max-width: 660px) {
+            left: 10px;
+            top: 22px;
+            transform: scale(.55);
+        }
     }
     
     &[open]{
         ::after{
             transform: rotateX(180deg);
+            
+            @media (max-width: 660px) {
+                transform: rotateX(180deg) scale(.55);
+            }
         }
     }
 
 
     &:first-child{
-        padding-top: 32px;
-        margin-top: -32px;
+        padding-top: clamp(20px, 3.385vw, 32px);
+        margin-top: clamp(-32px, -3.385vw, -20px);
     }
 
     &:nth-child(n + 2){
-        padding-top: 32px;
+        padding-top: clamp(20px, 3.385vw, 32px);
 
         &::before{
             content: '';
@@ -104,8 +123,8 @@ const Item = styled.details`
         span{
             color: #495057;
             font-weight: 600;
-            font-size: 22px;
-            line-height: 35px;
+            font-size: clamp(14px, 2.34375vw, 22px);
+            line-height: 150%;
         }
     }
 
@@ -114,6 +133,8 @@ const Item = styled.details`
             margin-top: 24px;
             margin-bottom: 16px;    
             display: block;
+
+            font-size: clamp(12px, 1.82vw, 16px);
 
             p+p{
                 margin-top: 16px;

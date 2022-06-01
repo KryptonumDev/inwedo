@@ -12,7 +12,7 @@ import Type8 from './title_foto_file'
 export default function CallToAction({ data: { typeOfCta, title, text, form, button, downloadFile, image, buttonText } }) {
     return (
         <Wrapper>
-            <Container>
+            <LocContainer>
                 {(() => {
                     switch (typeOfCta) {
                         case 'one':
@@ -33,11 +33,14 @@ export default function CallToAction({ data: { typeOfCta, title, text, form, but
                             return <Type8 title={title} downloadFile={downloadFile} image={image} button={buttonText} />
                     }
                 })()}
-            </Container>
+            </LocContainer>
         </Wrapper>
     )
 }
 
 const Wrapper = styled.section`
     margin-top: var(--margin-section);
+`
+
+const LocContainer = styled(Container)`
 `

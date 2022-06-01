@@ -12,22 +12,24 @@ export default function CaseStudyRepeater({ data: { title, text, studiesCase } }
                 <p className='h1 medium'>{text}</p>
                 <Repeater>
                     {studiesCase.map(el => (
-                        <Item>
-                            <div className="content">
-                                <GatsbyImage image={el.firmLogo.localFile.childImageSharp.gatsbyImageData} alt={el.firmLogo.altText} />
-                                <h3 className="h2">{el.title}</h3>
-                                <p className="p">{el.text}</p>
-                                <div className="flex">
-                                    {el.techologies.map(el => (
-                                        <div>
-                                            <img src={el.companyLogo?.sourceUrl} alt={el.companyLogo?.altText} />
-                                        </div>
-                                    ))}
+                        <Link to={el.button.url}>
+                            <Item>
+                                <div className="content">
+                                    <GatsbyImage image={el.firmLogo.localFile.childImageSharp.gatsbyImageData} alt={el.firmLogo.altText} />
+                                    <h3 className="h2">{el.title}</h3>
+                                    <p className="p">{el.text}</p>
+                                    <div className="flex">
+                                        {el.techologies.map(el => (
+                                            <div className="wrap">
+                                                <GatsbyImage className="image" image={el.companyLogo.localFile.childImageSharp.gatsbyImageData} alt={el.companyLogo.altText} />
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <p className="link">{el.button.name}</p>
                                 </div>
-                                <Link className="link" to={el.button.url}>{el.button.name}</Link>
-                            </div>
-                            <Image image={el.imgRight.localFile.childImageSharp.gatsbyImageData} alt={el.imgRight.altText} />
-                        </Item>
+                                <Image image={el.imgRight.localFile.childImageSharp.gatsbyImageData} alt={el.imgRight.altText} />
+                            </Item>
+                        </Link>
                     ))}
                 </Repeater>
             </Container>
@@ -37,18 +39,22 @@ export default function CaseStudyRepeater({ data: { title, text, studiesCase } }
 
 const Wrapper = styled.section`
     margin-top: var(--margin-section);
+
     .h4{
-        margin-bottom: 16px;
+        margin-bottom: clamp(8px, 1.5625vw, 16px);
         opacity: .5;
+        font-size: clamp(14px, 2.08vw, 18px);
     }
+
     .h1{
-        margin-bottom: var(--margin-section);
+        margin-bottom: clamp(64px, 12vw, 128px);
+        font-size: clamp(20px, 2.08vw, 32px);
     }
 `
 
 const Repeater = styled.div`
     display: grid;
-    grid-gap: calc(var(--margin-section) * 2);
+    grid-gap: clamp(80px, 20.83vw, 240px);
 `
 
 const Item = styled.div`
@@ -59,6 +65,7 @@ const Item = styled.div`
 
     .h2{
         margin-top: 24px;
+        font-size: clamp(20px, 3.125vw, 28px);
     }
 
     .p{
@@ -67,22 +74,38 @@ const Item = styled.div`
     }
 
     .flex{
-        margin-bottom: 60px;
+        margin-bottom: clamp(30px, 5.86vw, 60px);
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
 
-        div{
+        .wrap{
             background: #EEEEEE;
             box-shadow: 0px 11px 25px rgba(0, 0, 0, 0.04);
             border-radius: 5px;
             padding: 5px;
             width: fit-content;
+
+            .image{
+                width: fit-content;
+                height: fit-content;
+                max-width: 36px;
+                filter: grayscale(1);
+            }
         }
     }
 
     .content{
         max-width: 528px;
+    }
+
+    @media (max-width: 900px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .content{
+            max-width: 600px;
+        }
     }
 `
 
@@ -91,4 +114,10 @@ const Image = styled(GatsbyImage)`
     filter: var(--shadow);
     max-width: 600px;
     width: 100%;
+    height: fit-content;
+    min-width: 400px;
+
+    @media (max-width: 900px){
+        min-width: unset;
+    }
 `

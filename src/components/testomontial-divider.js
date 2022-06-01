@@ -28,11 +28,13 @@ const Wrapper = styled.section`
 `
 
 const Card = styled.div`
-    margin: 0 128px;
+    max-width: 984px;
+    box-sizing: border-box;
+    margin: 0 auto;
     border-radius: 24px;
     background-color: var(--color-white);
     filter: var(--shadow);
-    padding: 64px 128px;
+    padding: 64px clamp(30px, 6.25vw, 128px);
     position: relative;
 
     &::after{
@@ -45,22 +47,31 @@ const Card = styled.div`
     .flex{
         display: flex;
         align-items: center;
-        margin-bottom: 36px;
+        margin-bottom: clamp(16px, 3.38vw, 36px);
 
         .image{
-            margin-right: 48px;
+            margin-right: clamp(32px, 5.2vw, 48px);
         }
 
         .name{
             font-weight: 400;
-            font-size: 14px;
+            font-size: clamp(12px, 1.82vw, 14px);
             line-height: 21px;
         }
 
         .position{
             font-weight: 300;
-            font-size: 12px;
+            font-size: clamp(10px, 1.5625vw, 12px);
             line-height: 16px;
+        }
+
+        @media (max-width: 640px) {
+            flex-direction: column;
+            align-items: flex-start;
+            .image{
+                margin-right: 0;
+                margin-bottom: 32px;
+            }
         }
     }
 `

@@ -8,7 +8,7 @@ export default function TwoColumnFlex({ data: { image, title, subTitle, text, bu
     return (
         <Wrapper>
             <Container>
-                <Flex>
+                <Flex to={button.url}>
                     <div className="image">
                         <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                     </div>
@@ -16,7 +16,7 @@ export default function TwoColumnFlex({ data: { image, title, subTitle, text, bu
                         <h2 className="h1 line">{title}</h2>
                         <p className="h4">{subTitle}</p>
                         <p className="p">{text}</p>
-                        <Link className="link" to={button.url}>{button.name}</Link>
+                        <p className="link">{button.name}</p>
                     </div>
                 </Flex>
             </Container>
@@ -28,35 +28,40 @@ const Wrapper = styled.section`
     margin-top: var(--margin-section);
 `
 
-const Flex = styled.div`
+const Flex = styled(Link)`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 128px;
-    margin-bottom: 96px;
+    gap: clamp(50px, 10.15vw, 128px);
+    margin-bottom: clamp(48px, 9.375vw, 96px);
 
     .image{
         background-color: var(--color-white);
         filter: var(--shadow);
         border-radius: 24px;
-        padding: 54px 64px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: clamp(16px, 4.94vw, 54px) clamp(24px, 5.20vw, 64px);
+        width: clamp(93px, 20vw, 208px);
+        min-width: clamp(93px, 20vw, 208px);
     }
 
     .text{
         max-width: 680px;
 
         .h1{
-            margin-bottom: 24px;
+            margin-bottom: clamp(8px, 2.08vw, 24px);
+            font-size: clamp(20px, 3.38vw, 32px);
         }
         .h4{
-            margin-bottom: 16px;
+            margin-bottom: clamp(12px, 1.82vw, 16px);
         }
         .p{
-            margin-bottom: 24px;
+            margin-bottom: clamp(12px, 2.08vw, 24px);
         }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
     }
 `
 

@@ -8,7 +8,7 @@ export default function DevelopmentCards({ data: { twoColumn, cards, success } }
     return (
         <Wrapper>
             <Container>
-                <Flex>
+                <Flex to={twoColumn.button.url}>
                     <div className="image">
                         <Image image={twoColumn.image.localFile.childImageSharp.gatsbyImageData} alt={twoColumn.image.altText} />
                     </div>
@@ -16,17 +16,17 @@ export default function DevelopmentCards({ data: { twoColumn, cards, success } }
                         <h2 className="h1 line">{twoColumn.title}</h2>
                         <p className="h4">{twoColumn.subTitle}</p>
                         <p className="p">{twoColumn.text}</p>
-                        <Link className="link" to={twoColumn.button.url}>{twoColumn.button.name}</Link>
+                        <p className="link">{twoColumn.button.name}</p>
                     </div>
                 </Flex>
                 <CardsGrid>
                     {cards.map(el => (
-                        <Card>
+                        <Card to={el.button.url}>
                             <GatsbyImage className="image" image={el.cardIcon.localFile.childImageSharp.gatsbyImageData} alt={el.cardIcon.altText} />
                             <div>
                                 <h3 className="h3">{el.cardTitle}</h3>
                                 <p className="p">{el.cardText}</p>
-                                <Link className="link" to={el.button.url}>{el.button.name}</Link>
+                                <p className="link">{el.button.name}</p>
                             </div>
                         </Card>
                     ))}
@@ -34,7 +34,7 @@ export default function DevelopmentCards({ data: { twoColumn, cards, success } }
                 <SuccessStories>
                     <h2 className="h3">{success.title}</h2>
                     {success.storiesCase.map(el => (
-                        <div className="flex">
+                        <Link to={el.button.url} className="flex">
                             <GatsbyImage className="image" image={el.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.previewImage.altText} />
                             <div className="text">
                                 {el.caseLogo
@@ -44,9 +44,9 @@ export default function DevelopmentCards({ data: { twoColumn, cards, success } }
                                     ? <h3>{el.caseTitle}</h3>
                                     : null}
                                 <p className="p">{el.caseText}</p>
-                                <Link className="link" to={el.button.url}> {el.button.name}</Link>
+                                <p className="link"> {el.button.name}</p>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </SuccessStories>
             </Container>
@@ -58,32 +58,40 @@ const Wrapper = styled.section`
     margin-top: var(--margin-section);
 `
 
-const Flex = styled.div`
+const Flex = styled(Link)`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 128px;
-    margin-bottom: 96px;
+    gap: clamp(50px, 10.15vw, 128px);
+    margin-bottom: clamp(48px, 9.375vw, 96px);
 
     .image{
         background-color: var(--color-white);
         filter: var(--shadow);
         border-radius: 24px;
-        padding: 54px 64px;
+        padding: clamp(16px, 4.94vw, 54px) clamp(24px, 5.20vw, 64px);
+        width: clamp(93px, 20vw, 208px);
+        min-width: clamp(93px, 20vw, 208px);
     }
 
     .text{
         max-width: 680px;
 
         .h1{
-            margin-bottom: 24px;
+            margin-bottom: clamp(8px, 2.08vw, 24px);
+            font-size: clamp(20px, 3.38vw, 32px);
         }
         .h4{
-            margin-bottom: 16px;
+            margin-bottom: clamp(12px, 1.82vw, 16px);
         }
         .p{
-            margin-bottom: 24px;
+            margin-bottom: clamp(12px, 2.08vw, 24px);
         }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
     }
 `
 
@@ -93,37 +101,47 @@ const Image = styled(GatsbyImage)`
 const CardsGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 64px;
+    grid-gap: clamp(16px, 5.47vw, 64px);
+
+    @media (max-width: 850px) {
+        grid-template-columns: 1fr;
+    }
 `
 
-const Card = styled.div`
+const Card = styled(Link)`
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto 1fr;
     grid-gap: 32px;
-    padding: 64px 24px;
+    padding: clamp(25px, 6.51vw, 75px) clamp(20px, 2.86vw, 24px);
     justify-content: space-between;
     background-color: var(--color-white);
     filter: var(--shadow);
     border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
 
     .image{
-        width: 115px;
+        width: clamp(64px, 10.41vw, 115px);
         aspect-ratio: 1/1;
     }
 
     .h3{
-        margin-bottom: 16px;
+        margin-bottom: clamp(12px, 1.82vw, 16px);
+        font-size: clamp(14px, 2.47vw, 24px);
     }
 
     .p{
-        margin-bottom: 16px;
+        margin-bottom: clamp(12px, 1.82vw, 16px);
+        font-size: clamp(12px, 1.82vw, 16px);
     }
 `
 
 const SuccessStories = styled.div`
     margin-top: 128px;
     display: grid;
-    grid-gap: 64px;
+    grid-gap: clamp(32px, 6.25vw, 64px);
 
     .h3{
         text-align: center;
@@ -147,7 +165,7 @@ const SuccessStories = styled.div`
     .flex{
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-gap: 128px;
+        grid-gap: clamp(32px, 10.41vw, 128px);
 
         .image{
             border-radius: 8px;
@@ -171,8 +189,16 @@ const SuccessStories = styled.div`
                 margin-top: 24px;
             }
             .p{
-                margin: 24px 0;
+                margin: clamp(8px, 2.08vw, 24px) 0;
+                font-size: clamp(14px, 1.95vw, 16px);
             }
+        }
+
+        @media (max-width: 850px) {
+            grid-template-columns: 1fr;
+            grid-gap: 32px;
+            max-width: 500px;
+            margin: 0 auto;
         }
     }
 `

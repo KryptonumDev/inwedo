@@ -5,12 +5,12 @@
     --color-black: #262626;
     --color-accent: linear-gradient(84.56deg, #0B5CD6 12.23%, #21AEFC 94.22%);
 
-    --margin-section: 128px;
+    --margin-section: clamp(64px, 12.5vw, 128px);
     --margin-xl: 64px;
     --margin-l: 48px;
     --margin-m: 32px;
     --margin-s: 16px;
-    
+
     --shadow: drop-shadow(0px 76px 74px rgba(0, 0, 0, 0.02)) drop-shadow(0px 31.751px 30.9154px rgba(0, 0, 0, 0.0143771)) drop-shadow(0px 16.9756px 16.5289px rgba(0, 0, 0, 0.0119221)) drop-shadow(0px 9.51638px 9.26595px rgba(0, 0, 0, 0.01)) drop-shadow(0px 5.05408px 4.92108px rgba(0, 0, 0, 0.00807786)) drop-shadow(0px 2.10311px 2.04777px rgba(0, 0, 0, 0.00562291));
 }
 
@@ -43,8 +43,8 @@ body {
     font-family: 'Lexend';
     font-style: normal;
     font-weight: 500;
-    font-size: 64px;
-    line-height: 80px;
+    font-size: clamp(29px, 6.25vw, 64px);
+    line-height: 131%;
 }
 
 .h1.bold {
@@ -98,8 +98,8 @@ body {
 .p {
     font-style: normal;
     font-weight: 300;
-    font-size: 16px;
-    line-height: 26px;
+    font-size: clamp(14px, 1.95vw, 16px);
+    line-height: 160%;
     font-feature-settings: 'ss01' on;
 }
 
@@ -107,7 +107,7 @@ body {
     padding: 12px 22px;
     font-family: 'Lexend';
     font-weight: 400;
-    font-size: 18px;
+    font-size: clamp(14px, 2.08333333333vw, 18px);
     width: fit-content;
     display: flex;
     align-items: center;
@@ -122,7 +122,7 @@ body {
     padding: 12px 22px;
     font-family: 'Lexend';
     font-weight: 400;
-    font-size: 18px;
+    font-size: clamp(14px, 2.08333333333vw, 18px);
     width: fit-content;
     display: flex;
     align-items: center;

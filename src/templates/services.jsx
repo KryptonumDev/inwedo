@@ -8,7 +8,6 @@ import Testomontials from "../components/testomontials-slider"
 
 const ServicesPage = ({ data: { allWpPage } }) => {
   let { services } = allWpPage.nodes[0]
-  debugger
   return (
     <main>
       <Hero data={services.heroServices} />
