@@ -27,14 +27,15 @@ export default function CardsWithTitle({ data: { sectionTitle, text, cards } }) 
 }
 
 const Wrapper = styled.section`
-    margin: var(--margin-section);
+    margin-top: var(--margin-section);
 
     h2{
         text-align: center;
         max-width: 860px;
-        margin: 0 auto 0 auto;
+        margin: 0 auto 16px auto;
         padding-top: 16px;
         position: relative;
+        font-size: clamp(20px, 2.86vw, 24px);
 
         &::before{
             content: "";
@@ -53,31 +54,37 @@ const Wrapper = styled.section`
         max-width: 600px;
         margin: 0 auto;
         margin-bottom: 16px;
+        font-size: clamp(14px, 1.95vw, 16px);
     }
 `
 
 const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 64px;
+    grid-gap: clamp(16px, 5.46vw, 64px);
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+    }
 `
 
 const Item = styled.div`
     border-radius: 8px;
     filter: var(--shadow);
     background-color: var(--color-white);
-    padding: 82px 54px;
+    padding: clamp(32px, 4.68vw, 82px) clamp(16px, 4.68vw, 56px);
 
     display: grid;
-    grid-template-columns: 115px 1fr;
-    grid-gap: 32px;
+    grid-template-columns: clamp(60px, 11.32vw, 115px) 1fr;
+    grid-gap: clamp(16px, 3.125vw, 32px);
 
     h3{
-        margin-bottom: 16px;
+        margin-bottom: clamp(8px, 1.5625vw, 16px);
+        font-size: clamp(14px, 2.47vw, 24px);
     }
 
     .image{
-        width: 115px;
+        width: clamp(60px, 11.32vw, 115px);
         aspect-ratio: 1/1;
     }
 `

@@ -35,29 +35,40 @@ const Wrapper = styled.section`
 
 const Content = styled.div`
     display: grid;
-    grid-gap: 100px;
+    grid-gap: clamp(48px, 9.375vw, 96px);
     grid-template-columns: 1fr 1fr;
+
+    @media (max-width: 876px) {
+        grid-template-columns: 1fr;
+    }
 `
 
 const TextPart = styled.div`
     .line{
         margin-bottom: 16px;
         opacity: .5;
+        font-size: clamp(14px, 2.08vw, 18px);
     }
 
     .h3{
         margin-bottom: 16px;
+        font-size: clamp(20px, 2.86vw, 24px);
     }
 
     p.h4{
-        margin-bottom: 64px;
+        margin-bottom: clamp(48px, 7.29vw, 64px);
         font-weight: 300;
+        font-size: clamp(14px, 2.08vw, 18px);
     }
 
     .image{
         border-radius: 8px;
         filter: var(--shadow);
         background-color: var(--color-white);
+
+        @media (max-width: 876px){
+            display: block;
+        }
     }
 `
 
@@ -68,18 +79,32 @@ const List = styled.ul`
 
     .h3{
         margin-bottom: 8px;
+        font-size: clamp(14px, 2.47vw, 24px);
     }
 
-        li{
-            padding-left: 40px;
-            font-feature-settings: 'ss01' on;
-            position: relative;
+    .p{
+        font-size: clamp(14px, 1.95vw, 16px);
+    }
 
-            &::before{
-                content: url(${props => props.mark});
-                position: absolute;
-                left: 0;
-                top: 5px;
-            }
+    li{
+        padding-left: 40px; 
+        font-feature-settings: 'ss01' on;
+        position: relative;
+
+        &::before{
+            content: url(${props => props.mark});
+            position: absolute;
+            left: 0;
+            top: 5px;
         }
+    }
+
+    @media (max-width: 876px){
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 580px){
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
 `

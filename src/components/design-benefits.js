@@ -7,7 +7,7 @@ export default function DesignBenefits({ data: { sectionTitle, benefits } }) {
     return (
         <Wrapper>
             <Container>
-                <Title>{sectionTitle}</Title>
+                <Title className="h3">{sectionTitle}</Title>
                 <Grid>
                     {benefits.map(el => (
                         <Item>
@@ -31,8 +31,16 @@ const Wrapper = styled.section`
 const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 48px;
-    margin-top: 64px;
+    grid-gap: clamp(32px, 5.2vw, 48px);
+    margin-top: clamp(48px, 7.29vw, 64px);
+
+    @media (max-width: 876px) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+    }
 `
 
 const Item = styled.div`
@@ -44,6 +52,7 @@ const Item = styled.div`
         max-width: 48px;
         width: fit-content;
         height: fit-content;
+        min-width: fit-content;
     }
 
     h3{
@@ -66,6 +75,7 @@ const Title = styled.h2`
     margin: 0 auto 0 auto;
     padding-top: 16px;
     position: relative;
+    font-size: clamp(20px, 2.86vw, 24px);
 
     &::before{
         content: "";

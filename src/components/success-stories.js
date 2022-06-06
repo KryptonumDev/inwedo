@@ -11,7 +11,7 @@ export default function SuccessStories({ data: { sectionTitle, success } }) {
                 <Stories>
                     <h2 className="h3">{sectionTitle}</h2>
                     {success.map(el => (
-                        <div className="flex">
+                        <Link className="flex" to={el.button.url}>
                             <GatsbyImage className="image" image={el.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.previewImage.altText} />
                             <div className="text">
                                 {el.caseLogo
@@ -21,9 +21,9 @@ export default function SuccessStories({ data: { sectionTitle, success } }) {
                                     ? <h3>{el.caseTitle}</h3>
                                     : null}
                                 <p className="p">{el.caseText}</p>
-                                <Link className="link" to={el.button.url}> {el.button.name}</Link>
+                                <p className="link"> {el.button.name}</p>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </Stories>
             </Container>
@@ -36,9 +36,8 @@ const Wrapper = styled.section`
 `
 
 const Stories = styled.div`
-    margin-top: 128px;
     display: grid;
-    grid-gap: 64px;
+    grid-gap: clamp(32px, 6.25vw, 64px);
 
     .h3{
         text-align: center;
@@ -62,7 +61,7 @@ const Stories = styled.div`
     .flex{
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-gap: 128px;
+        grid-gap: clamp(32px, 10.41vw, 128px);
 
         .image{
             border-radius: 8px;
@@ -86,8 +85,16 @@ const Stories = styled.div`
                 margin-top: 24px;
             }
             .p{
-                margin: 24px 0;
+                margin: clamp(8px, 2.08vw, 24px) 0;
+                font-size: clamp(14px, 1.95vw, 16px);
             }
+        }
+
+        @media (max-width: 850px) {
+            grid-template-columns: 1fr;
+            grid-gap: 32px;
+            max-width: 500px;
+            margin: 0 auto;
         }
     }
 `

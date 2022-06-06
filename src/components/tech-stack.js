@@ -36,6 +36,7 @@ const Wrapper = styled.section`
         margin: 0 auto 0 auto;
         padding-top: 16px;
         position: relative;
+        font-size: clamp(20px, 2.86vw, 24px);
 
         &::before{
             content: "";
@@ -54,13 +55,17 @@ const TechnologiesGrid = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 64px;
-    margin-top: 64px;
+    gap: clamp(32px, 6.25vw, 64px);
+    margin-top: clamp(32px, 6.25vw, 64px);
+
+    @media (max-width: 876px) {
+        flex-wrap: wrap;
+    }
 `
 
 const TechnologiesLink = styled(Link)`
-    width: 86px;
-    height: 86px;
+    width: clamp(55px, 9.11vw, 86px);
+    aspect-ratio: 1/1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,14 +74,14 @@ const TechnologiesLink = styled(Link)`
     filter: var(--shadow);
 
     .image{
-        max-width: 54px;
+        max-width: clamp(35px, 4.94vw, 54px);
         height: fit-content;
     }
 `
 
 const TechnologiesItem = styled.div`
-    width: 86px;
-    height: 86px;
+    width: clamp(55px, 9.11vw, 86px);
+    aspect-ratio: 1/1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,7 +90,7 @@ const TechnologiesItem = styled.div`
     filter: var(--shadow);
 
     .image{
-        max-width: 54px;
+        max-width: clamp(35px, 4.94vw, 54px);
         height: fit-content;
     }
 `

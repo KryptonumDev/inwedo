@@ -45,35 +45,50 @@ const Wrapper = styled.section`
 
 const Content = styled.div`
     display: grid;
-    grid-gap: 64px;
+    grid-gap: clamp(48px, 7.29vw, 64px);
     grid-template-columns: 1fr 1fr;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+    }
 `
 
 const Grid = styled.div`
     display: grid;
     grid-gap: 24px;
     grid-template-columns: 1fr 1fr;
+
+    @media (max-width: 540px) {
+        grid-template-columns: 1fr;
+    }
 `
 
 const TextPart = styled.div`
     .line{
         margin-bottom: 16px;
         opacity: .5;
+        font-size: clamp(14px, 2.08vw, 18px);
     }
 
     .h3{
         margin-bottom: 16px;
+        font-size: clamp(20px, 3.38vw, 32px);
     }
 
     p.h4{
         margin-bottom: 50px;
         font-weight: 300;
+        font-size: clamp(14px, 2.47vw, 24px);
     }
 
     .image{
         border-radius: 8px;
         filter: var(--shadow);
         background-color: var(--color-white);
+
+        @media (max-width: 1024px){
+            display: block;
+        }
     }
 `
 
@@ -92,6 +107,11 @@ const List = styled.ul`
 
             h3{
                 margin-bottom: 8px;
+                font-size: clamp(14px, 2.08vw, 18px);
+            }
+
+            p{
+                font-size: clamp(14px, 1.95vw, 16px);
             }
 
             &::before{

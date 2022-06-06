@@ -30,7 +30,12 @@ const Wrapper = styled.section`
 const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 64px;
+    grid-gap: clamp(32px, 6.25vw, 64px);
+
+    @media (max-width: 580px) {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
 `
 
 const Item = styled.div`
@@ -40,13 +45,14 @@ const Item = styled.div`
 
     h3{
         font-weight: 400;
-        font-size: 20px;
+        font-size: clamp(14px, 2.21w, 20px);
         line-height: 151%;
+        margin-bottom: 12px;
     }
 
     p{
         font-weight: 300;
-        font-size: 18px;
+        font-size: clamp(14px, 2.08vw, 18px);
         line-height: 151%;
     }
 

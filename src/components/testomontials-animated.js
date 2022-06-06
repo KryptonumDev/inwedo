@@ -26,6 +26,7 @@ const Text = styled.p`
     padding: 16px 0 0 0;    
     max-width: 850px;
     margin: 0 auto 3px auto;
+    font-size: clamp(20px, 2.86vw, 24px);
 
     &::before{
         content: '';

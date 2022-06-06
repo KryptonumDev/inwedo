@@ -34,8 +34,16 @@ const Wrapper = styled.section`
 const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 48px;
-    margin-top: 48px;
+    margin-top: clamp(32px, 5.2vw, 48px);
+    grid-gap: clamp(32px, 5.2vw, 48px);
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
 `
 
 const Item = styled.div`
@@ -67,5 +75,10 @@ const Title = styled.div`
     .line{
         opacity: .5;
         margin-bottom: 16px;
+        font-size: clamp(14px, 2.08vw, 18px);
+    }
+
+    .h2{
+        font-size: clamp(20px, 2.86vw, 24px);
     }
 `

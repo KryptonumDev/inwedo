@@ -15,15 +15,12 @@ const urlSystem = {
   HowWeWork: { pl: '/jak-dzialamy/', en: '/how-we-work/' },
   contact: { pl: '/kontakt/', en: '/contact/' },
 
-  netDevelopment: { pl: '/uslugi/web-development/dotnet/', en: '/services/web-development/dotnet/' },
-  angularDevelopment: { pl: '/uslugi/web-development/angular/', en: '/services/web-development/angular/' },
-  nodeDevelopment: { pl: '/uslugi/web-development/node-js/', en: '/services/web-development/node-js/' },
-  reactDevelopment: { pl: '/uslugi/web-development/react-js/', en: '/services/web-development/react-js/' },
-  typescriptDevelopment: { pl: '/uslugi/web-development/typescript/', en: '/services/web-development/typescript/' },
-  vueDevelopment: { pl: '/uslugi/web-development/vue-js/', en: '/services/web-development/vue-js/' },
+  technologies: { pl: '/uslugi/web-development/', en: '/services/web-development/' },
 
   caseStudies: { pl: '/pl/case-studies/', en: '/case-studies/' },
   blog: { pl: '/pl/blog/', en: '/blog/' },
+  author: { pl: '/autor/', en: '/author/' },
+  category: { pl: '/kategoria/', en: '/category/' },
 }
 
 exports.createPages = async ({
@@ -354,7 +351,7 @@ exports.createPages = async ({
 
   technologiesNodes.forEach(({ id, language: { slug }, technology: { currentPageUrl } }) => {
     createPage({
-      path: currentPageUrl,
+      path: urlSystem.technologies[slug] + currentPageUrl,
       component: resolve('src/templates/technology.jsx'),
       context: {
         id,
@@ -439,7 +436,7 @@ exports.createPages = async ({
 
   portfolioPageNodes.forEach(({ id, language: { slug }, caseStudies: { currentPostUrl } }) => {
     createPage({
-      path: currentPostUrl,
+      path: urlSystem.caseStudies[slug] + currentPostUrl,
       component: resolve('src/templates/portfolio-post.jsx'),
       context: {
         id,
@@ -494,7 +491,7 @@ exports.createPages = async ({
 
   PostPageNodes.forEach(({ id, language: { slug }, blogPost: { currentPostUrl } }) => {
     createPage({
-      path: currentPostUrl,
+      path: urlSystem.blog[slug] + currentPostUrl,
       component: resolve('src/templates/blog-post.jsx'),
       context: {
         id,
@@ -503,4 +500,61 @@ exports.createPages = async ({
     });
   });
 
+  // BLOG AUTHORS
+
+  const { data: { allWpAuthors: { BlogAuthorsNodes } } } = await graphql(`
+          {
+            allWpAuthors{
+              BlogAuthorsNodes: nodes {
+                id
+                author {
+                  userUrl
+                }
+                language {
+                  slug
+                }
+              }
+            }
+          }
+        `);
+
+  BlogAuthorsNodes.forEach(({ id, language: { slug }, author: { userUrl } }) => {
+    createPage({
+      path: urlSystem.author[slug] + userUrl,
+      component: resolve('src/templates/blog-author.jsx'),
+      context: {
+        id,
+        slug,
+      },
+    });
+  });
+
+  // BLOG CATEGORY
+
+  const { data: { allWpCategory: { BlogCategoryNodes } } } = await graphql(`
+          {
+            allWpCategory{
+              BlogCategoryNodes: nodes {
+                id
+                blogCategory {
+                  categoryUrl
+                }
+                language {
+                  slug
+                }
+              }
+            }
+          }
+        `);
+
+  BlogCategoryNodes.forEach(({ id, language: { slug }, blogCategory: { categoryUrl } }) => {
+    createPage({
+      path: urlSystem.category[slug] + categoryUrl,
+      component: resolve('src/templates/blog-category.jsx'),
+      context: {
+        id,
+        slug,
+      },
+    });
+  });
 }

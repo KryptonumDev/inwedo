@@ -45,6 +45,17 @@ query PortfolioArchivePageQuery($id: String!, $slug: String!) {
             loadMoreText
           }
           clientsPortfolio{
+            card : cardOnRightSide{
+              cardLink
+              cardImage{
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
+            }
             sectionTitle
             clientsCases{
                 logoClients{

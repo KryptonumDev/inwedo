@@ -33,23 +33,41 @@ const Content = styled.div`
     justify-content: space-between;
     align-items: center;
     gap: 32px;
+
+    @media (max-width: 1024px) {
+        flex-direction: column;
+    }
 `
 
 const TextPart = styled.div`
     max-width: 600px;
 
     .h4{
+        opacity: .5;
         margin-bottom: 16px;
+        font-size: clamp(14px, 2.08vw, 18px);
     }
 
     .h1{
-        margin-bottom: 24px;
+        margin-bottom: clamp(16px, 2.6vw, 24px);
+        font-size: clamp(20px, 2.86vw, 24px);
+    }
+
+    .p{
+        font-size: clamp(14px, 1.95vw, 16px);
     }
 `
 
 const Card = styled.div`
-    padding: 64px;
+    padding: clamp(42px, 6.9vw, 64px) clamp(30px, 6.11vw, 64px);
     position: relative;
+    min-width: fit-content;
+    width: 100%;
+    max-width: 600px;
+
+    @media (max-width: 500px){
+        width: unset;
+    }
 
     &::before{
         background-color: var(--color-white);
@@ -61,12 +79,16 @@ const Card = styled.div`
         width: 50vw;
         position: absolute;
         content: '';
+
+        @media (max-width: 1024px) {
+            width: 100%;
+        }
     }
 
     p{
         margin-bottom: 24px;
         font-weight: 400;
-        font-size: 18px;
+        font-size: clamp(14px, 2.08vw, 18px);
         line-height: 151%;
         z-index: 2;
         position: relative;
@@ -78,8 +100,8 @@ const Card = styled.div`
         li{
             padding-left: 40px;
             font-weight: 300;
-            font-size: 16px;
-            line-height: 26px;
+            font-size: clamp(14px, 1.95vw, 16px);
+            line-height: 150%;
             font-feature-settings: 'ss01' on;
             position: relative;
 
@@ -98,8 +120,8 @@ const Card = styled.div`
         li{
             padding-left: 40px;
             font-weight: 300;
-            font-size: 16px;
-            line-height: 26px;
+            font-size: clamp(14px, 1.95vw, 16px);
+            line-height: 150%;
             font-feature-settings: 'ss01' on;
             position: relative;
 

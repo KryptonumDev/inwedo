@@ -15,7 +15,7 @@ export default function MiniFaq({ data: { sectionTitle, text, smallText, questio
                     : null}
                 <Content>
                     <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
-                    <div>
+                    <div className="item">
                         {questionsAndAnswers.map((el, index) => (
                             <Item Arrow={Arrow} open={index === 0 ? true : false}>
                                 <summary
@@ -45,47 +45,90 @@ const Wrapper = styled.section`
     .h4{
         opacity: .5;
         margin-bottom: 8px;
+        font-size: clamp(14px, 2.08vw, 18px);
+        max-width: 1000px;
     }
 
     .h2{
+        font-size: clamp(20px, 2.86vw, 24px);
+        max-width: 1000px;
     }
 
     p.p{
         margin-top: 16px;
+        font-size: clamp(14px, 1.95vw, 16px);
+        max-width: 1000px;
     }
 `
 
 const Content = styled.div`
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-gap: 128px;
-    margin-top: 64px;
+    grid-gap: clamp(32px, 5vw, 128px);
+    margin-top: clamp(32px, 6.25vw, 64px);
+
+    .item{
+        max-width: 620px;
+    }
+
+    @media (max-width: 876px) {
+        grid-template-columns: 1fr;
+    }
+    
 `
 
 const Image = styled(GatsbyImage)`
     border-radius: 8px;
     filter: var(--shadow);
-    width: fit-content;
     height: fit-content;
+
+    @media (max-width: 1240px) {
+        width: 100%;
+        min-width: 400px;
+        max-width: fit-content;
+    }
+
+    @media (max-width: 876px){
+        margin: 0 auto;
+        min-width: unset;
+    }
+
+    @media (max-width: 660px){
+        margin: 0 30px;
+    }
 `
 
 const Item = styled.details`
     position: relative;
-    padding-left: 90px;
+    padding-left: clamp(40px, 8.46vw, 90px);
     padding-top: 16px;
     padding-bottom: 16px;
+
+    @media (max-width: 660px){
+        padding-left: 30px;
+    }
 
     &::after{
         content: url(${props => props.Arrow});
         position: absolute;
-        left: 40px;
+        left: clamp(20px, 3.255vw, 40px);
         top: 24px;
         transition: transform .2s cubic-bezier(0.215, 0.610, 0.355, 1);
+
+        @media (max-width: 660px) {
+            left: 0;
+            top: 22px;
+            transform: scale(.55);
+        }
     }
     
     &[open]{
         ::after{
             transform: rotateX(180deg);
+            
+            @media (max-width: 660px) {
+                transform: rotateX(180deg) scale(.55);
+            }
         }
     }
 
@@ -93,7 +136,7 @@ const Item = styled.details`
         span{
             color: #495057;
             font-weight: 600;
-            font-size: 22px;
+            font-size: clamp(14px, 2.08vw, 18px);
             line-height: 35px;
         }
     }
@@ -103,7 +146,7 @@ const Item = styled.details`
             margin-top: 16px;
             display: block;
             font-weight: 300;
-            font-size: 18px;
+            font-size: clamp(14px, 1.95vw, 16px);
 
             p+p{
                 margin-top: 16px;

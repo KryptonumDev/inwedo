@@ -16,7 +16,6 @@ export default function Hero({ data: { backgroundImage, pageTitle, textUnderTitl
 
 const Wrapper = styled.section`
     max-width: 1920px;
-    min-height: 570px;
     margin: 0 auto;
     margin-top: 81px;
     position: relative;
@@ -25,6 +24,7 @@ const Wrapper = styled.section`
 const Background = styled(GatsbyImage)`
     width: 100%;
     height: 100%;
+    min-height: 510px;
 
     &::after{
         content: "";
@@ -45,13 +45,17 @@ const Card = styled.div`
     z-index: 10;
     text-align: center;
     max-width: 760px;
-    margin: 0 auto;
+    padding: 0 32px;
+    width: 100%;
+    box-sizing: border-box;
     .h4{
         margin-bottom: 8px;
         color: var(--color-white);
+        font-size: clamp(14px, 2.08vw, 18px);
     }
     
     .h1{
         color: var(--color-white);
+        font-size: clamp(20px, 3.38vw, 32px);
     }
 `

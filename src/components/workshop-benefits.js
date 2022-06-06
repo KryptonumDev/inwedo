@@ -34,30 +34,48 @@ const Wrapper = styled.section`
     .h4{
         margin-bottom: 16px;
         opacity: .5;
+        font-size: clamp(14px, 2.08vw, 18px);
     }
     
     .h1{
-        margin-bottom: 48px;
+        margin-bottom: clamp(32px, 6.25vw, 48px);
+        font-size: clamp(20px, 3.38vw, 32px);
     }
 `
 
 const Content = styled.div`
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-gap: 55px;
+    grid-gap: 48px;
 
     .left-image{
-        width: fit-content;
+        max-width: fit-content;
+        width: 100%;
+        min-width: 400px;
         height: fit-content;
         border-radius: 8px;
         filter: var(--shadow);
+    }
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+
+        .left-image{
+            margin: 0 auto;
+            max-width: unset;
+            min-width: unset;
+        }
     }
 `
 
 const BenefitsGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 48px;
+    grid-gap: clamp(32px, 6.25vw, 48px);
+
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
 `
 
 const BenefitsItem = styled.div`
@@ -72,7 +90,7 @@ const BenefitsItem = styled.div`
 
     h3{
         font-weight: 400;
-        font-size: 18px;
+        font-size: clamp(14px, 2.08vw, 18px);
         line-height: 151%;
         margin-bottom: 8px;
     }

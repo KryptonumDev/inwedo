@@ -126,6 +126,10 @@ const Clients = styled.div`
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 20px;
     }
+
+    @media (max-width: 340px) {
+        grid-template-columns: 1fr 1fr;
+    }
 `
 
 const Repeater = styled.div`

@@ -27,7 +27,7 @@ export default function PostsGrid({ data, from, to }) {
                                                 </div>
                                                 <GatsbyImage className="image" image={el.caseStudies.previewCard.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.caseStudies.previewCard.previewImage.altText} />
                                                 <div className="content">
-                                                    <h3>{el.caseStudies.previewCard.previewTitle}</h3>
+                                                    <h3 className="h4">{el.caseStudies.previewCard.previewTitle}</h3>
                                                     <p className="p">{el.caseStudies.previewCard.previewText}</p>
                                                     <span className="link">{el.caseStudies.previewCard.readMore}</span>
                                                 </div>
@@ -52,7 +52,11 @@ const Wrapper = styled.section`
 const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 64px;
+    grid-gap: clamp(32px, 6.25vw, 64px);
+
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+    }
 `
 
 const Item = styled(motion.div)`
@@ -64,13 +68,14 @@ const Item = styled(motion.div)`
         z-index: 10;
         top: 16px;
         left: 24px;
-        padding: 16px 24px;
+        padding: clamp(10px, 1.69vw, 16px) clamp(18px, 2.73vw, 24px);
         border-radius: 8px;
         filter: var(--shadow);
         background: linear-gradient(126.6deg, rgba(255, 255, 255, 0.77) 28.69%, rgba(255, 255, 255, 0.6391) 100%);
         .logo{
             width: fit-content;
             height: fit-content;
+            max-width: clamp(91px, 13vw, 112px);
         }
     }
 
@@ -81,7 +86,7 @@ const Item = styled(motion.div)`
     }
 
     .content{
-        padding: 32px 50px 0 50px;
+        padding: 32px clamp(16px, 4.16vw, 48px) 0 clamp(16px, 4.16vw, 48px);
 
         h3{
             margin-bottom: 8px;
@@ -92,6 +97,10 @@ const Item = styled(motion.div)`
 
         p{
             margin-bottom: 16px;
+        }
+
+        span{
+
         }
     }
 `

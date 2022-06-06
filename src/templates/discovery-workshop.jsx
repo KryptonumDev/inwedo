@@ -19,14 +19,14 @@ const DiscoveryWorkshopPage = ({ data: { allWpPage } }) => {
       <OneColumnText data={discoveryWorkshop.oneColumnTextPart} />
       <TestomontialDivider data={discoveryWorkshop.testomontialDividerWorkshop} />
       <WorkshopSteps data={discoveryWorkshop.steps} />
-      {/* <CallToAction data={discoveryWorkshop.callToActionWorkshop} />
+      <CallToAction data={discoveryWorkshop.callToActionWorkshop} />
       <WorkshopSteps data={discoveryWorkshop.stepsSecond} />
-      <TwoColumnFlex data={discoveryWorkshop.twoColumnFlexWorkshop} />
+      <TwoColumnFlex reverse={true} data={discoveryWorkshop.twoColumnFlexWorkshop} />
       <CallToAction data={discoveryWorkshop.callToActionWorkshopSecond} />
       <RemoteWorkshop data={discoveryWorkshop.remoteWorkshop} />
       <WorkshopBenefits data={discoveryWorkshop.workshopBenefits} />
       <SuccessStories data={discoveryWorkshop.successStoriesWorkshop} />
-      <FAQ data={discoveryWorkshop.faqWorkshop} /> */}
+      <FAQ data={discoveryWorkshop.faqWorkshop} />
     </main>
   )
 }

@@ -9,7 +9,7 @@ export default function Hero({ data: { background, text, pageTitle } }) {
             <Half/>
             <Card>
                 <h1 className="line h4">{pageTitle}</h1>
-                <p className="h1">{text}</p>
+                <h2 className="h1">{text}</h2>
             </Card>
         </Wrapper>
     )
@@ -37,6 +37,10 @@ const Half = styled.div`
     right: 0;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
     opacity: 0.5;
+
+    @media (max-width: 1200px){
+        display: none;
+    }
 `
 
 const Card = styled.div`
@@ -53,9 +57,31 @@ const Card = styled.div`
     .h4{
         margin-bottom: 8px;
         color: var(--color-white);
+        font-size: clamp(14px, 2.08vw, 18px);
+        text-transform: uppercase;
     }
     
     .h1{
         color: var(--color-white);
+        font-size: clamp(20px, 3.38vw, 32px);
+    }
+
+    @media (max-width: 1200px) {
+        position: unset;
+        padding: unset;
+        max-width: unset;
+        background-color: unset;
+
+        .h4{
+            color: var(--color-black);
+            opacity: .5;
+            text-transform: unset;
+        }
+
+        .h1{
+            color: var(--color-black);
+        }
+
+        padding: 32px 32px 0 32px;
     }
 `

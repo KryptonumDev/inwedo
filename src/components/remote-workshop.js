@@ -34,17 +34,29 @@ export default function RemoteWorkshop({ data: { sectionTitle, subTitle, textUnd
 const Wrapper = styled.section`
     margin-top: var(--margin-section);
 
-    .line{
+    .h4.line{
         margin-bottom: 16px;
         opacity: .5;
+        font-size: clamp(14px, 2.08vw, 18px);
     }
 
     .h1{
         margin-bottom: 24px;
+        font-size: clamp(20px, 3.38vw, 32px);
+    }
+
+    .h4{
+       font-weight: 300;
+       font-size: clamp(14px, 2.08vw, 18px);
     }
 
     .tools{
-        margin-bottom: 24px;
+        margin-bottom: clamp(16px, 2.08vw, 24px);
+        font-size: clamp(20px, 3.38vw, 32px);
+
+        @media (max-width: 680px){
+            text-align: center;
+        }
     }
 `
 
@@ -55,8 +67,12 @@ const LocContainer = styled(Container)`
 const CardsGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 32px 64px;
-    margin: 64px 0;
+    grid-gap: clamp(16px, 3.125vw, 32px) clamp(32px, 6.25vw, 64px);
+    margin: clamp(32px, 6.25vw, 64px) 0;
+
+    @media (max-width: 600px){
+        grid-template-columns: 1fr;
+    }
 `
 
 const CardsItem = styled.div`
@@ -66,7 +82,8 @@ const CardsItem = styled.div`
     display: grid;
     grid-template-columns: auto 1fr;
     grid-gap: 16px;
-    padding: 32px 24px;
+    padding: clamp(24px, 3.64vw, 32px) 24px;
+    align-items: center;
 
     .image{
         width: fit-content;
@@ -74,8 +91,8 @@ const CardsItem = styled.div`
     }
 
     h3{
-        font-weight: 400;
-        font-size: 20px;
+        font-weight: 500;
+        font-size: clamp(14px, 2.21vw, 20px);
         line-height: 151%;
     }
 `
@@ -85,6 +102,16 @@ const ToolsGrid = styled.div`
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 16px;
+
+    @media (max-width: 680px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 24px 0;
+    }
+
+    @media (max-width: 350px) {
+        grid-template-columns: 1fr 1fr;
+    }
 `
 
 const ToolsItem = styled.div`
@@ -96,4 +123,8 @@ const ToolsItem = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 680px){
+        margin: 0 auto;
+    }
 `

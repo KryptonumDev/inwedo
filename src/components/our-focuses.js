@@ -37,7 +37,11 @@ const Wrapper = styled.section`
 const Content = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 64px 32px;
+    grid-gap: 32px 64px;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+    }
 `
 
 const Text = styled.div`
@@ -45,20 +49,32 @@ const Text = styled.div`
     .h4{
         margin-bottom: 16px;
         opacity: .5;
+        font-size: clamp(14px, 2.08vw, 18px);
     }
 
     .h1{
-        margin-bottom: 32px;
+        margin-bottom: clamp(16px, 2.6vw, 24px);
+        font-size: clamp(20px, 3.38vw, 32px);
     }
 
     .p{
+        font-size: clamp(14px, 1.95vw, 16px);
+    }
+
+    @media (max-width: 1024px){
+        max-width: 800px;
     }
 `
 
 const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 48x;
+    grid-gap: 32px;
+
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+        max-width: 330px;
+    }
 `
 
 const Item = styled.div`
@@ -68,10 +84,11 @@ const Item = styled.div`
 
     .h4{
         margin-bottom: 12px;
+        font-size: clamp(14px, 2.08vw, 18px);
     }
 
     .p{
-
+        font-size: clamp(14px, 1.95vw, 16px);
     }
 
     .image{

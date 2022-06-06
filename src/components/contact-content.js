@@ -18,7 +18,7 @@ export default function Content({ data: { textUnderTitle, pageTitle, form, conta
                     </Form>
                     <OtherInform>
                         <Map>
-                            <GatsbyImage image={map.mapImg.localFile.childImageSharp.gatsbyImageData} alt={map.mapImg.altText} />
+                            <GatsbyImage className="image" image={map.mapImg.localFile.childImageSharp.gatsbyImageData} alt={map.mapImg.altText} />
                             <div className="content">
                                 <p className="h3">{map.addressTitle}</p>
                                 <div className="p" dangerouslySetInnerHTML={{ __html: map.addressText }} />
@@ -59,6 +59,10 @@ const Titles = styled.div`
 const Flex = styled.div`
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 `
 
 const Map = styled.div`
@@ -70,6 +74,13 @@ const Map = styled.div`
 
         .h3{
             margin-bottom: 16px;
+        }
+    }
+
+    @media (max-width: 768px){
+        .image{
+            width: 100%;
+            display: block;
         }
     }
 `
@@ -104,9 +115,20 @@ const OtherInform = styled.div`
     max-width: 635px;
     width: 100%;
     margin-top: 25px;
+
+    @media (max-width: 768px){
+        max-width: unset;
+        margin-top: 48px;
+    }
 `
 
 const Form = styled.div`
     max-width: 534px;
     margin-right: 32px;
+
+    @media (max-width: 768px){
+        max-width: unset;
+        margin-right: 0;
+
+    }
 `

@@ -26,6 +26,16 @@ const Wrapper = styled.form`
     grid-template-columns: 1fr auto;
     grid-gap: 32px;
 
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+        max-width: 284px;
+        margin: 0 auto;
+
+        button{
+            margin: 0 auto;
+        }
+    }
+
     label{
         span{
             display: none;
@@ -39,6 +49,7 @@ const Wrapper = styled.form`
             background-color: #fff;
             width: 100%;
             box-sizing: border-box;
+            min-width: 200px;
             
             font-family: 'Lexend';
             font-style: normal;
@@ -76,7 +87,7 @@ const Wrapper = styled.form`
         text-align: center;
         justify-content: center;
         font-weight: 300;
-        font-size: 18px;
+        font-size: clamp(14px, 2.08vw, 18px);
         line-height: 30px;
         border: none;
 

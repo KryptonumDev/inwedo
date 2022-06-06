@@ -5,10 +5,10 @@ import { Container } from "../../style"
 export default function Filter({ data, currentFilter, currentSubFilter, changeFilters, changeCurrentSubFilter }) {
     return (
         <Wrapper>
-            <Container>
+            <LocContainer>
                 <MainGrid count={data.nodes.length + 1}>
                     <FilterItem slug={'all'} activeSlug={currentFilter} onClick={() => (changeFilters('all'))}>
-                        All
+                        <span className="h4">All</span>
                     </FilterItem>
                     {data.nodes.map(el => (
                         <FilterItem slug={el.slug} activeSlug={currentFilter} onClick={() => (changeFilters(el.slug))}>
@@ -28,7 +28,7 @@ export default function Filter({ data, currentFilter, currentSubFilter, changeFi
                         ))}
                     </SubGrid>
                 ))}
-            </Container>
+            </LocContainer>
         </Wrapper>
     )
 }
@@ -38,21 +38,33 @@ const Wrapper = styled.div`
     margin-bottom: 128px;
 `
 
+const LocContainer = styled(Container)`
+    padding: 0;
+`
+
 const MainGrid = styled.div`
     position: relative;
     max-width: 1020px;
     margin: 0 auto 32px auto;
     display: grid;
-    grid-gap: 48px;
+    grid-gap: clamp(0px, 2.08vw, 48px);
     grid-template-columns: repeat(${props => props.count}, 1fr);
     &::after{
         content: "";
         position: absolute;
-        bottom: -1px;
+        bottom: 0px;
         left: 0;
         right: 0;
         background: #EBF2F8;
-        height: 1px;
+        height: 3px;
+    }
+
+    @media (max-width: 540px) {
+        grid-gap: 0;
+    }
+
+    span{
+        font-size: clamp(14px, 2.08vw, 18px);
     }
 `
 
@@ -70,17 +82,22 @@ const FilterItem = styled.button`
         left: 0;
         right: 0;
         bottom: 0;
-        height: 4px;
+        height: 3px;
+        z-index: 10;
         transition: opacity .2s linear;
         opacity: ${props => props.slug === props.activeSlug ? '1' : '0'};
     }
 `
 
 const SubGrid = styled.div`
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 16px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 32px;
+    gap: clamp(16px, 3.125vw, 32px);
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -99,5 +116,6 @@ const SubFilterItem = styled.button`
     span{
         white-space: nowrap;
         color: ${props => props.slug === props.activeSlug ? '#fff' : 'var(--color-black)'};
+        font-size: clamp(14px, 2.08vw, 16px);
     }
 `

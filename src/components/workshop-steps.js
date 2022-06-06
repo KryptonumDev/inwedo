@@ -46,10 +46,18 @@ const Wrapper = styled.section`
 `
 
 const Image = styled(GatsbyImage)`
-    min-width: max-content;
+    min-width: 400px;
     height: fit-content;
     border-radius: 8px;
     filter: var(--shadow);
+
+    @media (max-width: 864px){
+        min-width: unset;
+        max-width: fit-content;
+        width: 100%;
+        margin: 0 24px;
+        margin-bottom: 30px;
+    }   
 `
 
 const Item = styled.div`
@@ -64,11 +72,23 @@ const Item = styled.div`
         width: 100%;
         margin-left: ${props => props.side === 'left' ? '0px' : '150px'};
        
+
+        @media (max-width: 1060px) {
+            margin-left: 0;
+        }
+
+        
     }
 
     .grid{
         display: grid;
         grid-gap: 36px;
+    }
+
+    @media (max-width: 864px) {
+        flex-direction: column;
+        width: fit-content;
+        margin: 0 auto;
     }
 `
 
@@ -80,6 +100,14 @@ const Number = styled.span`
     left: -60px;
     top: 0;
     transform: translate(-100%, -50%);
+
+    @media (max-width: 864px){
+        position: unset;
+        transform: unset;
+        margin: 0 auto;
+        text-align: center;
+        display: block;
+    }
 `
 
 const TextPart = styled.div`
@@ -96,6 +124,18 @@ const TextPart = styled.div`
         margin-bottom: clamp(28px, 4.94vw, 48px);
         font-size: clamp(14px, 2.08vw, 18px);
     }
+
+    @media (max-width: 864px){
+        margin: 0 auto;
+
+        h2.h1{
+            text-align: center;
+        }
+
+        p.h4{
+            text-align: center;
+        }
+    }
 `
 
 const SubSteps = styled.div`
@@ -108,40 +148,52 @@ const SubSteps = styled.div`
     }
 
     p.p{
-        margin-bottom: clamp(14px, 1.95vw, 16px);
     }
 
     &:first-child{
         margin-top: 36px;
-        margin-bottom: 48px;
+        margin-bottom: 36px;
         &::after{
             content: "";
             position: absolute;
             left: -80px;
-            right: -18px;
+            right: -80px;
             bottom: -36px;
             top: -36px;
             background-color: var(--color-white);
             filter: var(--shadow);
             border-radius: 8px;
             z-index: -1;
+
+            @media (max-width: 1060px){
+                left: clamp(-80px, -7.16vw, -30px);
+                right:  clamp(-80px, -7.16vw, -30px);
+                bottom:  clamp(-36px, -7.16vw, -16px);
+                top:  clamp(-36px, -3.38vw, -16px);
+            }
         }
+
+        @media (max-width: 1060px){ 
+            margin-top: clamp(16px, 7.16vw, 36px);
+            margin-bottom: clamp(16px, 7.16vw, 36px);
+        }
+
     }
 `
 
 const Plate = styled.span`
     position: absolute;
     bottom: 0;
-    transform: translateY(100%);
+    transform: translateY(120%);
     right: 0;
-    padding: 24px 32px;
+    padding: clamp(14px, 2.47vw, 24px) clamp(18px, 3.125vw, 32px);
     border-radius: 24px;
     background-color: var(--color-white);
     filter: var(--shadow);
 
     span{
         font-weight: 400;
-        font-size: 20px;
+        font-size: clamp(12px, 2.08vw, 20px);
         line-height: 151%;
     }
 `  

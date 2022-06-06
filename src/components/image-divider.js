@@ -25,6 +25,7 @@ const Wrapper = styled.section`
         margin: 0 auto 0 auto;
         padding-top: 16px;
         position: relative;
+        font-size: clamp(20px, 2.86vw, 24px);
 
         &::before{
             content: "";
@@ -44,8 +45,14 @@ const GlassCard = styled.div`
     background-color: var(--color-white);
     filter: var(--shadow);
     margin-top: 32px;
-    padding: 16px 64px;
+    padding: 16px clamp(48px, 7.29vw, 64px);
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 550px) {
+        width: calc(100% + 120px);
+        transform: translateX(-60px);
+        box-sizing: border-box;
+    }
 `

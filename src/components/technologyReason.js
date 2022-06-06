@@ -23,13 +23,25 @@ export default function ReasonsToUse({ data: { sectionTitle, reasons } }) {
 
 const Wrapper = styled.section`
     margin-top: var(--margin-section);
+
+    .h2{
+        font-size: clamp(16px, 2.6vw, 24px);
+    }
 `
 
 const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 32px;
+    grid-gap: clamp(16px, 3.125vw, 32px);
     margin-top: 32px;
+
+    @media (max-width: 876px) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 540px) {
+        grid-template-columns: 1fr;
+    }
 `
 
 const Item = styled.div`
@@ -51,7 +63,7 @@ const Item = styled.div`
 
     h3{
         font-weight: 400;
-        font-size: 20px;
+        font-size: clamp(14px, 2.21vw, 20px);
         line-height: 151%;
     }
 `
