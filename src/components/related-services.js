@@ -8,7 +8,7 @@ export default function RelatedServices({ data: { sectionTitle, services } }) {
     return (
         <Wrapper>
             <Container>
-                <Title>{sectionTitle}</Title>
+                <Title className="h2">{sectionTitle}</Title>
                 <Grid>
                     {services.map(el => (
                         <Item>
@@ -35,8 +35,11 @@ const Title = styled.h2`
     position: relative;
     padding: 16px 0 0 0;    
     max-width: 850px;
-    margin: 0 auto 64px auto;
-    font-size: clamp(20px, 2.86vw, 24px);
+    margin: 0 auto clamp(32px, 6.25vw, 64px) auto;
+
+    &.h2{
+        font-size: clamp(20px, 2.86vw, 24px);
+    }
 
     &::before{
         content: '';

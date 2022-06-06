@@ -4,7 +4,7 @@ import React from "react"
 import styled from "styled-components"
 import { Container } from "../../style"
 
-export default function Post({ data: { blogPost: { previewCard, currentPostUrl }, categories: { nodes }, author, date } }) {
+export default function Post({ data: { blogPost: { previewCard, currentPostUrl }, categories: { nodes }, authors, date } }) {
     return (
         <Wrapper>
             <Container>
@@ -21,12 +21,15 @@ export default function Post({ data: { blogPost: { previewCard, currentPostUrl }
                                     </div>
                                 ))}
                             </Categories>
-                            <AuthorInform>
-                                {/* <GatsbyImage className="image" image={author.node.author.authorAvatar.localFile.childImageSharp.gatsbyImageData} alt={authors.nodes[0].author.authorAvatar.altText} /> */}
-                                <img className="image" src={author.node.avatar.url} alt="author avatar"/>
-                                <p className="p">{author.node.name}</p>
-                                <p className="p date">{date}</p>
-                            </AuthorInform>
+                            {authors.nodes[0]
+                                ? <AuthorInform>
+                                    <GatsbyImage className="image" image={authors.nodes[0].author.userAvatar.localFile.childImageSharp.gatsbyImageData} alt={authors.nodes[0].author.userAvatar.altText} />
+                                    <p className="p">{authors.nodes[0].author.userName}</p>
+                                    <p className="p date">{date}</p>
+                                </AuthorInform>
+                                : <AuthorInform>
+                                    <p className="p date">{date}</p>
+                                </AuthorInform>}
                             <h2 className="h3">{previewCard.previewTitle}</h2>
                             <p className="p">{previewCard.previewText}</p>
                             <span className="colored">{previewCard.readMoreButtonText}</span>

@@ -1,19 +1,40 @@
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
-import { Container } from "../../style"
+import { Container } from "../style"
+import { urlSystem } from "./../contstants/urlSystem"
 
-export default function PostGrid({ data, from, to }) {
+export default function BlogAuthorPosts({ data, title, loadMore }) {
+
+    const [showCount, setShowCount] = useState(() => {
+        if (typeof window !== "undefined") {
+            if (window.innerWidth < 1100) {
+                return 4
+            }
+        }
+        return 3
+    })
+
+    const step = (() => {
+        if (typeof window !== "undefined") {
+            if (window.innerWidth < 1100) {
+                return 2
+            }
+        }
+        return 3
+    })()
+
     return (
         <Wrapper>
             <Container>
+                <Title className="h2">{title}</Title>
                 <Grid>
                     {data.map((el, index) => {
-                        if (index >= from && index <= to) {
+                        if (index < showCount) {
                             return (
                                 <Item>
-                                    <Link to={el.blogPost.currentPostUrl}>
+                                    <Link to={urlSystem[el.language.slug] + el.blogPost.currentPostUrl}>
                                         <GatsbyImage className='image' image={el.blogPost.previewCard.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.blogPost.previewCard.previewImage.altText} />
                                         <Content>
                                             <Categories>
@@ -41,19 +62,56 @@ export default function PostGrid({ data, from, to }) {
                         return null
                     })}
                 </Grid>
+                {data.length <= showCount
+                    ? null
+                    : <Button className="button" onClick={() => { setShowCount(showCount + step) }}>{loadMore}</Button>}
             </Container>
         </Wrapper>
     )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
     margin-top: var(--margin-section);
+`
+
+const Title = styled.h2`
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto clamp(32px, 5.46vw, 64px) auto;
+    padding-top: 16px;
+    position: relative;
+
+    &.h2{
+        font-size: clamp(20px, 2.86vw, 24px);
+    }
+
+    &::before{
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        width: 40px;
+        height: 1px;
+        background-color: var(--color-black);
+    }
 `
 
 const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 48px;
+
+    @media (max-width: 1100px) {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 32px;
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        max-width: 570px;
+        margin: 0 auto;
+    }
 `
 
 const Content = styled.div`
@@ -73,7 +131,7 @@ const Item = styled.div`
         margin-bottom: 32px;
     }
 
-    .image-logo{
+    .image{
         width: 100%;
         aspect-ratio: 1.6/1;
         height: fit-content;
@@ -108,7 +166,7 @@ const AuthorInform = styled.div`
         margin-bottom: 0;
     }
 
-    .image{
+    .image-logo{
         width: fit-content;
         height: fit-content;
         max-width: 36px;
@@ -121,4 +179,10 @@ const AuthorInform = styled.div`
         margin-left: 24px;
         opacity: .5;
     }
+`
+
+const Button = styled.button`
+    border: none;
+    margin: 0 auto;
+    margin-top: 64px;
 `

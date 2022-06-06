@@ -80,6 +80,9 @@ query BlogArcyhiveQuery($id: String!, $slug: String!) {
     }
     allWpPost {
         nodes {
+          language{
+            slug
+          }
           blogPost {
             currentPostUrl
             previewCard {
@@ -103,11 +106,18 @@ query BlogArcyhiveQuery($id: String!, $slug: String!) {
             }
           }
           date(formatString: "MMMM DD YYYY")
-          author {
-            node {
-              name
-              avatar {
-                url
+          authors {
+            nodes {
+              author {
+                userName
+                userAvatar {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
               }
             }
           }

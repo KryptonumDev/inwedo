@@ -13,7 +13,6 @@ import ProcessOptimisation from "../components/process-optimisation"
 
 const ProductDevelopmentPage = ({ data: { allWpPage } }) => {
   let { productDevelopment } = allWpPage.nodes[0]
-  debugger
   return (
     <main>
       <Hero data={productDevelopment.heroProductDevelop} />

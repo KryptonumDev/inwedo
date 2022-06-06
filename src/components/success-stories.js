@@ -45,6 +45,7 @@ const Stories = styled.div`
         margin: 0 auto 0 auto;
         padding-top: 16px;
         position: relative;
+        font-size: clamp(20px, 2.86vw, 24px);
 
         &::before{
             content: "";
