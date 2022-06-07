@@ -11,14 +11,14 @@ const AboutPage = ({ data: { allWpPage } }) => {
   let { about } = allWpPage.nodes[0]
   return (
     <main>
-      {/* <Hero data={about.hero} />
+      <Hero data={about.hero} />
       <TwoColumnFlex data={about.twoColumnFlex} />
       <OurValues data={about.ourValues} />
-      <CallToAction data={about.callToActionAbout} /> */}
+      <CallToAction data={about.callToActionAbout} />
       <TestomontialsAnimated data={about.testomontialsAnimated} />
-      {/* <SuccessStories data={about.successStories} />
+      <SuccessStories data={about.successStories} />
       <TwoColumnFlex data={about.twoColumnFlexSecond} />
-      <CallToAction data={about.callToActionAboutSecond} /> */}
+      <CallToAction data={about.callToActionAboutSecond} />
     </main>
   )
 }

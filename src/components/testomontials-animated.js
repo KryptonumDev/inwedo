@@ -26,7 +26,7 @@ export default function TestomontialsAnimated({ data: { text, seectionTitle, tes
                             </Item>
                         ))}
                     </motion.div>
-                    <motion.div drag='x' dragConstraints={constraintsRef} className="slider">
+                    <motion.div drag='x' dragConstraints={constraintsRef} className="slider2">
                         {testomontialsSecondRow.map(el => (
                             <Item>
                                 <div className="flex">
@@ -55,8 +55,11 @@ const Text = styled.p`
     position: relative;
     padding: 16px 0 0 0;    
     max-width: 850px;
-    margin: 0 auto 3px auto;
-    font-size: clamp(20px, 2.86vw, 24px);
+    margin: 0 auto 16px auto;
+
+    &.h3{
+        font-size: clamp(16px, 2.86vw, 24px);
+    }
 
     &::before{
         content: '';
@@ -75,22 +78,35 @@ const Title = styled.h2`
     text-align: center;
     max-width: 850px;
     margin: 0 auto 64px auto;
+
+    &.h4{
+        font-size: clamp(14px, 2.08vw, 18px);
+    }
 `
 
 const Row = styled.div`
     display: grid;
-    grid-gap: 64px;
+    grid-gap: clamp(20px, 3.38vw, 64px);
 
     .slider{
-        width: 1681px;
+        width: clamp(1057px, 169vw, 1681px);
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 32px;
+        grid-gap: clamp(20px, 3.38vw, 32px);
+    }
+
+    .slider2{
+        position: relative;
+        left: -25%;
+        width: clamp(1057px, 169vw, 1681px);
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: clamp(20px, 3.38vw, 32px);
     }
 `
 
 const Item = styled.div`
-    padding: 42px 78px;
+    padding: clamp(24px, 4.29vw, 42px) clamp(42px, 7.8125vw, 78px);
     width: 100%;
     box-sizing: border-box;
     background-color: #fff;
