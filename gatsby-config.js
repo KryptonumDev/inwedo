@@ -16,10 +16,17 @@ module.exports = {
     "gatsby-plugin-sitemap", 
     "gatsby-plugin-sharp", 
     "gatsby-transformer-sharp", 
+    'gatsby-plugin-postcss',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        "icon": "src/images/icon.png"
+        "icon": "src/images/icon.png",
+        name: `Inwedo`,
+        short_name: `inwedo`,
+        start_url: `/`,
+        background_color: `#f8f9fa`,
+        theme_color: `#f8f9fa`,
+        display: `standalone`,
       }
     },
     {
@@ -29,5 +36,7 @@ module.exports = {
         "path": "./src/images/"
       },
       __key: "images"
-    }]
+    },
+    'gatsby-plugin-offline',
+  ]
 };
