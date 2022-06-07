@@ -10,16 +10,17 @@ export default function BlogPostContent({ data, quickTitle }) {
     return (
         <Wrapper>
             <BlogPostNav data={data} quickTitle={quickTitle}/>
-            {data.map((el, index) => {
+            {data.map(el => {
+                let id = el.quickLinkText ? el.quickLinkText.replace(/ /ig, '-') : null
                 switch (el.sectionChoose) {
                     case 'text':
-                        return <Text data={el} index={el.quickLinkText.replace(/ /ig, '-')}/>
+                        return <Text data={el} index={id}/>
                     case 'image':
-                        return <Image data={el} index={el.quickLinkText.replace(/ /ig, '-')}/>
+                        return <Image data={el} index={id}/>
                     case 'cta':
-                        return <CallToAction small={true} data={el.callToActionPost} index={el.quickLinkText.replace(/ /ig, '-')}/>
+                        return <CallToAction small={true} data={el.callToActionPost} index={id}/>
                     case 'testomontial':
-                        return <TestomontialDivider small={true} data={el.testomontialDividerPost} index={el.quickLinkText.replace(/ /ig, '-')}/>
+                        return <TestomontialDivider small={true} data={el.testomontialDividerPost} index={id}/>
                     default :
                         return null
                 }

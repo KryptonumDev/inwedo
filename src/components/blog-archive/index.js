@@ -6,8 +6,8 @@ import PostGrid from "./post-grid"
 
 export default function Archive({ data, cta, cta2, categories }) {
 
-    // const [defaultPosts] = useState(data.nodes)
-    // const [filtredPosts, changeFiltredPosts] = useState(data.nodes)
+    const [defaultPosts] = useState(data.nodes)
+    const [filtredPosts, changeFiltredPosts] = useState(data.nodes)
 
 
     return (
