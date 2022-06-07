@@ -30,47 +30,58 @@ const Wrapper = styled.section`
 `
 
 const Card = styled.div`
-    margin: 0 128px;
+    margin: 0 clamp(0px, 8.3vw, 128px);
     border-radius: 24px;
     background-color: var(--color-white);
     filter: var(--shadow);
-    padding: 64px 128px;
+    padding: 64px clamp(30px, 6.25vw, 128px);
     position: relative;
+
+    @media (max-width: 480px) {
+        margin: 0;
+    }
 
     &::after{
         content: url(${props => props.quote});
         position: absolute;
         right: 40px;
         top: 40px;
+
+        @media (max-width: 640px) {
+            display: none;
+        }
     }
 
     .flex{
         display: flex;
         align-items: center;
-        margin-bottom: 36px;
+        margin-bottom: clamp(16px, 3.38vw, 36px);
 
         .image{
-            margin-right: 48px;
+            margin-right: clamp(32px, 5.2vw, 48px);
+            max-width: clamp(120px, 23.43vw, 180px);
         }
 
         .name{
             font-weight: 400;
-            font-size: 14px;
+            font-size: clamp(12px, 1.82vw, 14px);
             line-height: 21px;
         }
 
         .position{
             font-weight: 300;
-            font-size: 12px;
+            font-size: clamp(10px, 1.5625vw, 12px);
             line-height: 16px;
         }
     }
 
     .h3{
         margin-bottom: 8px;
+        font-size: clamp(16px, 2.6vw, 24px);
     }
 
     .h4{
         margin-bottom: 16px;
+        font-size: clamp(14px, 2.08vw, 18px);
     }
 `

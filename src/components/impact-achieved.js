@@ -27,8 +27,12 @@ const Wrapper = styled.section`
         text-align: center;
         position: relative;
         padding: 16px 0 0 0;    
-        max-width: 850px;
-        margin: 0 auto 64px auto;
+        max-width: 850px; 
+        margin: 0 auto clamp(32px, 6.25vw, 64px) auto;
+        
+        &.h3{
+            font-size: clamp(16px, 3.125vw, 24px);
+        } 
 
         &::before{
             content: '';
@@ -44,22 +48,38 @@ const Wrapper = styled.section`
 `
 
 const Grid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 64px;
+    display: flex;
+    justify-content:center;
+    gap: 64px;
+
+    @media (max-width: 1024px) {
+        flex-wrap: wrap;
+    }
 `
 
 const Item = styled.div`
+    width: 100%;
+
+    @media (max-width: 1024px){
+        width: 42%;
+    }
+
+    @media (max-width: 480px) {
+        width: 100%;
+        max-width: 260px;
+        height: fit-content;
+    }
+
     span{
         font-weight: 600;
-        font-size: 48px;
+        font-size: clamp(32px, 5.2vw, 48px);
         line-height: 50px;
         max-height: 50px;
         text-align: center;
         display: block;
         width: fit-content;
         margin: 0 auto;
-        margin-bottom: 30px;
+        margin-bottom: clamp(20px, 3.25vw, 30px);
         white-space: nowrap;
     }
 
@@ -73,5 +93,6 @@ const Item = styled.div`
         border-radius: 8px;
         background-color: var(--color-white);
         filter: var(--shadow);
+        font-size: clamp(12px, 1.95vw, 18px);
     }
 `

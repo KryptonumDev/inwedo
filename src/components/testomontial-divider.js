@@ -51,6 +51,7 @@ const Card = styled.div`
 
         .image{
             margin-right: clamp(32px, 5.2vw, 48px);
+            max-width: clamp(120px, 23.43vw, 180px);
         }
 
         .name{

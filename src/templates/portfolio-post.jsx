@@ -15,6 +15,7 @@ import OtherCaseStudies from "../components/other-case-studies"
 
 const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts } }) => {
   const { caseStudies } = allWpCaseStudies.nodes[0]
+  debugger
   return (
     <main>
       <Hero data={caseStudies.heroportfolio} />
@@ -30,16 +31,16 @@ const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts } }) => {
       {caseStudies.inwedoRole.sectionTitle
         ? <InwedoRole data={caseStudies.inwedoRole} />
         : null}
-      {caseStudies.solution.sectionTitle
+      {/* {caseStudies.solution.sectionTitle
         ? <Solution data={caseStudies.solution} />
-        : null}
-      {caseStudies.callToActionPortfolio.typeOfCta
+        : null} */}
+      {caseStudies.callToActionPortfolio.title
         ? <CallToAction data={caseStudies.callToActionPortfolio} />
         : null}
       {caseStudies.testomontialDividerPortfolioSecond.testomontialText
         ? <TestomontialDividerAlt data={caseStudies.testomontialDividerPortfolioSecond} />
         : null}
-      {caseStudies.twoColumnFlexPortfolio.sectionTitle
+      {caseStudies.twoColumnFlexPortfolio.subTitle
         ? <TwoColumnFlex data={caseStudies.twoColumnFlexPortfolio} />
         : null}
       {caseStudies.impactAchieved.sectionTitle
@@ -49,7 +50,7 @@ const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts } }) => {
         ? <TestomontialDividerExpanded data={caseStudies.testomontialDividerPortfolioThird} />
         : null}
       <OtherCaseStudies data={otherPosts} title={caseStudies.otherPosts.sectionTitle} />
-      {caseStudies.callToActionPortfolioSecond.typeOfCta
+      {caseStudies.callToActionPortfolioSecond.title
         ? <CallToAction data={caseStudies.callToActionPortfolioSecond} />
         : null}
     </main>
@@ -271,6 +272,9 @@ query PortfolioPageQuery($id: String!) {
     }
     otherPosts : allWpCaseStudies(filter: {id: {ne: $id}}) {
       nodes {
+        language{
+          slug
+        }
         slug
         categoriesPortfolio {
           nodes {

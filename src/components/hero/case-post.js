@@ -42,8 +42,8 @@ export default function Hero({ data: { pageTitle, textUnderTitle, caseInformatio
 const Wrapper = styled.section`
     margin-top: 81px;
     position: relative;
-`
 
+`
 const Background = styled(GatsbyImage)`
     position: absolute;
     left: 50%;
@@ -51,52 +51,71 @@ const Background = styled(GatsbyImage)`
     top: 0;
     width: fit-content;
     height: fit-content;
+    height: 400px;
 `
 
 const LocalContainer = styled(Container)`
     padding-top: 220px;
+
+    @media (max-width: 640px) {
+        padding: 0 20px;
+        padding-top: 220px;
+    }
 `
 
 const GlassCard = styled.div`
 
     background: linear-gradient(180deg,rgba(200,200,200,1) 0,rgba(255,255,255,1) 60%);
     border-radius: 24px;
-    padding: 64px;
+    padding: clamp(23px, 6.25vw, 64px);
     display: flex;
     justify-content: space-between;
     position: relative;
     z-index: 3;
+    gap: 16px;
+
+    @media (max-width: 1024px) {
+        flex-direction: column;
+        gap: 32px;
+    }
 
     .logo{
-        margin-bottom: 48px;
+        margin-bottom: clamp(24px, 4.68vw, 48px); 
+        max-width: clamp(120px, 23.43vw, 240px);
     }
 
     .h1{
-        margin-bottom: 24px;
+        margin-bottom: clamp(16px, 2.6vw, 24px);
+        font-size: clamp(20px, 5.46vw, 64px);
     }
 
     .h3{
         margin-bottom: 24px;
+        font-size: clamp(16px, 2.6vw, 24px);
     }
 
     .inform{
         text-align: right;
-        margin-top: -16px;
+        margin-top: clamp(-16px, -1.56vw, -8px);
+
+        @media (max-width: 1024px){
+            text-align: left;
+        }
 
         p{
             font-weight: 300;
-            font-size: 16px;
-            line-height: 26px;
+            font-size: clamp(14px, 1.82vw, 16px);
+            line-height: 151%;
             font-feature-settings: 'ss01' on;
             white-space: nowrap;
         }
 
         strong{
             display: inline-block;
-            margin-top: 16px;
+            margin-top: clamp(8px, 1.56vw, 16px);
             margin-bottom: 8px;
             font-weight: 500;
-            font-size: 18px;
+            font-size: clamp(14px, 2.08vw, 18px);
             line-height: 151%;
             background: var(--color-accent);
             -webkit-background-clip: text;
@@ -107,10 +126,14 @@ const GlassCard = styled.div`
     }
 
     .colored.h4{
-        margin-top: 16px;
+        margin-top: clamp(8px, 1.56vw, 16px);
         margin-bottom: 24px;
         white-space: nowrap;
         text-align: right;
+
+        @media (max-width: 1024px){
+            text-align: left;
+        }
     }
 
     .technologies{
@@ -118,6 +141,15 @@ const GlassCard = styled.div`
         justify-content: flex-end;
         align-items: center;
         gap: 12px;
+
+        @media (max-width: 1300px) {
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 1024px){
+            justify-content: flex-start;
+        }
+
         .item{
             display: flex;
             justify-content: center;
@@ -140,10 +172,10 @@ const GlassCard = styled.div`
     .goals{
         display: flex;
         flex-wrap: wrap;
-        gap: 48px;
+        gap: clamp(24px, 4.68vw, 48px);
 
         .item{
-            padding: 8px 24px;
+            padding: clamp(6px, 0.9vw, 8px) clamp(16px, 2.6vw, 24px);
             background: #F9FAFB;
             filter: var(--shadow);
             border-radius: 8px;
@@ -152,6 +184,12 @@ const GlassCard = styled.div`
             justify-content: space-between;
             align-items: center;
             width: fit-content;
+
+            .tech-logo{
+                max-width: clamp(30px, 4.68vw, 42px);
+                width: fit-content;
+                height: fit-content;
+            }
         }
     }
 `

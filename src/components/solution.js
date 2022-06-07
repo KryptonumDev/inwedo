@@ -41,14 +41,17 @@ const TextPart = styled.div`
     .h4{
         margin-bottom: 8px;
         opacity:.5;
+        font-size: clamp(14px, 2.08vw, 18px);
     }
 
     .h1{
         margin-bottom: 16px;
+        font-size: clamp(20px, 3.38vw, 32px);
     }
 
     .p{
         margin-bottom: 64px;
+        font-size: clamp(14px, 2.08vw, 16px);
     }
 `
 

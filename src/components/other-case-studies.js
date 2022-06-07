@@ -3,6 +3,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../style"
+import { urlSystem } from './../contstants/urlSystem'
 
 export default function OtherCaseStudies({ data: { nodes: items }, title }) {
     return (
@@ -12,7 +13,7 @@ export default function OtherCaseStudies({ data: { nodes: items }, title }) {
                 <Grid>
                     {items.map(el => (
                         <Item>
-                            <Link to={el.caseStudies.currentPostUrl}>
+                            <Link to={urlSystem.caseStudies[el.language.slug] + el.caseStudies.currentPostUrl}>
                                 <div className="card">
                                     <GatsbyImage className="logo" image={el.caseStudies.previewCard.previewLogo.localFile.childImageSharp.gatsbyImageData} alt={el.caseStudies.previewCard.previewLogo.altText} />
                                 </div>
@@ -21,7 +22,7 @@ export default function OtherCaseStudies({ data: { nodes: items }, title }) {
                                     <p className="category">
                                         {(() => {
                                             let arr = el.categoriesPortfolio.nodes.filter(inEL => inEL.wpParent === null)
-                                            return '#' + arr[0].name
+                                            return arr[0] ? '#' + arr[0].name : null
                                         })()}
                                     </p>
                                     <h3>{el.caseStudies.previewCard.previewTitle}</h3>
@@ -64,7 +65,18 @@ const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 48px;
-    margin-top: 48px;
+    margin-top: clamp(32px, 5.2vw, 48px);
+
+    @media (max-width: 1100px) {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 32px;
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        max-width: 570px;
+        margin: 0 auto;
+    }
 `
 
 const Item = styled.div`
@@ -80,15 +92,17 @@ const Item = styled.div`
         border-radius: 8px;
         filter: var(--shadow);
         background: linear-gradient(126.6deg, rgba(255, 255, 255, 0.77) 28.69%, rgba(255, 255, 255, 0.6391) 100%);
+        
         .logo{
             width: fit-content;
             height: fit-content;
+            max-width: clamp(91px, 13vw, 112px);
         }
     }
 
     .image{
         width: 100%;
-        height: fit-content;
+        height: 244px;
         border-radius: 8px;
     }
 

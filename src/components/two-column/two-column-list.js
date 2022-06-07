@@ -40,7 +40,7 @@ const Content = styled.div`
 `
 
 const TextPart = styled.div`
-    max-width: 600px;
+    max-width: 470px;
 
     .h4{
         opacity: .5;
@@ -61,9 +61,8 @@ const TextPart = styled.div`
 const Card = styled.div`
     padding: clamp(42px, 6.9vw, 64px) clamp(30px, 6.11vw, 64px);
     position: relative;
-    min-width: fit-content;
     width: 100%;
-    max-width: 600px;
+    max-width: 570px;
 
     @media (max-width: 500px){
         width: unset;
