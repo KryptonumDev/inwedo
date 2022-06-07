@@ -1,18 +1,68 @@
 import React from "react"
 import { graphql } from "gatsby"
 import BlogPostContent from "../components/blog-post-content"
+import Hero from "../components/hero/blog-post"
+import BlogAuthorPosts from "../components/blog-author-posts"
 
-export default function BlogPost({ data: { allWpPost } }) {
-  let { blogPost } = allWpPost.nodes[0]
+export default function BlogPost({ data: { allWpPost, otherPosts } }) {
+  let { blogPost, categories, date, authors } = allWpPost.nodes[0]
+  debugger
   return (
     <main>
-      <BlogPostContent data={blogPost.content} />
+      <Hero data={blogPost.heroPost} categories={categories} date={date} authors={authors}/>
+      <BlogPostContent data={blogPost.content} quickTitle={blogPost.quickNavigation.sectionTitle}/>
+      <BlogAuthorPosts data={otherPosts.nodes} title={blogPost.otherPosts.sectionTitle}/>
     </main>
   )
 }
 
 export const query = graphql`
 query BlogPostQuery($id: String!) {
+    otherPosts : allWpPost(filter: {id: {ne: $id}}, limit: 3) {
+      nodes {
+        language{
+          slug
+        }
+        blogPost {
+          currentPostUrl
+          previewCard {
+            previewTitle
+            previewText
+            readMoreButtonText
+            previewImage {
+              altText
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
+          }
+        }
+        categories {
+          nodes {
+            name
+            slug
+          }
+        }
+        date(formatString: "MMMM DD YYYY")
+        authors {
+          nodes {
+            author {
+              userName
+              userAvatar {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     allWpPost(filter: {id: {eq: $id}}) {
         nodes{
             blogPost{
@@ -30,6 +80,9 @@ query BlogPostQuery($id: String!) {
                     }
                   }
                 }
+              }
+              quickNavigation{
+                sectionTitle
               }
               content {
                 sectionChoose
@@ -90,6 +143,9 @@ query BlogPostQuery($id: String!) {
               nodes {
                 name
                 slug
+                language{
+                  slug
+                }
               }
             }
             date(formatString: "MMMM DD YYYY")

@@ -9,9 +9,9 @@ import Type6 from './downalod_form'
 import Type7 from './newsletter'
 import Type8 from './title_foto_file'
 
-export default function CallToAction({ data: { typeOfCta, title, text, form, button, downloadFile, image, buttonText } }) {
+export default function CallToAction({ data: { typeOfCta, title, text, form, button, downloadFile, image, buttonText }, small, index }) {
     return (
-        <Wrapper>
+        <Wrapper id={index} small={small}>
             <LocContainer>
                 {(() => {
                     switch (typeOfCta) {
@@ -39,7 +39,7 @@ export default function CallToAction({ data: { typeOfCta, title, text, form, but
 }
 
 const Wrapper = styled.section`
-    margin-top: var(--margin-section);
+    margin-top: ${props => props.small ? 'clamp(32px, 6.25vw, 64px)' : 'var(--margin-section)'};
 `
 
 const LocContainer = styled(Container)`

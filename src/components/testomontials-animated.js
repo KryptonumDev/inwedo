@@ -1,17 +1,47 @@
-import React from "react"
+import React, { useRef } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
+import { motion } from "framer-motion";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export default function TestomontialsAnimated({ data: { text, seectionTitle, testomontialsFirstRow, testomontialsSecondRow } }) {
+    const constraintsRef = useRef(null);
     return (
         <Wrapper>
             <Container>
                 <Text className="h3">{text}</Text>
                 <Title className="h4">{seectionTitle}</Title>
+                <Row ref={constraintsRef}>
+                    <motion.div drag='x' dragConstraints={constraintsRef} className="slider">
+                        {testomontialsFirstRow.map(el => (
+                            <Item>
+                                <div className="flex">
+                                    <GatsbyImage className="image" image={el.autorImg.localFile.childImageSharp.gatsbyImageData} alt={el.autorImg.altText} />
+                                    <div>
+                                        <p className="name">{el.authorName}</p>
+                                        <p className="position">{el.authorPosition}</p>
+                                    </div>
+                                </div>
+                                <p className="p">{el.testomontial}</p>
+                            </Item>
+                        ))}
+                    </motion.div>
+                    <motion.div drag='x' dragConstraints={constraintsRef} className="slider">
+                        {testomontialsSecondRow.map(el => (
+                            <Item>
+                                <div className="flex">
+                                    <GatsbyImage className="image" image={el.autorImg.localFile.childImageSharp.gatsbyImageData} alt={el.autorImg.altText} />
+                                    <div>
+                                        <p className="name">{el.authorName}</p>
+                                        <p className="position">{el.authorPosition}</p>
+                                    </div>
+                                </div>
+                                <p className="p">{el.testomontial}</p>
+                            </Item>
+                        ))}
+                    </motion.div>
+                </Row>
             </Container>
-            <Row>
-
-            </Row>
         </Wrapper>
     )
 }
@@ -48,8 +78,53 @@ const Title = styled.h2`
 `
 
 const Row = styled.div`
-    margin: 0 auto;
-    max-width: 1680px;
-    width: calc(100% + 160px);
-    transform: translateX(-80px);
+    display: grid;
+    grid-gap: 64px;
+
+    .slider{
+        width: 1681px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 32px;
+    }
+`
+
+const Item = styled.div`
+    padding: 42px 78px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 24px;
+    filter: var(--shadow);
+
+    .flex{
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+
+        .image{
+            margin-right: 32px;
+        }
+
+        .name{
+            font-weight: 400;
+            font-size: clamp(12px, 1.82vw, 14px);
+            line-height: 21px;
+        }
+
+        .position{
+            font-weight: 300;
+            font-size: clamp(10px, 1.5625vw, 12px);
+            line-height: 16px;
+        }
+
+        /* @media (max-width: 640px) {
+            flex-direction: column;
+            align-items: flex-start;
+            .image{
+                margin-right: 0;
+                margin-bottom: 32px;
+            }
+        } */
+    }
 `

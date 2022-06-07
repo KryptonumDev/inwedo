@@ -11,6 +11,7 @@ export const urlSystem = {
     aboutUs: { pl: '/o-nas/', en: '/about-us/' },
     HowWeWork: { pl: '/jak-dzialamy/', en: '/how-we-work/' },
     contact: { pl: '/kontakt/', en: '/contact/' },
+    privacyPolice: {pl: '/polityka-prywatnosci/', en: '/privacy-police/'},
   
     technologies: { pl: '/uslugi/web-development/', en: '/services/web-development/' },
   

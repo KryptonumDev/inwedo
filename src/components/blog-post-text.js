@@ -1,15 +1,16 @@
 import React from "react"
 import styled from "styled-components"
 
-export default function Text({ data }) {
+export default function Text({ data, index }) {
     return (
-        <Wrapper>
+        <Wrapper id={index}>
             <Content dangerouslySetInnerHTML={{ __html: data.textField }} />
         </Wrapper>
     )
 }
 
 const Wrapper = styled.section`
+    margin-top: clamp(32px, 6.25vw, 64px);
 `
 
 const Content = styled.div`
@@ -22,20 +23,39 @@ const Content = styled.div`
 
     h2{
         font-weight: 400;
-        font-size: 24px;
+        font-size: clamp(16px, 3.125vw, 24px);
         line-height: 151%;
     }
 
     h3{
         font-weight: 400;
-        font-size: 18px;
+        font-size: clamp(16px, 2.34vw, 18px);
         line-height: 151%;
     }
 
     p{
         font-weight: 300;
-        font-size: 16px;
-        line-height: 26px;
+        font-size: clamp(14px, 2.08vw, 16px);
+        line-height: 160%;
         font-feature-settings: 'ss01' on;
+
+        a{
+            font-weight: 700;
+            color: #0B5CD6;
+        }
+    }
+
+    ul, ol{
+        display: grid;
+        grid-gap: 16px;
+        li{
+            list-style: disc;
+            margin-left: 20px;
+
+            font-weight: 300;
+            font-size: clamp(14px, 2.08vw, 16px);
+            line-height: 160%;
+            font-feature-settings: 'ss01' on;
+        }
     }
 `

@@ -62,9 +62,12 @@ export default function BlogAuthorPosts({ data, title, loadMore }) {
                         return null
                     })}
                 </Grid>
-                {data.length <= showCount
-                    ? null
-                    : <Button className="button" onClick={() => { setShowCount(showCount + step) }}>{loadMore}</Button>}
+                {loadMore
+                    ? <>
+                        {data.length <= showCount
+                            ? null
+                            : <Button className="button" onClick={() => { setShowCount(showCount + step) }}>{loadMore}</Button>}</>
+                    : null}
             </Container>
         </Wrapper>
     )

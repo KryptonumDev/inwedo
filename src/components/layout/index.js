@@ -10,9 +10,9 @@ export default function Layout({ children, location }) {
                 <meta charSet="utf-8" />
                 <meta name="robots" content="noindex" />
             </Helmet>
-            <Header location={location} />
+            {/* <Header location={location} /> */}
             {children}
-            <Footer location={location} />
+            {/* <Footer location={location} /> */}
         </React.Fragment>
     )
 }

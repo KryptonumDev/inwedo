@@ -538,4 +538,32 @@ exports.createPages = async ({
         },
       });
     });
+
+  
+    // PRIVACY POLICE
+  
+    const { data: { allWpPage: { privacyPoliceNodes } } } = await graphql(`
+            query {
+              allWpPage(filter: {template: {templateName: {eq: "Privacy Police"}}}) {
+                privacyPoliceNodes: nodes {
+                  id
+                  language {
+                    slug
+                  }
+                }
+              }
+            }
+          `);
+  
+    privacyPoliceNodes.forEach(({ id, language: { slug } }) => {
+      createPage({
+        path: urlSystem.privacyPolice[slug],
+        component: resolve('src/templates/privacy-police.jsx'),
+        context: {
+          id,
+          slug,
+        },
+      });
+    });
+
   }

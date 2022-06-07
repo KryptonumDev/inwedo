@@ -4,9 +4,9 @@ import styled from "styled-components"
 import { Container } from "../style"
 import Quote from './../images/quote.png'
 
-export default function TestomontialDivider({ data: { testomontialText, personName, personPosition, companyLogo } }) {
+export default function TestomontialDivider({ data: { testomontialText, personName, personPosition, companyLogo }, small, index }) {
     return (
-        <Wrapper>
+        <Wrapper id={index} small={small}>
             <Container>
                 <Card quote={Quote}>
                     <div className="flex">
@@ -24,7 +24,7 @@ export default function TestomontialDivider({ data: { testomontialText, personNa
 }
 
 const Wrapper = styled.section`
-    margin-top: var(--margin-section);
+    margin-top: ${props => props.small ? 'clamp(32px, 6.25vw, 64px)' : 'var(--margin-section)'};
 `
 
 const Card = styled.div`
