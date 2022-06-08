@@ -24,10 +24,10 @@ export default function Footer({ location }) {
                         }
                       }
                       navigation {
-                        columnTitle
                         columnRows {
                           linkUrl
                           linkText
+                          isBold
                         }
                       }
                       additionalInform {
@@ -78,10 +78,9 @@ export default function Footer({ location }) {
                     </div>
                     {navigation.map(el => (
                         <div>
-                            <p className="row-title">{el.columnTitle}</p>
                             <ul>
                                 {el.columnRows.map(innerEl => (
-                                    <li><Link to={innerEl.linkUrl}>{innerEl.linkText}</Link></li>
+                                    <li><StyledLink isBold={innerEl.isBold === 'bold'} to={innerEl.linkUrl}>{innerEl.linkText}</StyledLink></li>
                                 ))}
                             </ul>
                         </div>
@@ -154,7 +153,26 @@ const Content = styled.div`
         grid-template-columns: 1fr 1fr;
         grid-gap: 32px;
         margin-bottom: 32px;
+        padding: 0 22px;
+
+        .additional{
+            padding-left: 0;
+        }
+
+        .logo{
+            transform: translateX(-22px);
+        }
     }
+
+    @media (max-width: 540px) {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+`
+
+const StyledLink = styled(Link)`
+    font-weight: ${props => props.isBold ? 400 : 300} !important;
+    font-size: ${props => props.isBold ? '16px' : '14px'} !important;
 `
 
 const Social = styled.div`
@@ -165,6 +183,11 @@ const Social = styled.div`
     margin-top: 18px;
     margin-bottom: 36px;
     margin-left: 22px;
+
+    @media (max-width: 1024px) {
+        margin-left: 0;
+        margin-bottom: 0;
+    }
 `
 
 const Copyright = styled.div`
@@ -176,16 +199,25 @@ const Copyright = styled.div`
 
     p{
         color: #ACB5BD;
+        font-weight: 300;
+        font-size: clamp(14px, 2.08vw, 16px);
+        line-height: 160%;
     }
 
     ul{
         display: flex;
-        gap: 64px;
+        gap: clamp(12px, 6.25vw, 64px);
+
+        @media (max-width: 540px) {
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
         a{
             color: #ACB5BD;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 24px;
+            font-weight: 300;
+            font-size: clamp(14px, 2.08vw, 16px);
+            line-height: 150%;
         }
     }
 
@@ -200,5 +232,14 @@ const Copyright = styled.div`
         opacity: .1;
     }
 
+    @media (max-width: 1024px) {
+        gap: 24px;
+        align-items: flex-start;
+        flex-direction: column-reverse;
+    }
 
+    @media (max-width: 540px){
+        gap: 18px;
+        padding: 32px 0;
+    }
 `
