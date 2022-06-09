@@ -1,19 +1,57 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../../style"
 
-export default function Filter({ categories: { nodes } }) {
+export default function Filter({ setFilter, categories: { nodes }, activeFilters }) {
+
+    const [arr, changeArr] = useState(() => {
+        const a = []
+
+        if (activeFilters !== null) {
+            nodes.forEach(el => {
+                if (activeFilters.includes(el.slug)) {
+                    a.push({ ...el, active: true })
+                } else {
+                    a.push({ ...el, active: false })
+                }
+            })
+
+            return a
+        }
+
+        return nodes
+    })
+
+    useEffect(() => {
+        changeArr(() => {
+            const a = []
+
+            if (activeFilters !== null) {
+                nodes.forEach(el => {
+                    if (activeFilters.includes(el.slug)) {
+                        a.push({ ...el, active: true })
+                    } else {
+                        a.push({ ...el, active: false })
+                    }
+                })
+
+                return a
+            }
+
+            return nodes
+        })
+    }, [activeFilters])
 
     return (
         <Wrapper>
             <Container>
                 <Content>
                     <Grid>
-                        <Item>
+                        <Item className={activeFilters === null ? 'active' : null} onClick={() => { setFilter('all') }}>
                             all
                         </Item>
-                        {nodes.map(el => (
-                            <Item>
+                        {arr.map((el, index) => (
+                            <Item className={el.active ? 'active' : null} key={el.slug} onClick={() => { setFilter(el.slug) }}>
                                 {el.name}
                             </Item>
                         ))}
@@ -52,4 +90,8 @@ const Item = styled.button`
     font-weight: 400;
     font-size: 12px;
     line-height: 26px;
+
+    &.active{
+        border: 2px solid black;
+    }
 `

@@ -6,7 +6,6 @@ import BlogAuthorPosts from "../components/blog-author-posts"
 
 export default function BlogPost({ data: { allWpPost, otherPosts } }) {
   let { blogPost, categories, date, authors } = allWpPost.nodes[0]
-  debugger
   return (
     <main>
       <Hero data={blogPost.heroPost} categories={categories} date={date} authors={authors}/>

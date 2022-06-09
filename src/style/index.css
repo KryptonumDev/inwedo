@@ -11,12 +11,21 @@
     --margin-m: 32px;
     --margin-s: 16px;
 
-    --shadow: drop-shadow(0px 76px 74px rgba(0, 0, 0, 0.02)) drop-shadow(0px 31.751px 30.9154px rgba(0, 0, 0, 0.0143771)) drop-shadow(0px 16.9756px 16.5289px rgba(0, 0, 0, 0.0119221)) drop-shadow(0px 9.51638px 9.26595px rgba(0, 0, 0, 0.01)) drop-shadow(0px 5.05408px 4.92108px rgba(0, 0, 0, 0.00807786)) drop-shadow(0px 2.10311px 2.04777px rgba(0, 0, 0, 0.00562291));
+    --shadow:   0px 0px 16.7px -28px rgba(0, 0, 0, 0.017),
+    0px 0px 25.9px -28px rgba(0, 0, 0, 0.03),
+    0px 0px 33.5px -28px rgba(0, 0, 0, 0.04),
+    0px 0px 40.8px -28px rgba(0, 0, 0, 0.048),
+    0px 0px 48.7px -28px rgba(0, 0, 0, 0.053),
+    0px 0px 58.1px -28px rgba(0, 0, 0, 0.057),
+    0px 0px 70.3px -28px rgba(0, 0, 0, 0.061),
+    0px 0px 88.2px -28px rgba(0, 0, 0, 0.068),
+    0px 0px 129px -28px rgba(0, 0, 0, 0.09);
 }
 
 html {
     background-color: var(--color-white);
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 body {

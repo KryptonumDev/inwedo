@@ -13,7 +13,7 @@ export default function PostGrid({ data, from, to }) {
                         if (index >= from && index <= to) {
                             return (
                                 <Item>
-                                    <Link to={el.blogPost.currentPostUrl}>
+                                    {/* <Link to={el.blogPost.currentPostUrl}>
                                         <GatsbyImage className='image' image={el.blogPost.previewCard.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.blogPost.previewCard.previewImage.altText} />
                                         <Content>
                                             <Categories>
@@ -34,7 +34,7 @@ export default function PostGrid({ data, from, to }) {
                                             <p className="p">{el.blogPost.previewCard.previewText}</p>
                                             <span className="colored">{el.blogPost.previewCard.readMoreButtonText}</span>
                                         </Content>
-                                    </Link>
+                                    </Link> */}
                                 </Item>
                             )
                         }
@@ -75,9 +75,9 @@ const Item = styled.div`
 
     .image-logo{
         width: 100%;
-        aspect-ratio: 1.6/1;
+        max-width: 36px;
         height: fit-content;
-        border-radius: 8px;
+        margin-right: 8px;
     }
 `
 

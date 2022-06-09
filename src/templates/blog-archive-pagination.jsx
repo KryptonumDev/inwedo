@@ -4,17 +4,17 @@ import Hero from "../components/hero/blog"
 import Archive from "../components/blog-archive"
 
 export default function BlogArchive({ data: { allWpPage, allWpPost, allWpCategory }, location }) {
-  let { blogArchive } = allWpPage.nodes[0]
-  return (
-    <main>
-      <Hero data={blogArchive.heroBlog} />
-      <Archive location={location} cta={blogArchive.callToActionBlog} cta2={blogArchive.callToActionBlogSecond} data={allWpPost} categories={allWpCategory} />
-    </main>
-  )
+    let { blogArchive } = allWpPage.nodes[0]
+    return (
+        <main>
+            <Hero data={blogArchive.heroBlog} />
+            <Archive location={location} cta={blogArchive.callToActionBlog} cta2={blogArchive.callToActionBlogSecond} data={allWpPost} categories={allWpCategory} />
+        </main>
+    )
 }
 
 export const query = graphql`
-query BlogArcyhiveQuery($id: String!, $slug: String!) {
+query BlogPaginationArcyhiveQuery($id: String!, $slug: String!) {
     allWpPage(filter: {id: {eq: $id}}) {
         nodes{
             blogArchive {
@@ -103,9 +103,6 @@ query BlogArcyhiveQuery($id: String!, $slug: String!) {
             nodes {
               name
               slug
-              blogCategory {
-                categoryUrl
-              }
             }
           }
           date(formatString: "MMMM DD YYYY")

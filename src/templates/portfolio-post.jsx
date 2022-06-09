@@ -15,42 +15,41 @@ import OtherCaseStudies from "../components/other-case-studies"
 
 const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts } }) => {
   const { caseStudies } = allWpCaseStudies.nodes[0]
-  debugger
   return (
     <main>
       <Hero data={caseStudies.heroportfolio} />
-      {caseStudies.oneColumnTextPartPortfolio.sectionTitle
+      {caseStudies.sectionController.oneColumnTextPart
         ? <OneColumnText alternative={true} data={caseStudies.oneColumnTextPartPortfolio} />
         : null}
-      {caseStudies.testomontialDividerPortfolio.testomontialText
+      {caseStudies.sectionController.testomontialDivider
         ? <TestomontialDivider data={caseStudies.testomontialDividerPortfolio} />
         : null}
-      {caseStudies.imageDivider.imageDivider
+      {caseStudies.sectionController.imageDivider
         ? <ImageDivider data={caseStudies.imageDivider} />
         : null}
-      {caseStudies.inwedoRole.sectionTitle
+      {caseStudies.sectionController.inwedoRole
         ? <InwedoRole data={caseStudies.inwedoRole} />
         : null}
-      {/* {caseStudies.solution.sectionTitle
+      {caseStudies.sectionController.solution
         ? <Solution data={caseStudies.solution} />
-        : null} */}
-      {caseStudies.callToActionPortfolio.title
+        : null}
+      {caseStudies.sectionController.callToAction
         ? <CallToAction data={caseStudies.callToActionPortfolio} />
         : null}
-      {caseStudies.testomontialDividerPortfolioSecond.testomontialText
+      {caseStudies.sectionController.testomontialDividerSecond
         ? <TestomontialDividerAlt data={caseStudies.testomontialDividerPortfolioSecond} />
         : null}
-      {caseStudies.twoColumnFlexPortfolio.subTitle
+      {caseStudies.sectionController.twoColumnFlex
         ? <TwoColumnFlex data={caseStudies.twoColumnFlexPortfolio} />
         : null}
-      {caseStudies.impactAchieved.sectionTitle
+      {caseStudies.sectionController.impactAchieved
         ? <ImpactAchieved data={caseStudies.impactAchieved} />
         : null}
-      {caseStudies.testomontialDividerPortfolioThird.testomontialTitle
+      {caseStudies.sectionController.testomontialDividerThird
         ? <TestomontialDividerExpanded data={caseStudies.testomontialDividerPortfolioThird} />
         : null}
       <OtherCaseStudies data={otherPosts} title={caseStudies.otherPosts.sectionTitle} />
-      {caseStudies.callToActionPortfolioSecond.title
+      {caseStudies.sectionController.callToActionSecond
         ? <CallToAction data={caseStudies.callToActionPortfolioSecond} />
         : null}
     </main>
@@ -65,6 +64,19 @@ query PortfolioPageQuery($id: String!) {
     allWpCaseStudies(filter: {id: {eq: $id}}) {
       nodes{
         caseStudies {
+          sectionController {
+            callToAction
+            callToActionSecond
+            imageDivider
+            impactAchieved
+            inwedoRole
+            oneColumnTextPart
+            solution
+            testomontialDivider
+            testomontialDividerSecond
+            testomontialDividerThird
+            twoColumnFlex
+          }
           heroportfolio {
             pageTitle
             textUnderTitle
