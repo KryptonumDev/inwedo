@@ -9,7 +9,7 @@ export default function Header({ location }) {
 
     const data = useStaticQuery(graphql`
     query{
-        allWpPage(box-shadow: {template: {templateName: {eq: "Header"}}}) {
+        allWpPage(filter: {template: {templateName: {eq: "Header"}}}) {
             nodes {
                 language {
                   slug
