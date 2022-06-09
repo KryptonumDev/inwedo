@@ -54,7 +54,7 @@ const Content = styled.div`
         min-width: 400px;
         height: fit-content;
         border-radius: 8px;
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
     }
 
     @media (max-width: 1024px) {

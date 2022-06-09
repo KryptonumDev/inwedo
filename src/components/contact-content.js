@@ -67,7 +67,7 @@ const Flex = styled.div`
 
 const Map = styled.div`
     border-radius: 8px;
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     background-color: var(--color-white);
     .content{
         padding: 48px;

@@ -16,7 +16,7 @@ export default ({ title, button }) => (
 const ContentWrapper = styled.div`
     background: var(--color-accent);
     border-radius: 24px;
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
 
     @media (max-width: 1024px) {
         border-radius: 0;

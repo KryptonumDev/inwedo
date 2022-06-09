@@ -43,7 +43,7 @@ const Wrapper = styled.section`
 const GlassCard = styled.div`
     border-radius: 24px;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     margin-top: 32px;
     padding: 16px clamp(48px, 7.29vw, 64px);
     display: flex;

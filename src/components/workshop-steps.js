@@ -49,7 +49,7 @@ const Image = styled(GatsbyImage)`
     min-width: 400px;
     height: fit-content;
     border-radius: 8px;
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
 
     @media (max-width: 864px){
         min-width: unset;
@@ -161,7 +161,7 @@ const SubSteps = styled.div`
             bottom: -36px;
             top: -36px;
             background-color: var(--color-white);
-            filter: var(--shadow);
+            box-shadow: var(--shadow);
             border-radius: 8px;
             z-index: -1;
 
@@ -189,7 +189,7 @@ const Plate = styled.span`
     padding: clamp(14px, 2.47vw, 24px) clamp(18px, 3.125vw, 32px);
     border-radius: 24px;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
 
     span{
         font-weight: 400;

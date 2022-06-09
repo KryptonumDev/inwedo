@@ -59,7 +59,7 @@ const Card = styled(Link)`
     padding: clamp(24px, 5.7vw, 64px) 24px;
     justify-content: space-between;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     border-radius: 8px;
 
     .image{

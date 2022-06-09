@@ -35,7 +35,7 @@ const Wrapper = styled.section`
 `
 
 const Clients = styled.div`
-    filter: grayscale(1);
+    box-shadow: grayscale(1);
     display: grid;
     align-items: center;
     grid-template-columns: repeat(${props => props.count}, auto);
@@ -72,7 +72,7 @@ const Card = styled(Link)`
     top: 0;
     border-radius: 24px;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     padding: 36px 24px;
     display: flex;
     justify-content: center;

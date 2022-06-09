@@ -26,7 +26,7 @@ const Wrapper = styled.section`
 const Background = styled(GatsbyImage)`
     width: 100%;
     height: 100%;
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
 `
 
 const Half = styled.div`

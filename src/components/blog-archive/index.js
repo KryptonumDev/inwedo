@@ -10,7 +10,6 @@ import Pagination from "./pagination"
 import { filterSearch, resetFiltredPosts } from "./functions"
 
 export default function Archive({ location, data, cta, cta2, categories }) {
-    /// after filter disabled pagination reload -- после изменения фильтра не пересчитывается что ?... что-то что пересчитывается в SetPage
 
     const [defaultUrl] = useState(checkLanguageUrl(location, '/blog/'))
     const [isAltLayout, setIsAltLayout] = useState((location.pathname === defaultUrl && location.search === "") ? false : true)
@@ -25,10 +24,9 @@ export default function Archive({ location, data, cta, cta2, categories }) {
                     pageId = i
                 }
             }
-
             if (pageId !== null) {
                 let a = +location.search.substr(pageId + 1)
-                return a // if more then 9 posts ?
+                return a
             }
             return 1
         } else {
@@ -83,7 +81,7 @@ export default function Archive({ location, data, cta, cta2, categories }) {
                     for (let j = 0; j < combinedUrl.length; j++) {
                         if (combinedUrl[j] === '&' && combinedUrl[j + 1] === 'p') {
                             combinedUrl = combinedUrl.substr(0, j)
-                            debugger
+                            
                             isPaginated = true
                             break
                         }
@@ -93,7 +91,6 @@ export default function Archive({ location, data, cta, cta2, categories }) {
                 } else {
                     let a = location.search
                     let b = newUrl
-                    debugger
 
                     combinedUrl = defaultUrl
                 }
@@ -132,12 +129,13 @@ export default function Archive({ location, data, cta, cta2, categories }) {
 
             for (let i = 0; i < location.search.length; i++) {
                 if (location.search[i] === '=' && location.search[i - 1] === 'e') {
-                    pageId = i + 1 // page more than 10 ?
+                    pageId = i + 1
                 }
             }
 
             if (page !== 1) {
-                newSearch = defaultUrl + location.search.substr(0, pageId) + page + location.search.substr(pageId + 1)
+                newSearch = defaultUrl + location.search.substr(0, pageId) + page
+                
             } else {
                 newSearch = defaultUrl + location.search.substr(0, pageId - 6)
             }

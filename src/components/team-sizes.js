@@ -87,7 +87,7 @@ const SizesItem = styled.div`
 
 const Image = styled.div`
     border-radius: 8px;
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     background-color: var(--color-white);
     max-width: 70px;
     width: 100%;

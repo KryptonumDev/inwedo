@@ -27,7 +27,7 @@ const Wrapper = styled.section`
     background-color: var(--color-white);
     padding: clamp(90px, 11.71vw, 200px) 0 clamp(40px, 9.765vw, 110px) 0;
     border-radius: 24.5221px;
-    filter: drop-shadow(0px 76px 74px rgba(0, 0, 0, 0.02));
+    box-shadow: drop-shadow(0px 76px 74px rgba(0, 0, 0, 0.02));
 `
 
 const Content = styled.div`
@@ -45,7 +45,7 @@ const Image = styled.div`
     padding: clamp(24px, 4.427vw, 43px) clamp(30px, 5.729vw, 58px);
     background-color: var(--color-white);
     border-radius: 8px;
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     width: fit-content;
     height: fit-content;
     min-width: clamp(100px, 19.27vw, 196px);

@@ -72,7 +72,7 @@ const Card = styled(Link)`
     top: 0;
     border-radius: 24px;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     padding: 36px 24px;
     display: flex;
     justify-content: center;
@@ -110,7 +110,7 @@ const Card = styled(Link)`
 
 const Clients = styled.div`
     margin-bottom: clamp(16px, 5.2vw, 64px);
-    filter: grayscale(1);
+    box-shadow: grayscale(1);
     display: flex;
 
     gap: 32px;
@@ -148,10 +148,10 @@ const Repeater = styled.div`
 `
 
 const Item = styled.div`
-    backdrop-filter: blur(140px);
+    backdrop-box-shadow: blur(140px);
     border-radius: 8px;
     background-color: #fff;
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
 
     @media (max-width: 640px) {
         max-width: 400px;    

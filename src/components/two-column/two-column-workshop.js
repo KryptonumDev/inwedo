@@ -106,7 +106,7 @@ const Grid = styled.div`
 `
 
 const Image = styled(GatsbyImage)`
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     border-radius: 8px;
     width: fit-content;
     height: fit-content;

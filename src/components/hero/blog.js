@@ -24,7 +24,7 @@ const Wrapper = styled.section`
     background-color: var(--color-white);
     padding: 160px 0 64px 0;
     border-radius: 24.5221px;
-    filter: drop-shadow(0px 76px 74px rgba(0, 0, 0, 0.02));
+    box-shadow: drop-shadow(0px 76px 74px rgba(0, 0, 0, 0.02));
 `
 
 const Content = styled.div`

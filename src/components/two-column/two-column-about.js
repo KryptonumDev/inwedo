@@ -37,7 +37,7 @@ const Flex = styled(Link)`
     gap: 40px;
 
     .image{
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
         border-radius: 8px;
         width: fit-content;
         height: fit-content;

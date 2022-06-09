@@ -120,7 +120,7 @@ const Content = styled.div`
     padding: clamp(32px, 6.25vw, 64px) clamp(20px, 6.5vw, 80px); 
     
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.62) 28.69%, rgba(255, 255, 255, 1) 100%);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     border-radius: 24px;
 
     .h4{

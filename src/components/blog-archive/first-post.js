@@ -69,7 +69,7 @@ const PreviewImage = styled.div`
         width: fit-content;
         height: fit-content;
         border-radius: 8px;
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
     }
 `
 

@@ -118,7 +118,7 @@ const Item = styled.div`
     padding: clamp(18px, 2.99vw, 28px) clamp(10px, 1.69vw, 16px);
     background-color: var(--color-white);
     border-radius: 8px;
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     display: grid;
     grid-template-columns: auto 1fr;
     grid-gap: clamp(30px, 5.2vw, 50px);

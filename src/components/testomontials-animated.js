@@ -111,7 +111,7 @@ const Item = styled.div`
     box-sizing: border-box;
     background-color: #fff;
     border-radius: 24px;
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
 
     .flex{
         display: flex;

@@ -57,7 +57,7 @@ const Card = styled.div`
     margin: 0 auto;
     border-radius: 24px;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     padding: 64px clamp(30px, 6.25vw, 128px);
     position: relative;
 

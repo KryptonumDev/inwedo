@@ -122,7 +122,7 @@ const NumbersMainItem = styled.div`
     gap: 32px;
     justify-content: space-between;
     align-items: center;
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     border-radius: 24px;
     background-color: var(--color-white);
 
@@ -147,7 +147,7 @@ const NumbersGrid = styled.div`
         align-items: center;
         margin-bottom: clamp(12px, 1.95vw, 18px);
 
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
         border-radius: 24px;
         background-color: var(--color-white);
         font-weight: 600;
@@ -183,7 +183,7 @@ const Grid = styled.div`
         border-radius: 8px;
         left: 50px;
         top: 182px;
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
         width: 300px;
         height: 382px;
     }
@@ -192,7 +192,7 @@ const Grid = styled.div`
         border-radius: 8px;
         right: 92px;
         top: 0; 
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
         width: 387px;
         height: 439px;
     }
@@ -201,7 +201,7 @@ const Grid = styled.div`
         border-radius: 8px;
         left: 0;
         bottom: 0;
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
         width: 348px;
         height: 303px;
     }
@@ -210,7 +210,7 @@ const Grid = styled.div`
         border-radius: 8px;
         right: 0;
         bottom: 92px;
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
         width: 479px;
         height: 348px;
     }

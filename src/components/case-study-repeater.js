@@ -90,7 +90,7 @@ const Item = styled.div`
                 width: fit-content;
                 height: fit-content;
                 max-width: 36px;
-                filter: grayscale(1);
+                box-shadow: grayscale(1);
             }
         }
     }
@@ -111,7 +111,7 @@ const Item = styled.div`
 
 const Image = styled(GatsbyImage)`
     border-radius: 8px;
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     max-width: 600px;
     width: 100%;
     height: fit-content;

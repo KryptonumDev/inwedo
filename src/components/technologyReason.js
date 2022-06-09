@@ -47,7 +47,7 @@ const Grid = styled.div`
 const Item = styled.div`
     border-radius: 8px;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     padding: 32px 29px;
 
     display: grid;

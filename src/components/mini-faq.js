@@ -79,7 +79,7 @@ const Content = styled.div`
 
 const Image = styled(GatsbyImage)`
     border-radius: 8px;
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     height: fit-content;
 
     @media (max-width: 1240px) {

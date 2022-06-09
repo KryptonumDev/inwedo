@@ -78,7 +78,7 @@ const CardsGrid = styled.div`
 const CardsItem = styled.div`
     border-radius: 8px;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     display: grid;
     grid-template-columns: auto 1fr;
     grid-gap: 16px;
@@ -119,7 +119,7 @@ const ToolsItem = styled.div`
     aspect-ratio: 1/1;
     border-radius: 8px;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     display: flex;
     justify-content: center;
     align-items: center;

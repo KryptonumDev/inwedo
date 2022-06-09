@@ -164,7 +164,7 @@ const GlassCard = styled.div`
                 max-width: 36px;
                 width: fit-content;
                 height: fit-content;
-                filter: grayscale(1);
+                box-shadow: grayscale(1);
             }
         }
     }
@@ -177,7 +177,7 @@ const GlassCard = styled.div`
         .item{
             padding: clamp(6px, 0.9vw, 8px) clamp(16px, 2.6vw, 24px);
             background: #F9FAFB;
-            filter: var(--shadow);
+            box-shadow: var(--shadow);
             border-radius: 8px;
             display: flex;
             gap: 16px;

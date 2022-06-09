@@ -70,7 +70,7 @@ const Card = styled.div`
 
     &::before{
         background-color: var(--color-white);
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
         border-radius: 24px;
         left: 0;
         top: 0;

@@ -67,7 +67,7 @@ const Flex = styled(Link)`
 
     .image{
         background-color: var(--color-white);
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
         border-radius: 24px;
         padding: clamp(16px, 4.94vw, 54px) clamp(24px, 5.20vw, 64px);
         width: clamp(93px, 20vw, 208px);
@@ -115,7 +115,7 @@ const Card = styled(Link)`
     padding: clamp(25px, 6.51vw, 75px) clamp(20px, 2.86vw, 24px);
     justify-content: space-between;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     border-radius: 8px;
     max-width: 600px;
     width: 100%;

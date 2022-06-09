@@ -75,7 +75,7 @@ const Image = styled.div`
         top: 126px;
         left: 0;
         border-radius: 8px 100px 8px 8px;
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
     }
 
     .rightTop{
@@ -85,7 +85,7 @@ const Image = styled.div`
         top: 0;
         right: 46px;
         border-radius: 8px 8px 8px 100px;
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
     }
 
     .rightBottom{
@@ -95,7 +95,7 @@ const Image = styled.div`
         bottom: 0;
         right: 0;
         border-radius: 8px 8px 8px 204px;
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
     }
 
     @media (max-width: 1439px) {

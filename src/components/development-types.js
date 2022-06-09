@@ -79,7 +79,7 @@ const Image = styled.div`
     padding: 12px 18px;
     border-radius: 8px;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
 
     .image{
         width: 100%;

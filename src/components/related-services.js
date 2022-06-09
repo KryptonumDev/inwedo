@@ -87,7 +87,7 @@ const Item = styled.div`
 const ImageWrapper = styled.div`
     border-radius: 8px;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     width: fit-content;
     margin-bottom: 30px;
     width: 120px;

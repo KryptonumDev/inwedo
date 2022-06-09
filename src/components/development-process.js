@@ -102,7 +102,7 @@ const Item = styled.div`
     aspect-ratio: 1/1;
     border-radius: 8px;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     margin-bottom: clamp(24px, 5.46vw, 60px);
     display: flex;
     justify-content: center;

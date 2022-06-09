@@ -24,12 +24,12 @@ const Wrapper = styled.section`
     background-color: var(--color-white);
     padding: clamp(120px, 20.83vw, 200px) 0 clamp(24px, 6.25vw, 64px) 0;
     border-radius: 24.5221px;
-    filter: drop-shadow(0px 76px 74px rgba(0, 0, 0, 0.02));
+    box-shadow: drop-shadow(0px 76px 74px rgba(0, 0, 0, 0.02));
 
     @media (max-width: 1024px) {
         padding-bottom: 0;
         background-color: transparent;
-        filter: unset;
+        box-shadow: unset;
     }
 `
 
@@ -48,7 +48,7 @@ const Content = styled.div`
 
 const Image = styled(GatsbyImage)`
     border-radius: 8px;
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
     width: 100%;
     height: fit-content;
     max-width: 530px;

@@ -71,7 +71,7 @@ const TechnologiesLink = styled(Link)`
     align-items: center;
     border-radius: 8px;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
 
     .image{
         max-width: clamp(35px, 4.94vw, 54px);
@@ -87,7 +87,7 @@ const TechnologiesItem = styled.div`
     align-items: center;
     border-radius: 8px;
     background-color: var(--color-white);
-    filter: var(--shadow);
+    box-shadow: var(--shadow);
 
     .image{
         max-width: clamp(35px, 4.94vw, 54px);

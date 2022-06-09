@@ -9,7 +9,7 @@ export default function Header({ location }) {
 
     const data = useStaticQuery(graphql`
     query{
-        allWpPage(filter: {template: {templateName: {eq: "Header"}}}) {
+        allWpPage(box-shadow: {template: {templateName: {eq: "Header"}}}) {
             nodes {
                 language {
                   slug
@@ -78,7 +78,7 @@ const Wrapper = styled.header`
     padding: 28px 0;
 
     .logo{
-        filter: ${props => props.type === 'main' ? 'brightness(0) invert(1)' : 'null'};
+        box-shadow: ${props => props.type === 'main' ? 'brightness(0) invert(1)' : 'null'};
     }
 `
 
@@ -178,7 +178,7 @@ const Navigation = styled.nav`
                     ${props =>
         props.type !== 'main'
             ? `
-                    filter: var(--shadow);
+                    box-shadow: var(--shadow);
                     `
             : null}
                 }

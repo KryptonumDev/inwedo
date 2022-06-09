@@ -90,7 +90,7 @@ const Item = styled.div`
         left: 24px;
         padding: 16px 24px;
         border-radius: 8px;
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
         background: linear-gradient(126.6deg, rgba(255, 255, 255, 0.77) 28.69%, rgba(255, 255, 255, 0.6391) 100%);
         
         .logo{

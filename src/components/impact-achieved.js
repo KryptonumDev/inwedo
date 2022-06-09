@@ -92,7 +92,7 @@ const Item = styled.div`
         text-align: center;
         border-radius: 8px;
         background-color: var(--color-white);
-        filter: var(--shadow);
+        box-shadow: var(--shadow);
         font-size: clamp(12px, 1.95vw, 18px);
     }
 `

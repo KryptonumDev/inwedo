@@ -9,7 +9,7 @@ export default function Footer({ location }) {
 
     const data = useStaticQuery(graphql`
         query{
-            allWpPage(filter: {template: {templateName: {eq: "Footer"}}}) {
+            allWpPage(box-shadow: {template: {templateName: {eq: "Footer"}}}) {
                 nodes {
                     language {
                       slug
