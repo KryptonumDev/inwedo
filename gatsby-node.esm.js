@@ -460,6 +460,7 @@ exports.createPages = async ({
     });
 
     for (let i = 0; i < pagesCount; i++) {
+      let page = i + 2
       createPage({
         path: urlSystem.blog[slug] + page + '/',
         component: resolve('src/templates/blog-archive.jsx'),
@@ -475,91 +476,92 @@ exports.createPages = async ({
 
   // BLOG PAGE (POST)
 
-  const { data: { allWpPost: { PostPageNodes } } } = await graphql(`
-            {
-              allWpPost {
-                PostPageNodes: nodes {
-                  id
-                  language {
-                    slug
-                  }
-                  blogPost {
-                    currentPostUrl
-                  }
-                }
-              }
-            }
-          `);
+  // const { data: { allWpPost: { PostPageNodes } } } = await graphql(`
+  //           {
+  //             allWpPost {
+  //               PostPageNodes: nodes {
+  //                 id
+  //                 language {
+  //                   slug
+  //                 }
+  //                 blogPost {
+  //                   currentPostUrl
+  //                 }
+  //               }
+  //             }
+  //           }
+  //         `);
 
-  if (currentPostUrl !== null) {
-    PostPageNodes.forEach(({ id, language: { slug }, blogPost: { currentPostUrl } }) => {
-      createPage({
-        path: urlSystem.blog[slug] + currentPostUrl,
-        component: resolve('src/templates/blog-post.jsx'),
-        context: {
-          id,
-          slug,
-        },
-      });
-    });
-  }
+  // PostPageNodes.forEach(({ id, language: { slug }, blogPost: { currentPostUrl } }) => {
+  //   if (currentPostUrl !== null) {
+  //     createPage({
+  //       path: urlSystem.blog[slug] + currentPostUrl,
+  //       component: resolve('src/templates/blog-post.jsx'),
+  //       context: {
+  //         id,
+  //         slug,
+  //       },
+  //     });
+  //   }
+  // });
+
   // BLOG AUTHORS
 
-  const { data: { allWpAuthors: { BlogAuthorsNodes } } } = await graphql(`
-            {
-              allWpAuthors{
-                BlogAuthorsNodes: nodes {
-                  id
-                  author {
-                    userUrl
-                  }
-                  language {
-                    slug
-                  }
-                }
-              }
-            }
-          `);
+  // const { data: { allWpAuthors: { BlogAuthorsNodes } } } = await graphql(`
+  //           {
+  //             allWpAuthors{
+  //               BlogAuthorsNodes: nodes {
+  //                 id
+  //                 author {
+  //                   userUrl
+  //                 }
+  //                 language {
+  //                   slug
+  //                 }
+  //               }
+  //             }
+  //           }
+  //         `);
 
-  BlogAuthorsNodes.forEach(({ id, language: { slug }, author: { userUrl } }) => {
-    createPage({
-      path: urlSystem.author[slug] + userUrl,
-      component: resolve('src/templates/blog-author.jsx'),
-      context: {
-        id,
-        slug,
-      },
-    });
-  });
+  // BlogAuthorsNodes.forEach(({ id, language: { slug }, author: { userUrl } }) => {
+  //   createPage({
+  //     path: urlSystem.author[slug] + userUrl,
+  //     component: resolve('src/templates/blog-author.jsx'),
+  //     context: {
+  //       id,
+  //       slug,
+  //     },
+  //   });
+  // });
 
   // BLOG CATEGORY
 
-  const { data: { allWpCategory: { BlogCategoryNodes } } } = await graphql(`
-            {
-              allWpCategory{
-                BlogCategoryNodes: nodes {
-                  id
-                  blogCategory {
-                    categoryUrl
-                  }
-                  language {
-                    slug
-                  }
-                }
-              }
-            }
-          `);
+  // const { data: { allWpCategory: { BlogCategoryNodes } } } = await graphql(`
+  //           {
+  //             allWpCategory{
+  //               BlogCategoryNodes: nodes {
+  //                 id
+  //                 blogCategory {
+  //                   categoryUrl
+  //                 }
+  //                 language {
+  //                   slug
+  //                 }
+  //               }
+  //             }
+  //           }
+  //         `);
 
-  BlogCategoryNodes.forEach(({ id, language: { slug }, blogCategory: { categoryUrl } }) => {
-    createPage({
-      path: urlSystem.category[slug] + categoryUrl,
-      component: resolve('src/templates/blog-category.jsx'),
-      context: {
-        id,
-        slug,
-      },
-    });
-  });
+  // BlogCategoryNodes.forEach(({ id, language: { slug }, blogCategory: { categoryUrl } }) => {
+  //   createPage({
+  //     path: urlSystem.category[slug] + categoryUrl,
+  //     component: resolve('src/templates/blog-category.jsx'),
+  //     context: {
+  //       id,
+  //       slug,
+  //     },
+  //   });
+  // });
 
 
   // PRIVACY POLICE

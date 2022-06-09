@@ -13,7 +13,7 @@ export default function Solution({ data: { sectionTitle, subTitle, text, solutio
                     <p className="p">{text}</p>
                 </TextPart>
                 <Rows>
-                    {solutionSteps.map(el => (
+                    {solutionSteps ? solutionSteps.map(el => (
                         <Item>
                             <div className='text'>
                                 <h3 className='h3'>{el.stepTitle}</h3>
@@ -23,7 +23,7 @@ export default function Solution({ data: { sectionTitle, subTitle, text, solutio
                                 <GatsbyImage className='image' image={el.stepImage.localFile.childImageSharp.gatsbyImageData} alt={el.stepImage.altText} />
                             </ImagePart>
                         </Item>
-                    ))}
+                    )) : null}
                 </Rows>
             </LocContainer>
         </Wrapper>
