@@ -3,24 +3,40 @@ import { graphql } from "gatsby"
 import BlogAuthorPosts from "../components/blog-author-posts"
 import FAQ from './../components/faq'
 import Hero from "../components/hero/blog-category"
+import Seo from "../components/seo"
 
-export default function BlogCategory({ data: { allWpCategory, allWpPost } }) {
-  const { blogCategory } = allWpCategory.nodes[0]
+export default function BlogCategory({ data: { allWpCategory, allWpPost, alternates }, location }) {
+  const category = allWpCategory.nodes[0]
   const posts = allWpPost.nodes
-  debugger
+  
   return (
     <main>
-      <Hero data={blogCategory}/>
-      <BlogAuthorPosts data={posts} title={blogCategory.otherPostsTitle} loadMore={blogCategory.viewMoreButtonText} />
-      <FAQ data={blogCategory.faqCategory} />
+      <Seo alternates={alternates} location={location} type='archive' id={category.id} template='category'/>
+      <Hero data={category.blogCategory} />
+      <BlogAuthorPosts data={posts} title={category.blogCategory.otherPostsTitle} loadMore={category.blogCategory.viewMoreButtonText} />
+      <FAQ data={category.blogCategory.faqCategory} />
     </main>
   )
 }
 
 export const query = graphql`
 query BlogAuthorQuery($id: String!) {
+      alternates : allWpCategory{
+        nodes{
+          id
+          name
+          language{
+            slug
+            locale
+          }
+          page : blogCategory{
+            url : categoryUrl
+          }
+        }
+      }
       allWpCategory(filter: {id: {eq: $id}}) {
         nodes {
+            id
             blogCategory {
               categoryUrl
               categoryPageTitle

@@ -1,11 +1,13 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
+import Seo from "../components/seo"
 
-const PrivacyPage = ({ data: { allWpPage } }) => {
+const PrivacyPage = ({ data: { allWpPage, alternates }, location }) => {
     let { content } = allWpPage.nodes[0]
     return (
         <main>
+            <Seo alternates={alternates} location={location} />
             <Content dangerouslySetInnerHTML={{ __html: content }} />
         </main>
     )
@@ -14,7 +16,18 @@ const PrivacyPage = ({ data: { allWpPage } }) => {
 export default PrivacyPage
 
 export const query = graphql`
-    query PrivacyPageQuery($id: String!) {
+    query PrivacyPageQuery($id: String!, $templateName: String!) {
+        alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+          nodes {
+            language {
+              slug
+              name
+            }
+            template {
+              templateName
+            }
+          }
+        }
         allWpPage(filter: {id: {eq: $id}}) {
             nodes {
                 content

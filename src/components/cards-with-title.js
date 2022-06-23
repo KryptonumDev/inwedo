@@ -12,11 +12,11 @@ export default function CardsWithTitle({ data: { sectionTitle, text, cards } }) 
                 <p className="p">{text}</p>
                 <Grid>
                     {cards.map(el => (
-                        <Item>
+                        <Item to={el.button.url}>
                             <GatsbyImage className="image" image={el.icon.localFile.childImageSharp.gatsbyImageData} alt={el.icon.altText} />
                             <div>
                                 <h3 className="h2">{el.cardTitle}</h3>
-                                <Link className="link" to={el.button.url}>{el.button.name}</Link>
+                                <span className="link" >{el.button.name}</span>
                             </div>
                         </Item>
                     ))}
@@ -68,7 +68,7 @@ const Grid = styled.div`
     }
 `
 
-const Item = styled.div`
+const Item = styled(Link)`
     border-radius: 8px;
     box-shadow: var(--shadow);
     background-color: var(--color-white);

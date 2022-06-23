@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
+import { urlSystem } from './../../contstants/urlSystem'
 import { Container } from "../../style"
 
-export default function Filter({ setFilter, categories: { nodes }, activeFilters }) {
+export default function Filter({ setFilter, categories: { nodes }, activeFilters, language }) {
 
     const [arr, changeArr] = useState(() => {
         const a = []
@@ -47,11 +48,11 @@ export default function Filter({ setFilter, categories: { nodes }, activeFilters
             <Container>
                 <Content>
                     <Grid>
-                        <Item className={activeFilters === null ? 'active' : null} onClick={() => { setFilter('all') }}>
+                        <Item href={urlSystem['Blog Archive'][language]} className={activeFilters === null ? 'active' : null} onClick={(e) => { setFilter(e, 'all') }}>
                             all
                         </Item>
                         {arr.map((el, index) => (
-                            <Item className={el.active ? 'active' : null} key={el.slug} onClick={() => { setFilter(el.slug) }}>
+                            <Item href={urlSystem['category'][language] + el.slug} className={el.active ? 'active' : null} key={el.slug} onClick={(e) => { setFilter(e, el.slug) }}>
                                 {el.name}
                             </Item>
                         ))}
@@ -80,7 +81,7 @@ const Grid = styled.div`
     gap: 16px 32px;
 `
 
-const Item = styled.button`
+const Item = styled.a`
     white-space: nowrap;
     padding: 4px 20px;
     border: none;

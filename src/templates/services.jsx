@@ -5,11 +5,13 @@ import DevelopmentCards from "../components/development-cards"
 import CallToAction from "../components/cta"
 import TwoColumnFlex from "../components/two-column/two-column-services"
 import Testomontials from "../components/testomontials-slider"
+import Seo from "../components/seo"
 
-const ServicesPage = ({ data: { allWpPage } }) => {
+const ServicesPage = ({ data: { allWpPage, alternates }, location }) => {
   let { services } = allWpPage.nodes[0]
   return (
     <main>
+      <Seo alternates={alternates} location={location} />
       <Hero data={services.heroServices} />
       <DevelopmentCards data={services.developmentCards} />
       <CallToAction data={services.callToActionServices} />
@@ -25,7 +27,18 @@ const ServicesPage = ({ data: { allWpPage } }) => {
 export default ServicesPage
 
 export const query = graphql`
-query ServicesPageQuery($id: String!) {
+query ServicesPageQuery($id: String!, $templateName: String!) {
+  alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+    nodes {
+      language {
+        slug
+        name
+      }
+      template {
+        templateName
+      }
+    }
+  }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         services {

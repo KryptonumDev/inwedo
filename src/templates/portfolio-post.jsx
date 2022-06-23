@@ -12,11 +12,13 @@ import CallToAction from "../components/cta"
 import TwoColumnFlex from "../components/two-column/two-column-list"
 import ImpactAchieved from "../components/impact-achieved"
 import OtherCaseStudies from "../components/other-case-studies"
+import Seo from "../components/seo"
 
-const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts } }) => {
+const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts, alternates }, location }) => {
   const { caseStudies } = allWpCaseStudies.nodes[0]
   return (
     <main>
+      <Seo alternates={alternates} location={location} type='technology' template='Portfolio Archive' currTemplate={caseStudies.templateName} />
       <Hero data={caseStudies.heroportfolio} />
       {caseStudies.sectionController.oneColumnTextPart
         ? <OneColumnText alternative={true} data={caseStudies.oneColumnTextPartPortfolio} />
@@ -61,8 +63,24 @@ export default PortfolioPage
 
 export const query = graphql`
 query PortfolioPageQuery($id: String!) {
+  alternates : allWpPost{
+    nodes{
+      id
+      language{
+        slug
+        locale
+      }
+      page : blogPost{
+        url : currentPostUrl
+        template : templateName
+      }
+    }
+  }
     allWpCaseStudies(filter: {id: {eq: $id}}) {
       nodes{
+        language{
+          slug
+        }
         caseStudies {
           sectionController {
             callToAction
@@ -300,6 +318,7 @@ query PortfolioPageQuery($id: String!) {
           }
         }
         caseStudies {
+          templateName
           currentPostUrl
           previewCard {
             previewTitle

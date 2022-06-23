@@ -23,13 +23,13 @@ export default function Services({ data: { card, clientsTitle, clientsItems, sec
                 <p className="h1">{sectionText}</p>
                 <Repeater>
                     {items.map(el => (
-                        <Item>
+                        <Item to={el.button.url}>
                             <PreviewImg image={el.previewImg.localFile.childImageSharp.gatsbyImageData} alt={el.previewImg.altText} />
                             <ItemContent>
                                 <h3 className="line h5">{el.title}</h3>
                                 <p className="h3">{el.subTitle}</p>
                                 <p className="p">{el.text}</p>
-                                <Link className="link" to={el.button.url}>{el.button.name}</Link>
+                                <p className="link">{el.button.name}</p>
                             </ItemContent>
                         </Item>
                     ))}
@@ -147,8 +147,7 @@ const Repeater = styled.div`
     }
 `
 
-const Item = styled.div`
-    backdrop-box-shadow: blur(140px);
+const Item = styled(Link)`
     border-radius: 8px;
     background-color: #fff;
     box-shadow: var(--shadow);

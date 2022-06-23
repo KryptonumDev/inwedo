@@ -5,11 +5,13 @@ import ClientCases from "../components/client-cases"
 import Testomontials from "../components/testomontials-slider"
 import CallToAction from "../components/cta"
 import Archive from "../components/portfolio-archive"
+import Seo from "../components/seo"
 
-const PortfolioArchivePage = ({ data: { allWpPage, categoryParents, allWpCaseStudies }, location }) => {
+const PortfolioArchivePage = ({ data: { allWpPage, categoryParents, allWpCaseStudies, alternates }, location }) => {
   const portfolio = allWpPage.nodes[0].portfolioArchive
   return (
     <main>
+      <Seo alternates={alternates} location={location} />
       <Hero data={portfolio.heroPortfolio} />
       <ClientCases data={portfolio.clientsPortfolio} />
       <Archive location={location} data={portfolio.posts} parentCategories={categoryParents} posts={allWpCaseStudies}>
@@ -25,7 +27,18 @@ export default PortfolioArchivePage
 
 
 export const query = graphql`
-query PortfolioArchivePageQuery($id: String!, $slug: String!) {
+query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: String!) {
+  alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+    nodes {
+      language {
+        slug
+        name
+      }
+      template {
+        templateName
+      }
+    }
+  }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes{
         portfolioArchive {

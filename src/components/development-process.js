@@ -101,7 +101,8 @@ const Item = styled.div`
     width: clamp(64px, 9.765vw, 86px);
     aspect-ratio: 1/1;
     border-radius: 8px;
-    background-color: var(--color-white);
+    background-color: #fff;
+    z-index: 10;
     box-shadow: var(--shadow);
     margin-bottom: clamp(24px, 5.46vw, 60px);
     display: flex;

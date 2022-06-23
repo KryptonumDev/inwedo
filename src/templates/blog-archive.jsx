@@ -2,21 +2,37 @@ import React from "react"
 import { graphql } from "gatsby"
 import Hero from "../components/hero/blog"
 import Archive from "../components/blog-archive"
+import Seo from "../components/seo"
 
-export default function BlogArchive({ data: { allWpPage, allWpPost, allWpCategory }, location }) {
-  let { blogArchive } = allWpPage.nodes[0]
+export default function BlogArchive({ data: { allWpPage, allWpPost, allWpCategory, alternates }, location }) {
+  let { blogArchive, language } = allWpPage.nodes[0]
   return (
     <main>
+      <Seo alternates={alternates} location={location} />
       <Hero data={blogArchive.heroBlog} />
-      <Archive location={location} cta={blogArchive.callToActionBlog} cta2={blogArchive.callToActionBlogSecond} data={allWpPost} categories={allWpCategory} />
+      <Archive location={location} cta={blogArchive.callToActionBlog} cta2={blogArchive.callToActionBlogSecond} data={allWpPost} categories={allWpCategory} language={language.slug} />
     </main>
   )
 }
 
 export const query = graphql`
-query BlogArcyhiveQuery($id: String!, $slug: String!) {
+query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
+  alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+    nodes {
+      language {
+        slug
+        name
+      }
+      template {
+        templateName
+      }
+    }
+  }
     allWpPage(filter: {id: {eq: $id}}) {
         nodes{
+            language{
+              slug
+            }
             blogArchive {
               heroBlog {
                 pageTitle

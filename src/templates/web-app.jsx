@@ -8,29 +8,42 @@ import CallToAction from "../components/cta"
 import SuccessStories from "../components/success-stories"
 import DevelopmentTypes from "../components/development-types"
 import FAQ from "../components/faq"
+import Seo from "../components/seo"
 
-const WebAppPage = ({ data: { allWpPage } }) => {
-    let { webApp } = allWpPage.nodes[0]
-    return (
-        <main>
-            <Hero data={webApp.heroWebApp} />
-            <TwoColumnFlex data={webApp.twoColumnFlexWebApp} />
-            <TestomontialDivider data={webApp.testomontialDividerWebApp} />
-            <Technologies data={webApp.technologies} />
-            <CallToAction data={webApp.callToActionWebApp} />
-            <SuccessStories data={webApp.successStoriesWebApp} />
-            <DevelopmentTypes data={webApp.typesOfDevelopment}/>
-            <CallToAction data={webApp.callToActionWebAppSecond} />
-            <FAQ data={webApp.faqWebApp}/>
-        </main>
-    )
+const WebAppPage = ({ data: { allWpPage, alternates }, location }) => {
+  let { webApp } = allWpPage.nodes[0]
+  return (
+    <main>
+      <Seo alternates={alternates} location={location} />
+      <Hero data={webApp.heroWebApp} />
+      <TwoColumnFlex data={webApp.twoColumnFlexWebApp} />
+      <TestomontialDivider data={webApp.testomontialDividerWebApp} />
+      <Technologies data={webApp.technologies} />
+      <CallToAction data={webApp.callToActionWebApp} />
+      <SuccessStories data={webApp.successStoriesWebApp} />
+      <DevelopmentTypes data={webApp.typesOfDevelopment} />
+      <CallToAction data={webApp.callToActionWebAppSecond} />
+      <FAQ data={webApp.faqWebApp} />
+    </main>
+  )
 }
 
 export default WebAppPage
 
 
 export const query = graphql`
-query WebAppPageQuery($id: String!) {
+query WebAppPageQuery($id: String!, $templateName: String!) {
+  alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+    nodes {
+      language {
+        slug
+        name
+      }
+      template {
+        templateName
+      }
+    }
+  }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         webApp {

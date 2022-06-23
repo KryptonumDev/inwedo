@@ -13,13 +13,13 @@ export default function Hero({ data, categories, date, authors }) {
                     <TextPart>
                         <Categories>
                             {categories.nodes.map(el => (
-                                <Link to={urlSystem.category[el.language.slug] + el.slug} className="item">
+                                <Link to={urlSystem['category'][el.language.slug] + el.slug} className="item">
                                     {el.name}
                                 </Link>
                             ))}
                         </Categories>
                         {authors.nodes[0]
-                            ? <AuthorInform>
+                            ? <AuthorInform to={urlSystem['author'][authors.nodes[0].language.slug] + authors.nodes[0].author.userUrl}>
                                 <GatsbyImage className="image" image={authors.nodes[0].author.userAvatar.localFile.childImageSharp.gatsbyImageData} alt={authors.nodes[0].author.userAvatar.altText} />
                                 <p className="p">{authors.nodes[0].author.userName}</p>
                                 <p className="p date">{date}</p>
@@ -105,7 +105,7 @@ const Categories = styled.div`
     }
 `
 
-const AuthorInform = styled.div`
+const AuthorInform = styled(Link)`
     display: flex;
     align-items: center;
     margin-bottom: 16px;

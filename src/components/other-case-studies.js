@@ -13,7 +13,7 @@ export default function OtherCaseStudies({ data: { nodes: items }, title }) {
                 <Grid>
                     {items.map(el => (
                         <Item>
-                            <Link to={urlSystem.caseStudies[el.language.slug] + el.caseStudies.currentPostUrl}>
+                            <Link to={urlSystem['Portfolio Archive'][el.language.slug] + el.caseStudies.currentPostUrl}>
                                 <div className="card">
                                     <GatsbyImage className="logo" image={el.caseStudies.previewCard.previewLogo.localFile.childImageSharp.gatsbyImageData} alt={el.caseStudies.previewCard.previewLogo.altText} />
                                 </div>

@@ -10,11 +10,13 @@ import SuccessStories from "../components/success-stories"
 import TestomontialDivider from "../components/testomontial-divider"
 import FAQ from "../components/faq"
 import ProcessOptimisation from "../components/process-optimisation"
+import Seo from "../components/seo"
 
-const ProductDevelopmentPage = ({ data: { allWpPage } }) => {
+const ProductDevelopmentPage = ({ data: { allWpPage, alternates }, location }) => {
   let { productDevelopment } = allWpPage.nodes[0]
   return (
     <main>
+      <Seo alternates={alternates} location={location} />
       <Hero data={productDevelopment.heroProductDevelop} />
       <TwoColumnFlex data={productDevelopment.twoColumnFlexProductDevelopment} />
       <DevelopmentProcess data={productDevelopment.developmentProcess} />
@@ -23,7 +25,7 @@ const ProductDevelopmentPage = ({ data: { allWpPage } }) => {
       <SuccessStories data={productDevelopment.successStoriesProductDevelopment} />
       <TwoColumnFlexWorkshop reverse={true} data={productDevelopment.twoColumnFlexProductDevelopmentSecond} />
       <TestomontialDivider data={productDevelopment.testomontialDividerProductDevelopment} />
-      <ProcessOptimisation  data={productDevelopment.processOptimisation}/>
+      <ProcessOptimisation data={productDevelopment.processOptimisation} />
       <CallToAction data={productDevelopment.callToActionProductDevelopmentSecond} />
       <SuccessStories data={productDevelopment.successStoriesProductDevelopmentSecond} />
       <CallToAction data={productDevelopment.callToActionProductDevelopmentThird} />
@@ -36,7 +38,18 @@ export default ProductDevelopmentPage
 
 
 export const query = graphql`
-query ProductDevelopmentPageQuery($id: String!) {
+query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
+  alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+    nodes {
+      language {
+        slug
+        name
+      }
+      template {
+        templateName
+      }
+    }
+  }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         productDevelopment {

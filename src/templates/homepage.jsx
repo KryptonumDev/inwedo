@@ -7,11 +7,13 @@ import CallToAction from "../components/cta"
 import NumbersAndImages from "../components/numbers-and-image-grid"
 import Testomontials from "../components/testomontials-slider"
 import FAQ from "../components/faq"
+import Seo from "../components/seo"
 
-const IndexPage = ({ data: { allWpPage } }) => {
+const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
   let { homepage } = allWpPage.nodes[0]
   return (
     <main>
+      <Seo alternates={alternates} location={location}/>
       <Hero data={homepage.heroHomepage} />
       <Services data={homepage.services} />
       <CallToAction data={homepage.callToAction} />
@@ -28,7 +30,18 @@ const IndexPage = ({ data: { allWpPage } }) => {
 export default IndexPage
 
 export const query = graphql`
-  query HomePageQuery($id: String!){
+  query HomePageQuery($id: String!, $templateName: String!){
+    alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+      nodes {
+        language {
+          slug
+          name
+        }
+        template {
+          templateName
+        }
+      }
+    }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         homepage {

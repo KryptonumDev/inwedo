@@ -3,20 +3,35 @@ import { graphql } from "gatsby"
 import BlogPostContent from "../components/blog-post-content"
 import Hero from "../components/hero/blog-post"
 import BlogAuthorPosts from "../components/blog-author-posts"
+import Seo from "../components/seo"
 
-export default function BlogPost({ data: { allWpPost, otherPosts } }) {
+export default function BlogPost({ data: { allWpPost, otherPosts, alternates }, location }) {
   let { blogPost, categories, date, authors } = allWpPost.nodes[0]
   return (
     <main>
-      <Hero data={blogPost.heroPost} categories={categories} date={date} authors={authors}/>
-      <BlogPostContent data={blogPost.content} quickTitle={blogPost.quickNavigation.sectionTitle}/>
-      <BlogAuthorPosts data={otherPosts.nodes} title={blogPost.otherPosts.sectionTitle}/>
+      <Seo alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={blogPost.templateName} />
+      <Hero data={blogPost.heroPost} categories={categories} date={date} authors={authors} />
+      <BlogPostContent data={blogPost.content} quickTitle={blogPost.quickNavigation.sectionTitle} />
+      <BlogAuthorPosts data={otherPosts.nodes} title={blogPost.otherPosts.sectionTitle} />
     </main>
   )
 }
 
 export const query = graphql`
 query BlogPostQuery($id: String!) {
+    alternates : allWpPost{
+      nodes{
+        id
+        language{
+          slug
+          locale
+        }
+        page : blogPost{
+          url : currentPostUrl
+          template : templateName
+        }
+      }
+    }
     otherPosts : allWpPost(filter: {id: {ne: $id}}, limit: 3) {
       nodes {
         language{
@@ -65,6 +80,7 @@ query BlogPostQuery($id: String!) {
     allWpPost(filter: {id: {eq: $id}}) {
         nodes{
             blogPost{
+              templateName
               otherPosts {
                 sectionTitle
               }
@@ -150,7 +166,11 @@ query BlogPostQuery($id: String!) {
             date(formatString: "MMMM DD YYYY")
             authors {
               nodes {
+                language{
+                  slug
+                }
                 author {
+                  userUrl
                   userName
                   userAvatar {
                     altText

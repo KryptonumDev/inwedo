@@ -2,23 +2,39 @@ import React from "react"
 import { graphql } from "gatsby"
 import Hero from "../components/hero/blog-author"
 import BlogAuthorPosts from "../components/blog-author-posts"
+import Seo from "../components/seo"
 
-export default function BlogAuthor({ data: { allWpAuthors, allWpPost } }) {
+export default function BlogAuthor({ data: { allWpAuthors, allWpPost, alternates }, location }) {
   const author = allWpAuthors.nodes[0]
   const posts = allWpPost.nodes
 
   return (
     <main>
+      <Seo alternates={alternates} location={location} type='archive' id={author.id} template='author'/>
       <Hero data={author} />
-      <BlogAuthorPosts data={posts} title={author.author.authorPostsTitle} loadMore={author.author.loadMorePostsText}/>
+      <BlogAuthorPosts data={posts} title={author.author.authorPostsTitle} loadMore={author.author.loadMorePostsText} />
     </main>
   )
 }
 
 export const query = graphql`
 query BlogCategoryQuery($id: String!) {
+    alternates : allWpAuthors{
+      nodes{
+        id
+        name
+        language{
+          slug
+          locale
+        }
+        page : author{
+          url : userUrl
+        }
+      }
+    }
     allWpAuthors(filter: {id: {eq: $id}}) {
         nodes {
+          id
           author {
             loadMorePostsText
             authorPostsTitle

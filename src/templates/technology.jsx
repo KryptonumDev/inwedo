@@ -9,24 +9,26 @@ import TwoColumnFlexWorkshop from "../components/two-column/two-column-workshop"
 import SuccessStories from "../components/success-stories"
 import FAQ from "../components/faq"
 import TechStack from "../components/tech-stack"
+import Seo from "../components/seo"
 
-const TechnologyPage = ({ data: { allWpTechnology } }) => {
-    let { technology } = allWpTechnology.nodes[0]
-    return (
-        <main>
-            <Hero data={technology.heroTechnology} />
-            <TwoColumnFlex technology={true} data={technology.twoColumnFlexTechnologySecond} />
-            <ReasonsToUse data={technology.reasonsToUse} />
-            <WhyBestChoice data={technology.whyBestChoice} />
-            <CallToAction data={technology.callToActionTechnology} />
-            <TwoColumnFlexWorkshop reverse={true} data={technology.twoColumnFlexTechnology} />
-            <CallToAction data={technology.callToActionTechnologySecond} />
-            <SuccessStories data={technology.successStoriesTechnology} />
-            <CallToAction data={technology.callToActionTechnologyThird} />
-            <TechStack data={technology.techStackTechnology} />
-            <FAQ data={technology.faqTechnology} />
-        </main>
-    )
+const TechnologyPage = ({ data: { allWpTechnology, alternates }, location }) => {
+  let { technology } = allWpTechnology.nodes[0]
+  return (
+    <main>
+      <Seo alternates={alternates} location={location} type='technology' template='Technology' currTemplate={technology.templateName} />
+      <Hero data={technology.heroTechnology} />
+      <TwoColumnFlex technology={true} data={technology.twoColumnFlexTechnologySecond} />
+      <ReasonsToUse data={technology.reasonsToUse} />
+      <WhyBestChoice data={technology.whyBestChoice} />
+      <CallToAction data={technology.callToActionTechnology} />
+      <TwoColumnFlexWorkshop reverse={true} data={technology.twoColumnFlexTechnology} />
+      <CallToAction data={technology.callToActionTechnologySecond} />
+      <SuccessStories data={technology.successStoriesTechnology} />
+      <CallToAction data={technology.callToActionTechnologyThird} />
+      <TechStack data={technology.techStackTechnology} />
+      <FAQ data={technology.faqTechnology} />
+    </main>
+  )
 }
 
 export default TechnologyPage
@@ -34,10 +36,24 @@ export default TechnologyPage
 
 export const query = graphql`
 query TechonologyPageQuery($id: String!) {
+    alternates : allWpTechnology{
+      nodes{
+        id
+        language{
+          slug
+          locale
+        }
+        page : technology{
+          url : currentPageUrl
+          template : templateName
+        }
+      }
+    }
     allWpTechnology(filter: {id: {eq: $id}}) {
       nodes {
         technology{
             currentPageUrl
+            templateName
             heroTechnology {
                 pageTitle
                 text

@@ -10,11 +10,13 @@ import OurFocuses from "../components/our-focuses"
 import TwoColumnFlexImg from './../components/two-column/two-column-about'
 import BenefitsGrid from "../components/benefits-grid"
 import RelatedServices from "../components/related-services"
+import Seo from "../components/seo"
 
-const HowWeWorkPage = ({ data: { allWpPage } }) => {
+const HowWeWorkPage = ({ data: { allWpPage, alternates }, location }) => {
   let { howWeWork } = allWpPage.nodes[0]
   return (
     <main>
+      <Seo alternates={alternates} location={location} />
       <Hero data={howWeWork.heroHowWeWork} />
       <TwoColumnFlex data={howWeWork.twoColumnFlexHowWeWork} />
       <CardsWithTitle data={howWeWork.cardsWithLinks} />
@@ -36,7 +38,18 @@ const HowWeWorkPage = ({ data: { allWpPage } }) => {
 export default HowWeWorkPage
 
 export const query = graphql`
-query HowWeWorkPageQuery($id: String!) {
+query HowWeWorkPageQuery($id: String!, $templateName: String!) {
+  alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+    nodes {
+      language {
+        slug
+        name
+      }
+      template {
+        templateName
+      }
+    }
+  }
     allWpPage(filter: {id: {eq: $id}}) {
           nodes {
             howWeWork {

@@ -12,36 +12,49 @@ import TwoColumnFlexList from "../components/two-column/two-column-list"
 import TechStack from "../components/tech-stack"
 import SuccessStories from "../components/success-stories"
 import FAQ from "../components/faq"
+import Seo from "../components/seo"
 
-const ProductDesignPage = ({ data: { allWpPage } }) => {
-    let { productDesign } = allWpPage.nodes[0]
-    return (
-        <main>
-            <Hero data={productDesign.heroProductDesign} />
-            <DesignProcess data={productDesign.designProcess} />
-            <TestomontialDivider data={productDesign.testomontialDividerProductDesign} />
-            <CallToAction data={productDesign.callToActionProductDesign} />
-            <TwoColumnFlex data={productDesign.twoColumnFlexProductDesign} />
-            <DesignBenefits data={productDesign.designBenefits} />
-            <TwoColumnFlexList data={productDesign.twoColumnFlexProductDesignSecond} />
-            <TechStack data={productDesign.techStackProductDesign} />
-            <SuccessStories data={productDesign.successStoriesProductDesign} />
-            <DesignProcessAlt data={productDesign.designProcessSecond} />
-            <CallToAction data={productDesign.callToActionProductDesignSecond} />
-            <DesignBenefitsAlt data={productDesign.designBenefitsAlt}/>
-            <TwoColumnFlex data={productDesign.twoColumnFlexProductDesignThird} />
-            <DesignBenefits data={productDesign.designBenefitsSecond} />
-            <CallToAction data={productDesign.callToActionProductDesignThird} />
-            <FAQ data={productDesign.faqProductDesign} />
-        </main>
-    )
+const ProductDesignPage = ({ data: { allWpPage, alternates }, location }) => {
+  let { productDesign } = allWpPage.nodes[0]
+  return (
+    <main>
+      <Seo alternates={alternates} location={location} />
+      <Hero data={productDesign.heroProductDesign} />
+      <DesignProcess data={productDesign.designProcess} />
+      <TestomontialDivider data={productDesign.testomontialDividerProductDesign} />
+      <CallToAction data={productDesign.callToActionProductDesign} />
+      <TwoColumnFlex data={productDesign.twoColumnFlexProductDesign} />
+      <DesignBenefits data={productDesign.designBenefits} />
+      <TwoColumnFlexList data={productDesign.twoColumnFlexProductDesignSecond} />
+      <TechStack data={productDesign.techStackProductDesign} />
+      <SuccessStories data={productDesign.successStoriesProductDesign} />
+      <DesignProcessAlt data={productDesign.designProcessSecond} />
+      <CallToAction data={productDesign.callToActionProductDesignSecond} />
+      <DesignBenefitsAlt data={productDesign.designBenefitsAlt} />
+      <TwoColumnFlex data={productDesign.twoColumnFlexProductDesignThird} />
+      <DesignBenefits data={productDesign.designBenefitsSecond} />
+      <CallToAction data={productDesign.callToActionProductDesignThird} />
+      <FAQ data={productDesign.faqProductDesign} />
+    </main>
+  )
 }
 
 export default ProductDesignPage
 
 
 export const query = graphql`
-query ProductDesignPageQuery($id: String!) {
+query ProductDesignPageQuery($id: String!, $templateName: String!) {
+  alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+    nodes {
+      language {
+        slug
+        name
+      }
+      template {
+        templateName
+      }
+    }
+  }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         productDesign {

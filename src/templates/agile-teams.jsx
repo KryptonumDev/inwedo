@@ -12,11 +12,13 @@ import TestomontialDivider from "../components/testomontial-divider"
 import CallToAction from "../components/cta"
 import RelatedServices from "../components/related-services"
 import FAQ from "../components/faq"
+import Seo from "../components/seo"
 
-const AgileTeamsPage = ({ data: { allWpPage } }) => {
+const AgileTeamsPage = ({ data: { allWpPage, alternates }, location }) => {
   let { agileTeams } = allWpPage.nodes[0]
   return (
     <main>
+      <Seo alternates={alternates} location={location} />
       <Hero data={agileTeams.heroAgileTeams} />
       <OurFocuses data={agileTeams.ourFocusesAgileTeams} />
       <MiniFaq data={agileTeams.miniFaqAgileTeams} />
@@ -37,7 +39,18 @@ export default AgileTeamsPage
 
 
 export const query = graphql`
-query AgileTeamsPageQuery($id: String!) {
+query AgileTeamsPageQuery($id: String!, $templateName: String!) {
+  alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+    nodes {
+      language {
+        slug
+        name
+      }
+      template {
+        templateName
+      }
+    }
+  }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         agileTeams {

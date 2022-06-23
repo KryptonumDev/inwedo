@@ -27,6 +27,7 @@ const Background = styled(GatsbyImage)`
     width: 100%;
     height: 100%;
     box-shadow: var(--shadow);
+    min-height: 230px;
 `
 
 const Half = styled.div`

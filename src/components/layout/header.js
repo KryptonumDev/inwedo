@@ -45,12 +45,15 @@ export default function Header({ location }) {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <Wrapper type={type}>
+        <Wrapper type={type} isOpen={isOpen} >
             <Container>
                 <Content>
                     <Link ariaLabel='homepage link' to="/">
                         <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
                     </Link>
+                    <MobileButton type={type} isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>
+                        <span />
+                    </MobileButton>
                     <Navigation isOpen={isOpen} type={type}>
                         <ul>
                             {headerNavigation.map(el => (
@@ -60,9 +63,6 @@ export default function Header({ location }) {
                             ))}
                         </ul>
                     </Navigation>
-                    <MobileButton isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>
-                        <span />
-                    </MobileButton>
                 </Content>
             </Container>
         </Wrapper>
@@ -76,10 +76,18 @@ const Wrapper = styled.header`
     left: 0;
     right: 0;
     padding: 28px 0;
+    transition: background-color .2s linear;
 
     .logo{
-        box-shadow: ${props => props.type === 'main' ? 'brightness(0) invert(1)' : 'null'};
+        filter: ${props => props.type === 'main' ? 'brightness(0) invert(1)' : 'null'};
     }
+
+    ${props => props.type === 'main' && props.isOpen ? `
+        background-color: var(--color-white);
+        .logo{
+            filter: unset;
+        }
+    ` : null}
 `
 
 const Content = styled.div`
@@ -88,13 +96,15 @@ const Content = styled.div`
     align-items: center;
 `
 
-const MobileButton = styled.div`
+const MobileButton = styled.button`
     @media (min-width: 1024px) {
         display: none;
     }
     position: relative;
     width: 28px;
     height: 18px;
+    background-color: transparent;
+    border: none;
 
     &::after{
         content: "";
@@ -103,7 +113,7 @@ const MobileButton = styled.div`
         left: 0;
         width: 100%;
         height: 2px;
-        background-color: var(--color-black);
+        background-color: ${props => props.type === 'main' ? 'var(--color-white)' : 'var(--color-black)'};
         border-radius: 5px;
         transition: top .2s .2s, left .2s .2s, transform .2s, width .3s;
         transform-origin: 50% 50%;
@@ -114,6 +124,7 @@ const MobileButton = styled.div`
             top: calc(50% - 1px);
             left: 10%;
             transition: top .2s, left .2s, transform .2s .2s;
+            background-color: var(--color-black);
         ` : null}
     }
 
@@ -124,7 +135,7 @@ const MobileButton = styled.div`
         right: 0;
         width: 80%;
         height: 2px;
-        background-color: var(--color-black);
+        background-color: ${props => props.type === 'main' ? 'var(--color-white)' : 'var(--color-black)'};
         border-radius: 5px;
         transition: top .2s .2s, right .2s .2s, transform .2s;
         transform-origin: 50% 50%;
@@ -134,6 +145,7 @@ const MobileButton = styled.div`
             top: calc(50% - 1px);
             right: 10%;
             transition: top .2s, right .2s, transform .2s .2s;
+            background-color: var(--color-black);
         ` : null}
     }
 
@@ -143,13 +155,14 @@ const MobileButton = styled.div`
         left: 0;
         right: 0;
         height: 2px;
-        background-color: var(--color-black);
+        background-color: ${props => props.type === 'main' ? 'var(--color-white)' : 'var(--color-black)'};
         border-radius: 5px;
         transition: opacity .3s, transform .2s;
 
         ${props => props.isOpen ? `
             opacity: 0;
             transform: translateX(-20px);
+            background-color: var(--color-black);
         ` : null}
     }
 `
@@ -166,6 +179,10 @@ const Navigation = styled.nav`
                 font-size: clamp(14px, 2.08vw, 16px);
                 line-height: 150%;
                 font-family: 'Lexend';
+
+                @media (max-width: 1024px) {
+                    color: var(--color-black);
+                }
             }
 
             :last-child{

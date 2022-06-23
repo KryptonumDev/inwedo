@@ -6,25 +6,8 @@ import { urlSystem } from './src/contstants/urlSystem'
 
 exports.createPages = async ({
   graphql,
-  actions: { createPage, createRedirect },
+  actions: { createPage },
 }) => {
-
-  const defaultLocale = 'en';
-
-  const secondaryLanguages = ['pl'];
-
-  secondaryLanguages.forEach((language) => {
-    const langCode = language.split('-')[0];
-
-    createRedirect({
-      fromPath: '/',
-      toPath: `/${language}/`,
-      isPermanent: false,
-      conditions: {
-        language: [langCode],
-      },
-    });
-  });
 
   // HOMEPAGE
 
@@ -36,18 +19,22 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                 }
               }
             }
           `);
 
-  homepageNodes.forEach(({ id, language: { slug } }) => {
+  homepageNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem.homepage[slug],
+      path: urlSystem['Homepage'][slug],
       component: resolve('src/templates/homepage.jsx'),
       context: {
         id,
         slug,
+        templateName
       },
     });
   });
@@ -62,18 +49,22 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                 }
               }
             }
           `);
 
-  servicesNodes.forEach(({ id, language: { slug } }) => {
+  servicesNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem.services[slug],
+      path: urlSystem['Services'][slug],
       component: resolve('src/templates/services.jsx'),
       context: {
         id,
         slug,
+        templateName
       },
     });
   });
@@ -88,18 +79,22 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                 }
               }
             }
           `);
 
-  contactNodes.forEach(({ id, language: { slug } }) => {
+  contactNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem.contact[slug],
+      path: urlSystem['Contact'][slug],
       component: resolve('src/templates/contact.jsx'),
       context: {
         id,
         slug,
+        templateName
       },
     });
   });
@@ -114,18 +109,22 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                 }
               }
             }
           `);
 
-  aboutNodes.forEach(({ id, language: { slug } }) => {
+  aboutNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem.aboutUs[slug],
+      path: urlSystem['About'][slug],
       component: resolve('src/templates/about.jsx'),
       context: {
         id,
         slug,
+        templateName
       },
     });
   });
@@ -140,18 +139,22 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                 }
               }
             }
           `);
 
-  howWeWorkNodes.forEach(({ id, language: { slug } }) => {
+  howWeWorkNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem.HowWeWork[slug],
+      path: urlSystem['How We Work'][slug],
       component: resolve('src/templates/how-we-work.jsx'),
       context: {
         id,
         slug,
+        templateName
       },
     });
   });
@@ -166,18 +169,22 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                 }
               }
             }
           `);
 
-  workshopNodes.forEach(({ id, language: { slug } }) => {
+  workshopNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem.discoveryWorkshop[slug],
+      path: urlSystem['Discovery Workshop'][slug],
       component: resolve('src/templates/discovery-workshop.jsx'),
       context: {
         id,
         slug,
+        templateName
       },
     });
   });
@@ -192,18 +199,22 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                 }
               }
             }
           `);
 
-  webAppNodes.forEach(({ id, language: { slug } }) => {
+  webAppNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem.webAppDevelopment[slug],
+      path: urlSystem['Web App'][slug],
       component: resolve('src/templates/web-app.jsx'),
       context: {
         id,
         slug,
+        templateName
       },
     });
   });
@@ -218,18 +229,22 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                 }
               }
             }
           `);
 
-  agileTeamsNodes.forEach(({ id, language: { slug } }) => {
+  agileTeamsNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem.agileTeamsOnDemand[slug],
+      path: urlSystem['Agile Teams'][slug],
       component: resolve('src/templates/agile-teams.jsx'),
       context: {
         id,
         slug,
+        templateName
       },
     });
   });
@@ -244,18 +259,22 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                 }
               }
             }
           `);
 
-  teamExtensionsNodes.forEach(({ id, language: { slug } }) => {
+  teamExtensionsNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem.teamExtensions[slug],
+      path: urlSystem['Team Extensions'][slug],
       component: resolve('src/templates/team-extensions.jsx'),
       context: {
         id,
         slug,
+        templateName
       },
     });
   });
@@ -270,18 +289,22 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                 }
               }
             }
           `);
 
-  productDesignNodes.forEach(({ id, language: { slug } }) => {
+  productDesignNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem.productDesign[slug],
+      path: urlSystem['Product Design'][slug],
       component: resolve('src/templates/product-design.jsx'),
       context: {
         id,
         slug,
+        templateName
       },
     });
   });
@@ -296,18 +319,22 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                 }
               }
             }
           `);
 
-  productDevelopmentNodes.forEach(({ id, language: { slug } }) => {
+  productDevelopmentNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem.productDevelopment[slug],
+      path: urlSystem['Product Development'][slug],
       component: resolve('src/templates/product-development.jsx'),
       context: {
         id,
         slug,
+        templateName
       },
     });
   });
@@ -322,6 +349,9 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                   technology{
                     currentPageUrl
                   }
@@ -330,13 +360,14 @@ exports.createPages = async ({
             }
           `);
 
-  technologiesNodes.forEach(({ id, language: { slug }, technology: { currentPageUrl } }) => {
+  technologiesNodes.forEach(({ id, language: { slug }, technology: { currentPageUrl }, template: { templateName } }) => {
     createPage({
-      path: urlSystem.technologies[slug] + currentPageUrl,
+      path: urlSystem['Technology'][slug] + currentPageUrl,
       component: resolve('src/templates/technology.jsx'),
       context: {
         id,
         slug,
+        templateName
       },
     });
   });
@@ -351,6 +382,9 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                 }
               }
             }
@@ -360,9 +394,7 @@ exports.createPages = async ({
 
   const { data: { categoryParents: { categoryArchiveNodes } } } = await graphql(`
     {
-      categoryParents: allWpCategoryPortfolio(
-        filter: {wpParent: {node: {slug: {eq: null}}}}
-      ) {
+      categoryParents : allWpCategoryPortfolio(filter: {wpParent: {node: {slug: {eq: null}}}}) {
         categoryArchiveNodes: nodes {
           catSlug: slug
           language {
@@ -373,25 +405,27 @@ exports.createPages = async ({
     }
     `);
 
-  portfolioArchiveNodes.forEach(({ id, language: { slug } }) => {
+  portfolioArchiveNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
 
     createPage({
-      path: urlSystem.caseStudies[slug],
+      path: urlSystem["Portfolio Archive"][slug],
       component: resolve('src/templates/portfolio-archive.jsx'),
       context: {
         id,
         slug,
+        templateName
       },
     });
 
 
     categoryArchiveNodes.forEach(({ language: { catLangSlug }, catSlug }) => {
       createPage({
-        path: urlSystem.caseStudies[slug] + catSlug,
+        path: urlSystem["Portfolio Archive"][slug] + catSlug,
         component: resolve('src/templates/portfolio-archive.jsx'),
         context: {
           id,
           slug,
+          templateName
         },
       });
     });
@@ -417,7 +451,7 @@ exports.createPages = async ({
 
   portfolioPageNodes.forEach(({ id, language: { slug }, caseStudies: { currentPostUrl } }) => {
     createPage({
-      path: urlSystem.caseStudies[slug] + currentPostUrl,
+      path: urlSystem["Portfolio Archive"][slug] + currentPostUrl,
       component: resolve('src/templates/portfolio-post.jsx'),
       context: {
         id,
@@ -436,6 +470,9 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                 }
               }
               allWpPost {
@@ -446,28 +483,30 @@ exports.createPages = async ({
             }
           `);
 
-  blogArchiveNodes.forEach(({ id, language: { slug } }) => {
+  blogArchiveNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
 
     let pagesCount = Math.ceil(blogArchiveSubPages.length / 10) - 1
 
     createPage({
-      path: urlSystem.blog[slug],
+      path: urlSystem["Blog Archive"][slug],
       component: resolve('src/templates/blog-archive.jsx'),
       context: {
         id,
         slug,
+        templateName
       },
     });
 
     for (let i = 0; i < pagesCount; i++) {
       let page = i + 2
       createPage({
-        path: urlSystem.blog[slug] + page + '/',
+        path: urlSystem["Blog Archive"][slug] + page + '/',
         component: resolve('src/templates/blog-archive.jsx'),
         context: {
           id,
           slug,
-          page
+          page,
+          templateName
         },
       });
     }
@@ -476,92 +515,94 @@ exports.createPages = async ({
 
   // BLOG PAGE (POST)
 
-  // const { data: { allWpPost: { PostPageNodes } } } = await graphql(`
-  //           {
-  //             allWpPost {
-  //               PostPageNodes: nodes {
-  //                 id
-  //                 language {
-  //                   slug
-  //                 }
-  //                 blogPost {
-  //                   currentPostUrl
-  //                 }
-  //               }
-  //             }
-  //           }
-  //         `);
+  const { data: { allWpPost: { PostPageNodes } } } = await graphql(`
+            {
+              allWpPost {
+                PostPageNodes: nodes {
+                  id
+                  language {
+                    slug
+                  }
+                  blogPost {
+                    currentPostUrl
+                  }
+                }
+              }
+            }
+          `);
 
-  // PostPageNodes.forEach(({ id, language: { slug }, blogPost: { currentPostUrl } }) => {
-  //   if (currentPostUrl !== null) {
-  //     createPage({
-  //       path: urlSystem.blog[slug] + currentPostUrl,
-  //       component: resolve('src/templates/blog-post.jsx'),
-  //       context: {
-  //         id,
-  //         slug,
-  //       },
-  //     });
-  //   }
-  // });
+  PostPageNodes.forEach(({ id, language: { slug }, blogPost: { currentPostUrl } }) => {
+    if (currentPostUrl !== null) {
+      createPage({
+        path: urlSystem["Blog Archive"][slug] + currentPostUrl,
+        component: resolve('src/templates/blog-post.jsx'),
+        context: {
+          id,
+          slug,
+        },
+      });
+    }
+  });
 
   // BLOG AUTHORS
 
-  // const { data: { allWpAuthors: { BlogAuthorsNodes } } } = await graphql(`
-  //           {
-  //             allWpAuthors{
-  //               BlogAuthorsNodes: nodes {
-  //                 id
-  //                 author {
-  //                   userUrl
-  //                 }
-  //                 language {
-  //                   slug
-  //                 }
-  //               }
-  //             }
-  //           }
-  //         `);
+  const { data: { allWpAuthors: { BlogAuthorsNodes } } } = await graphql(`
+            {
+              allWpAuthors{
+                BlogAuthorsNodes: nodes {
+                  id
+                  author {
+                    userUrl
+                  }
+                  language {
+                    slug
+                  }
+                }
+              }
+            }
+          `);
 
-  // BlogAuthorsNodes.forEach(({ id, language: { slug }, author: { userUrl } }) => {
-  //   createPage({
-  //     path: urlSystem.author[slug] + userUrl,
-  //     component: resolve('src/templates/blog-author.jsx'),
-  //     context: {
-  //       id,
-  //       slug,
-  //     },
-  //   });
-  // });
+  BlogAuthorsNodes.forEach(({ id, language: { slug }, author: { userUrl } }) => {
+    createPage({
+      path: urlSystem['author'][slug] + userUrl,
+      component: resolve('src/templates/blog-author.jsx'),
+      context: {
+        id,
+        slug,
+      },
+    });
+  });
 
   // BLOG CATEGORY
 
-  // const { data: { allWpCategory: { BlogCategoryNodes } } } = await graphql(`
-  //           {
-  //             allWpCategory{
-  //               BlogCategoryNodes: nodes {
-  //                 id
-  //                 blogCategory {
-  //                   categoryUrl
-  //                 }
-  //                 language {
-  //                   slug
-  //                 }
-  //               }
-  //             }
-  //           }
-  //         `);
+  const { data: { allWpCategory: { BlogCategoryNodes } } } = await graphql(`
+            {
+              allWpCategory{
+                BlogCategoryNodes: nodes {
+                  id
+                  blogCategory {
+                    categoryUrl
+                  }
+                  language {
+                    slug
+                  }
+                }
+              }
+            }
+          `);
 
-  // BlogCategoryNodes.forEach(({ id, language: { slug }, blogCategory: { categoryUrl } }) => {
-  //   createPage({
-  //     path: urlSystem.category[slug] + categoryUrl,
-  //     component: resolve('src/templates/blog-category.jsx'),
-  //     context: {
-  //       id,
-  //       slug,
-  //     },
-  //   });
-  // });
+  BlogCategoryNodes.forEach(({ id, language: { slug }, blogCategory: { categoryUrl } }) => {
+    if (slug != 'pl') {  // TODO: usunąć pl disable
+      createPage({
+        path: urlSystem['category'][slug] + categoryUrl,
+        component: resolve('src/templates/blog-category.jsx'),
+        context: {
+          id,
+          slug,
+        },
+      });
+    }
+  });
 
 
   // PRIVACY POLICE
@@ -574,18 +615,82 @@ exports.createPages = async ({
                   language {
                     slug
                   }
+                  template {
+                    templateName
+                  }
                 }
               }
             }
           `);
 
-  privacyPoliceNodes.forEach(({ id, language: { slug } }) => {
+  privacyPoliceNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem.privacyPolice[slug],
+      path: urlSystem["Privacy Police"][slug],
       component: resolve('src/templates/privacy-police.jsx'),
       context: {
         id,
         slug,
+        templateName
+      },
+    });
+  });
+
+  // COOKIE POLICE
+
+  const { data: { allWpPage: { cookiePoliceNodes } } } = await graphql(`
+    query {
+      allWpPage(filter: {template: {templateName: {eq: "Cookie Policy"}}}) {
+        cookiePoliceNodes: nodes {
+          id
+          language {
+            slug
+          }
+          template {
+            templateName
+          }
+        }
+      }
+    }
+  `);
+
+  cookiePoliceNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
+    createPage({
+      path: urlSystem["Cookie Policy"][slug],
+      component: resolve('src/templates/privacy-police.jsx'),
+      context: {
+        id,
+        slug,
+        templateName
+      },
+    });
+  });
+
+  // TERMS AND CONDITIONS
+
+  const { data: { allWpPage: { termsAndConditionsNodes } } } = await graphql(`
+    query {
+      allWpPage(filter: {template: {templateName: {eq: "Terms And Conditions"}}}) {
+        termsAndConditionsNodes: nodes {
+          id
+          language {
+            slug
+          }
+          template {
+            templateName
+          }
+        }
+      }
+    }
+  `);
+
+  termsAndConditionsNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
+    createPage({
+      path: urlSystem["Terms And Conditions"][slug],
+      component: resolve('src/templates/privacy-police.jsx'),
+      context: {
+        id,
+        slug,
+        templateName
       },
     });
   });

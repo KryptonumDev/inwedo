@@ -10,31 +10,44 @@ import WorkshopBenefits from "../components/workshop-benefits"
 import Testomontials from "../components/testomontials-slider"
 import RelatedServices from "../components/related-services"
 import FAQ from "../components/faq"
+import Seo from "../components/seo"
 
-const TeamExtensionsPage = ({ data: { allWpPage } }) => {
-    let { teamExtensions } = allWpPage.nodes[0]
-    return (
-        <main>
-            <Hero data={teamExtensions.heroTeamExtensions} />
-            <TwoColumnFlex data={teamExtensions.twoColumnFlexTeamExtensions}/>
-            <TechStack data={teamExtensions.techStackTeamExtensions}/>
-            <TwoColumnFlexSecond data={teamExtensions.twoColumnFlexTeamExtensionsSecond}/>
-            <BenefitsGrid data={teamExtensions.benefitsGridTeamExtensions}/>
-            <CallToAction data={teamExtensions.callToActionTeamExtensions}/>
-            <WorkshopBenefits data={teamExtensions.workshopBenefitsTeamExtensions}/>
-            <Testomontials data={teamExtensions.testomontialsTeamExtensions}/>
-            <CallToAction data={teamExtensions.callToActionTeamExtensionsSecond}/>
-            <RelatedServices data={teamExtensions.relatedServicesTeamExtensions}/>
-            <FAQ data={teamExtensions.faqTeamExtensions}/>
-        </main>
-    )
+const TeamExtensionsPage = ({ data: { allWpPage, alternates }, location }) => {
+  let { teamExtensions } = allWpPage.nodes[0]
+  return (
+    <main>
+      <Seo alternates={alternates} location={location} />
+      <Hero data={teamExtensions.heroTeamExtensions} />
+      <TwoColumnFlex data={teamExtensions.twoColumnFlexTeamExtensions} />
+      <TechStack data={teamExtensions.techStackTeamExtensions} />
+      <TwoColumnFlexSecond data={teamExtensions.twoColumnFlexTeamExtensionsSecond} />
+      <BenefitsGrid data={teamExtensions.benefitsGridTeamExtensions} />
+      <CallToAction data={teamExtensions.callToActionTeamExtensions} />
+      <WorkshopBenefits data={teamExtensions.workshopBenefitsTeamExtensions} />
+      <Testomontials data={teamExtensions.testomontialsTeamExtensions} />
+      <CallToAction data={teamExtensions.callToActionTeamExtensionsSecond} />
+      <RelatedServices data={teamExtensions.relatedServicesTeamExtensions} />
+      <FAQ data={teamExtensions.faqTeamExtensions} />
+    </main>
+  )
 }
 
 export default TeamExtensionsPage
 
 
 export const query = graphql`
-query TeamExtensionsPageQuery($id: String!) {
+query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
+  alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+    nodes {
+      language {
+        slug
+        name
+      }
+      template {
+        templateName
+      }
+    }
+  }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
         teamExtensions {

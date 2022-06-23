@@ -11,13 +11,13 @@ export default function RelatedServices({ data: { sectionTitle, services } }) {
                 <Title className="h2">{sectionTitle}</Title>
                 <Grid>
                     {services.map(el => (
-                        <Item>
+                        <Item to={el.button.url}>
                             <ImageWrapper>
                                 <GatsbyImage className="image" image={el.servisIcon.localFile.childImageSharp.gatsbyImageData} alt={el.servisIcon.altText} />
                             </ImageWrapper>
                             <h3 className="h2">{el.servisTitle}</h3>
                             <p className="h4">{el.servisText}</p>
-                            <Link className="link" to={el.button.url}>{el.button.name}</Link>
+                            <p className="link" >{el.button.name}</p>
                         </Item>
                     ))}
                 </Grid>
@@ -69,7 +69,7 @@ const Grid = styled.div`
     }
 `
 
-const Item = styled.div`
+const Item = styled(Link)`
 
     .h2{
         margin-bottom: 16px;

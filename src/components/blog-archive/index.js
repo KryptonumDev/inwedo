@@ -9,7 +9,7 @@ import { navigate } from "gatsby"
 import Pagination from "./pagination"
 import { filterSearch, resetFiltredPosts } from "./functions"
 
-export default function Archive({ location, data, cta, cta2, categories }) {
+export default function Archive({ location, data, cta, cta2, categories, language }) {
 
     const [defaultUrl] = useState(checkLanguageUrl(location, '/blog/'))
     const [isAltLayout, setIsAltLayout] = useState((location.pathname === defaultUrl && location.search === "") ? false : true)
@@ -53,7 +53,8 @@ export default function Archive({ location, data, cta, cta2, categories }) {
     const [defaultPosts] = useState(data.nodes)
     const [filtredPosts, changeFiltredPosts] = useState(resetFiltredPosts(defaultPosts, activeFilters))
 
-    const setFilter = (filter) => {
+    const setFilter = (e, filter) => {
+        e.preventDefault()
 
         let combinedUrl
         if (filter === 'all') { // choice all 
@@ -81,7 +82,7 @@ export default function Archive({ location, data, cta, cta2, categories }) {
                     for (let j = 0; j < combinedUrl.length; j++) {
                         if (combinedUrl[j] === '&' && combinedUrl[j + 1] === 'p') {
                             combinedUrl = combinedUrl.substr(0, j)
-                            
+
                             isPaginated = true
                             break
                         }
@@ -135,7 +136,7 @@ export default function Archive({ location, data, cta, cta2, categories }) {
 
             if (page !== 1) {
                 newSearch = defaultUrl + location.search.substr(0, pageId) + page
-                
+
             } else {
                 newSearch = defaultUrl + location.search.substr(0, pageId - 6)
             }
@@ -164,9 +165,12 @@ export default function Archive({ location, data, cta, cta2, categories }) {
     useUrlUpdate(newUrl)
 
     return (
-        <>
-            <Filter setFilter={setFilter} categories={categories} data={data} activeFilters={activeFilters} />
-            {/* <Post data={filtredPosts[0]} /> */}
+        <div>
+            <Filter language={language} setFilter={setFilter} categories={categories} data={data} activeFilters={activeFilters} />
+            {filtredPosts[0]
+                ? <Post data={filtredPosts[0]} />
+                : null}
+
             {isAltLayout
                 ? (
                     <>
@@ -197,6 +201,7 @@ export default function Archive({ location, data, cta, cta2, categories }) {
                     </>
                 )
             }
-        </>
+
+        </div>
     )
 }

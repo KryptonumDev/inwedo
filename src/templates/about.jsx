@@ -6,11 +6,13 @@ import OurValues from "../components/our-values"
 import CallToAction from "../components/cta"
 import TestomontialsAnimated from "../components/testomontials-animated"
 import SuccessStories from "../components/success-stories"
+import Seo from "../components/seo"
 
-const AboutPage = ({ data: { allWpPage } }) => {
+const AboutPage = ({ data: { allWpPage, alternates }, location }) => {
   let { about } = allWpPage.nodes[0]
   return (
     <main>
+      <Seo alternates={alternates} location={location} />
       <Hero data={about.hero} />
       <TwoColumnFlex data={about.twoColumnFlex} />
       <OurValues data={about.ourValues} />
@@ -26,7 +28,18 @@ const AboutPage = ({ data: { allWpPage } }) => {
 export default AboutPage
 
 export const query = graphql`
-    query AboutPageQuery($id: String!) {
+    query AboutPageQuery($id: String!, $templateName: String!) {
+      alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+        nodes {
+          language {
+            slug
+            name
+          }
+          template {
+            templateName
+          }
+        }
+      }
         allWpPage(filter: {id: {eq: $id}}) {
             nodes {
                 about {

@@ -1,11 +1,13 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import Content from "../components/contact-content"
+import Seo from "../components/seo"
 
-const ContactPage = ({ data: { allWpPage } }) => {
+const ContactPage = ({ data: { allWpPage, alternates }, location }) => {
   let { c: contact } = allWpPage.nodes[0]
   return (
     <main>
+      <Seo alternates={alternates} location={location} />
       <Content data={contact} />
     </main>
   )
@@ -14,7 +16,18 @@ const ContactPage = ({ data: { allWpPage } }) => {
 export default ContactPage
 
 export const query = graphql`
-query CPageQuery($id: String!) {
+query CPageQuery($id: String!, $templateName: String!) {
+  alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+    nodes {
+      language {
+        slug
+        name
+      }
+      template {
+        templateName
+      }
+    }
+  }
     allWpPage(filter: {id: {eq: $id}}) {
           nodes {
             slug

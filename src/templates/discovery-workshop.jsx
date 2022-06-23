@@ -10,11 +10,13 @@ import RemoteWorkshop from "../components/remote-workshop"
 import WorkshopBenefits from "../components/workshop-benefits"
 import SuccessStories from "../components/success-stories"
 import FAQ from "../components/faq"
+import Seo from "../components/seo"
 
-const DiscoveryWorkshopPage = ({ data: { allWpPage } }) => {
+const DiscoveryWorkshopPage = ({ data: { allWpPage, alternates }, location }) => {
   let { discoveryWorkshop } = allWpPage.nodes[0]
   return (
     <main>
+      <Seo alternates={alternates} location={location} />
       <Hero data={discoveryWorkshop.heroWorkshop} />
       <OneColumnText data={discoveryWorkshop.oneColumnTextPart} />
       <TestomontialDivider data={discoveryWorkshop.testomontialDividerWorkshop} />
@@ -34,7 +36,18 @@ const DiscoveryWorkshopPage = ({ data: { allWpPage } }) => {
 export default DiscoveryWorkshopPage
 
 export const query = graphql`
-query WorkshopPageQuery($id: String!) {
+query WorkshopPageQuery($id: String!, $templateName: String!) {
+  alternates : allWpPage(filter: {template: {templateName: {eq: $templateName}}}) {
+    nodes {
+      language {
+        slug
+        name
+      }
+      template {
+        templateName
+      }
+    }
+  }
     allWpPage(filter: {id: {eq: $id}}) {
           nodes {
             discoveryWorkshop {
