@@ -169,8 +169,6 @@ const NumbersGrid = styled.div`
 
 const Grid = styled.div`
 
-    --shadow: drop-shadow(0px 76px 121px rgba(0, 0, 0, 0.06)) drop-shadow(0px 31.751px 50.5509px rgba(0, 0, 0, 0.0431313)) drop-shadow(0px 16.9756px 27.0269px rgba(0, 0, 0, 0.0357664)) drop-shadow(0px 9.51638px 15.1511px rgba(0, 0, 0, 0.03)) drop-shadow(0px 5.05408px 8.04662px rgba(0, 0, 0, 0.0242336)) drop-shadow(0px 2.10311px 3.34838px rgba(0, 0, 0, 0.0168687));;
-
     position: absolute;
     right: -210px;
     top: 0;

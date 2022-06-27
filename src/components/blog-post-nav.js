@@ -31,29 +31,32 @@ export default function BlogPostNav({ data, quickTitle }) {
 
                 arr.push(data[i])
                 let current = i
+                let curr = i
 
                 const isNextArr = () => {
-                    current += 1
+                    curr += 1
 
-                    if (data[current].quickLink === 'sub' && data[current - 1].quickLink === 'plain') {
+                    if (!data[curr]) {
+                        i = curr - 1
+                        tab.push(arr)
+                    } else if (data[curr].quickLink === 'sub' && data[curr - 1]?.quickLink === 'plain') {
                         arr.push(subArr)
-                        arr.push(data[current])
+                        arr.push(data[curr])
                         isNextArr()
-                    } else if (data[current].quickLink === 'sub') {
-                        arr.push(data[current])
+                    } else if (data[curr].quickLink === 'sub') {
+                        arr.push(data[curr])
                         isNextArr()
-                    } else if (data[current].quickLink === 'plain') {
-                        subArr.push(data[current])
+                    } else if (data[curr].quickLink === 'plain') {
+                        subArr.push(data[curr])
                         isNextArr()
-                    } else if (data[current - 1].quickLink === 'plain') {
-                        i = current
+                    } else if (data[curr - 1]?.quickLink === 'plain') {
+                        i = curr
                         tab.push(arr)
                         tab.push(subArr)
                     } else {
-                        i = current - 1
+                        i = curr - 1
                         tab.push(arr)
                     }
-
                 }
                 isNextArr()
             }

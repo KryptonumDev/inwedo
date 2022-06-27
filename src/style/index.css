@@ -8,7 +8,7 @@
     --margin-section: clamp(64px, 12.5vw, 128px);
     --margin-xl: 64px;
     --margin-l: 48px;
-    --margin-m: 32px;
+    --margin-m: clamp(24px, 4.16vw, 32px);
     --margin-s: 16px;
 
     --shadow:   0px 0px 16.7px -28px rgba(0, 0, 0, 0.017),
@@ -29,6 +29,10 @@ html {
 
 body {
     overflow-x: hidden;
+}
+
+button{
+    cursor: pointer;
 }
 
 * {

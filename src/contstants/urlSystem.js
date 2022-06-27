@@ -14,6 +14,8 @@ export const urlSystem = {
     "Privacy Police": {pl: '/polityka-prywatnosci/', en: '/privacy-policy/'},
     'Cookie Policy': {pl: '/polityka-pliki-cookie/', en: '/cookie-policy/'},
     'Terms And Conditions' : {pl: '/zasady-warunki/', en: '/terms-and-conditions/'},
+    "Careers Homepage" : {pl: '/kariera/', en: '/careers/'},
+    "Careers Path" : {pl: '/kariera/sciezka-kariery/', en: '/careers/career-path/'},
   
     'Technology': { pl: '/uslugi/web-development/', en: '/services/web-development/' },
   

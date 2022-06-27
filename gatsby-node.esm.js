@@ -29,7 +29,7 @@ exports.createPages = async ({
 
   homepageNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem['Homepage'][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/homepage.jsx'),
       context: {
         id,
@@ -59,7 +59,7 @@ exports.createPages = async ({
 
   servicesNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem['Services'][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/services.jsx'),
       context: {
         id,
@@ -89,7 +89,7 @@ exports.createPages = async ({
 
   contactNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem['Contact'][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/contact.jsx'),
       context: {
         id,
@@ -119,7 +119,7 @@ exports.createPages = async ({
 
   aboutNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem['About'][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/about.jsx'),
       context: {
         id,
@@ -149,7 +149,7 @@ exports.createPages = async ({
 
   howWeWorkNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem['How We Work'][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/how-we-work.jsx'),
       context: {
         id,
@@ -179,7 +179,7 @@ exports.createPages = async ({
 
   workshopNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem['Discovery Workshop'][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/discovery-workshop.jsx'),
       context: {
         id,
@@ -209,7 +209,7 @@ exports.createPages = async ({
 
   webAppNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem['Web App'][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/web-app.jsx'),
       context: {
         id,
@@ -239,7 +239,7 @@ exports.createPages = async ({
 
   agileTeamsNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem['Agile Teams'][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/agile-teams.jsx'),
       context: {
         id,
@@ -269,7 +269,7 @@ exports.createPages = async ({
 
   teamExtensionsNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem['Team Extensions'][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/team-extensions.jsx'),
       context: {
         id,
@@ -299,7 +299,7 @@ exports.createPages = async ({
 
   productDesignNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem['Product Design'][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/product-design.jsx'),
       context: {
         id,
@@ -329,7 +329,7 @@ exports.createPages = async ({
 
   productDevelopmentNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem['Product Development'][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/product-development.jsx'),
       context: {
         id,
@@ -408,7 +408,7 @@ exports.createPages = async ({
   portfolioArchiveNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
 
     createPage({
-      path: urlSystem["Portfolio Archive"][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/portfolio-archive.jsx'),
       context: {
         id,
@@ -420,7 +420,7 @@ exports.createPages = async ({
 
     categoryArchiveNodes.forEach(({ language: { catLangSlug }, catSlug }) => {
       createPage({
-        path: urlSystem["Portfolio Archive"][slug] + catSlug,
+        path: urlSystem[templateName][slug] + catSlug,
         component: resolve('src/templates/portfolio-archive.jsx'),
         context: {
           id,
@@ -488,7 +488,7 @@ exports.createPages = async ({
     let pagesCount = Math.ceil(blogArchiveSubPages.length / 10) - 1
 
     createPage({
-      path: urlSystem["Blog Archive"][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/blog-archive.jsx'),
       context: {
         id,
@@ -500,7 +500,7 @@ exports.createPages = async ({
     for (let i = 0; i < pagesCount; i++) {
       let page = i + 2
       createPage({
-        path: urlSystem["Blog Archive"][slug] + page + '/',
+        path: urlSystem[templateName][slug] + page + '/',
         component: resolve('src/templates/blog-archive.jsx'),
         context: {
           id,
@@ -534,7 +534,7 @@ exports.createPages = async ({
   PostPageNodes.forEach(({ id, language: { slug }, blogPost: { currentPostUrl } }) => {
     if (currentPostUrl !== null) {
       createPage({
-        path: urlSystem["Blog Archive"][slug] + currentPostUrl,
+        path: urlSystem['Blog Archive'][slug] + currentPostUrl,
         component: resolve('src/templates/blog-post.jsx'),
         context: {
           id,
@@ -625,7 +625,7 @@ exports.createPages = async ({
 
   privacyPoliceNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem["Privacy Police"][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/privacy-police.jsx'),
       context: {
         id,
@@ -655,7 +655,7 @@ exports.createPages = async ({
 
   cookiePoliceNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem["Cookie Policy"][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/privacy-police.jsx'),
       context: {
         id,
@@ -685,7 +685,7 @@ exports.createPages = async ({
 
   termsAndConditionsNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
     createPage({
-      path: urlSystem["Terms And Conditions"][slug],
+      path: urlSystem[templateName][slug],
       component: resolve('src/templates/privacy-police.jsx'),
       context: {
         id,
@@ -695,4 +695,91 @@ exports.createPages = async ({
     });
   });
 
+  // Careers
+
+  const { data: { allWpPage: { careersNodes } } } = await graphql(`
+    query {
+      allWpPage(filter: {template: {templateName: {eq: "Careers Homepage"}}}) {
+        careersNodes: nodes {
+          id
+          language {
+            slug
+          }
+          template {
+            templateName
+          }
+        }
+      }
+    }
+  `);
+
+  careersNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
+    createPage({
+      path: urlSystem[templateName][slug],
+      component: resolve('src/templates/careers.jsx'),
+      context: {
+        id,
+        slug,
+        templateName
+      },
+    });
+  });
+
+  // Careers Posts
+
+  const { data: { allWpJobOffer: { careersPostNodes } } } = await graphql(`
+    query {
+      allWpJobOffer {
+        careersPostNodes : nodes {
+          id
+          language{
+            slug
+          }
+          careersPost {
+            currentPostUrl
+          }
+        }
+      }
+    }
+  `);
+
+  careersPostNodes.forEach(({ id, language: { slug }, careersPost: { currentPostUrl } }) => {
+    createPage({
+      path: urlSystem["Careers Homepage"][slug] + currentPostUrl,
+      component: resolve('src/templates/careers-post.jsx'),
+      context: {
+        id,
+        slug
+      },
+    });
+  });
+
+  // Careers Path
+
+  // const { data: { allWpCareerPath: { careersPathNodes } } } = await graphql(`
+  //   query {
+  //     allWpCareerPath {
+  //       careersPathNodes : nodes {
+  //         id
+  //         language{
+  //           slug
+  //         }
+  //         path : careerth_path {
+  //           currentPostUrl
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
+
+  // careersPathNodes.forEach(({ id, language: { slug }, path: { currentPostUrl } }) => {
+  //   createPage({
+  //     path: urlSystem["Careers Path"][slug] + currentPostUrl,
+  //     component: resolve('src/templates/careers-path.jsx'),
+  //     context: {
+  //       id,
+  //       slug
+  //     },
+  //   });
+  // });
 }
