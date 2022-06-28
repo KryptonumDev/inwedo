@@ -9,10 +9,10 @@ import SuccessStories from "../components/success-stories"
 import Seo from "../components/seo"
 
 const AboutPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { about } = allWpPage.nodes[0]
+  let { about, language } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} />
+      <Seo lang={language.slug} alternates={alternates} location={location} />
       <Hero data={about.hero} />
       <TwoColumnFlex data={about.twoColumnFlex} />
       <OurValues data={about.ourValues} />
@@ -42,6 +42,10 @@ export const query = graphql`
       }
         allWpPage(filter: {id: {eq: $id}}) {
             nodes {
+              language {
+                slug
+                name
+              }
                 about {
                     hero {
                     text
@@ -100,8 +104,9 @@ export const query = graphql`
                        name
                      }
                      downloadFile {
-                       publicUrl
-                       sourceUrl
+                       localFile{
+                         publicURL
+                       }
                      }
                      image {
                        altText
@@ -199,8 +204,9 @@ export const query = graphql`
                        name
                      }
                      downloadFile {
-                       publicUrl
-                       sourceUrl
+                       localFile{
+                         publicURL
+                       }
                      }
                      image {
                        altText

@@ -7,17 +7,8 @@ import { checkLanguageUrl } from "../../helpers/checkLanguageUrl"
 
 export default function Archive({ parentCategories, children, posts, data, location }) {
 
-    const [currentFilter, changeCurrentFilter] = useState(() => {
-        let url = 'all'
+    const [currentFilter, changeCurrentFilter] = useState('all')
 
-        parentCategories.nodes.forEach(el => {
-            if (location.pathname.includes(el.slug)) {
-                url = el.slug
-            }
-        })
-
-        return url
-    })
     const [currentSubFilter, changeCurrentSubFilter] = useState('all')
 
     const changeFilters = (slug) => {
@@ -26,21 +17,9 @@ export default function Archive({ parentCategories, children, posts, data, locat
     }
 
     const [showCount, changeShowCount] = useState(9)
-    const [defaultPosts] = useState(posts.nodes)
-    const [filtredPosts, changeFiltredPosts] = useState(() => {
-        if (currentFilter === 'all') {
-            return posts.nodes
-        }
 
-        return defaultPosts.filter(el => {
-            for (let i = 0; i < el.categoriesPortfolio.nodes.length; i++) {
-                if (el.categoriesPortfolio.nodes[i].slug === currentFilter) {
-                    changeCurrentFilter(currentFilter)
-                    return true
-                }
-            }
-        })
-    })
+    const [defaultPosts] = useState(posts.nodes)
+    const [filtredPosts, changeFiltredPosts] = useState(posts.nodes)
 
     useEffect(() => {
         changeFiltredPosts(defaultPosts.filter(el => {
@@ -66,9 +45,6 @@ export default function Archive({ parentCategories, children, posts, data, locat
             return false
         }))
     }, [currentFilter, currentSubFilter])
-
-    const url = checkLanguageUrl(location, '/case-studies/')
-    useUrlUpdate(currentFilter !== 'all' ? url + currentFilter : url)
 
     return (
         <>

@@ -53,7 +53,7 @@ export default function Filter({ setFilter, categories: { nodes }, activeFilters
                         </Item>
                         {arr.map((el, index) => (
                             <Item href={urlSystem['category'][language] + el.slug} className={el.active ? 'active' : null} key={el.slug} onClick={(e) => { setFilter(e, el.slug) }}>
-                                {el.name}
+                                {el.name.substr(3)}
                             </Item>
                         ))}
                     </Grid>
@@ -83,8 +83,8 @@ const Grid = styled.div`
 
 const Item = styled.a`
     white-space: nowrap;
-    padding: 4px 20px;
-    border: none;
+    padding: 2px 18px;
+    border: 2px solid transparent;
     background: #EBF2F8;
     border-radius: 8px;
     text-transform: uppercase;

@@ -15,7 +15,9 @@ export default function RecruitmentProcess({ data: { sectionTitle, seoTitle, bol
                         <p className="p">{plainText}</p>
                     </div>
                     <div className="video">
-                        video
+                        <video controls>
+                            <source src={video.localFile.publicURL} type="video/mp4" alt={video.localFile.alText}/>
+                        </video>
                     </div>
                 </Flex>
                 <Image className="desctop" image={pathImage.desctop.localFile.childImageSharp.gatsbyImageData} alt={pathImage.desctop.altText} />
@@ -37,6 +39,20 @@ const Wrapper = styled.section`
 
         @media (max-width: 640px) {
             margin-top: 0;
+        }
+    }
+
+    .video{
+        video{
+            max-width: 570px;
+            min-width: 400px;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+
+            @media (max-width: 1024px){
+                min-width: unset;
+            }
         }
     }
 `
@@ -105,8 +121,12 @@ const Flex = styled.div`
     align-items: center;
     gap: 32px;
 
+    @media (max-width: 1024px) {
+        flex-direction: column-reverse;
+    }
+
     .text{
-        max-width: 560px;
+        max-width: 570px;
 
         .line{
             opacity: .5;

@@ -2,13 +2,15 @@ import React from "react"
 import { graphql } from "gatsby"
 import BlogPostContent from "../components/blog-post-content"
 import Seo from "../components/seo"
+import Hero from "../components/hero/careerth-path"
 
 export default function CareerthPath({ data: { allWpCareerPath, alternates }, location }) {
-  let { path } = allWpPost.nodes[0]
+  let { path, language } = allWpCareerPath.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={blogPost.templateName} />
-      {/* <BlogPostContent data={blogPost.content} quickTitle={blogPost.quickNavigation.sectionTitle} /> */}
+      <Seo lang={language.slug} alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={path.templateName} />
+      <Hero data={path.heroPath}/>
+      <BlogPostContent data={path.content} quickTitle={path.quickNavigation.sectionTitle} />
     </main>
   )
 }
@@ -30,9 +32,29 @@ query BlogPathQuery($id: String!) {
     }
     allWpCareerPath(filter: {id: {eq: $id}}) {
         nodes{
+          language{
+              slug
+              locale
+          }
             id
             path : careerth_path{
               templateName
+              heroPath{
+                pageTitle
+                text
+                image{
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                button{
+                  name
+                  url
+                }
+              }
               quickNavigation{
                 sectionTitle
               }
@@ -41,6 +63,16 @@ query BlogPathQuery($id: String!) {
                 quickLink
                 quickLinkText
                 textField
+                table{
+                  tableTitle
+                  columnCount
+                  row{
+                    cellFirst
+                    cellSecond
+                    cellThird
+                    cellFourth
+                  }
+                }
                 testomontialDividerPost {
                   personName
                   personPosition
@@ -77,8 +109,9 @@ query BlogPathQuery($id: String!) {
                     name
                   }
                   downloadFile {
-                    publicUrl
-                    sourceUrl
+                    localFile{
+                      publicURL
+                    }
                   }
                   image {
                     altText

@@ -17,12 +17,10 @@ export default function TeamSizes({ data: { sectionTitle, subTitle, text, teamSi
                     <SizesGrid>
                         {teamSizes.map((el, index) => (
                             <SizesItem>
-                                {el.teamIcons.map(innerEl => (
-                                    <Image>
-                                        <GatsbyImage className="image" image={innerEl.teamIcon.localFile.childImageSharp.gatsbyImageData} alt={innerEl.teamIcon.altText} />
-                                    </Image>
-                                ))}
                                 <p>{el.teamSizeName}</p>
+                                <Image>
+                                    <GatsbyImage className="image" image={el.teamIcons.localFile.childImageSharp.gatsbyImageData} alt={el.teamIcons.altText} />
+                                </Image>
                             </SizesItem>
                         ))}
                     </SizesGrid>
@@ -39,10 +37,13 @@ const Wrapper = styled.section`
 const Content = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: center;
 
     @media (max-width: 1320px) {
         grid-template-columns: 1fr;
         grid-gap: 16px;
+        max-width: 700px;
+        margin: 0 auto;
     }
 `
 
@@ -64,7 +65,7 @@ const TextPart = styled.div`
     }
 
     @media (max-width: 1320px) {
-        max-width: 1000px;
+        max-width: 700px;
     }
 `
 
@@ -75,13 +76,11 @@ const SizesGrid = styled.div`
 `
 
 const SizesItem = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 32px;
     p{
         font-weight: 400;
         font-size: 20px;
         line-height: 151%;
+        margin-bottom: 12px;
     }
 `
 
@@ -89,15 +88,10 @@ const Image = styled.div`
     border-radius: 8px;
     box-shadow: var(--shadow);
     background-color: var(--color-white);
-    max-width: 70px;
-    width: 100%;
-    aspect-ratio: 1/1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;    
+    width: fit-content;
     .image{
         width: fit-content;
         height: fit-content;
-        max-width: 50px;
     }
 `

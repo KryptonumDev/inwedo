@@ -30,7 +30,7 @@ export default function BlogPostNav({ data, quickTitle }) {
             } else if (data[i].quickLink === 'sub') {
 
                 arr.push(data[i])
-                let current = i
+                let current = i // jakiś bug current jest zawsze undefined :D
                 let curr = i
 
                 const isNextArr = () => {
@@ -67,48 +67,51 @@ export default function BlogPostNav({ data, quickTitle }) {
 
     let isSubArr = 0
 
-    return (
-        <Wrapper>
-            <Content>
-                <h2 className="h4">{quickTitle}</h2>
-                <Nav>
-                    <ul>
-                        {tabs.map((el, outerIndex) => {
-                            let isPlainArr = 0
-                            if (el[0].quickLink !== 'main') {
-                                isSubArr += 1
-                            }
-                            return el.map((inEl, index, arr) => {
-                                if (inEl.quickLink === 'main') {
-                                    return (
-                                        <a href={'#' + inEl.quickLinkText.replace(/ /ig, '-')}>
-                                            <li className="main">{outerIndex + 1 - isSubArr + '. ' + inEl.quickLinkText}</li>
-                                        </a>
-                                    )
-                                } else if (inEl.quickLink === 'sub') {
-                                    return (
-                                        <a href={'#' + inEl.quickLinkText.replace(/ /ig, '-')}>
-                                            <li className="sub">{alphabetSub[index - isPlainArr] + '. ' + inEl.quickLinkText}</li>
-                                        </a>)
-
-                                } else {
-                                    isPlainArr += 1
-                                    return <ol>
-                                        {inEl.map((supEl, supIndex) => (
-                                            <li className="plain">
-                                                <a href={'#' + supEl.quickLinkText.replace(/ /ig, '-')}>{alphabetPlain[supIndex] + '. ' + supEl.quickLinkText}</a>
-                                            </li>
-                                        ))}
-                                    </ol>
+    if (tabs.length) {
+        return (
+            <Wrapper>
+                <Content>
+                    <h2 className="h4">{quickTitle}</h2>
+                    <Nav>
+                        <ul>
+                            {tabs.map((el, outerIndex) => {
+                                let isPlainArr = 0
+                                if (el[0].quickLink !== 'main') {
+                                    isSubArr += 1
                                 }
-                            })
+                                return el.map((inEl, index, arr) => {
+                                    if (inEl.quickLink === 'main') {
+                                        return (
+                                            <a href={'#' + inEl.quickLinkText.replace(/ /ig, '-')}>
+                                                <li className="main">{outerIndex + 1 - isSubArr + '. ' + inEl.quickLinkText}</li>
+                                            </a>
+                                        )
+                                    } else if (inEl.quickLink === 'sub') {
+                                        return (
+                                            <a href={'#' + inEl.quickLinkText.replace(/ /ig, '-')}>
+                                                <li className="sub">{alphabetSub[index - isPlainArr] + '. ' + inEl.quickLinkText}</li>
+                                            </a>)
 
-                        })}
-                    </ul>
-                </Nav>
-            </Content>
-        </Wrapper>
-    )
+                                    } else {
+                                        isPlainArr += 1
+                                        return <ol>
+                                            {inEl.map((supEl, supIndex) => (
+                                                <li className="plain">
+                                                    <a href={'#' + supEl.quickLinkText.replace(/ /ig, '-')}>{alphabetPlain[supIndex] + '. ' + supEl.quickLinkText}</a>
+                                                </li>
+                                            ))}
+                                        </ol>
+                                    }
+                                })
+
+                            })}
+                        </ul>
+                    </Nav>
+                </Content>
+            </Wrapper>
+        )
+    }
+    return null
 }
 
 const Wrapper = styled.section`

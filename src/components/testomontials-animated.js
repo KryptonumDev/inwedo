@@ -1,8 +1,8 @@
 import React, { useRef } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
-import { motion } from "framer-motion";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { motion } from "framer-motion"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 export default function TestomontialsAnimated({ data: { text, seectionTitle, testomontialsFirstRow, testomontialsSecondRow } }) {
     const constraintsRef = useRef(null);

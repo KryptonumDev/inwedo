@@ -6,10 +6,10 @@ import BlogAuthorPosts from "../components/blog-author-posts"
 import Seo from "../components/seo"
 
 export default function BlogPost({ data: { allWpPost, otherPosts, alternates }, location }) {
-  let { blogPost, categories, date, authors } = allWpPost.nodes[0]
+  let { blogPost, categories, date, authors, language } = allWpPost.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={blogPost.templateName} />
+      <Seo lang={language.slug} alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={blogPost.templateName} />
       <Hero data={blogPost.heroPost} categories={categories} date={date} authors={authors} />
       <BlogPostContent data={blogPost.content} quickTitle={blogPost.quickNavigation.sectionTitle} />
       <BlogAuthorPosts data={otherPosts.nodes} title={blogPost.otherPosts.sectionTitle} />
@@ -79,6 +79,10 @@ query BlogPostQuery($id: String!) {
     }
     allWpPost(filter: {id: {eq: $id}}) {
         nodes{
+          language {
+            slug
+            name
+          }
             blogPost{
               templateName
               otherPosts {
@@ -140,8 +144,9 @@ query BlogPostQuery($id: String!) {
                     name
                   }
                   downloadFile {
-                    publicUrl
-                    sourceUrl
+                    localFile{
+                      publicURL
+                    }
                   }
                   image {
                     altText
@@ -150,6 +155,16 @@ query BlogPostQuery($id: String!) {
                         gatsbyImageData
                       }
                     }
+                  }
+                }
+                table{
+                  tableTitle
+                  columnCount
+                  row{
+                    cellFirst
+                    cellSecond
+                    cellThird
+                    cellFourth
                   }
                 }
               }

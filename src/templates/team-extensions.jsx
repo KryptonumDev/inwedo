@@ -13,10 +13,10 @@ import FAQ from "../components/faq"
 import Seo from "../components/seo"
 
 const TeamExtensionsPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { teamExtensions } = allWpPage.nodes[0]
+  let { teamExtensions, language } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} />
+      <Seo lang={language.slug} alternates={alternates} location={location} />
       <Hero data={teamExtensions.heroTeamExtensions} />
       <TwoColumnFlex data={teamExtensions.twoColumnFlexTeamExtensions} />
       <TechStack data={teamExtensions.techStackTeamExtensions} />
@@ -50,6 +50,10 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
   }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
+        language{
+          slug
+          locale
+        }
         teamExtensions {
             heroTeamExtensions {
                 pageTitle
@@ -132,8 +136,9 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
                 name
               }
               downloadFile {
-                publicUrl
-                sourceUrl
+                localFile{
+                  publicURL
+                }
               }
               image {
                 altText
@@ -209,8 +214,9 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
                 name
               }
               downloadFile {
-                publicUrl
-                sourceUrl
+                localFile{
+                  publicURL
+                }
               }
               image {
                 altText

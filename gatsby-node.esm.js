@@ -756,30 +756,31 @@ exports.createPages = async ({
 
   // Careers Path
 
-  // const { data: { allWpCareerPath: { careersPathNodes } } } = await graphql(`
-  //   query {
-  //     allWpCareerPath {
-  //       careersPathNodes : nodes {
-  //         id
-  //         language{
-  //           slug
-  //         }
-  //         path : careerth_path {
-  //           currentPostUrl
-  //         }
-  //       }
-  //     }
-  //   }
-  // `);
+  const { data: { allWpCareerPath: { careersPathNodes } } } = await graphql(`
+    query {
+      allWpCareerPath {
+        careersPathNodes : nodes {
+          id
+          language{
+            slug
+          }
+          path : careerth_path {
+            currentPostUrl
+          }
+        }
+      }
+    }
+  `);
 
-  // careersPathNodes.forEach(({ id, language: { slug }, path: { currentPostUrl } }) => {
-  //   createPage({
-  //     path: urlSystem["Careers Path"][slug] + currentPostUrl,
-  //     component: resolve('src/templates/careers-path.jsx'),
-  //     context: {
-  //       id,
-  //       slug
-  //     },
-  //   });
-  // });
+  careersPathNodes.forEach(({ id, language: { slug }, path: { currentPostUrl } }) => {
+    createPage({
+      path: urlSystem["Careers Path"][slug] + currentPostUrl,
+      component: resolve('src/templates/careers-path.jsx'),
+      context: {
+        id,
+        slug
+      },
+    });
+  });
+  
 }

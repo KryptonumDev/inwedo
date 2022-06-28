@@ -2,6 +2,7 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { urlSystem } from "../../contstants/urlSystem"
 import { Container } from "../../style"
 
 export default function Post({ data: { blogPost: { previewCard, currentPostUrl }, categories: { nodes }, authors, date } }) {
@@ -16,9 +17,9 @@ export default function Post({ data: { blogPost: { previewCard, currentPostUrl }
                         <TextPart>
                             <Categories>
                                 {nodes.map(el => (
-                                    <div className="item">
+                                    <Link to={urlSystem['category'][el.language.slug] + el.blogCategory.categoryUrl} className="item">
                                         {el.name}
-                                    </div>
+                                    </Link>
                                 ))}
                             </Categories>
                             {authors.nodes[0]
@@ -49,7 +50,6 @@ const Content = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 64px;
-    align-items: center;
 `
 
 const TextPart = styled.div`

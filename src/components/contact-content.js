@@ -95,9 +95,13 @@ const Person = styled.div`
         margin-top: 24px;
 
         .image{
-            aspect-ratio: 1/1;
             border-radius: 50%;
-            width: max-content;
+            width: fit-content;
+            height: fit-content;
+
+            img{
+                border-radius: 50%;
+            }
         }
 
         a{

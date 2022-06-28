@@ -13,10 +13,10 @@ import RelatedServices from "../components/related-services"
 import Seo from "../components/seo"
 
 const HowWeWorkPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { howWeWork } = allWpPage.nodes[0]
+  let { howWeWork, language } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} />
+      <Seo lang={language.slug} alternates={alternates} location={location} />
       <Hero data={howWeWork.heroHowWeWork} />
       <TwoColumnFlex data={howWeWork.twoColumnFlexHowWeWork} />
       <CardsWithTitle data={howWeWork.cardsWithLinks} />
@@ -52,6 +52,10 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
   }
     allWpPage(filter: {id: {eq: $id}}) {
           nodes {
+            language {
+              slug
+              name
+            }
             howWeWork {
                 heroHowWeWork {
                   pageTitle
@@ -137,8 +141,9 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     name
                   }
                   downloadFile {
-                    publicUrl
-                    sourceUrl
+                    localFile{
+                      publicURL
+                    }
                   }
                   image {
                     altText
@@ -192,8 +197,9 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     name
                   }
                   downloadFile {
-                    publicUrl
-                    sourceUrl
+                    localFile{
+                      publicURL
+                    }
                   }
                   image {
                     altText
@@ -248,8 +254,9 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     name
                   }
                   downloadFile {
-                    publicUrl
-                    sourceUrl
+                    localFile{
+                      publicURL
+                    }
                   }
                   image {
                     altText
@@ -292,8 +299,9 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     name
                   }
                   downloadFile {
-                    publicUrl
-                    sourceUrl
+                    localFile{
+                      publicURL
+                    }
                   }
                   image {
                     altText

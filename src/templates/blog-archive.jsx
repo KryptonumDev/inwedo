@@ -8,9 +8,9 @@ export default function BlogArchive({ data: { allWpPage, allWpPost, allWpCategor
   let { blogArchive, language } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} />
+      <Seo lang={language.slug} alternates={alternates} location={location} />
       <Hero data={blogArchive.heroBlog} />
-      <Archive location={location} cta={blogArchive.callToActionBlog} cta2={blogArchive.callToActionBlogSecond} data={allWpPost} categories={allWpCategory} language={language.slug} />
+      <Archive otherData={blogArchive.posts} location={location} cta={blogArchive.callToActionBlog} cta2={blogArchive.callToActionBlogSecond} data={allWpPost} categories={allWpCategory} language={language.slug} />
     </main>
   )
 }
@@ -39,6 +39,11 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                 boldText
                 plainText
               }
+              posts{
+                searchInputPlaceholder
+                submitButtonText
+                noPostsText
+              }
               callToActionBlog{
                 typeOfCta
                 title
@@ -53,8 +58,9 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                   name
                 }
                 downloadFile {
-                  publicUrl
-                  sourceUrl
+                  localFile{
+                    publicURL
+                  }
                 }
                 image {
                   altText
@@ -79,8 +85,9 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                   name
                 }
                 downloadFile {
-                  publicUrl
-                  sourceUrl
+                  localFile{
+                    publicURL
+                  }
                 }
                 image {
                   altText
@@ -117,6 +124,9 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
           }
           categories {
             nodes {
+              language{
+                slug
+              }
               name
               slug
               blogCategory {

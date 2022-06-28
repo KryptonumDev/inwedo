@@ -3,12 +3,12 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from 'styled-components'
 
-export default ({ title, button, image, file }) => (
+export default ({ title, button, image, downloadFile }) => (
     <ContentWrapper>
         <Content>
             <div className="content">
                 <Title className="h1">{title}</Title>
-                <Button download href={file} className='button-white'>
+                <Button download href={downloadFile.localFile.publicURL} className='button-white'>
                     <span className="colored">{button}</span>
                 </Button>
             </div>

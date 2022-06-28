@@ -11,10 +11,10 @@ import FAQ from "../components/faq"
 import Seo from "../components/seo"
 
 const WebAppPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { webApp } = allWpPage.nodes[0]
+  let { webApp, language } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} />
+      <Seo lang={language.slug} alternates={alternates} location={location} />
       <Hero data={webApp.heroWebApp} />
       <TwoColumnFlex data={webApp.twoColumnFlexWebApp} />
       <TestomontialDivider data={webApp.testomontialDividerWebApp} />
@@ -46,6 +46,9 @@ query WebAppPageQuery($id: String!, $templateName: String!) {
   }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
+        language {
+          slug
+        }
         webApp {
           heroWebApp {
             pageTitle
@@ -116,8 +119,9 @@ query WebAppPageQuery($id: String!, $templateName: String!) {
               name
             }
             downloadFile {
-              publicUrl
-              sourceUrl
+              localFile{
+                publicURL
+              }
             }
             image {
               altText
@@ -189,8 +193,9 @@ query WebAppPageQuery($id: String!, $templateName: String!) {
               name
             }
             downloadFile {
-              publicUrl
-              sourceUrl
+              localFile{
+                publicURL
+              }
             }
             image {
               altText

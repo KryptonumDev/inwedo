@@ -13,10 +13,10 @@ import FAQ from "../components/faq"
 import Seo from "../components/seo"
 
 const DiscoveryWorkshopPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { discoveryWorkshop } = allWpPage.nodes[0]
+  let { discoveryWorkshop, language } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} />
+      <Seo lang={language.slug} alternates={alternates} location={location} />
       <Hero data={discoveryWorkshop.heroWorkshop} />
       <OneColumnText data={discoveryWorkshop.oneColumnTextPart} />
       <TestomontialDivider data={discoveryWorkshop.testomontialDividerWorkshop} />
@@ -50,6 +50,10 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
   }
     allWpPage(filter: {id: {eq: $id}}) {
           nodes {
+            language {
+              slug
+              name
+            }
             discoveryWorkshop {
               heroWorkshop {
                 pageTitle
@@ -119,8 +123,9 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     name
                   }
                   downloadFile {
-                    publicUrl
-                    sourceUrl
+                    localFile{
+                      publicURL
+                    }
                   }
                   image {
                     altText
@@ -188,8 +193,9 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     name
                   }
                   downloadFile {
-                    publicUrl
-                    sourceUrl
+                    localFile{
+                      publicURL
+                    }
                   }
                   image {
                     altText

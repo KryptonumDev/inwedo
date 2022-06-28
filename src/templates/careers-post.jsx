@@ -8,16 +8,16 @@ import RecruitmentProcess from '../components/careers-recruitment'
 import ApointmentWithHr from "../components/careers-appointment-hr"
 
 export default function CareersPost({ data: { allWpJobOffer, alternates }, location }) {
-  let { careersPost } = allWpJobOffer.nodes[0]
+  let { careersPost, language } = allWpJobOffer.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={careersPost.templateName} />
+      <Seo lang={language.slug} alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={careersPost.templateName} />
       <Hero data={careersPost.heroJob} location={location} />
       {careersPost.textParts.map(el => (
         <CareersTextParts data={el} />
       ))}
       <Benefits data={careersPost.benefitsJob} />
-      {/* <RecruitmentProcess data={careersPost.recruitmentProcessJob} /> novideo */}
+      <RecruitmentProcess data={careersPost.recruitmentProcessJob} />
       <ApointmentWithHr data={careersPost.appointmentWithHrJob} />
     </main>
   )
@@ -40,6 +40,10 @@ export const query = graphql`
         }
         allWpJobOffer(filter: {id: {eq: $id}}){
             nodes{
+              language{
+                  slug
+                  locale
+              }
                 id
                 careersPost{
                     currentPostUrl
@@ -80,7 +84,12 @@ export const query = graphql`
                         seoTitle
                         boldText
                         plainText
-                        video
+                        video {
+                          altText
+                          localFile {
+                            publicURL
+                          }
+                        }
                         applyButton{
                             name
                             url

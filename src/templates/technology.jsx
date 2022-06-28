@@ -12,10 +12,10 @@ import TechStack from "../components/tech-stack"
 import Seo from "../components/seo"
 
 const TechnologyPage = ({ data: { allWpTechnology, alternates }, location }) => {
-  let { technology } = allWpTechnology.nodes[0]
+  let { technology, language } = allWpTechnology.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} type='technology' template='Technology' currTemplate={technology.templateName} />
+      <Seo lang={language.slug} alternates={alternates} location={location} type='technology' template='Technology' currTemplate={technology.templateName} />
       <Hero data={technology.heroTechnology} />
       <TwoColumnFlex technology={true} data={technology.twoColumnFlexTechnologySecond} />
       <ReasonsToUse data={technology.reasonsToUse} />
@@ -51,6 +51,10 @@ query TechonologyPageQuery($id: String!) {
     }
     allWpTechnology(filter: {id: {eq: $id}}) {
       nodes {
+        language {
+          slug
+          name
+        }
         technology{
             currentPageUrl
             templateName
@@ -138,8 +142,9 @@ query TechonologyPageQuery($id: String!) {
                 name
               }
               downloadFile {
-                publicUrl
-                sourceUrl
+                localFile{
+                  publicURL
+                }
               }
               image {
                 altText
@@ -164,8 +169,9 @@ query TechonologyPageQuery($id: String!) {
                 name
               }
               downloadFile {
-                publicUrl
-                sourceUrl
+                localFile{
+                  publicURL
+                }
               }
               image {
                 altText
@@ -190,8 +196,9 @@ query TechonologyPageQuery($id: String!) {
                 name
               }
               downloadFile {
-                publicUrl
-                sourceUrl
+                localFile{
+                  publicURL
+                }
               }
               image {
                 altText

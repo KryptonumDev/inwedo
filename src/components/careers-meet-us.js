@@ -1,11 +1,13 @@
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useRef } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
 import Quote from './../images/quote.png'
+import { motion } from "framer-motion"
 
 export default function MeetUs({ data: { link, icons, image, testomontialsFirstRow, testomontialsSecondRow, sectionTitle, seoTitle, boldText, plainText } }) {
+    const constraintsRef = useRef(null);
     return (
         <Wrapper>
             <Container>
@@ -24,20 +26,22 @@ export default function MeetUs({ data: { link, icons, image, testomontialsFirstR
                         </div>
                     </div>
                 </Flex>
-                <FirstRow>
-                    {testomontialsFirstRow.map(el => (
-                        <Item  quote={Quote}>
-                            <p>{el.testomontialText}</p>
-                        </Item>
-                    ))}
-                </FirstRow>
-                <SecondRow>
-                    {testomontialsSecondRow.map(el => (
-                        <Item  quote={Quote}>
-                            <p>{el.testomontialText}</p>
-                        </Item>
-                    ))}
-                </SecondRow>
+                <div ref={constraintsRef} >
+                    <FirstRow drag='x' dragConstraints={constraintsRef}>
+                        {testomontialsFirstRow.map(el => (
+                            <Item quote={Quote}>
+                                <p>{el.testomontialText}</p>
+                            </Item>
+                        ))}
+                    </FirstRow>
+                    <SecondRow drag='x' dragConstraints={constraintsRef}>
+                        {testomontialsSecondRow.map(el => (
+                            <Item quote={Quote}>
+                                <p>{el.testomontialText}</p>
+                            </Item>
+                        ))}
+                    </SecondRow>
+                </div>
             </Container>
         </Wrapper>
     )
@@ -117,26 +121,28 @@ const Flex = styled(Link)`
     }
 `
 
-const FirstRow = styled.div`
-    margin-top: 128px;
+const FirstRow = styled(motion.div)`
+    margin-top: clamp(64px, ${92 / 768 * 100}vw, 128px);
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 32px;
-    margin-left: 100px;
+    width: max-content;
 `
 
-const SecondRow = styled.div`
+const SecondRow = styled(motion.div)`
     margin-top: 64px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 32px;
-    margin-left: -200px;
+    width: max-content;
+    position: relative;
+    left: -25%;
 `
 
 const Item = styled.div`
     width: 593px;
     box-sizing: border-box;
-    padding: 78px 128px 32px 69px;
+    padding: clamp(42px, ${60 / 768 * 100}vw, 78px) clamp(92px, ${110 / 768 * 100}vw, 128px) 32px clamp(48px, ${58 / 768 * 100}vw, 68px);
     box-shadow: var(--shadow);
     background-color: #fff;
     border-radius: 24px;
@@ -148,11 +154,22 @@ const Item = styled.div`
         position: absolute;
         right: 40px;
         top: 40px;
+
+        @media (max-width: 1024px) {
+            transform: scale(.6);
+            right: 30px;
+            top: 20px;
+        }
     }
 
     p{
         font-weight: 300;
         font-size: 16px;
         line-height: 160%;
+    }
+
+    @media (max-width: 639px) {
+        width: calc(100vw - 88px);
+        min-width: 430px;
     }
 `

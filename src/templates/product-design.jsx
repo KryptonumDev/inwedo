@@ -15,10 +15,10 @@ import FAQ from "../components/faq"
 import Seo from "../components/seo"
 
 const ProductDesignPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { productDesign } = allWpPage.nodes[0]
+  let { productDesign, language } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} />
+      <Seo lang={language.slug} alternates={alternates} location={location} />
       <Hero data={productDesign.heroProductDesign} />
       <DesignProcess data={productDesign.designProcess} />
       <TestomontialDivider data={productDesign.testomontialDividerProductDesign} />
@@ -57,6 +57,10 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
   }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
+        language {
+          slug
+          name
+        }
         productDesign {
             heroProductDesign {
                 pageTitle
@@ -118,8 +122,9 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                 name
               }
               downloadFile {
-                publicUrl
-                sourceUrl
+                localFile{
+                  publicURL
+                }
               }
               image {
                 altText
@@ -249,8 +254,9 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                 name
               }
               downloadFile {
-                publicUrl
-                sourceUrl
+                localFile{
+                  publicURL
+                }
               }
               image {
                 altText
@@ -323,8 +329,9 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                 name
               }
               downloadFile {
-                publicUrl
-                sourceUrl
+                localFile{
+                  publicURL
+                }
               }
               image {
                 altText

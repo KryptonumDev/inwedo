@@ -9,7 +9,7 @@ export default function Hero({ data: { pageTitle, text, topImage }, location }) 
         let name = location.search.replace('?name=', '')
         title = pageTitle.replace('<name>', name)
     } else {
-        title = pageTitle.replace('<name>', '')
+        title = pageTitle.replace(' <name>', '')
     }
 
     return (

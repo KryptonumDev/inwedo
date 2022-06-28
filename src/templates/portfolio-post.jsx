@@ -15,10 +15,10 @@ import OtherCaseStudies from "../components/other-case-studies"
 import Seo from "../components/seo"
 
 const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts, alternates }, location }) => {
-  const { caseStudies } = allWpCaseStudies.nodes[0]
+  const { caseStudies, language } = allWpCaseStudies.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} type='technology' template='Portfolio Archive' currTemplate={caseStudies.templateName} />
+      <Seo lang={language.slug} alternates={alternates} location={location} type='technology' template='Portfolio Archive' currTemplate={caseStudies.templateName} />
       <Hero data={caseStudies.heroportfolio} />
       {caseStudies.sectionController.oneColumnTextPart
         ? <OneColumnText alternative={true} data={caseStudies.oneColumnTextPartPortfolio} />
@@ -243,8 +243,9 @@ query PortfolioPageQuery($id: String!) {
               name
             }
             downloadFile {
-              publicUrl
-              sourceUrl
+              localFile{
+                publicURL
+              }
             }
             image {
               altText
@@ -269,8 +270,9 @@ query PortfolioPageQuery($id: String!) {
               name
             }
             downloadFile {
-              publicUrl
-              sourceUrl
+              localFile{
+                publicURL
+              }
             }
             image {
               altText

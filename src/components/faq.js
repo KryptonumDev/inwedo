@@ -34,6 +34,14 @@ export default function FAQ({ data: { title, faqElement } }) {
 
 const Wrapper = styled.section`
     margin-top: var(--margin-section);
+
+        details > summary {
+          list-style: none;
+        }
+        
+        details > summary::-webkit-details-marker {
+          display: none;
+        }
 `
 
 const Title = styled.h2`
@@ -120,6 +128,7 @@ const Item = styled.details`
     }
 
     summary{
+        cursor: pointer;
         span{
             color: #495057;
             font-weight: 600;

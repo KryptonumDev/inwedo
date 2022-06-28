@@ -60,9 +60,9 @@ export default function Footer({ location }) {
     return (
         <Wrapper>
             <Container>
+                <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
                 <Content>
                     <div>
-                        <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
                         <div className="additional">
                             {additionalInform.map(el => (
                                 <p>{el.row}</p>
@@ -70,7 +70,7 @@ export default function Footer({ location }) {
                         </div>
                         <Social>
                             {socialLinks.map(el => (
-                                <a href={el.link} ariaLabel={el.ariaLabel}>
+                                <a rel="me" href={el.link} ariaLabel={el.ariaLabel}>
                                     <img src={el.icon.sourceUrl} alt={el.icon.altText} />
                                 </a>
                             ))}
@@ -102,15 +102,15 @@ export default function Footer({ location }) {
 
 const Wrapper = styled.footer`
     margin-top: var(--margin-section);
+
+    .logo{
+        margin-bottom: 32px;
+    }
 `
 
 const Content = styled.div`
     display: flex;
     justify-content: space-between;
-
-    .logo{
-        margin-bottom: 32px;
-    }
 
     .additional{
         padding-left: 22px;
@@ -137,7 +137,7 @@ const Content = styled.div`
         grid-gap: 14px;
 
         li{
-
+            max-width: 280px;
             a{
                 
                 font-weight: 300;

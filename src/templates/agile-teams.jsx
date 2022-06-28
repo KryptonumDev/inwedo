@@ -15,10 +15,10 @@ import FAQ from "../components/faq"
 import Seo from "../components/seo"
 
 const AgileTeamsPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { agileTeams } = allWpPage.nodes[0]
+  let { agileTeams, language } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} />
+      <Seo lang={language.slug} alternates={alternates} location={location} />
       <Hero data={agileTeams.heroAgileTeams} />
       <OurFocuses data={agileTeams.ourFocusesAgileTeams} />
       <MiniFaq data={agileTeams.miniFaqAgileTeams} />
@@ -53,6 +53,10 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
   }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
+        language {
+          slug
+          name
+        }
         agileTeams {
             heroAgileTeams {
                 pageTitle
@@ -111,15 +115,13 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                 teamSizes{
                     teamSizeName
                     teamIcons{
-                        teamIcon{
                             altText
                             localFile {
-                            childImageSharp {
+                              childImageSharp {
                                 gatsbyImageData
-                            }
+                              }
                             }
                         }
-                    }
                 }
             }
             techStack{
@@ -218,8 +220,9 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                 name
               }
               downloadFile {
-                publicUrl
-                sourceUrl
+                localFile{
+                  publicURL
+                }
               }
               image {
                 altText

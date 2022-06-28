@@ -2,6 +2,7 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { urlSystem } from "../../contstants/urlSystem"
 import { Container } from "../../style"
 
 export default function PostGrid({ data, from, to }) {
@@ -18,7 +19,9 @@ export default function PostGrid({ data, from, to }) {
                                         <Content>
                                             <Categories>
                                                 {el.categories.nodes.map(el => (
-                                                    <div className="item">{el.name}</div>
+                                                    <Link to={urlSystem['category'][el.language.slug] + el.blogCategory.categoryUrl} className="item">
+                                                        {el.name}
+                                                    </Link>
                                                 ))}
                                             </Categories>
                                             {el.authors.nodes[0]

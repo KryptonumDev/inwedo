@@ -38,10 +38,17 @@ const Content = styled.div`
         font-size: clamp(14px, 2.08vw, 16px);
         line-height: 160%;
         font-feature-settings: 'ss01' on;
-
-        a{
-            font-weight: 700;
-            color: #0B5CD6;
+    }
+        
+    a{
+        font-weight: 700;
+        color: #0B5CD6;
+        
+        &.button {
+            color: #fff;
+        }
+        &.btn{
+            color: #fff;
         }
     }
 

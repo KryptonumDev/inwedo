@@ -17,10 +17,10 @@ import FAQ from "../components/faq"
 import JoinUs from "../components/careers-join-us"
 
 const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCategoryJob, allWpSeniority }, location }) => {
-  let { careersHomepage } = allWpPage.nodes[0]
+  let { careersHomepage, language } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} />
+      <Seo lang={language.slug} alternates={alternates} location={location} />
       <Hero data={careersHomepage.heroCareers} />
       <JoinUs data={careersHomepage.joinUs} offers={allWpJobOffer.nodes} categories={allWpCategoryJob.nodes} seniority={allWpSeniority.nodes}/>
       <ApointmentWithHr data={careersHomepage.appointmentWithHr} />
@@ -31,10 +31,10 @@ const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCatego
       <CallToAction data={careersHomepage.callToActionCareers} />
       <ProjectsYouCanWorkOn data={careersHomepage.projectsYouCanWorkOnCareers} />
       <Benefits data={careersHomepage.benefits} />
-      {/* <MeetUs data={careersHomepage.meetUs}/> nomobile */}
-      {/* <RecruitmentProcess data={careersHomepage.recruitmentProcess}/> novideo */}
+      <MeetUs data={careersHomepage.meetUs}/>
+      <RecruitmentProcess data={careersHomepage.recruitmentProcess}/>
       <ApointmentWithHr data={careersHomepage.appointmentWithHr} />
-      {/* <OnBoarding data={careersHomepage.onboarding}/> sticky + white background */}
+      <OnBoarding data={careersHomepage.onboarding}/>
       <CallToAction data={careersHomepage.callToActionCareersSecond} />
       {careersHomepage.faqCareers.map(el => (
         <FAQ data={el} />
@@ -99,6 +99,10 @@ query CareersPageQuery($id: String!, $templateName: String!) {
     }
     allWpPage(filter: {id: {eq: $id}}) {
           nodes {
+            language {
+              slug
+              name
+            }
             careersHomepage{
                 heroCareers {
                   pageTitle
@@ -271,8 +275,9 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     name
                   }
                   downloadFile {
-                    publicUrl
-                    sourceUrl
+                    localFile{
+                      publicURL
+                    }
                   }
                   image {
                     altText
@@ -297,8 +302,9 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     name
                   }
                   downloadFile {
-                    publicUrl
-                    sourceUrl
+                    localFile{
+                      publicURL
+                    }
                   }
                   image {
                     altText
@@ -391,7 +397,12 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                   seoTitle
                   boldText
                   plainText
-                  video
+                  video {
+                    altText
+                    localFile {
+                      publicURL
+                    }
+                  }
                   pathImage{
                     tablet{
                       altText

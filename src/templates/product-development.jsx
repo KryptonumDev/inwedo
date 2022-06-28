@@ -13,10 +13,10 @@ import ProcessOptimisation from "../components/process-optimisation"
 import Seo from "../components/seo"
 
 const ProductDevelopmentPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { productDevelopment } = allWpPage.nodes[0]
+  let { productDevelopment, language } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} />
+      <Seo lang={language.slug} alternates={alternates} location={location} />
       <Hero data={productDevelopment.heroProductDevelop} />
       <TwoColumnFlex data={productDevelopment.twoColumnFlexProductDevelopment} />
       <DevelopmentProcess data={productDevelopment.developmentProcess} />
@@ -52,6 +52,10 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
   }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
+        language {
+          slug
+          name
+        }
         productDevelopment {
             heroProductDevelop {
                 pageTitle
@@ -103,8 +107,9 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 name
               }
               downloadFile {
-                publicUrl
-                sourceUrl
+                localFile{
+                  publicURL
+                }
               }
               image {
                 altText
@@ -129,8 +134,9 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 name
               }
               downloadFile {
-                publicUrl
-                sourceUrl
+                localFile{
+                  publicURL
+                }
               }
               image {
                 altText
@@ -155,8 +161,9 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 name
               }
               downloadFile {
-                publicUrl
-                sourceUrl
+                localFile{
+                  publicURL
+                }
               }
               image {
                 altText

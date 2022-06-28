@@ -49,10 +49,11 @@
 //                   url
 //                   name
 //                 }
-//                 downloadFile {
-//                   publicUrl
-//                   sourceUrl
-//                 }
+                //   downloadFile {
+                //     localFile{
+                //       publicURL
+                //     }
+                //   }
 //                 image {
 //                   altText
 //                   localFile {

@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Image from "./blog-post-image"
 import BlogPostNav from "./blog-post-nav"
+import Table from "./blog-post-table"
 import Text from "./blog-post-text"
 import CallToAction from './cta'
 import TestomontialDivider from './testomontial-divider'
@@ -21,6 +22,8 @@ export default function BlogPostContent({ data, quickTitle }) {
                         return <CallToAction small={true} data={el.callToActionPost} index={id}/>
                     case 'testomontial':
                         return <TestomontialDivider small={true} data={el.testomontialDividerPost} index={id}/>
+                    case 'table':
+                        return <Table data={el.table} index={id}/>
                     default :
                         return null
                 }

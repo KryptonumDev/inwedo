@@ -8,10 +8,10 @@ import Testomontials from "../components/testomontials-slider"
 import Seo from "../components/seo"
 
 const ServicesPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { services } = allWpPage.nodes[0]
+  let { services, language } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo alternates={alternates} location={location} />
+      <Seo lang={language.slug} alternates={alternates} location={location} />
       <Hero data={services.heroServices} />
       <DevelopmentCards data={services.developmentCards} />
       <CallToAction data={services.callToActionServices} />
@@ -41,6 +41,10 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
   }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
+        language {
+          slug
+          name
+        }
         services {
           heroServices {
             text
@@ -133,8 +137,9 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
               name
             }
             downloadFile {
-              publicUrl
-              sourceUrl
+              localFile{
+                publicURL
+              }
             }
           }
           developmentCardsSecond {
@@ -212,8 +217,9 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
               name
             }
             downloadFile {
-              publicUrl
-              sourceUrl
+              localFile{
+                publicURL
+              }
             }
             image {
               altText
