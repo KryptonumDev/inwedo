@@ -21,6 +21,7 @@ export const urlSystem = {
   
     "Portfolio Archive": { pl: '/pl/case-studies/', en: '/case-studies/' },
     'Blog Archive': { pl: '/pl/blog/', en: '/blog/' },
+    'Blog Post': {pl: '/pl/blog/post/', en: '/blog/post/'},
     'author': { pl: '/autor/', en: '/author/' },
     'category': { pl: '/pl/blog/kategoria/', en: '/blog/category/' },
   }

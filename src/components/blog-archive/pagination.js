@@ -1,7 +1,8 @@
+import { Link } from "gatsby"
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
-export default function Pagination({ currentPage, itemCount, changeCurrentPage }) {
+export default function Pagination({ defaultUrl, currentPage, itemCount, changeCurrentPage }) {
     let buttons = []
 
     const [pagesCount, changePagesCount] = useState(Math.ceil(itemCount / 10))
@@ -19,17 +20,24 @@ export default function Pagination({ currentPage, itemCount, changeCurrentPage }
     }
 
     if (itemCount < 51) {
+
         return (
             <Wrapper>
-                <Button disabled={currentPage === 1} onClick={() => { changeCurrentPage(currentPage - 1) }}>
+                <Button href={currentPage === 1 ? defaultUrl : (defaultUrl + (currentPage - 1))} className={currentPage === 1 ? 'disabled' : ''} onClick={(e) => { changeCurrentPage(e, currentPage - 1) }}>
                     <span>{'<'}</span>
                 </Button>
-                {buttons.map(el => (
-                    <Button active={currentPage === el} onClick={() => { changeCurrentPage(el) }}>
-                        <span>{el}</span>
-                    </Button>
-                ))}
-                <Button disabled={currentPage === pagesCount} onClick={() => { changeCurrentPage(currentPage + 1) }}>
+                {buttons.map(el => {
+                    let href = defaultUrl + el
+                    if (el === 1) {
+                        href = defaultUrl
+                    }
+                    return (
+                        <Button href={href} active={currentPage === el} onClick={(e) => { changeCurrentPage(e, el) }}>
+                            <span>{el}</span>
+                        </Button>
+                    )
+                })}
+                <Button href={currentPage === pagesCount ? (defaultUrl + pagesCount) : (defaultUrl + (currentPage + 1))} className={currentPage === pagesCount ? 'disabled' : ''} onClick={(e) => { changeCurrentPage(e, currentPage + 1) }}>
                     <span>{'>'}</span>
                 </Button>
             </Wrapper>
@@ -38,14 +46,14 @@ export default function Pagination({ currentPage, itemCount, changeCurrentPage }
 
     return (
         <Wrapper>
-            <Button disabled={currentPage === 1} onClick={() => { changeCurrentPage(currentPage - 1) }}>
+            <Button href={currentPage === 1 ? defaultUrl : (defaultUrl + (currentPage - 1))} className={currentPage === 1 ? 'disabled' : ''} onClick={(e) => { changeCurrentPage(e, currentPage - 1) }}>
                 <span>{'<'}</span>
             </Button>
 
             {currentPage > 4
                 ? (
                     <>
-                        <Button onClick={() => { changeCurrentPage(1) }}>
+                        <Button href={defaultUrl} onClick={(e) => { changeCurrentPage(e, 1) }}>
                             <span>{1}</span>
                         </Button>
                         <Button disabled>
@@ -56,16 +64,20 @@ export default function Pagination({ currentPage, itemCount, changeCurrentPage }
                 : null}
 
             {buttons.map((el, index) => {
+                let href = defaultUrl + el
+                if (el === 1) {
+                    href = defaultUrl
+                }
                 if (currentPage === 1 && (index === currentPage - 1 || index === currentPage || index === currentPage + 1)) {
                     return (
-                        <Button active={currentPage === el} onClick={() => { changeCurrentPage(el) }}>
+                        <Button href={href} active={currentPage === el} onClick={(e) => { changeCurrentPage(e, el) }}>
                             <span>{el}</span>
                         </Button>
                     )
                 }
                 if (currentPage === pagesCount && (index === currentPage - 1 || index === currentPage || index === currentPage + 1)) {
                     return (
-                        <Button active={currentPage === el} onClick={() => { changeCurrentPage(el) }}>
+                        <Button href={href} active={currentPage === el} onClick={(e) => { changeCurrentPage(e, el) }}>
                             <span>{el}</span>
                         </Button>
                     )
@@ -73,7 +85,7 @@ export default function Pagination({ currentPage, itemCount, changeCurrentPage }
                 if (currentPage === 2 || currentPage === pagesCount - 1) {
                     if (index === currentPage - 2 || index === currentPage - 1 || index === currentPage) {
                         return (
-                            <Button active={currentPage === el} onClick={() => { changeCurrentPage(el) }}>
+                            <Button href={href} active={currentPage === el} onClick={(e) => { changeCurrentPage(e, el) }}>
                                 <span>{el}</span>
                             </Button>
                         )
@@ -82,7 +94,7 @@ export default function Pagination({ currentPage, itemCount, changeCurrentPage }
                 }
                 if (index === currentPage - 3 || index === currentPage - 2 || index === currentPage - 1 || index === currentPage || index === currentPage + 1) {
                     return (
-                        <Button active={currentPage === el} onClick={() => { changeCurrentPage(el) }}>
+                        <Button href={href} active={currentPage === el} onClick={(e) => { changeCurrentPage(e, el) }}>
                             <span>{el}</span>
                         </Button>
                     )
@@ -96,14 +108,14 @@ export default function Pagination({ currentPage, itemCount, changeCurrentPage }
                         <Button disabled>
                             <span>...</span>
                         </Button>
-                        <Button onClick={() => { changeCurrentPage(pagesCount) }}>
+                        <Button href={defaultUrl + pagesCount} onClick={(e) => { changeCurrentPage(e, pagesCount) }}>
                             <span>{pagesCount}</span>
                         </Button>
                     </>
                 )
                 : null}
 
-            <Button disabled={currentPage === Math.ceil(itemCount / 10)} onClick={() => { changeCurrentPage(currentPage + 1) }}>
+            <Button href={defaultUrl + (currentPage + 1)} className={currentPage === Math.ceil(itemCount / 10) ? 'disabled' : ''} onClick={(e) => { changeCurrentPage(e, currentPage + 1) }}>
                 <span>{'>'}</span>
             </Button>
         </Wrapper>
@@ -115,20 +127,26 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     gap: 4px;
+    margin-top: clamp(32px, ${48 / 768 * 100}vw, 64px);
 `
 
-const Button = styled.button`
+const Button = styled.a`
     border: none;
     width: 50px;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: var(--shadow);
+    box-shadow: ${props => props.active ? 'unset' : 'var(--shadow)'};
     cursor: pointer;
     position: relative;
     border-radius: 8px;
     background-color: transparent;
+
+    &.disabled{
+        pointer-events: none;
+        cursor: default;
+    }
 
     &::before{
         content: "";

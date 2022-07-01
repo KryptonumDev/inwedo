@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import Filter from "./filter"
 import PostsGrid from "./posts-grid"
-import { useUrlUpdate } from './../../helpers/useUrlUpdate'
-import { checkLanguageUrl } from "../../helpers/checkLanguageUrl"
 
 export default function Archive({ parentCategories, children, posts, data, location }) {
 

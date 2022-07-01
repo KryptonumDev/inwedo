@@ -15,53 +15,33 @@ export default function Table({ data: { tableTitle, columnCount, row }, index })
                             if (columnCount === 1) {
                                 return (
                                     <div className="row">
-                                        <div>
-                                            {el.cellFirst}
-                                        </div>
+                                        <div dangerouslySetInnerHTML={{ __html: el.cellFirst }} />
                                     </div>
                                 )
                             }
                             if (columnCount === 2) {
                                 return (
                                     <div className="row">
-                                        <div>
-                                            {el.cellFirst}
-                                        </div>
-                                        <div>
-                                            {el.cellSecond}
-                                        </div>
+                                        <div dangerouslySetInnerHTML={{ __html: el.cellFirst }} />
+                                        <div dangerouslySetInnerHTML={{ __html: el.cellSecond }} />
                                     </div>
                                 )
                             }
                             if (columnCount === 3) {
                                 return (
                                     <div className="row">
-                                        <div>
-                                            {el.cellFirst}
-                                        </div>
-                                        <div>
-                                            {el.cellSecond}
-                                        </div>
-                                        <div>
-                                            {el.cellThird}
-                                        </div>
+                                        <div dangerouslySetInnerHTML={{ __html: el.cellFirst }} />
+                                        <div dangerouslySetInnerHTML={{ __html: el.cellSecond }} />
+                                        <div dangerouslySetInnerHTML={{ __html: el.cellThird }} />
                                     </div>
                                 )
                             }
                             return (
                                 <div className="row">
-                                    <div>
-                                        {el.cellFirst}
-                                    </div>
-                                    <div>
-                                        {el.cellSecond}
-                                    </div>
-                                    <div>
-                                        {el.cellThird}
-                                    </div>
-                                    <div>
-                                        {el.cellFourth}
-                                    </div>
+                                    <div dangerouslySetInnerHTML={{ __html: el.cellFirst }} />
+                                    <div dangerouslySetInnerHTML={{ __html: el.cellSecond }} />
+                                    <div dangerouslySetInnerHTML={{ __html: el.cellThird }} />
+                                    <div dangerouslySetInnerHTML={{ __html: el.cellFourth }} />
                                 </div>
                             )
                         })}

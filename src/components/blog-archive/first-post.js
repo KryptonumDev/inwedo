@@ -5,11 +5,27 @@ import styled from "styled-components"
 import { urlSystem } from "../../contstants/urlSystem"
 import { Container } from "../../style"
 
-export default function Post({ data: { blogPost: { previewCard, currentPostUrl }, categories: { nodes }, authors, date } }) {
+export default function Post({ data }) {
+
+    let post
+
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].blogPost.isfeaturedPost === true) {
+            post = data[i]
+            break
+        }
+    }
+
+    if (post === undefined) {
+        post = data[0]
+    }
+
+    const { blogPost: { previewCard, currentPostUrl }, categories: { nodes }, authors, date, language } = post
+
     return (
         <Wrapper>
             <Container>
-                <Link to={currentPostUrl}>
+                <Link to={urlSystem['Blog Post'][language.slug] + currentPostUrl}>
                     <Content>
                         <PreviewImage>
                             <GatsbyImage className="image" image={previewCard.previewImage.localFile.childImageSharp.gatsbyImageData} alt={previewCard.previewImage.altText} />
@@ -18,7 +34,7 @@ export default function Post({ data: { blogPost: { previewCard, currentPostUrl }
                             <Categories>
                                 {nodes.map(el => (
                                     <Link to={urlSystem['category'][el.language.slug] + el.blogCategory.categoryUrl} className="item">
-                                        {el.name}
+                                        {el.name.substr(3)}
                                     </Link>
                                 ))}
                             </Categories>

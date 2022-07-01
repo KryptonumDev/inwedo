@@ -1,200 +1,148 @@
 import React, { useEffect, useState } from "react"
 import { checkLanguageUrl } from "../../helpers/checkLanguageUrl"
-import { useUrlUpdate } from "../../helpers/useUrlUpdate"
 import CallToAction from "../cta"
 import Filter from "./filter"
 import Post from "./first-post"
 import PostGrid from "./post-grid"
 import { navigate } from "gatsby"
 import Pagination from "./pagination"
-import { filterSearch, resetFiltredPosts } from "./functions"
+import { fakeRelocate, resetFiltredPosts, resetSearchedPosts } from "./functions"
 import styled from "styled-components"
 
 export default function Archive({ location, data, cta, cta2, categories, language, otherData }) {
 
     const [defaultUrl] = useState(checkLanguageUrl(location, '/blog/'))
-    const [isAltLayout, setIsAltLayout] = useState((location.pathname === defaultUrl && location.search === "") ? false : true)
-
-    const [activeFilters, changeActiveFilters] = useState(filterSearch(location.search, defaultUrl))
 
     const [currentPage, changeCurrentPage] = useState(() => {
-        if (location.search.includes('?')) {
-            let pageId = null
-            for (let i = 0; i < location.search.length; i++) {
-                if (location.search[i] === '=' && location.search[i - 1] === 'e') {
-                    pageId = i
-                }
-            }
-            if (pageId !== null) {
-                let a = +location.search.substr(pageId + 1)
-                return a
-            }
-            return 1
-        } else {
-            let page = location.pathname.substr(defaultUrl.length)
-
-            if (page !== "") {
-                return +page
-            }
+        const page = location.pathname.slice(defaultUrl.length).slice(0, -1)
+        if (page === '') {
             return 1
         }
+        return +page
     })
 
+    const [isAltLayout, setIsAltLayout] = useState(currentPage !== 1)
 
-    const [newUrl, setNewUrl] = useState(() => {
-        if (location.search !== "") {
-            return defaultUrl + location.search
+    const [activeFilters, changeActiveFilters] = useState(null)
+    const [activeSearch, setActiveSearch] = useState('')
+    const [inputValue, setInputValue] = useState('')
+
+
+    const [defaultPosts] = useState(() => {
+        let unfiltredPosts = [...data.nodes]
+        let posts = []
+        let featuredId
+
+        for (let i = 0; i < data.nodes.length; i++) {
+            if (data.nodes[i].blogPost.isfeaturedPost === true) {
+                featuredId = i
+                break
+            }
         }
-        if (currentPage !== 1) {
-            return defaultUrl + currentPage
-        }
-        return defaultUrl
+
+        posts.push(...unfiltredPosts.splice(featuredId, 1))
+        posts = [...posts, ... unfiltredPosts]
+
+        return posts
     })
 
-    const [defaultPosts] = useState(data.nodes)
     const [filtredPosts, changeFiltredPosts] = useState(resetFiltredPosts(defaultPosts, activeFilters))
 
     const setFilter = (e, filter) => {
         e.preventDefault()
-
-        let combinedUrl
-        if (filter === 'all') { // choice all 
-            combinedUrl = defaultUrl
-
-        } else if (location.search === '') { // choice first filter
-            combinedUrl = defaultUrl + '?filter=' + filter
-
-        } else if (location.search.includes(('?filter=' + filter))) { // unchoice first filter
-
-            combinedUrl = newUrl.replace(('?filter=' + filter), '')
-
-            if (!combinedUrl.includes('?')) { // check to do another first filter
-
-                let nextFilterId
-
-                for (let i = 0; i < combinedUrl.length; i++) {
-                    if (combinedUrl[i] === '&') {
-                        nextFilterId = i
-                        break
-                    }
-                }
-                if (nextFilterId) {
-                    for (let j = 0; j < combinedUrl.length; j++) {
-                        if (combinedUrl[j] === '&' && combinedUrl[j + 1] === 'p') {
-                            combinedUrl = combinedUrl.substr(0, j)
-                            break
-                        }
-                    }
-
-                    combinedUrl = combinedUrl.substr(0, nextFilterId) + '?' + combinedUrl.substr(nextFilterId + 1)
+        let newArr
+        if (filter === 'all') {
+            newArr = null  // no filters
+        } else if (activeFilters === '') {
+            newArr = [filter]
+        } else if (activeFilters !== null) {
+            const index = activeFilters.findIndex(el => el === filter)
+            if (index === -1) {
+                newArr = [...activeFilters, filter] // add filter
+            } else {
+                activeFilters.splice(index, 1)
+                if (activeFilters.length) {
+                    newArr = [...activeFilters] // delete filter
                 } else {
-                    combinedUrl = defaultUrl
+                    newArr = null // no filters
                 }
             }
-
-        } else if (location.search.includes(('&filter=' + filter))) { // unchice secondary filter
-
-            combinedUrl = newUrl.replace(('&filter=' + filter), '')
-            if (combinedUrl.includes('&page')) {
-                combinedUrl = combinedUrl.replace(('&page=' + currentPage), '')
-            }
-        } else { // add secondary filter
-            combinedUrl = newUrl + '&filter=' + filter
-            if (combinedUrl.includes('&page')) {
-                combinedUrl = combinedUrl.replace(('&page=' + currentPage), '')
-            }
-        }
-
-        changeActiveFilters(filterSearch(combinedUrl, defaultUrl))
-        setNewUrl(combinedUrl)
-    }
-
-    const setPage = (page) => {
-        changeCurrentPage(page)
-        if (!location.search.includes('?')) {
-            if (page === 1) {
-                setNewUrl(defaultUrl)
-            } else {
-                setNewUrl(defaultUrl + page)
-            }
-        } else if (!location.search.includes('page=')) {
-            setNewUrl(defaultUrl + location.search + '&page=' + page)
         } else {
-            let pageId = null
-            let newSearch
-
-            for (let i = 0; i < location.search.length; i++) {
-                if (location.search[i] === '=' && location.search[i - 1] === 'e') {
-                    pageId = i + 1
-                }
-            }
-
-            if (page !== 1) {
-                newSearch = defaultUrl + location.search.substr(0, pageId) + page
-
-            } else {
-                newSearch = defaultUrl + location.search.substr(0, pageId - 6)
-            }
-
-            setNewUrl(newSearch)
+            newArr = [filter] // add first filter
         }
+
+        changeActiveFilters(newArr)
+        setInputValue('')
+        setActiveSearch('')
+        changeFiltredPosts(resetFiltredPosts(defaultPosts, newArr))
+        setIsAltLayout(currentPage !== 1 || newArr !== null)
+        changeCurrentPage(1)
+    }
+
+    const setSearch = () => {
+        if (inputValue === '') {
+            setActiveSearch('')
+            changeActiveFilters(null)
+            setIsAltLayout(false)
+        } else {
+            changeActiveFilters('')
+            setActiveSearch(inputValue)
+            setIsAltLayout(true)
+        }
+
+        changeFiltredPosts(resetSearchedPosts(defaultPosts, inputValue))
+        setInputValue('')
+        changeCurrentPage(1)
+    }
+
+    const setPage = (e, page) => {
+        e.preventDefault()
+        changeCurrentPage(page)
     }
 
     useEffect(() => {
-        changeFiltredPosts(resetFiltredPosts(defaultPosts, activeFilters))
-
-        if (location.search.includes('page') && !newUrl.includes('page')) {
-            changeCurrentPage(1)
+        const newURL = defaultUrl + currentPage + '/'
+        if (activeFilters === null && activeSearch === '') {
+            if (currentPage !== 1) {
+                fakeRelocate(newURL, location)
+            } else {
+                fakeRelocate(defaultUrl, location)
+            }
+        } else if (activeFilters !== null) {
+            fakeRelocate(defaultUrl, location)
+        } else if (activeSearch !== '') {
+            fakeRelocate(defaultUrl, location)
         }
-
-    }, [activeFilters])
-
-    useEffect(() => {
+        setIsAltLayout(currentPage !== 1 || activeFilters !== null || activeSearch !== '')
     }, [currentPage])
-
-    useEffect(() => {
-        setIsAltLayout((location.pathname === defaultUrl && !newUrl.includes('?')) ? false : true)
-        navigate(newUrl)
-    }, [newUrl])
-
-    useUrlUpdate(newUrl)
 
     return (
         <div>
-            <Filter language={language} setFilter={setFilter} categories={categories} data={data} activeFilters={activeFilters} />
+            <Filter activeSearch={activeSearch} matchingArticle={otherData.matchingArticlesText} searchedPhrase={otherData.searchedPhraseText} defaultPosts={defaultPosts} inputValue={inputValue} setInputValue={setInputValue} setSearch={setSearch} submitButtonText={otherData.submitButtonText} searchInputPlaceholder={otherData.searchInputPlaceholder} language={language} setFilter={setFilter} categories={categories} data={data} activeFilters={activeFilters} />
             {!!filtredPosts.length
                 ? <>
-                    <Post data={filtredPosts[0]} />
                     {isAltLayout
-                        ? (
-                            <>
-                                <PostGrid data={filtredPosts} from={1} to={9} />
-                                {
-                                    filtredPosts.length < 5
-                                        ? null
-                                        : <Pagination changeCurrentPage={setPage} currentPage={currentPage} itemCount={filtredPosts.length} />
-                                }
-                                <CallToAction data={cta} />
-                            </>
-                        )
-                        : (
-                            <>
-                                <PostGrid data={filtredPosts} from={1} to={3} />
-                                <CallToAction data={cta} />
-                                <PostGrid data={filtredPosts} from={4} to={6} />
-                                {filtredPosts.length < 5
-                                    ? null
-                                    : <CallToAction data={cta2} />
-                                }
-                                <PostGrid data={filtredPosts} from={7} to={9} />
-                                {
-                                    filtredPosts.length < 5
-                                        ? null
-                                        : <Pagination changeCurrentPage={setPage} currentPage={currentPage} itemCount={filtredPosts.length} />
-                                }
-                            </>
-                        )
-                    }
+                        ? (<>
+                            <PostGrid isAltLayout={isAltLayout} data={filtredPosts} from={0} to={9} currentPage={currentPage} />
+                            {filtredPosts.length < 5
+                                ? null
+                                : <Pagination defaultUrl={defaultUrl} changeCurrentPage={setPage} currentPage={currentPage} itemCount={filtredPosts.length} />}
+                            <CallToAction data={cta} />
+                        </>)
+                        : (<>
+                            {/* <Post data={defaultPosts} /> */}
+                            <PostGrid isAltLayout={isAltLayout} data={defaultPosts} from={0} to={3} />
+                            <CallToAction data={cta} />
+                            <PostGrid isDefault={true} isAltLayout={isAltLayout} data={defaultPosts} from={4} to={6} />
+                            {defaultPosts.length < 5
+                                ? null
+                                : <CallToAction data={cta2} />
+                            }
+                            <PostGrid isDefault={true} isAltLayout={isAltLayout} data={defaultPosts} from={7} to={9} />
+                            {defaultPosts.length < 5
+                                ? null
+                                : <Pagination defaultUrl={defaultUrl} changeCurrentPage={setPage} currentPage={currentPage} itemCount={defaultPosts.length} />}
+                        </>)}
                 </>
                 : <NoPosts>
                     <span className='colored'>{otherData.noPostsText}</span>

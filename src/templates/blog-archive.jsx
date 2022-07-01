@@ -43,6 +43,8 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                 searchInputPlaceholder
                 submitButtonText
                 noPostsText
+                searchedPhraseText
+                matchingArticlesText
               }
               callToActionBlog{
                 typeOfCta
@@ -108,6 +110,7 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
           }
           blogPost {
             currentPostUrl
+            isfeaturedPost
             previewCard {
               previewTitle
               previewText

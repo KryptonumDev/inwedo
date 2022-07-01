@@ -4,7 +4,7 @@ import { Container } from "../../style"
 import Filter from "./filter"
 import Items from "./items"
 
-export default function JoinUs({ data: { sectionTitle, categoryTitle, seniorityTitle, showOfferText, applyOfferText }, offers, seniority, categories }) {
+export default function JoinUs({ data: { sectionTitle, categoryTitle, seniorityTitle, showOfferText, applyOfferText, noPostsText }, offers, seniority, categories }) {
 
     const [activeCategories, setActiveCategories] = useState([])
     const [activeSeniority, setActiveSeniority] = useState([])
@@ -55,7 +55,12 @@ export default function JoinUs({ data: { sectionTitle, categoryTitle, seniorityT
                 <Title>{sectionTitle}</Title>
                 <Filter title={categoryTitle} filters={categories} set={setActiveCategories} active={activeCategories} />
                 <Filter title={seniorityTitle} filters={seniority} set={setActiveSeniority} active={activeSeniority} />
-                <Items data={filtredArray} showOfferText={showOfferText} applyOfferText={applyOfferText} />
+                {!!filtredArray.length
+                    ? <Items data={filtredArray} showOfferText={showOfferText} applyOfferText={applyOfferText} />
+                    : <NoPosts>
+                        <span className='colored'>{noPostsText}</span>
+                    </NoPosts>}
+
             </Container>
         </Wrapper>
     )
@@ -85,5 +90,24 @@ const Title = styled.h2`
         width: 40px;
         height: 1px;
         background-color: var(--color-black);
+    }
+`
+
+
+const NoPosts = styled.div`
+    padding: 30px 130px;
+    width: fit-content;
+    margin: 128px auto 0 auto;
+    border-radius: 24px;
+    background: var(--color-white);
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span{
+        font-weight: 400;
+        font-size: 29.7931px;
+        line-height: 160%;
     }
 `

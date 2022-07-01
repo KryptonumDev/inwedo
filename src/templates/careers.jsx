@@ -126,6 +126,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     seniorityTitle
                     showOfferText
                     applyOfferText
+                    noPostsText
                 }
                 appointmentWithHr{
                     sectionTitle

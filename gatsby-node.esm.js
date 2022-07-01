@@ -534,7 +534,7 @@ exports.createPages = async ({
   PostPageNodes.forEach(({ id, language: { slug }, blogPost: { currentPostUrl } }) => {
     if (currentPostUrl !== null) {
       createPage({
-        path: urlSystem['Blog Archive'][slug] + currentPostUrl,
+        path: urlSystem['Blog Post'][slug] + currentPostUrl,
         component: resolve('src/templates/blog-post.jsx'),
         context: {
           id,

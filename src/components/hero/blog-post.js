@@ -14,7 +14,7 @@ export default function Hero({ data, categories, date, authors }) {
                         <Categories>
                             {categories.nodes.map(el => (
                                 <Link to={urlSystem['category'][el.language.slug] + el.slug} className="item">
-                                    {el.name}
+                                    {el.name.substr(3)}
                                 </Link>
                             ))}
                         </Categories>
@@ -28,7 +28,7 @@ export default function Hero({ data, categories, date, authors }) {
                                 <p className="p date">{date}</p>
                             </AuthorInform>}
                         <h2 className="h3">{data.pageTitle}</h2>
-                        <p className="p">{data.text}</p>
+                        <div className="p" dangerouslySetInnerHTML={{__html: data.text}}></div>
                     </TextPart>
                     <Image image={data.image.localFile.childImageSharp.gatsbyImageData} alt={data.image.altText} />
                 </Content>
