@@ -127,7 +127,7 @@ const NumbersMainItem = styled.div`
     background-color: var(--color-white);
 
     .h1{
-        font-size: clamp(42px, 7.29vw, 70px);
+        font-size: clamp(42px, 7.29vw, 70px) !important;
     }
 
     .h3{
@@ -136,12 +136,47 @@ const NumbersMainItem = styled.div`
 `
 
 const NumbersGrid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 48px;
+    display: flex;
+    justify-content: space-between;
+
     margin-top: clamp(22px, 3.77vw, 36px);
+
+    div{
+        width: clamp(86px, ${115 / 768 * 100}vw, 150px);
+
+        @media (max-width: 900px) {
+            width: 130px;
+        }
+
+        @media (max-width: 640px) {
+            width: clamp(86px, ${130 / 640 * 100}vw, 130px);
+        }
+
+        @media (max-width: 370px) {
+            width: 82px;
+        }
+
+    }
+
     .number{
-        aspect-ratio: 1/1;
+        width: clamp(86px, ${115 / 768 * 100}vw, 150px);
+        height: clamp(86px, ${115 / 768 * 100}vw, 150px);
+
+        @media (max-width: 900px) {
+            width: 130px;
+            height: 130px;
+        }
+
+        @media (max-width: 640px) {
+            width: clamp(86px, ${130 / 640 * 100}vw, 130px);
+            height: clamp(86px, ${130 / 640 * 100}vw, 130px);
+        }
+
+        @media (max-width: 370px) {
+            width: 82px;    
+            height: 82px;
+        }
+        
         display: flex;
         justify-content: center;
         align-items: center;
@@ -159,11 +194,7 @@ const NumbersGrid = styled.div`
     .descr{
         text-align: center;
         display: block;
-        font-size: clamp(10px, 1.69vw, 16px);
-    }
-
-    @media (max-width: 420px) {
-        grid-gap: 32px;
+        font-size: clamp(10px, ${16 / 768 * 100}vw, 16px);
     }
 `
 

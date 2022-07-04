@@ -60,8 +60,8 @@ export default function Archive({ parentCategories, children, posts, data, locat
             {filtredPosts.length > 0
                 ? <PostsGrid data={filtredPosts} from={'4'} to={showCount} />
                 : null}
-            {filtredPosts.length > changeShowCount + 1
-                ? <Button onClick={() => { changeShowCount(showCount + 4) }} className="button">{data.loadMoreText}</Button>
+            {filtredPosts.length > showCount + 1
+                ? <Button onClick={() => { changeShowCount(showCount + 4) }} className="button">{data.loadMore}</Button>
                 : null}
         </>
     )
@@ -69,4 +69,5 @@ export default function Archive({ parentCategories, children, posts, data, locat
 
 const Button = styled.button`
     margin: 64px auto 0 auto;
+    border: none;
 `

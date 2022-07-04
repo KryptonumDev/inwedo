@@ -109,7 +109,7 @@ const Wrapper = styled.form`
                 transition: border 0.2s ease-out;
                 padding: 0;
                 width: 24px;
-                aspect-ratio: 1/1;
+                height: 24px;
                 border-radius: 6px;
                 position: relative;
 
@@ -143,6 +143,7 @@ const Wrapper = styled.form`
                 position: absolute;
                 right: 12px;
                 bottom: 12px;
+                pointer-events: none;
             }
 
             select{

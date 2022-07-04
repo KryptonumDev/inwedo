@@ -48,6 +48,7 @@ const TextPart = styled.div`
         margin-bottom: 16px;
         opacity: .5;
         font-size: clamp(14px, 2.08vw, 18px);
+        line-height: 24px;
     }
 
     .h3{
@@ -76,6 +77,12 @@ const List = styled.ul`
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 32px;
+
+    margin-top: 40px;
+
+    @media (max-width: 1024px) {
+        margin-top: 0;
+    }
 
     .h3{
         margin-bottom: 8px;

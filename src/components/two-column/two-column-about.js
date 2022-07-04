@@ -8,12 +8,15 @@ export default function TwoColumnFlex({ data: { image, title, subTitle, text, bu
     return (
         <Wrapper>
             <Container>
+                {technology
+                    ? null
+                    : <h2 className="h4 line mobile">{title}</h2>}
                 <Flex to={button.url}>
                     <div className="text">
                         {technology
                             ? <h2 className="h1">{title}</h2>
-                            : <h2 className="h4 line">{title}</h2>}
-                        <p className="h3">{subTitle}</p>
+                            : <h2 className="h4 line desctop">{title}</h2>}
+                        <div className="h3" dangerouslySetInnerHTML={{ __html: subTitle }} />
                         <div className="p" dangerouslySetInnerHTML={{ __html: text }}></div>
                         {button.url
                             ? <p className="link">{button.name}</p>
@@ -28,6 +31,28 @@ export default function TwoColumnFlex({ data: { image, title, subTitle, text, bu
 
 const Wrapper = styled.section`
     margin-top: var(--margin-section);
+        
+        .h4{
+            margin-bottom: 16px;
+            opacity: .5;
+            font-size: clamp(14px, 2.08vw, 18px);
+
+            &.mobile{
+                display: none;
+                @media (max-width: 850px){
+                    display: block;
+                    max-width: 500px;
+                    margin: 0 auto 16px auto;
+                    box-sizing: border-box;
+                }
+            }
+
+            &.desctop{
+                @media (max-width: 850px){
+                    display: none;
+                }
+            }
+        }
 `
 
 const Flex = styled(Link)`
@@ -51,13 +76,7 @@ const Flex = styled(Link)`
         max-width: 610px;
         width: 100%;
         .h1{
-            margin-bottom: 0;
-        }
-        
-        .h4{
             margin-bottom: 16px;
-            opacity: .5;
-            font-size: clamp(14px, 2.08vw, 18px);
         }
         .h3{
             margin-bottom: 24px;
@@ -70,6 +89,14 @@ const Flex = styled(Link)`
             p+p{
                 margin-top: 24px;
             }
+        }
+
+        a{
+            background: var(--color-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
         }
     }
 

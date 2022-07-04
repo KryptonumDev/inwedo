@@ -42,7 +42,7 @@ const Card = styled.div`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10;
+    z-index: 8;
     text-align: center;
     max-width: 760px;
     padding: 0 32px;

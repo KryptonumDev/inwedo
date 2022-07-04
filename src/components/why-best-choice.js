@@ -57,6 +57,11 @@ const Grid = styled.div`
     display: grid;
     grid-gap: 24px;
     grid-template-columns: 1fr 1fr;
+    margin-top: 40px;
+
+    @media (max-width: 1024px) {
+        margin-top: 0;
+    }
 
     @media (max-width: 540px) {
         grid-template-columns: 1fr;
@@ -68,6 +73,7 @@ const TextPart = styled.div`
         margin-bottom: 16px;
         opacity: .5;
         font-size: clamp(14px, 2.08vw, 18px);
+        line-height: 24px;
     }
 
     .h3{

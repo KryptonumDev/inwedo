@@ -14,7 +14,7 @@ const PortfolioArchivePage = ({ data: { allWpPage, categoryParents, allWpCaseStu
       <Seo lang={allWpPage.nodes[0].language.slug} alternates={alternates} location={location} />
       <Hero data={portfolio.heroPortfolio} />
       <ClientCases data={portfolio.clientsPortfolio} />
-      <Archive location={location} data={portfolio.posts} parentCategories={categoryParents} posts={allWpCaseStudies}>
+      <Archive location={location} data={portfolio.postsOtherData} parentCategories={categoryParents} posts={allWpCaseStudies}>
         <CallToAction data={portfolio.callToActionPortfolioArchive} />
       </Archive>
       <Testomontials data={portfolio.testomontialsPortfolio} />
@@ -58,8 +58,8 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
               }
             }
           }
-          posts{
-            loadMoreText
+          postsOtherData{
+            loadMore
           }
           clientsPortfolio{
             card : cardOnRightSide{

@@ -4,11 +4,11 @@ import Content from "../components/contact-content"
 import Seo from "../components/seo"
 
 const ContactPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { c: contact, language } = allWpPage.nodes[0]
+  let { contactPage, language } = allWpPage.nodes[0]
   return (
     <main>
       <Seo lang={language.slug} alternates={alternates} location={location} />
-      <Content data={contact} />
+      <Content data={contactPage} />
     </main>
   )
 }
@@ -35,7 +35,7 @@ query CPageQuery($id: String!, $templateName: String!) {
               name
             }
             slug
-            c {
+            contactPage {
               textUnderTitle
               pageTitle
               form {

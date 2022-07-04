@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react"
 import { checkLanguageUrl } from "../../helpers/checkLanguageUrl"
 import CallToAction from "../cta"
 import Filter from "./filter"
-import Post from "./first-post"
 import PostGrid from "./post-grid"
-import { navigate } from "gatsby"
 import Pagination from "./pagination"
 import { fakeRelocate, resetFiltredPosts, resetSearchedPosts } from "./functions"
 import styled from "styled-components"
@@ -95,11 +93,6 @@ export default function Archive({ location, data, cta, cta2, categories, languag
         changeCurrentPage(1)
     }
 
-    const setPage = (e, page) => {
-        e.preventDefault()
-        changeCurrentPage(page)
-    }
-
     useEffect(() => {
         const newURL = defaultUrl + currentPage + '/'
         if (activeFilters === null && activeSearch === '') {
@@ -123,15 +116,14 @@ export default function Archive({ location, data, cta, cta2, categories, languag
                 ? <>
                     {isAltLayout
                         ? (<>
-                            <PostGrid isAltLayout={isAltLayout} data={filtredPosts} from={0} to={9} currentPage={currentPage} />
+                            <PostGrid id='posts' isAltLayout={isAltLayout} data={filtredPosts} from={0} to={9} currentPage={currentPage} />
                             {filtredPosts.length < 5
                                 ? null
-                                : <Pagination defaultUrl={defaultUrl} changeCurrentPage={setPage} currentPage={currentPage} itemCount={filtredPosts.length} />}
+                                : <Pagination defaultUrl={defaultUrl} changeCurrentPage={changeCurrentPage} currentPage={currentPage} itemCount={filtredPosts.length} />}
                             <CallToAction data={cta} />
                         </>)
                         : (<>
-                            {/* <Post data={defaultPosts} /> */}
-                            <PostGrid isAltLayout={isAltLayout} data={defaultPosts} from={0} to={3} />
+                            <PostGrid id='posts' isAltLayout={isAltLayout} data={defaultPosts} from={0} to={3} />
                             <CallToAction data={cta} />
                             <PostGrid isDefault={true} isAltLayout={isAltLayout} data={defaultPosts} from={4} to={6} />
                             {defaultPosts.length < 5
@@ -141,10 +133,10 @@ export default function Archive({ location, data, cta, cta2, categories, languag
                             <PostGrid isDefault={true} isAltLayout={isAltLayout} data={defaultPosts} from={7} to={9} />
                             {defaultPosts.length < 5
                                 ? null
-                                : <Pagination defaultUrl={defaultUrl} changeCurrentPage={setPage} currentPage={currentPage} itemCount={defaultPosts.length} />}
+                                : <Pagination defaultUrl={defaultUrl} changeCurrentPage={changeCurrentPage} currentPage={currentPage} itemCount={defaultPosts.length} />}
                         </>)}
                 </>
-                : <NoPosts>
+                : <NoPosts id='posts'>
                     <span className='colored'>{otherData.noPostsText}</span>
                 </NoPosts>}
 

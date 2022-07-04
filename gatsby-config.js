@@ -7,15 +7,21 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
+        schema: {
+          perPage: 20,
+          requestConcurrency: 5,
+          previewRequestConcurrency: 2,
+          timeout: 3000000,
+        },
         "url": "https://datainwedo.com/graphql"
       }
     },
-    "gatsby-plugin-styled-components", 
-    "gatsby-plugin-image", 
-    "gatsby-plugin-react-helmet", 
-    "gatsby-plugin-sitemap", 
-    "gatsby-plugin-sharp", 
-    "gatsby-transformer-sharp", 
+    "gatsby-plugin-styled-components",
+    "gatsby-plugin-image",
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
     'gatsby-plugin-postcss',
     {
       resolve: 'gatsby-plugin-manifest',

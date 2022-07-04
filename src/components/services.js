@@ -7,7 +7,7 @@ import { Container } from "../style"
 export default function Services({ data: { card, clientsTitle, clientsItems, sectionTitle, sectionText, items } }) {
     return (
         <Wrapper>
-            <Card to={card.cardLink}>
+            <Card href={card.cardLink} target="_blank" rel="noopener noreferrer">
                 <GatsbyImage className="image" image={card.cardImage.localFile.childImageSharp.gatsbyImageData} alt={card.cardImage.altText} />
             </Card>
             <Container>
@@ -65,7 +65,7 @@ const Wrapper = styled.section`
     }
 `
 
-const Card = styled(Link)`
+const Card = styled.a`
     display: block;
     position: absolute;
     right: -16px;

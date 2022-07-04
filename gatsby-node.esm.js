@@ -406,7 +406,6 @@ exports.createPages = async ({
     `);
 
   portfolioArchiveNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
-
     createPage({
       path: urlSystem[templateName][slug],
       component: resolve('src/templates/portfolio-archive.jsx'),
@@ -415,19 +414,6 @@ exports.createPages = async ({
         slug,
         templateName
       },
-    });
-
-
-    categoryArchiveNodes.forEach(({ language: { catLangSlug }, catSlug }) => {
-      createPage({
-        path: urlSystem[templateName][slug] + catSlug,
-        component: resolve('src/templates/portfolio-archive.jsx'),
-        context: {
-          id,
-          slug,
-          templateName
-        },
-      });
     });
   });
 
@@ -783,4 +769,18 @@ exports.createPages = async ({
     });
   });
   
+}
+
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage, deletePage } = actions
+
+  if (page.path.match(/^\/[a-z]{2}\/404\/$/)) {
+    const oldPage = { ...page }
+
+    const langCode = page.path.split(`/`)[1]
+    page.matchPath = `/${langCode}/*`
+
+    deletePage(oldPage)
+    createPage(page)
+  }
 }

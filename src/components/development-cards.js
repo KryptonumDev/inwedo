@@ -124,7 +124,7 @@ const Card = styled(Link)`
 
     .image{
         width: clamp(64px, 10.41vw, 115px);
-        aspect-ratio: 1/1;
+        height: clamp(64px, 10.41vw, 115px);
     }
 
     .h3{

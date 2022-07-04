@@ -13,21 +13,21 @@ import FAQ from "../components/faq"
 import Seo from "../components/seo"
 
 const TeamExtensionsPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { teamExtensions, language } = allWpPage.nodes[0]
+  let { teamExtensionsPage, language } = allWpPage.nodes[0]
   return (
     <main>
       <Seo lang={language.slug} alternates={alternates} location={location} />
-      <Hero data={teamExtensions.heroTeamExtensions} />
-      <TwoColumnFlex data={teamExtensions.twoColumnFlexTeamExtensions} />
-      <TechStack data={teamExtensions.techStackTeamExtensions} />
-      <TwoColumnFlexSecond data={teamExtensions.twoColumnFlexTeamExtensionsSecond} />
-      <BenefitsGrid data={teamExtensions.benefitsGridTeamExtensions} />
-      <CallToAction data={teamExtensions.callToActionTeamExtensions} />
-      <WorkshopBenefits data={teamExtensions.workshopBenefitsTeamExtensions} />
-      <Testomontials data={teamExtensions.testomontialsTeamExtensions} />
-      <CallToAction data={teamExtensions.callToActionTeamExtensionsSecond} />
-      <RelatedServices data={teamExtensions.relatedServicesTeamExtensions} />
-      <FAQ data={teamExtensions.faqTeamExtensions} />
+      <Hero data={teamExtensionsPage.heroTeamExtensions} />
+      <TwoColumnFlex data={teamExtensionsPage.twoColumnFlexTeamExtensions} />
+      <TechStack data={teamExtensionsPage.techStackTeamExtensions} />
+      <TwoColumnFlexSecond data={teamExtensionsPage.twoColumnFlexTeamExtensionsSecond} />
+      <BenefitsGrid data={teamExtensionsPage.benefitsGridTeamExtensions} />
+      <CallToAction data={teamExtensionsPage.callToActionTeamExtensions} />
+      <WorkshopBenefits data={teamExtensionsPage.workshopBenefitsTeamExtensions} />
+      <Testomontials data={teamExtensionsPage.testomontialsTeamExtensions} />
+      <CallToAction data={teamExtensionsPage.callToActionTeamExtensionsSecond} />
+      <RelatedServices data={teamExtensionsPage.relatedServicesTeamExtensions} />
+      <FAQ data={teamExtensionsPage.faqTeamExtensions} />
     </main>
   )
 }
@@ -54,7 +54,7 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
           slug
           locale
         }
-        teamExtensions {
+        teamExtensionsPage {
             heroTeamExtensions {
                 pageTitle
                 text

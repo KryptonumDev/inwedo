@@ -5,20 +5,20 @@
     --color-black: #262626;
     --color-accent: linear-gradient(84.56deg, #0B5CD6 12.23%, #21AEFC 94.22%);
 
-    --margin-section: clamp(64px, 12.5vw, 128px);
+    --margin-section: clamp(48px, 12.5vw, 128px);
     --margin-xl: 64px;
     --margin-l: 48px;
     --margin-m: clamp(24px, 4.16vw, 32px);
     --margin-s: 16px;
 
     --shadow:
-    0.3px 0.4px 1px rgba(0, 0, 0, 0.004),
-    0.7px 1.1px 2.3px rgba(0, 0, 0, 0.009),
-    1.4px 2px 4.4px rgba(0, 0, 0, 0.015),
-    2.5px 3.6px 7.8px rgba(0, 0, 0, 0.023),
-    4.6px 6.7px 14.6px rgba(0, 0, 0, 0.037),
-    11px 16px 35px rgba(0, 0, 0, 0.07);
-  
+        0.3px 0.4px 1px rgba(0, 0, 0, 0.004),
+        0.7px 1.1px 2.3px rgba(0, 0, 0, 0.009),
+        1.4px 2px 4.4px rgba(0, 0, 0, 0.015),
+        2.5px 3.6px 7.8px rgba(0, 0, 0, 0.023),
+        4.6px 6.7px 14.6px rgba(0, 0, 0, 0.037),
+        11px 16px 35px rgba(0, 0, 0, 0.07);
+
 }
 
 html {
@@ -30,7 +30,7 @@ body {
     overflow-x: hidden;
 }
 
-button{
+button {
     cursor: pointer;
 }
 
@@ -129,7 +129,9 @@ button{
     color: var(--color-black);
 }
 
-.button, .btn, .btn-primary {
+.button,
+.btn,
+.btn-primary {
     padding: 12px 22px;
     font-family: 'Lexend';
     font-weight: 400;
@@ -178,4 +180,8 @@ button{
     left: 0;
     top: calc(50% - 1px);
     background-color: currentColor;
+}
+
+summary::-webkit-details-marker {
+    display: none;
 }

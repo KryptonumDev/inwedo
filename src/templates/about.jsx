@@ -13,7 +13,7 @@ const AboutPage = ({ data: { allWpPage, alternates }, location }) => {
   return (
     <main>
       <Seo lang={language.slug} alternates={alternates} location={location} />
-      <Hero data={about.hero} />
+      <Hero data={about.heroAbout} />
       <TwoColumnFlex data={about.twoColumnFlex} />
       <OurValues data={about.ourValues} />
       <CallToAction data={about.callToActionAbout} />
@@ -47,7 +47,7 @@ export const query = graphql`
                 name
               }
                 about {
-                    hero {
+                    heroAbout {
                     text
                     pageTitle
                     background {

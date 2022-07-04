@@ -12,8 +12,8 @@ export default function InwedoRole({ data: { sectionTitle, subTitle, text, actio
                     <p className="h1">{subTitle}</p>
                     <p className="p">{text}</p>
                 </TextPart>
-                <Grid count={actions.length}>
-                    {actions.map(el => (
+                <Grid count={actions?.length}>
+                    {actions?.map(el => (
                         <Item>
                             <div className="image-wrapper">
                                 <GatsbyImage className="image" image={el.actionIcon.localFile.childImageSharp.gatsbyImageData} />

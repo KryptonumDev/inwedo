@@ -17,26 +17,26 @@ import FAQ from "../components/faq"
 import JoinUs from "../components/careers-join-us"
 
 const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCategoryJob, allWpSeniority }, location }) => {
-  let { careersHomepage, language } = allWpPage.nodes[0]
+  let { careersHome, language } = allWpPage.nodes[0]
   return (
     <main>
       <Seo lang={language.slug} alternates={alternates} location={location} />
-      <Hero data={careersHomepage.heroCareers} />
-      <JoinUs data={careersHomepage.joinUs} offers={allWpJobOffer.nodes} categories={allWpCategoryJob.nodes} seniority={allWpSeniority.nodes}/>
-      <ApointmentWithHr data={careersHomepage.appointmentWithHr} />
-      <HowWeWork data={careersHomepage.howWeWork} />
-      <CareersPaths data={careersHomepage.careerPaths} />
-      <OurCulture data={careersHomepage.ourCulture} />
-      <OurValues data={careersHomepage.ourValuesCareers} />
-      <CallToAction data={careersHomepage.callToActionCareers} />
-      <ProjectsYouCanWorkOn data={careersHomepage.projectsYouCanWorkOnCareers} />
-      <Benefits data={careersHomepage.benefits} />
-      <MeetUs data={careersHomepage.meetUs}/>
-      <RecruitmentProcess data={careersHomepage.recruitmentProcess}/>
-      <ApointmentWithHr data={careersHomepage.appointmentWithHr} />
-      <OnBoarding data={careersHomepage.onboarding}/>
-      <CallToAction data={careersHomepage.callToActionCareersSecond} />
-      {careersHomepage.faqCareers.map(el => (
+      <Hero data={careersHome.heroCareers} />
+      <JoinUs data={careersHome.joinUs} offers={allWpJobOffer.nodes} categories={allWpCategoryJob.nodes} seniority={allWpSeniority.nodes}/>
+      <ApointmentWithHr data={careersHome.appointmentWithHr} />
+      <HowWeWork data={careersHome.howWeWork} />
+      <CareersPaths data={careersHome.careerPaths} />
+      <OurCulture data={careersHome.ourCulture} />
+      <OurValues data={careersHome.ourValuesCareers} />
+      <CallToAction data={careersHome.callToActionCareers} />
+      <ProjectsYouCanWorkOn data={careersHome.projectsYouCanWorkOnCareers} />
+      <Benefits data={careersHome.benefits} />
+      <MeetUs data={careersHome.meetUs}/>
+      <RecruitmentProcess data={careersHome.recruitmentProcess}/>
+      <ApointmentWithHr data={careersHome.appointmentWithHr} />
+      <OnBoarding data={careersHome.onboarding}/>
+      <CallToAction data={careersHome.callToActionCareersSecond} />
+      {careersHome.faqCareers.map(el => (
         <FAQ data={el} />
       ))}
     </main>
@@ -103,7 +103,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
               slug
               name
             }
-            careersHomepage{
+            careersHome{
                 heroCareers {
                   pageTitle
                   textUnderTitle

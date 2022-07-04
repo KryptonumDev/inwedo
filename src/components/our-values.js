@@ -65,8 +65,8 @@ const Card = styled.div`
     grid-gap: clamp(16px, 2.6vw, 24px);
 
     .image{
-        width: clamp(32px, 7.29vw, 80px);
-        aspect-ratio: 1/1;
+        width: clamp(40px, 7.29vw, 80px);
+        height: clamp(40px, 7.29vw, 80px);
     }
 
     h3{

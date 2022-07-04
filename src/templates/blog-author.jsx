@@ -87,8 +87,14 @@ query BlogCategoryQuery($id: String!) {
           }
           categories {
             nodes {
+              language{
+                slug
+              }
               name
               slug
+              blogCategory {
+                categoryUrl
+              }
             }
           }
           date(formatString: "MMMM DD YYYY")

@@ -14,7 +14,7 @@ const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
   return (
     <main>
       <Seo lang={language.slug} alternates={alternates} location={location}/>
-      <Hero data={homepage.heroHomepage} />
+      <Hero data={homepage.heroHome} />
       <Services data={homepage.services} />
       <CallToAction data={homepage.callToAction} />
       <CaseStudyRepeater data={homepage.caseStudies} />
@@ -49,7 +49,7 @@ export const query = graphql`
           name
         }
         homepage {
-            heroHomepage {
+            heroHome {
               title
               subTitle
               button {

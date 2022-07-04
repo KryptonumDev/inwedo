@@ -75,12 +75,7 @@ const Repeater = styled.div`
 
 const Item = styled.details`
     position: relative;
-    padding-left: clamp(50px, 8.46vw, 90px);
     padding-bottom: clamp(20px, 3.385vw, 32px);
-
-    @media (max-width: 660px){
-        padding-left: 40px;
-    }
 
     &::after{
         content: url(${props => props.Arrow});
@@ -88,6 +83,7 @@ const Item = styled.details`
         left: clamp(20px, 3.255vw, 40px);
         top: 38px;
         transition: transform .2s cubic-bezier(0.215, 0.610, 0.355, 1);
+        pointer-events: none;
 
         @media (max-width: 660px) {
             left: 10px;
@@ -129,15 +125,34 @@ const Item = styled.details`
 
     summary{
         cursor: pointer;
+
+        padding-left: clamp(50px, 8.46vw, 90px);
+
+        @media (max-width: 660px){
+            padding-left: 40px;
+        }
+
+        &::-webkit-details-marker{
+            display:none;
+        }
+
         span{
             color: #495057;
             font-weight: 600;
             font-size: clamp(14px, 2.34375vw, 22px);
             line-height: 150%;
+
         }
     }
 
     div{
+
+        padding-left: clamp(50px, 8.46vw, 90px);
+        
+        @media (max-width: 660px){
+            padding-left: 40px;
+        }
+
         span{
             margin-top: 24px;
             margin-bottom: 16px;    

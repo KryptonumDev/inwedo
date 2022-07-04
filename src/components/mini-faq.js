@@ -133,6 +133,7 @@ const Item = styled.details`
     }
 
     summary{
+        cursor: pointer;
         span{
             color: #495057;
             font-weight: 600;

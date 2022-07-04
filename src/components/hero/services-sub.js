@@ -25,9 +25,8 @@ export default function Hero({ data: { text, pageTitle, button, icon } }) {
 
 const Wrapper = styled.section`
     background-color: var(--color-white);
-    padding: clamp(90px, 11.71vw, 200px) 0 clamp(40px, 9.765vw, 110px) 0;
+    padding: clamp(90px, 11.71vw, 200px) 0 clamp(0px, ${48 / 1920 * 100}vw, 48px) 0;
     border-radius: 24.5221px;
-    box-shadow: drop-shadow(0px 76px 74px rgba(0, 0, 0, 0.02));
 `
 
 const Content = styled.div`

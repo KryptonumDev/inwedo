@@ -16,8 +16,25 @@ export default function Header({ location }) {
                 }    
                 header {
                     headerNavigation {
-                        hLinkText
-                        hLinkUrl
+                        menuTitle
+                        mainLink{
+                            name
+                            url
+                        }
+                        firstColumn{
+                            name
+                            url
+                            isBold
+                        }
+                        secondColumn{
+                            name
+                            url
+                            isBold
+                        }
+                    }
+                    contactLink{
+                        name
+                        url
                     }
                     siteLogo {
                       altText
@@ -40,12 +57,13 @@ export default function Header({ location }) {
         }
         return 'else'
     })()
-    const { siteLogo, headerNavigation } = localeData[0].header
+    const { siteLogo, headerNavigation, contactLink } = localeData[0].header
 
     const [isOpen, setIsOpen] = useState(false)
+    const [isHovered, setIsHovered] = useState(false)
 
     return (
-        <Wrapper type={type} isOpen={isOpen} >
+        <Wrapper isHovered={isHovered} type={type} isOpen={isOpen} >
             <Container>
                 <Content>
                     <Link ariaLabel='homepage link' to="/">
@@ -54,13 +72,53 @@ export default function Header({ location }) {
                     <MobileButton type={type} isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>
                         <span />
                     </MobileButton>
-                    <Navigation isOpen={isOpen} type={type}>
+                    <Navigation isHovered={isHovered} isOpen={isOpen} type={type}>
                         <ul>
-                            {headerNavigation.map(el => (
+                            {headerNavigation.map((el, index) => (
                                 <li>
-                                    <Link to={el.hLinkUrl}>{el.hLinkText}</Link>
+                                    <details open onMouseEnter={() => { setIsHovered(index) }} onMouseLeave={() => { setIsHovered(false) }}>
+                                        <summary tabIndex='-1' onClick={(e) => { e.preventDefault() }}>
+                                            <Link onFocus={() => { setIsHovered(index) }} onClick={(e) => { e.preventDefault() }} to={el.mainLink.url}>{el.menuTitle}</Link>
+                                        </summary>
+                                        <Menu isHovered={isHovered} index={index} className="menu">
+                                            <Container>
+                                                <div className="main">
+                                                    <Link onClick={() => { setIsHovered(false) }} to={el.mainLink.url}>{el.mainLink.name}</Link>
+                                                </div>
+                                                <div className="column">
+                                                    {el.firstColumn.map(el => {
+                                                        if (!el.url) {
+                                                            return (
+                                                                <h3 className={el.isBold}>{el.name}</h3>
+                                                            )
+                                                        }
+                                                        return (
+                                                            <Link onClick={() => { setIsHovered(false) }} className={el.isBold} to={el.url}>{el.name}</Link>
+                                                        )
+                                                    })}
+                                                </div>
+                                                <div className="column">
+                                                    {el.secondColumn.map(el => {
+                                                        if (!el.url) {
+                                                            return (
+                                                                <h3 className={el.isBold}>{el.name}</h3>
+                                                            )
+                                                        }
+                                                        return (
+                                                            <Link onClick={() => { setIsHovered(false) }} className={el.isBold} to={el.url}>{el.name}</Link>
+                                                        )
+                                                    })}
+                                                </div>
+                                            </Container>
+                                        </Menu>
+                                    </details>
                                 </li>
                             ))}
+                            <li>
+                                <ContactButton to={contactLink.url}>
+                                    {contactLink.name}
+                                </ContactButton>
+                            </li>
                         </ul>
                     </Navigation>
                 </Content>
@@ -72,15 +130,24 @@ export default function Header({ location }) {
 const Wrapper = styled.header`
     position: absolute;
     z-index: 10;
+    background-color: ${props => props.type === 'main' ? 'transparent' : '#fff'};
     top: 0;
     left: 0;
     right: 0;
-    padding: 28px 0;
-    transition: background-color .2s linear;
+    transition: .5s cubic-bezier(0.23, 1, 0.320, 1);
+    z-index: 1000;
 
     .logo{
         filter: ${props => props.type === 'main' ? 'brightness(0) invert(1)' : 'null'};
     }
+
+    ${props => props.isHovered !== false ? `
+        background-color: var(--color-white);
+
+        .logo{
+            filter: unset;
+        }
+    ` : null}
 
     ${props => props.type === 'main' && props.isOpen ? `
         background-color: var(--color-white);
@@ -94,10 +161,14 @@ const Content = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 820px) {
+        height: 81px;
+    }
 `
 
 const MobileButton = styled.button`
-    @media (min-width: 1024px) {
+    @media (min-width: 820px) {
         display: none;
     }
     position: relative;
@@ -167,43 +238,96 @@ const MobileButton = styled.button`
     }
 `
 
+const Menu = styled.div`
+                position: absolute;
+                top: 81px;
+                left: 0;
+                right: 0;
+                padding: 56px 0;
+                background: #F8F9FA;
+                border-top: 1px solid rgba(0, 0, 0, 0.08);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+                opacity: 0;
+                transform: translateY(-10px);
+                pointer-events: none;
+                transition: .5s cubic-bezier(0.23, 1, 0.320, 1);
+
+                
+                ${props => props.isHovered !== false && props.isHovered === props.index ? `
+                            transform: unset;
+                            opacity: 1;
+                            pointer-events: all;
+                        ` : null}
+
+                h3, a {
+                    font-weight: 400;
+                    font-size: clamp(14px, 2.08vw, 16px);
+                    line-height: 150%;
+                    font-family: 'Lexend';
+
+                    @media (max-width: 820px) {
+                        color: var(--color-black);
+                    }
+                }
+
+                ${Container}{
+                    display: flex;
+                }
+
+                .main{
+                    margin-right: clamp(100px, ${100 / 1024 * 100}vw, 200px);
+                    width: 200px;
+                    padding-right: 30px;
+                    position: relative;
+                    border-right: 1px solid rgba(0, 0, 0, 0.08);
+                    text-decoration: underline;
+                }
+
+                .column{
+                    display: grid;
+                    grid-gap: 32px;
+                    margin-right: clamp(150px, ${150 / 1024 * 100}vw, 200px);
+                    height: fit-content;
+                }
+`
+
 const Navigation = styled.nav`
     ul{
         display: flex;
         gap: clamp(24px, 4.8vw, 50px);
 
+        @media (max-width: 1024px) {
+            gap: 20px;
+        }
+
         li{
-            a{
-                color: ${props => props.type === 'main' ? '#fff' : 'var(--color-black)'};
-                font-weight: 400;
-                font-size: clamp(14px, 2.08vw, 16px);
-                line-height: 150%;
-                font-family: 'Lexend';
+            display: flex;
+            align-items: center;
 
-                @media (max-width: 1024px) {
-                    color: var(--color-black);
+            details{
+                summary{
+                    height: 81px;
+                    display: grid;
+                    align-items: center;
+                    position: relative;
+
+                    a{
+                        padding: 4px 0;
+                        line-height: 24px;
+                        color: ${props => props.type === 'main' ? '#fff' : 'var(--color-black)'};
+
+                        ${props => props.isHovered !== false ? `
+                            color: var(--color-black);
+                        ` : null}
+
+                    }
                 }
             }
 
-            :last-child{
-                a{
-                    padding: 12px 22px; 
-                    background: #fff;
-                    border-radius: 6px;
-                    color: #495057;
-                    box-shadow: ${props => props.type === 'main' ? '0px 2px 21px rgba(13, 150, 225, 0.07)' : 'null'};
-                    ${props =>
-        props.type !== 'main'
-            ? `
-                    box-shadow: var(--shadow);
-                    `
-            : null}
-                }
-            }
         }
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 820px) {
         position: fixed;
         left: 0;
         right: 0;
@@ -224,4 +348,16 @@ const Navigation = styled.nav`
             transform: translateX(0);
         ` : null}
     }
+`
+
+const ContactButton = styled(Link)`
+    padding: 12px 22px; 
+    background: #fff;
+    border-radius: 6px;
+    color: #495057;
+    box-shadow: ${props => props.type === 'main' ? '0px 2px 21px rgba(13, 150, 225, 0.07)' : 'null'};
+    ${props => props.type !== 'main' ? `
+        box-shadow: var(--shadow);
+        `
+        : null}
 `

@@ -5,10 +5,10 @@ import styled from "styled-components"
 import { urlSystem } from "../../contstants/urlSystem"
 import { Container } from "../../style"
 
-export default function PostGrid({ isDefault, data, from, to, isAltLayout, currentPage }) {
+export default function PostGrid({ isDefault, data, from, to, isAltLayout, currentPage, id }) {
 
     return (
-        <Wrapper>
+        <Wrapper id={id}>
             <Container>
                 <Grid>
                     {data.map((el, index) => {
@@ -55,7 +55,7 @@ export default function PostGrid({ isDefault, data, from, to, isAltLayout, curre
 }
 
 const Wrapper = styled.div`
-    margin-top: var(--margin-section);
+    padding-top: var(--margin-section);
 `
 
 const Grid = styled.div`

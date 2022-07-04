@@ -33,12 +33,14 @@ export default function BlogAuthorPosts({ data, title, loadMore }) {
                         if (index < showCount) {
                             return (
                                 <Item>
-                                    <Link to={urlSystem['Blog Archive'][el.language.slug] + el.blogPost.currentPostUrl}>
+                                    <Link to={urlSystem['Blog Post'][el.language.slug] + el.blogPost.currentPostUrl}>
                                         <GatsbyImage className='image' image={el.blogPost.previewCard.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.blogPost.previewCard.previewImage.altText} />
                                         <Content>
                                             <Categories>
                                                 {el.categories.nodes.map(el => (
-                                                    <div className="item">{el.name}</div>
+                                                    <Link to={urlSystem['category'][el.language.slug] + el.blogCategory.categoryUrl} className="item">
+                                                        {el.name.substr(3)}
+                                                    </Link>
                                                 ))}
                                             </Categories>
                                             {el.authors.nodes[0]

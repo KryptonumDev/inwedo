@@ -54,6 +54,35 @@ export default function Filter({ activeSearch, defaultPosts, setInputValue, inpu
         setInputValue(event.target.value)
     }
 
+    const keyDown = (event) => {
+        if (event.code === "Enter" && typeof window !== "undefined") {
+            event.preventDefault()
+            setSearch()
+
+            const href = document.getElementById("posts")
+            const offsetTop = href.offsetTop
+           
+            window.scroll({
+              top: offsetTop,
+              behavior: "smooth"
+            });
+        }
+    }
+
+    const search = () => {
+        if (typeof window !== "undefined") {
+            setSearch()
+
+            const href = document.getElementById("posts")
+            const offsetTop = href.offsetTop
+           
+            window.scroll({
+              top: offsetTop,
+              behavior: "smooth"
+            });
+        }
+    }
+
     return (
         <Wrapper matchingArticle={matchingArticle} input={inputValue} postNumber={searchResults}>
             <Container>
@@ -70,9 +99,9 @@ export default function Filter({ activeSearch, defaultPosts, setInputValue, inpu
                     </Grid>
                     <form>
                         <div>
-                            <input value={inputValue} placeholder={searchInputPlaceholder} onChange={handleChange} />
+                            <input onKeyDown={(e) => { keyDown(e) }} value={inputValue} placeholder={searchInputPlaceholder} onChange={handleChange} />
                         </div>
-                        <button className="button" type="button" onClick={() => { setSearch() }}>{submitButtonText}</button>
+                        <button className="button" type="button" onClick={() => { search() }}>{submitButtonText}</button>
                     </form>
                 </Content>
                 {activeSearch !== ''

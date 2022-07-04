@@ -46,7 +46,7 @@ export default function PostsGrid({ data, from, to }) {
 }
 
 const Wrapper = styled.section`
-
+    margin-top: 64px;
 `
 
 const Grid = styled.div`
@@ -76,6 +76,11 @@ const Item = styled(motion.div)`
             width: fit-content;
             height: fit-content;
             max-width: clamp(91px, 13vw, 112px);
+            /* aspect-ratio: 4.75/1; */
+
+            img{
+                /* height: 24px; */
+            }
         }
     }
 

@@ -27,7 +27,7 @@ const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts, alternates }, loc
         ? <TestomontialDivider data={caseStudies.testomontialDividerPortfolio} />
         : null}
       {caseStudies.sectionController.imageDivider
-        ? <ImageDivider data={caseStudies.imageDivider} />
+        ? <ImageDivider data={caseStudies.imageDividerPortfolio} />
         : null}
       {caseStudies.sectionController.inwedoRole
         ? <InwedoRole data={caseStudies.inwedoRole} />
@@ -186,7 +186,7 @@ query PortfolioPageQuery($id: String!) {
               }
             }
           }
-          imageDivider{
+          imageDividerPortfolio{
               imageDivider{
                 altText
                 localFile {
@@ -302,7 +302,7 @@ query PortfolioPageQuery($id: String!) {
         }
       }
     }
-    otherPosts : allWpCaseStudies(filter: {id: {ne: $id}}) {
+    otherPosts : allWpCaseStudies(limit: 3, filter: {id: {ne: $id}}) {
       nodes {
         language{
           slug

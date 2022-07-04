@@ -12,9 +12,9 @@ export default function Hero({ data: { pageTitle, textUnderTitle, caseInformatio
                     <div>
                         <GatsbyImage className="logo" image={caseIcon.localFile.childImageSharp.gatsbyImageData} alt={caseIcon.altText} />
                         <h1 className="h1 display">{pageTitle}</h1>
-                        <p className="h3">{textUnderTitle}</p>
+                        <div className="h3" dangerouslySetInnerHTML={{ __html: textUnderTitle }} />
                         <div className="goals">
-                            {achievedGoals.map(el => (
+                            {achievedGoals?.map(el => (
                                 <div className="item">
                                     <GatsbyImage className="tech-logo" image={el.goalIcon.localFile.childImageSharp.gatsbyImageData} altText={el.goalIcon.altText} />
                                     <p className="h4">{el.goalText}</p>
@@ -157,14 +157,13 @@ const GlassCard = styled.div`
             width: 48px;
             aspect-ratio: 1/1;
             border-radius: 5px;
-            background-color: #eeeeee;
-            box-shadow: 0px 11px 25px rgba(0, 0, 0, 0.04);
 
             .tech-logo{
-                max-width: 36px;
-                width: fit-content;
+                width: 100%;
                 height: fit-content;
-                box-shadow: grayscale(1);
+                border-radius: 5px;
+                filter: grayscale(1);
+                box-shadow: 0px 11px 25px rgba(0, 0, 0, 0.04);
             }
         }
     }

@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Hero from "../components/hero/blog"
 import Archive from "../components/blog-archive"
 import Seo from "../components/seo"
+import StayInTouch from "../components/stay-in-touch"
 
 export default function BlogArchive({ data: { allWpPage, allWpPost, allWpCategory, alternates }, location }) {
   let { blogArchive, language } = allWpPage.nodes[0]
@@ -11,6 +12,7 @@ export default function BlogArchive({ data: { allWpPage, allWpPost, allWpCategor
       <Seo lang={language.slug} alternates={alternates} location={location} />
       <Hero data={blogArchive.heroBlog} />
       <Archive otherData={blogArchive.posts} location={location} cta={blogArchive.callToActionBlog} cta2={blogArchive.callToActionBlogSecond} data={allWpPost} categories={allWpCategory} language={language.slug} />
+      <StayInTouch data={blogArchive.stayInTouch}/>
     </main>
   )
 }
@@ -96,6 +98,22 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                   localFile {
                     childImageSharp {
                       gatsbyImageData
+                    }
+                  }
+                }
+              }
+              stayInTouch{
+                sectionTitle
+                text
+                socialMediaLinks{
+                  socialLink
+                  ariaLabel
+                  socialIcon{
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
                     }
                   }
                 }

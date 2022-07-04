@@ -86,7 +86,7 @@ const Card = styled.div`
 
     p{
         margin-bottom: 24px;
-        font-weight: 400;
+        font-weight: 700;
         font-size: clamp(14px, 2.08vw, 18px);
         line-height: 151%;
         z-index: 2;
