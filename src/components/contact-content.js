@@ -95,7 +95,6 @@ const Person = styled.div`
         margin-top: 24px;
 
         .image{
-            border-radius: 50%;
             width: fit-content;
             height: fit-content;
 

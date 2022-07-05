@@ -4,11 +4,10 @@ import styled from "styled-components"
 import { Container } from "../style"
 import Quote from './../images/quote.png'
 
-export default function TestomontialDividerAlt({ data: { sectionTitle, testomontialText, personName, personPosition, companyLogo } }) {
+export default function TestomontialDivider({ data: { testomontialText, personName, personPosition, companyLogo }, small, index }) {
     return (
-        <Wrapper>
+        <Wrapper id={index} small={small}>
             <Container>
-                <h2 className="h3">{sectionTitle}</h2>
                 <Card quote={Quote}>
                     <div className="flex">
                         <GatsbyImage className="image" image={companyLogo.localFile.childImageSharp.gatsbyImageData} alt={companyLogo.altText} />
@@ -25,30 +24,7 @@ export default function TestomontialDividerAlt({ data: { sectionTitle, testomont
 }
 
 const Wrapper = styled.section`
-    margin-top: var(--margin-section);
-
-    h2{
-        text-align: center;
-        position: relative;
-        padding: 16px 0 0 0;    
-        max-width: 850px;
-        margin: 0 auto clamp(32px, 6.25vw, 64px) auto;
-        
-        &.h3{
-            font-size: clamp(16px, 3.125vw, 24px);
-        }
-
-        &::before{
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 0;
-            width: 40px;
-            height: 1px;
-            background-color: var(--color-black);
-        }
-    }
+    margin-top: ${props => props.small ? 'clamp(32px, 6.25vw, 64px)' : 'var(--margin-section)'};
 `
 
 const Card = styled.div`
@@ -66,10 +42,6 @@ const Card = styled.div`
         position: absolute;
         right: 40px;
         top: 40px;
-
-        @media (max-width: 640px) {
-            display: none;
-        }
     }
 
     .flex{
@@ -97,6 +69,15 @@ const Card = styled.div`
             font-weight: 300;
             font-size: clamp(10px, 1.5625vw, 12px);
             line-height: 16px;
+        }
+
+        @media (max-width: 640px) {
+            flex-direction: column;
+            align-items: flex-start;
+            .image{
+                margin-right: 0;
+                margin-bottom: 32px;
+            }
         }
     }
 `

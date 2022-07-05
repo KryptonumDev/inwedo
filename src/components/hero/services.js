@@ -40,15 +40,21 @@ const Content = styled.div`
 `
 
 const Image = styled(GatsbyImage)`
-    border-radius: 8px 100px 0px 8px;
     box-shadow: var(--shadow);
     width: fit-content;
     height: fit-content;
     min-width: 300px;
+    
+    img{
+        border-radius: 8px 100px 0px 8px;
+    }
 
     @media (max-width: 768px){
         min-width: unset;
-        border-radius: 8px;
+        
+        img{
+            border-radius: 8px;
+        }
     }
 `
 

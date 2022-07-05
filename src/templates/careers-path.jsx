@@ -5,10 +5,10 @@ import Seo from "../components/seo"
 import Hero from "../components/hero/careerth-path"
 
 export default function CareerthPath({ data: { allWpCareerPath, alternates }, location }) {
-  let { path, language } = allWpCareerPath.nodes[0]
+  let { path, language, seo } = allWpCareerPath.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={path.templateName} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={path.templateName} />
       <Hero data={path.heroPath}/>
       <BlogPostContent data={path.content} quickTitle={path.quickNavigation.sectionTitle} />
     </main>
@@ -35,6 +35,10 @@ query BlogPathQuery($id: String!) {
           language{
               slug
               locale
+          }
+          seo {
+            title
+            fullHead
           }
             id
             path : careerth_path{

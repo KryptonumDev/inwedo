@@ -7,16 +7,16 @@ import CallToAction from "../components/cta"
 import RelatedServices from "../components/related-services"
 import TwoColumnFlexWorkshop from "../components/two-column/two-column-workshop"
 import SuccessStories from "../components/success-stories"
-import TestomontialDivider from "../components/testomontial-divider"
+import TestomontialDivider from "../components/testomontial-divider-logo"
 import FAQ from "../components/faq"
 import ProcessOptimisation from "../components/process-optimisation"
 import Seo from "../components/seo"
 
 const ProductDevelopmentPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { productDevelopment, language } = allWpPage.nodes[0]
+  let { productDevelopment, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
       <Hero data={productDevelopment.heroProductDevelop} />
       <TwoColumnFlex data={productDevelopment.twoColumnFlexProductDevelopment} />
       <DevelopmentProcess data={productDevelopment.developmentProcess} />
@@ -55,6 +55,10 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
         language {
           slug
           name
+        }
+        seo {
+          title
+          fullHead
         }
         productDevelopment {
             heroProductDevelop {

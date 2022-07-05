@@ -2,7 +2,7 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import Hero from "../components/hero/services-sub"
 import TwoColumnFlex from "../components/two-column/two-column-list"
-import TestomontialDivider from "../components/testomontial-divider"
+import TestomontialDivider from "../components/testomontial-divider-logo"
 import Technologies from "../components/technologies"
 import CallToAction from "../components/cta"
 import SuccessStories from "../components/success-stories"
@@ -11,10 +11,10 @@ import FAQ from "../components/faq"
 import Seo from "../components/seo"
 
 const WebAppPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { webApp, language } = allWpPage.nodes[0]
+  let { webApp, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
       <Hero data={webApp.heroWebApp} />
       <TwoColumnFlex data={webApp.twoColumnFlexWebApp} />
       <TestomontialDivider data={webApp.testomontialDividerWebApp} />
@@ -48,6 +48,10 @@ query WebAppPageQuery($id: String!, $templateName: String!) {
       nodes {
         language {
           slug
+        }
+        seo {
+          title
+          fullHead
         }
         webApp {
           heroWebApp {

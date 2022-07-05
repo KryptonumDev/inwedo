@@ -9,12 +9,12 @@ import SuccessStories from "../components/success-stories"
 import Seo from "../components/seo"
 
 const AboutPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { about, language } = allWpPage.nodes[0]
+  let { about, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
       <Hero data={about.heroAbout} />
-      <TwoColumnFlex data={about.twoColumnFlex} />
+      <TwoColumnFlex reverse={true} data={about.twoColumnFlex} />
       <OurValues data={about.ourValues} />
       <CallToAction data={about.callToActionAbout} />
       <TestomontialsAnimated data={about.testomontialsAnimated} />
@@ -45,6 +45,10 @@ export const query = graphql`
               language {
                 slug
                 name
+              }
+              seo {
+                title
+                fullHead
               }
                 about {
                     heroAbout {

@@ -11,7 +11,7 @@ export default function BlogCategory({ data: { allWpCategory, allWpPost, alterna
   
   return (
     <main>
-      <Seo lang={category.language.slug} alternates={alternates} location={location} type='archive' id={category.id} template='category'/>
+      <Seo data={category.seo} lang={category.language.slug} alternates={alternates} location={location} type='archive' id={category.id} template='category'/>
       <Hero data={category.blogCategory} />
       <BlogAuthorPosts data={posts} title={category.blogCategory.otherPostsTitle} loadMore={category.blogCategory.viewMoreButtonText} />
       <FAQ data={category.blogCategory.faqCategory} />
@@ -39,6 +39,10 @@ query BlogAuthorQuery($id: String!) {
           language {
             slug
             name
+          }
+          seo {
+            title
+            fullHead
           }
             id
             blogCategory {

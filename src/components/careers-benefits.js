@@ -100,8 +100,11 @@ const Flex = styled.div`
         width: fit-content;
         height: fit-content;
         max-width: 560px;
-        border-radius: 8px;
         box-shadow: var(--shadow);
+        
+        img{
+            border-radius: 8px;
+        }
     }
 
     @media (max-width: 768px) {

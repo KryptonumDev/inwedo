@@ -4,10 +4,10 @@ import styled from "styled-components"
 import Seo from "../components/seo"
 
 const PrivacyPage = ({ data: { allWpPage, alternates }, location }) => {
-    let { content, language } = allWpPage.nodes[0]
+    let { content, language, seo } = allWpPage.nodes[0]
     return (
         <main>
-            <Seo lang={language.slug} alternates={alternates} location={location} />
+            <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
             <Content dangerouslySetInnerHTML={{ __html: content }} />
         </main>
     )
@@ -33,6 +33,10 @@ export const query = graphql`
                 language {
                   slug
                   name
+                }
+                seo {
+                  title
+                  fullHead
                 }
                 content
             }

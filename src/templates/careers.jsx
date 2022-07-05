@@ -17,10 +17,10 @@ import FAQ from "../components/faq"
 import JoinUs from "../components/careers-join-us"
 
 const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCategoryJob, allWpSeniority }, location }) => {
-  let { careersHome, language } = allWpPage.nodes[0]
+  let { careersHome, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
       <Hero data={careersHome.heroCareers} />
       <JoinUs data={careersHome.joinUs} offers={allWpJobOffer.nodes} categories={allWpCategoryJob.nodes} seniority={allWpSeniority.nodes}/>
       <ApointmentWithHr data={careersHome.appointmentWithHr} />
@@ -102,6 +102,10 @@ query CareersPageQuery($id: String!, $templateName: String!) {
             language {
               slug
               name
+            }
+            seo {
+              title
+              fullHead
             }
             careersHome{
                 heroCareers {

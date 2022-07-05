@@ -43,12 +43,15 @@ const Content = styled.div`
 const Image = styled.div`
     padding: clamp(24px, 4.427vw, 43px) clamp(30px, 5.729vw, 58px);
     background-color: var(--color-white);
-    border-radius: 8px;
     box-shadow: var(--shadow);
     width: fit-content;
     height: fit-content;
     min-width: clamp(100px, 19.27vw, 196px);
     width: clamp(100px, 19.27vw, 196px);
+    
+    img{
+        border-radius: 8px;
+    }
 `
 
 const TextPart = styled.div`

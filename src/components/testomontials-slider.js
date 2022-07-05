@@ -12,23 +12,23 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5000,
         responsive: [
             {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 2,
-              }
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                }
             },
             {
-              breakpoint: 640,
-              settings: {
-                slidesToShow: 1,
-              }
+                breakpoint: 640,
+                settings: {
+                    slidesToShow: 1,
+                }
             },
-          ]
+        ]
     };
+    // autoplay: true,
+    // autoplaySpeed: 5000,
     return (
         <Wrapper>
             <Container>
@@ -39,14 +39,16 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
                 <Slider {...settings}>
                     {testomontialsItem.map(el => (
                         <Item>
-                            <footer className="person">
-                                <GatsbyImage image={el.author.userIconPng.localFile.childImageSharp.gatsbyImageData} alt={el.author.userIconPng.altText} />
-                                <div>
-                                    <cite className="name">{el.author.authorName}</cite>
-                                    <cite className="place">{el.author.authorPosition}</cite>
-                                </div>
-                            </footer>
-                            <p className="text p">{el.testomontialText}</p>
+                            <div>
+                                <footer className="person">
+                                    <GatsbyImage className="image" image={el.author.userIconPng.localFile.childImageSharp.gatsbyImageData} alt={el.author.userIconPng.altText} />
+                                    <div>
+                                        <cite className="name">{el.author.authorName}</cite>
+                                        <cite className="place">{el.author.authorPosition}</cite>
+                                    </div>
+                                </footer>
+                                <p className="text p">{el.testomontialText}</p>
+                            </div>
                             <Image image={el.companyLogo.localFile.childImageSharp.gatsbyImageData} alt={el.companyLogo.altText} />
                         </Item>
                     ))}
@@ -58,6 +60,34 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
 
 const Wrapper = styled.section`
     margin-top: var(--margin-section);
+
+    .slick-track{
+        display: flex !important;
+    }
+
+    .slick-slide{
+        height: inherit !important;
+    }
+
+    .slick-slide > div{
+        height: 100%;
+    }
+
+    .slick-dots{
+        button{
+            &::before{
+                font-size: 12px;
+                color: #C4C4C4 !important;
+                opacity: 0.3;
+            }
+        }
+
+        .slick-active{
+            &::before{
+                color: #C4C4C4 ;
+            }
+        }
+    }
 
     .h1{
         text-align: center;
@@ -98,11 +128,20 @@ const Item = styled.blockquote`
     box-sizing: border-box;
     background-color: var(--color-white);
     box-shadow: 0px 2px 21px rgba(13, 150, 225, 0.07);
+    height: 100%;
 
     width: calc(100% - 24px) !important;
     margin: 0 12px;
     padding: 40px 20px;
     border-radius: 24px;
+
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media (max-width: 1024px) {
+        justify-content: unset;
+    }
 
     .person{
         width: fit-content;
@@ -110,6 +149,14 @@ const Item = styled.blockquote`
         justify-content: space-between;
         align-items: center;
         margin: 0 auto 48px auto;
+
+        .image{
+            max-width: 60px;
+            
+            img{
+                border-radius: 50%;
+            }
+        }
 
         cite{
             margin-left: 12px;
@@ -140,4 +187,6 @@ const Image = styled(GatsbyImage)`
     width: fit-content;
     display: block;
     margin: 0 auto;
+    max-width: 120px;
+    height: fit-content;
 `

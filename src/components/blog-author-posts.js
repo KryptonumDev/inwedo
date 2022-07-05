@@ -140,6 +140,10 @@ const Item = styled.div`
         aspect-ratio: 1.6/1;
         height: fit-content;
         border-radius: 8px;
+
+        img{
+            border-radius: 8px;
+        }
     }
 `
 
@@ -174,9 +178,12 @@ const AuthorInform = styled.div`
         width: fit-content;
         height: fit-content;
         max-width: 36px;
-        border-radius: 50%;
         margin-right: 8px;
         margin-bottom: 0;
+
+        img{
+            border-radius: 50%;
+        }
     }
 
     .date{

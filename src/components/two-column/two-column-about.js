@@ -4,18 +4,15 @@ import { Container } from "../../style"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-export default function TwoColumnFlex({ data: { image, title, subTitle, text, button }, technology }) {
+export default function TwoColumnFlex({ data: { image, title, subTitle, text, button }, technology, reverse }) {
     return (
         <Wrapper>
             <Container>
-                {technology
-                    ? null
-                    : <h2 className="h4 line mobile">{title}</h2>}
-                <Flex to={button.url}>
+                <Flex reverse={reverse} to={button.url}>
                     <div className="text">
                         {technology
                             ? <h2 className="h1">{title}</h2>
-                            : <h2 className="h4 line desctop">{title}</h2>}
+                            : <h2 className="h4 line">{title}</h2>}
                         <div className="h3" dangerouslySetInnerHTML={{ __html: subTitle }} />
                         <div className="p" dangerouslySetInnerHTML={{ __html: text }}></div>
                         {button.url
@@ -37,21 +34,12 @@ const Wrapper = styled.section`
             opacity: .5;
             font-size: clamp(14px, 2.08vw, 18px);
 
-            &.mobile{
-                display: none;
                 @media (max-width: 850px){
                     display: block;
                     max-width: 500px;
                     margin: 0 auto 16px auto;
                     box-sizing: border-box;
                 }
-            }
-
-            &.desctop{
-                @media (max-width: 850px){
-                    display: none;
-                }
-            }
         }
 `
 
@@ -101,10 +89,14 @@ const Flex = styled(Link)`
     }
 
     @media (max-width: 850px) {
-        flex-direction: column-reverse;
+        flex-direction: ${props => props.reverse ? 'column' : 'column-reverse'};
         gap: 32px;
         max-width: 500px;
         margin: 0 auto;
+
+        .text .p{
+            margin-bottom: ${props => props.reverse ? '0' : '24px'};
+        }
     }
 `
 

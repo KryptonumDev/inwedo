@@ -12,8 +12,9 @@ export default function PostGrid({ isDefault, data, from, to, isAltLayout, curre
             <Container>
                 <Grid>
                     {data.map((el, index) => {
+                        debugger
                         if (
-                            (isAltLayout && index >= (to * (currentPage - 1)) && index <= (to * (currentPage)))
+                            (isAltLayout && index >= (to * (currentPage - 1) + (currentPage - 1)) && index <= (to * (currentPage) + (currentPage - 1)))
                             ||
                             (!isAltLayout && index >= from && index <= to)
                         ) {
@@ -94,9 +95,11 @@ const Item = styled.div`
     }
 
     .image{
-        border-radius: 8px;
         width: 100%;
-        aspect-ratio: 1.92/1;
+
+        img{
+            border-radius: 8px;
+        }
     }
 
 

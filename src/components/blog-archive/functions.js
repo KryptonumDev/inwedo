@@ -16,7 +16,18 @@ export const resetFiltredPosts = (defaultPosts, activeFilters) => {
 
 export const resetSearchedPosts = (defaultPosts, search) => {
     if(search !== null){
-        return defaultPosts.filter(el => el.blogPost.previewCard.previewTitle.toLowerCase().includes(search.toLowerCase()))
+        return defaultPosts.filter(el => {
+            let isCategory = false
+            el.categories.nodes.forEach(el => {
+                if(el.name.toLowerCase().includes(search.toLowerCase())){
+                    isCategory = true
+                }
+            })
+            let isTitle = el.blogPost.previewCard.previewTitle.toLowerCase().includes(search.toLowerCase())
+            let isText = el.blogPost.previewCard.previewText.toLowerCase().includes(search.toLowerCase())
+
+            return isCategory || isTitle || isText
+        })
     }
     return defaultPosts
 }

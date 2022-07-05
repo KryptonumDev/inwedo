@@ -4,7 +4,7 @@ import Hero from "../components/hero/how-we-work"
 import TwoColumnFlex from "../components/two-column/two-column-list"
 import CardsWithTitle from "../components/cards-with-title"
 import MiniFaq from "../components/mini-faq"
-import TestomontialDivider from "../components/testomontial-divider"
+import TestomontialDivider from "../components/testomontial-divider-logo"
 import CallToAction from "../components/cta"
 import OurFocuses from "../components/our-focuses"
 import TwoColumnFlexImg from './../components/two-column/two-column-about'
@@ -13,10 +13,10 @@ import RelatedServices from "../components/related-services"
 import Seo from "../components/seo"
 
 const HowWeWorkPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { howWeWork, language } = allWpPage.nodes[0]
+  let { howWeWork, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
       <Hero data={howWeWork.heroHowWeWork} />
       <TwoColumnFlex data={howWeWork.twoColumnFlexHowWeWork} />
       <CardsWithTitle data={howWeWork.cardsWithLinks} />
@@ -55,6 +55,10 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
             language {
               slug
               name
+            }
+            seo {
+              title
+              fullHead
             }
             howWeWork {
                 heroHowWeWork {

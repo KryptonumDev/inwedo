@@ -74,8 +74,11 @@ const Image = styled.div`
         position: absolute;
         top: 126px;
         left: 0;
-        border-radius: 8px 100px 8px 8px;
         box-shadow: var(--shadow);
+
+        img{
+            border-radius: 8px 100px 8px 8px;
+        }
     }
 
     .rightTop{
@@ -84,8 +87,11 @@ const Image = styled.div`
         position: absolute;
         top: 0;
         right: 46px;
-        border-radius: 8px 8px 8px 100px;
         box-shadow: var(--shadow);
+
+        img{
+            border-radius: 8px 8px 8px 100px;
+        }
     }
 
     .rightBottom{
@@ -94,8 +100,11 @@ const Image = styled.div`
         position: absolute;
         bottom: 0;
         right: 0;
-        border-radius: 8px 8px 8px 204px;
         box-shadow: var(--shadow);
+
+        img{
+            border-radius: 8px 8px 8px 204px;
+        }
     }
 
     @media (max-width: 1439px) {

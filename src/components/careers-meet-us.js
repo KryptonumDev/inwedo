@@ -81,9 +81,11 @@ const Flex = styled(Link)`
     grid-gap: clamp(32px, ${72 / 768 * 100}vw, 128px);
 
     .image{
-        border-radius: 8px;
         box-shadow: var(--shadow);
         height: fit-content;
+        img{
+            border-radius: 8px;
+        }
     }
 
     .flex{

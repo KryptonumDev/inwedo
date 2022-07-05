@@ -12,10 +12,10 @@ import TechStack from "../components/tech-stack"
 import Seo from "../components/seo"
 
 const TechnologyPage = ({ data: { allWpTechnology, alternates }, location }) => {
-  let { technology, language } = allWpTechnology.nodes[0]
+  let { technology, language, seo } = allWpTechnology.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} type='technology' template='Technology' currTemplate={technology.templateName} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='technology' template='Technology' currTemplate={technology.templateName} />
       <Hero data={technology.heroTechnology} />
       <TwoColumnFlex technology={true} data={technology.twoColumnFlexTechnologySecond} />
       <ReasonsToUse data={technology.reasonsToUse} />
@@ -54,6 +54,10 @@ query TechonologyPageQuery($id: String!) {
         language {
           slug
           name
+        }
+        seo {
+          title
+          fullHead
         }
         technology{
             currentPageUrl

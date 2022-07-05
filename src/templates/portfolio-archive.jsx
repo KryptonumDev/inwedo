@@ -11,7 +11,7 @@ const PortfolioArchivePage = ({ data: { allWpPage, categoryParents, allWpCaseStu
   const portfolio = allWpPage.nodes[0].portfolioArchive
   return (
     <main>
-      <Seo lang={allWpPage.nodes[0].language.slug} alternates={alternates} location={location} />
+      <Seo data={allWpPage.nodes[0].seo} lang={allWpPage.nodes[0].language.slug} alternates={alternates} location={location} />
       <Hero data={portfolio.heroPortfolio} />
       <ClientCases data={portfolio.clientsPortfolio} />
       <Archive location={location} data={portfolio.postsOtherData} parentCategories={categoryParents} posts={allWpCaseStudies}>
@@ -44,6 +44,10 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
         language {
           slug
           name
+        }
+        seo {
+          title
+          fullHead
         }
         portfolioArchive {
           heroPortfolio {

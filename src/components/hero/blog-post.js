@@ -75,12 +75,15 @@ const TextPart = styled.div`
 `
 
 const Image = styled(GatsbyImage)`
-    border-radius: 8px;
     box-shadow: var(--shadow);
     width: fit-content;
     height: fit-content;
     max-width: 600px;
     min-width: 500px;
+
+    img{
+        border-radius: 8px;
+    }
 
     @media (max-width: 1024px) {
         min-width: unset;
@@ -120,6 +123,10 @@ const AuthorInform = styled(Link)`
         max-width: 36px;
         border-radius: 50%;
         margin-right: 8px;
+
+        img{
+            border-radius: 50%;
+        }
     }
 
     .date{

@@ -2,7 +2,7 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import Hero from "../components/hero/services-sub"
 import OneColumnText from "../components/one-column-text"
-import TestomontialDivider from "../components/testomontial-divider"
+import TestomontialDivider from "../components/testomontial-divider-logo"
 import WorkshopSteps from "../components/workshop-steps"
 import CallToAction from "../components/cta"
 import TwoColumnFlex from "../components/two-column/two-column-workshop"
@@ -13,10 +13,10 @@ import FAQ from "../components/faq"
 import Seo from "../components/seo"
 
 const DiscoveryWorkshopPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { discoveryWorkshop, language } = allWpPage.nodes[0]
+  let { discoveryWorkshop, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
       <Hero data={discoveryWorkshop.heroWorkshop} />
       <OneColumnText data={discoveryWorkshop.oneColumnTextPart} />
       <TestomontialDivider data={discoveryWorkshop.testomontialDividerWorkshop} />
@@ -53,6 +53,10 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
             language {
               slug
               name
+            }
+            seo {
+              title
+              fullHead
             }
             discoveryWorkshop {
               heroWorkshop {

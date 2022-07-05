@@ -119,9 +119,11 @@ const Item = styled.div`
     }
 
     .image{
-        border-radius: 50%;
         max-width: 108px;
         aspect-ratio: 1/1;
+        img{
+            border-radius: 50%;
+        }
     }
 
     .flex{

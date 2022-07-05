@@ -65,7 +65,9 @@ const Stories = styled.div`
         grid-gap: clamp(32px, 10.41vw, 128px);
 
         .image{
-            border-radius: 8px;
+            img{
+                border-radius: 8px;
+            }
         }
 
         .text{

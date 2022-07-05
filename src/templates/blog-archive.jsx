@@ -6,10 +6,10 @@ import Seo from "../components/seo"
 import StayInTouch from "../components/stay-in-touch"
 
 export default function BlogArchive({ data: { allWpPage, allWpPost, allWpCategory, alternates }, location }) {
-  let { blogArchive, language } = allWpPage.nodes[0]
+  let { blogArchive, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
       <Hero data={blogArchive.heroBlog} />
       <Archive otherData={blogArchive.posts} location={location} cta={blogArchive.callToActionBlog} cta2={blogArchive.callToActionBlogSecond} data={allWpPost} categories={allWpCategory} language={language.slug} />
       <StayInTouch data={blogArchive.stayInTouch}/>
@@ -34,6 +34,10 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
         nodes{
             language{
               slug
+            }
+            seo {
+              title
+              fullHead
             }
             blogArchive {
               heroBlog {

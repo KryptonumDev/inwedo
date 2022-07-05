@@ -25,7 +25,10 @@ const Content = styled(GatsbyImage)`
     width: 100%;
     height: fit-content;
     max-height: 1000px;
-    border-radius: 8px;
+
+    img{
+        border-radius: 8px;
+    }
 `
 
 const Text = styled.p`

@@ -54,6 +54,10 @@ const Image = styled(GatsbyImage)`
     width: 100%;
     height: fit-content;
     max-width: 588px;
+    
+    img{
+        border-radius: 8px;
+    }
 `
 
 const TextPart = styled.div`

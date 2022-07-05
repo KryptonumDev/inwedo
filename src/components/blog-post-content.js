@@ -5,7 +5,8 @@ import BlogPostNav from "./blog-post-nav"
 import Table from "./blog-post-table"
 import Text from "./blog-post-text"
 import CallToAction from './cta'
-import TestomontialDivider from './testomontial-divider'
+import TestomontialDividerLogo from './testomontial-divider-logo'
+import TestomontialDividerFoto from './testomontial-divider-foto'
 
 export default function BlogPostContent({ data, quickTitle }) {
     return (
@@ -21,7 +22,9 @@ export default function BlogPostContent({ data, quickTitle }) {
                     case 'cta':
                         return <CallToAction small={true} data={el.callToActionPost} index={id}/>
                     case 'testomontial':
-                        return <TestomontialDivider small={true} data={el.testomontialDividerPost} index={id}/>
+                        return <TestomontialDividerLogo small={true} data={el.testomontialDividerPost} index={id}/>
+                    case "testomontial_photo":
+                        return <TestomontialDividerFoto small={true} data={el.testomontialDividerPost} index={id}/>
                     case 'table':
                         return <Table data={el.table} index={id}/>
                     default :

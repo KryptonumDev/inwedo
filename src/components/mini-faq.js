@@ -78,9 +78,12 @@ const Content = styled.div`
 `
 
 const Image = styled(GatsbyImage)`
-    border-radius: 8px;
     box-shadow: var(--shadow);
     height: fit-content;
+    
+    img{
+        border-radius: 8px;
+    }
 
     @media (max-width: 1240px) {
         width: 100%;
@@ -100,13 +103,8 @@ const Image = styled(GatsbyImage)`
 
 const Item = styled.details`
     position: relative;
-    padding-left: clamp(40px, 8.46vw, 90px);
     padding-top: 16px;
     padding-bottom: 16px;
-
-    @media (max-width: 660px){
-        padding-left: 30px;
-    }
 
     &::after{
         content: url(${props => props.Arrow});
@@ -114,6 +112,7 @@ const Item = styled.details`
         left: clamp(20px, 3.255vw, 40px);
         top: 24px;
         transition: transform .2s cubic-bezier(0.215, 0.610, 0.355, 1);
+        pointer-events: none;
 
         @media (max-width: 660px) {
             left: 0;
@@ -133,6 +132,11 @@ const Item = styled.details`
     }
 
     summary{
+        padding-left: clamp(40px, 8.46vw, 90px);
+
+        @media (max-width: 660px){
+            padding-left: 30px;
+        }
         cursor: pointer;
         span{
             color: #495057;
@@ -143,6 +147,11 @@ const Item = styled.details`
     }
 
     div{
+        padding-left: clamp(40px, 8.46vw, 90px);
+
+        @media (max-width: 660px){
+            padding-left: 30px;
+        }
         span{
             margin-top: 16px;
             display: block;

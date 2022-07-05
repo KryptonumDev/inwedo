@@ -8,10 +8,10 @@ import Testomontials from "../components/testomontials-slider"
 import Seo from "../components/seo"
 
 const ServicesPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { servicesPage, language } = allWpPage.nodes[0]
+  let { servicesPage, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
       <Hero data={servicesPage.heroServices} />
       <DevelopmentCards data={servicesPage.developmentCards} />
       <CallToAction data={servicesPage.callToActionServices} />
@@ -44,6 +44,10 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
         language {
           slug
           name
+        }
+        seo {
+          title
+          fullHead
         }
         servicesPage {
           heroServices {

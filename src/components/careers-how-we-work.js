@@ -108,9 +108,11 @@ const MainFlex = styled(Link)`
     align-items: center;
 
     .image{
-        border-radius: 8px;
         box-shadow: var(--shadow);
         height: fit-content;
+        img{
+            border-radius: 8px;
+        }
     }
 
     @media (max-width: 1024px) {
@@ -130,9 +132,11 @@ const SecondFlex = styled(Link)`
     grid-gap: clamp(32px, ${72 / 768 * 100}vw, 128px);
 
     .image{
-        border-radius: 8px;
         box-shadow: var(--shadow);
         height: fit-content;
+        img{
+            border-radius: 8px;
+        }
     }
 
     @media (max-width: 1024px) {

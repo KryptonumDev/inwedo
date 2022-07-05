@@ -26,9 +26,8 @@ export default function OneColumnText({ data: { sectionTitle, subTitle, text, bo
 }
 
 const Content = styled.div`
-max-width: 780px;
-margin: 0 auto;
-
+    max-width: 740px;
+    margin: 0 auto;
 `
 
 const Wrapper = styled.section`

@@ -47,11 +47,14 @@ const Content = styled.div`
 `
 
 const Image = styled(GatsbyImage)`
-    border-radius: 8px;
     box-shadow: var(--shadow);
     width: 100%;
     height: fit-content;
     max-width: 530px;
+
+    img{
+        border-radius: 8px;
+    }
 
     @media (max-width: 1024px) {
         max-width: 570px;

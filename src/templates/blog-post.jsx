@@ -6,10 +6,10 @@ import BlogAuthorPosts from "../components/blog-author-posts"
 import Seo from "../components/seo"
 
 export default function BlogPost({ data: { allWpPost, otherPosts, alternates }, location }) {
-  let { blogPost, categories, date, authors, language } = allWpPost.nodes[0]
+  let { blogPost, categories, date, authors, language, seo } = allWpPost.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={blogPost.templateName} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={blogPost.templateName} />
       <Hero data={blogPost.heroPost} categories={categories} date={date} authors={authors} />
       <BlogPostContent data={blogPost.content} quickTitle={blogPost.quickNavigation.sectionTitle} />
       <BlogAuthorPosts data={otherPosts.nodes} title={blogPost.otherPosts.sectionTitle} />
@@ -88,6 +88,10 @@ query BlogPostQuery($id: String!) {
           language {
             slug
             name
+          }
+          seo {
+            title
+            fullHead
           }
             blogPost{
               templateName

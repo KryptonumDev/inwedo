@@ -1,34 +1,34 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-// import parse from 'html-react-parser'
+import parse from 'html-react-parser'
 import { urlSystem } from "./../contstants/urlSystem"
 
 export default function Seo({ data, lang, alternates, location, type, id, template, currTemplate }) {
-    // let fullHead
+    let fullHead
 
-    // if (data) {
-    //     fullHead = parse(data.fullHead)
-    // }
+    if (data) {
+        fullHead = parse(data.fullHead)
+    }
 
-    if (type === 'archive') {
+    if (type === 'archive' && alternates.length) {
         let idCode = id.slice(0, 8)
         alternates.nodes = alternates.nodes.filter(el => el.id.includes(idCode))
     }
 
-    if (type === 'technology') {
+    if (type === 'technology' && alternates.length) {
         alternates.nodes = alternates.nodes.filter(el => el.page.template === currTemplate)
     }
 
     return (
         <Helmet htmlAttributes={{ lang: lang }}>
 
-            {/*      {data?.title
-                 ? <title>{data.title}</title>
-                 : null}
-             {fullHead}
-            <meta name="google-site-verification" content="6ECIlKWTKRV13uT8My_fm4eN2kHfjUuz74nBH7kNXjE" /> */}
+            {data?.title
+                ? <title>{data.title}</title>
+                : null}
+            {fullHead}
+            <meta name="google-site-verification" content="6ECIlKWTKRV13uT8My_fm4eN2kHfjUuz74nBH7kNXjE" />
 
-            {alternates.nodes.map(el => {
+            {alternates?.nodes.map(el => {
                 let href
 
                 if (type === 'archive') {

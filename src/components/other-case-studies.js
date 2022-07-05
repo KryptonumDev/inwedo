@@ -103,7 +103,10 @@ const Item = styled.div`
     .image{
         width: 100%;
         height: 244px;
-        border-radius: 8px;
+        
+        img{
+            border-radius: 8px;
+        }
     }
 
     .content{

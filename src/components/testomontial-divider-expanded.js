@@ -58,8 +58,13 @@ const Card = styled.div`
         margin-bottom: clamp(16px, 3.38vw, 36px);
 
         .image{
-            margin-right: clamp(32px, 5.2vw, 48px);
-            max-width: clamp(120px, 23.43vw, 180px);
+            margin-right: clamp(16px, 5.2vw, 24px);
+            max-width: clamp(60px, 23.43vw, 68px);
+            width: 100%;
+
+            img{
+                border-radius: 50%;
+            }
         }
 
         .name{

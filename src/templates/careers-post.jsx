@@ -8,10 +8,10 @@ import RecruitmentProcess from '../components/careers-recruitment'
 import ApointmentWithHr from "../components/careers-appointment-hr"
 
 export default function CareersPost({ data: { allWpJobOffer, alternates }, location }) {
-  let { careersPost, language } = allWpJobOffer.nodes[0]
+  let { careersPost, language, seo } = allWpJobOffer.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={careersPost.templateName} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={careersPost.templateName} />
       <Hero data={careersPost.heroJob} location={location} />
       {careersPost.textParts.map(el => (
         <CareersTextParts data={el} />
@@ -43,6 +43,10 @@ export const query = graphql`
               language{
                   slug
                   locale
+              }
+              seo {
+                title
+                fullHead
               }
                 id
                 careersPost{

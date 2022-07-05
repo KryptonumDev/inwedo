@@ -2,7 +2,7 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import Hero from "../components/hero/case-post"
 import OneColumnText from "../components/one-column-text"
-import TestomontialDivider from "../components/testomontial-divider"
+import TestomontialDivider from "../components/testomontial-divider-logo"
 import TestomontialDividerAlt from "../components/testomontial-divider-alt"
 import TestomontialDividerExpanded from "../components/testomontial-divider-expanded"
 import ImageDivider from "../components/portfolio-image-divider"
@@ -15,10 +15,10 @@ import OtherCaseStudies from "../components/other-case-studies"
 import Seo from "../components/seo"
 
 const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts, alternates }, location }) => {
-  const { caseStudies, language } = allWpCaseStudies.nodes[0]
+  const { caseStudies, language, seo } = allWpCaseStudies.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} type='technology' template='Portfolio Archive' currTemplate={caseStudies.templateName} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='technology' template='Portfolio Archive' currTemplate={caseStudies.templateName} />
       <Hero data={caseStudies.heroportfolio} />
       {caseStudies.sectionController.oneColumnTextPart
         ? <OneColumnText alternative={true} data={caseStudies.oneColumnTextPartPortfolio} />
@@ -80,6 +80,10 @@ query PortfolioPageQuery($id: String!) {
       nodes{
         language{
           slug
+        }
+        seo {
+          title
+          fullHead
         }
         caseStudies {
           sectionController {

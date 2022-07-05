@@ -97,39 +97,47 @@ const Grid = styled.div`
 
     .lt{
         position: absolute;
-        border-radius: 8px;
         left: 50px;
         top: 182px;
         box-shadow: var(--shadow);
         width: 300px;
         height: 382px;
+        img{
+            border-radius: 8px;
+        }
     }
     .rt{
         position: absolute;
-        border-radius: 8px;
         right: 92px;
         top: 0; 
         box-shadow: var(--shadow);
         width: 387px;
         height: 439px;
+        img{
+            border-radius: 8px;
+        }
     }
     .lb{
         position: absolute;
-        border-radius: 8px;
         left: 0;
         bottom: 0;
         box-shadow: var(--shadow);
         width: 348px;
         height: 303px;
+        img{
+            border-radius: 8px;
+        }
     }
     .rb{
         position: absolute;
-        border-radius: 8px;
         right: 0;
         bottom: 92px;
         box-shadow: var(--shadow);
         width: 479px;
         height: 348px;
+        img{
+            border-radius: 8px;
+        }
     }
 
     @media (max-width: 1240px) {

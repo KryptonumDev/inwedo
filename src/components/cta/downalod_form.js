@@ -49,10 +49,13 @@ const Content = styled.div`
 `
 
 const Image = styled(GatsbyImage)`
-    border-radius: 8px;
     box-shadow: var(--shadow);
     min-width: fit-content;
     height: fit-content;
+
+    img{
+        border-radius: 8px;
+    }
 `
 
 const Title = styled.h2`

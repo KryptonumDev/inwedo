@@ -1,6 +1,6 @@
 import { graphql, Link, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../../style"
 import { activeLanguage } from './../../helpers/activeLanguage'
@@ -62,11 +62,21 @@ export default function Header({ location }) {
     const [isOpen, setIsOpen] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
 
+    useEffect(() => {
+        const body = document.body
+        if (isOpen) {
+            body.classList.add('noScroll')
+        } else {
+            body.classList.remove('noScroll')
+        }
+    }, [isOpen])
+
+
     return (
-        <Wrapper isHovered={isHovered} type={type} isOpen={isOpen} >
+        <Wrapper id='header' isHovered={isHovered} type={type} isOpen={isOpen} >
             <Container>
                 <Content>
-                    <Link ariaLabel='homepage link' to="/">
+                    <Link onClick={() => { setIsOpen(false) }} ariaLabel='homepage link' to="/">
                         <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
                     </Link>
                     <MobileButton type={type} isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>
@@ -77,35 +87,35 @@ export default function Header({ location }) {
                             {headerNavigation.map((el, index) => (
                                 <li>
                                     <details open onMouseEnter={() => { setIsHovered(index) }} onMouseLeave={() => { setIsHovered(false) }}>
-                                        <summary tabIndex='-1' onClick={(e) => { e.preventDefault() }}>
-                                            <Link onFocus={() => { setIsHovered(index) }} onClick={(e) => { e.preventDefault() }} to={el.mainLink.url}>{el.menuTitle}</Link>
-                                        </summary>
+                                        <Summary type={type} isHovered={isHovered} index={index} tabIndex='-1' onClick={(e) => { e.preventDefault() }}>
+                                            <Link activeClassName="active" onFocus={() => { setIsHovered(index) }} onClick={(e) => { e.preventDefault() }} to={el.mainLink.url}>{el.menuTitle}</Link>
+                                        </Summary>
                                         <Menu isHovered={isHovered} index={index} className="menu">
                                             <Container>
                                                 <div className="main">
-                                                    <Link onClick={() => { setIsHovered(false) }} to={el.mainLink.url}>{el.mainLink.name}</Link>
+                                                    <Link onClick={() => { setIsHovered(false); setIsOpen(false) }} to={el.mainLink.url}>{el.mainLink.name}</Link>
                                                 </div>
                                                 <div className="column">
-                                                    {el.firstColumn.map(el => {
+                                                    {el.firstColumn?.map(el => {
                                                         if (!el.url) {
                                                             return (
                                                                 <h3 className={el.isBold}>{el.name}</h3>
                                                             )
                                                         }
                                                         return (
-                                                            <Link onClick={() => { setIsHovered(false) }} className={el.isBold} to={el.url}>{el.name}</Link>
+                                                            <Link onClick={() => { setIsHovered(false); setIsOpen(false) }} className={el.isBold} to={el.url}>{el.name}</Link>
                                                         )
                                                     })}
                                                 </div>
                                                 <div className="column">
-                                                    {el.secondColumn.map(el => {
+                                                    {el.secondColumn?.map(el => {
                                                         if (!el.url) {
                                                             return (
                                                                 <h3 className={el.isBold}>{el.name}</h3>
                                                             )
                                                         }
                                                         return (
-                                                            <Link onClick={() => { setIsHovered(false) }} className={el.isBold} to={el.url}>{el.name}</Link>
+                                                            <Link onClick={() => { setIsHovered(false); setIsOpen(false) }} className={el.isBold} to={el.url}>{el.name}</Link>
                                                         )
                                                     })}
                                                 </div>
@@ -140,6 +150,10 @@ const Wrapper = styled.header`
     .logo{
         filter: ${props => props.type === 'main' ? 'brightness(0) invert(1)' : 'null'};
     }
+
+    /* ${props => props.isOpen ? `
+        position: fixed;
+    ` : null} */
 
     ${props => props.isHovered !== false ? `
         background-color: var(--color-white);
@@ -238,6 +252,64 @@ const MobileButton = styled.button`
     }
 `
 
+const Summary = styled.summary`
+                    height: 81px;
+                    display: grid;
+                    align-items: center;
+                    position: relative;
+
+                    @media (max-width: 820px){
+                        height: unset;
+                        position: unset;
+                    }
+
+                    a{
+                        padding: 4px 0;
+                        line-height: 24px;
+                        color: ${props => props.type === 'main' ? '#fff' : 'var(--color-black)'};
+                        position: relative;
+
+                        
+                        &::after{
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            bottom: 0;
+                            width: 0;
+                            height: 2px;
+                            background: var(--color-accent);
+                            transition: width .3s cubic-bezier(0.23, 1, 0.320, 1);
+                        }
+
+                        &.active{
+                            &::after{
+                                width: 40%;
+                            }
+                        }
+
+                        &:hover{
+                            &::after{
+                                width: 100%;
+                            }
+                        }
+
+                        ${props => props.isHovered === props.index ? `
+                            &::after{
+                                width: 100% !important;
+                            }
+                        ` : null}
+
+                        @media (max-width: 820px){
+                            color: var(--color-black);
+                        }
+
+                        ${props => props.isHovered !== false ? `
+                            color: var(--color-black);
+                        ` : null}
+
+                    }
+`
+
 const Menu = styled.div`
                 position: absolute;
                 top: 81px;
@@ -252,9 +324,29 @@ const Menu = styled.div`
                 pointer-events: none;
                 transition: .5s cubic-bezier(0.23, 1, 0.320, 1);
 
+                @media (max-width: 820px){
+                    top: 0;
+                    bottom: 0;
+                    overflow: scroll;
+                    border-top: unset;
+                    border-bottom: unset;
+                    padding: 38px 0 32px;
+                    left: calc(var(--margin-section) + 240px);
+                    transform: translateX(10px);
+                }
+
+                @media (max-width: 640px) {
+                    left: calc(var(--margin-section) + 130px);
+                }
+
+                @media (max-width: 360px) {
+                    ${Container}{
+                        padding: 0 12px;
+                    }
+                }
                 
                 ${props => props.isHovered !== false && props.isHovered === props.index ? `
-                            transform: unset;
+                            transform: unset !important;
                             opacity: 1;
                             pointer-events: all;
                         ` : null}
@@ -268,10 +360,23 @@ const Menu = styled.div`
                     @media (max-width: 820px) {
                         color: var(--color-black);
                     }
+
+                    @media (max-width: 360px) {
+                        font-size: 12px;
+                    }
                 }
 
                 ${Container}{
                     display: flex;
+
+                    @media (max-width: 820px){
+                        display: grid;
+                        grid-gap: 30px;
+                    }
+
+                    @media (max-width: 360px){
+                        grid-gap: 20px;
+                    }
                 }
 
                 .main{
@@ -281,6 +386,24 @@ const Menu = styled.div`
                     position: relative;
                     border-right: 1px solid rgba(0, 0, 0, 0.08);
                     text-decoration: underline;
+
+                    @media (max-width: 820px){
+                        padding-right: 0;
+                        padding-bottom: 30px;
+                        border-right: unset;
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+                        width: unset;
+                        margin-right: 0;
+                    }
+
+                    @media (max-width: 360px){
+                        padding-bottom: 20px;
+
+                        a{
+                            font-size: 14px;
+                        }
+                    }
+
                 }
 
                 .column{
@@ -288,6 +411,14 @@ const Menu = styled.div`
                     grid-gap: 32px;
                     margin-right: clamp(150px, ${150 / 1024 * 100}vw, 200px);
                     height: fit-content;
+
+                    @media (max-width: 820px){
+                        margin-right: 0;
+                    }
+
+                    @media (max-width: 360px){
+                        grid-gap: 20px;
+                    }
                 }
 `
 
@@ -300,45 +431,32 @@ const Navigation = styled.nav`
             gap: 20px;
         }
 
+        @media (max-width: 820px){
+            display: grid;
+            margin-top: 32px;
+            grid-gap: 24px
+        }
+
         li{
             display: flex;
             align-items: center;
-
-            details{
-                summary{
-                    height: 81px;
-                    display: grid;
-                    align-items: center;
-                    position: relative;
-
-                    a{
-                        padding: 4px 0;
-                        line-height: 24px;
-                        color: ${props => props.type === 'main' ? '#fff' : 'var(--color-black)'};
-
-                        ${props => props.isHovered !== false ? `
-                            color: var(--color-black);
-                        ` : null}
-
-                    }
-                }
-            }
-
         }
     }
 
     @media (max-width: 820px) {
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
         position: fixed;
         left: 0;
         right: 0;
         top: 81px;
         bottom: 0;
         box-sizing: border-box;
-        padding: 0 64px;
+        padding: 0 var(--margin-m);
         background-color: var(--color-white);
 
         ul{
             display: grid;
+            max-width: 240px;
         }
 
         transform: translateX(-100%);
@@ -347,6 +465,12 @@ const Navigation = styled.nav`
         ${props => props.isOpen ? `
             transform: translateX(0);
         ` : null}
+    }
+
+    @media (max-width: 640px){
+        ul{
+            max-width: 140px;
+        }
     }
 `
 

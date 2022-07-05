@@ -68,9 +68,11 @@ const TextPart = styled.div`
     }
 
     .image{
-        border-radius: 8px;
         box-shadow: var(--shadow);
         background-color: var(--color-white);
+        img{
+            border-radius: 8px;
+        }
 
         @media (max-width: 876px){
             display: block;

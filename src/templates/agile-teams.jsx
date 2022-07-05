@@ -8,17 +8,17 @@ import TechStack from "../components/tech-stack"
 import ImageDivider from "../components/image-divider"
 import SuccessStories from "../components/success-stories"
 import TwoColumnFlex from "../components/two-column/two-column-about"
-import TestomontialDivider from "../components/testomontial-divider"
+import TestomontialDivider from "../components/testomontial-divider-logo"
 import CallToAction from "../components/cta"
 import RelatedServices from "../components/related-services"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
 
 const AgileTeamsPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { agileTeams, language } = allWpPage.nodes[0]
+  let { agileTeams, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
       <Hero data={agileTeams.heroAgileTeams} />
       <OurFocuses data={agileTeams.ourFocusesAgileTeams} />
       <MiniFaq data={agileTeams.miniFaqAgileTeams} />
@@ -56,6 +56,10 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
         language {
           slug
           name
+        }
+        seo {
+          title
+          fullHead
         }
         agileTeams {
             heroAgileTeams {

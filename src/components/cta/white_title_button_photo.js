@@ -42,11 +42,14 @@ const Content = styled.div`
 `
 
 const Image = styled(GatsbyImage)`
-    border-radius: 8px;
     box-shadow: var(--shadow);
     max-width: 435px;
     width: 100%;
     margin-right: clamp(32px, 9.375vw, 128px);
+
+    img{
+        border-radius: 8px;
+    }
 
     @media (max-width: 876px) {
         margin-right: 0;

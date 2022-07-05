@@ -15,7 +15,7 @@ export default function CaseStudyRepeater({ data: { title, text, studiesCase } }
                         <Link to={el.button.url}>
                             <Item>
                                 <div className="content">
-                                    <GatsbyImage image={el.firmLogo.localFile.childImageSharp.gatsbyImageData} alt={el.firmLogo.altText} />
+                                    <GatsbyImage className="logo" image={el.firmLogo.localFile.childImageSharp.gatsbyImageData} alt={el.firmLogo.altText} />
                                     <h3 className="h2">{el.title}</h3>
                                     <p className="p">{el.text}</p>
                                     <div className="flex">
@@ -90,9 +90,15 @@ const Item = styled.div`
                 width: fit-content;
                 height: fit-content;
                 max-width: 36px;
-                box-shadow: grayscale(1);
+                filter: grayscale(1);
             }
         }
+    }
+
+    .logo{
+        max-width: 136px;
+        width: fit-content;
+        height: fit-content;
     }
 
     .content{
@@ -110,12 +116,15 @@ const Item = styled.div`
 `
 
 const Image = styled(GatsbyImage)`
-    border-radius: 8px;
     box-shadow: var(--shadow);
     max-width: 600px;
     width: 100%;
     height: fit-content;
     min-width: 400px;
+    
+    img{
+        border-radius: 8px;
+    }
 
     @media (max-width: 900px){
         min-width: unset;

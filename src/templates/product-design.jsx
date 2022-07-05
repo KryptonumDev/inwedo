@@ -4,7 +4,7 @@ import Hero from "../components/hero/services-sub"
 import DesignProcess from "../components/design-process"
 import DesignProcessAlt from "../components/design-process-alt"
 import CallToAction from "../components/cta"
-import TestomontialDivider from "../components/testomontial-divider"
+import TestomontialDivider from "../components/testomontial-divider-logo"
 import TwoColumnFlex from "../components/two-column/two-column-about"
 import DesignBenefits from "../components/design-benefits"
 import DesignBenefitsAlt from "../components/design-benefits-alt"
@@ -15,10 +15,10 @@ import FAQ from "../components/faq"
 import Seo from "../components/seo"
 
 const ProductDesignPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { productDesign, language } = allWpPage.nodes[0]
+  let { productDesign, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
       <Hero data={productDesign.heroProductDesign} />
       <DesignProcess data={productDesign.designProcess} />
       <TestomontialDivider data={productDesign.testomontialDividerProductDesign} />
@@ -60,6 +60,10 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
         language {
           slug
           name
+        }
+        seo {
+          title
+          fullHead
         }
         productDesign {
             heroProductDesign {

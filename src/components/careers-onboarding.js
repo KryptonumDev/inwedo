@@ -206,7 +206,9 @@ const Card = styled.div`
         margin-bottom: 32px;
         width: 100%;
         height: fit-content;
-        border-radius: 8px;
+        img{
+            border-radius: 8px;
+        }
     }
 
     .h4{

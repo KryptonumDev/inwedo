@@ -40,7 +40,7 @@ const LocContainer = styled(Container)`
 `
 
 const TextPart = styled.div`
-    max-width: 512px;
+    max-width: 740px;
     margin: 0 auto 64px auto;
     padding: 0 32px;
 

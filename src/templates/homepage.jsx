@@ -10,10 +10,10 @@ import FAQ from "../components/faq"
 import Seo from "../components/seo"
 
 const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { homepage, language } = allWpPage.nodes[0]
+  let { homepage, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo lang={language.slug} alternates={alternates} location={location}/>
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location}/>
       <Hero data={homepage.heroHome} />
       <Services data={homepage.services} />
       <CallToAction data={homepage.callToAction} />
@@ -47,6 +47,10 @@ export const query = graphql`
         language {
           slug
           name
+        }
+        seo {
+          title
+          fullHead
         }
         homepage {
             heroHome {

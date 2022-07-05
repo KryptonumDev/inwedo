@@ -46,7 +46,18 @@ export default function Filter({ activeSearch, defaultPosts, setInputValue, inpu
     }, [activeFilters])
 
     useEffect(() => {
-        let posts = defaultPosts.filter(el => el.blogPost.previewCard.previewTitle.toLowerCase().includes(inputValue.toLowerCase()))
+        let posts = defaultPosts.filter(el => {
+            let isCategory = false
+            el.categories.nodes.forEach(el => {
+                if(el.name.toLowerCase().includes(inputValue.toLowerCase())){
+                    isCategory = true
+                }
+            })
+            let isTitle = el.blogPost.previewCard.previewTitle.toLowerCase().includes(inputValue.toLowerCase())
+            let isText = el.blogPost.previewCard.previewText.toLowerCase().includes(inputValue.toLowerCase())
+
+            return isCategory || isTitle || isText
+        })
         changeSearchResults(posts.length)
     }, [inputValue])
 
@@ -61,10 +72,10 @@ export default function Filter({ activeSearch, defaultPosts, setInputValue, inpu
 
             const href = document.getElementById("posts")
             const offsetTop = href.offsetTop
-           
+
             window.scroll({
-              top: offsetTop,
-              behavior: "smooth"
+                top: offsetTop,
+                behavior: "smooth"
             });
         }
     }
@@ -75,10 +86,10 @@ export default function Filter({ activeSearch, defaultPosts, setInputValue, inpu
 
             const href = document.getElementById("posts")
             const offsetTop = href.offsetTop
-           
+
             window.scroll({
-              top: offsetTop,
-              behavior: "smooth"
+                top: offsetTop,
+                behavior: "smooth"
             });
         }
     }
@@ -136,6 +147,7 @@ const Wrapper = styled.div`
 
         @media (max-width: 768px){
             max-width: 500px;
+            height: unset;
         }
 
         div{
@@ -145,6 +157,8 @@ const Wrapper = styled.div`
 
             &::after{
                 content:  '${props => props.postNumber} ${props => props.matchingArticle}';
+                font-size: clamp(14px, ${15 / 768 * 100}vw, 16px);
+                color: #00000099;
                 position: absolute;
                 z-index: 0;
                 left: 1px;

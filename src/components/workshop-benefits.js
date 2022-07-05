@@ -53,8 +53,10 @@ const Content = styled.div`
         width: 100%;
         min-width: 400px;
         height: fit-content;
-        border-radius: 8px;
         box-shadow: var(--shadow);
+        img{
+            border-radius: 8px;
+        }
     }
 
     @media (max-width: 1024px) {

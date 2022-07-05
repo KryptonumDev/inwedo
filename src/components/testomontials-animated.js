@@ -93,6 +93,14 @@ const Row = styled.div`
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: clamp(20px, 3.38vw, 32px);
+
+        @media (max-width: 400px) {
+            width: 960px;
+        }
+
+        @media (max-width: 360px) {
+            width: 900px;
+        }
     }
 
     .slider2{
@@ -102,6 +110,14 @@ const Row = styled.div`
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: clamp(20px, 3.38vw, 32px);
+
+        @media (max-width: 400px) {
+            width: 960px;
+        }
+
+        @media (max-width: 360px) {
+            width: 900px;
+        }
     }
 `
 
@@ -113,25 +129,43 @@ const Item = styled.div`
     border-radius: 24px;
     box-shadow: var(--shadow);
 
+    @media (max-width: 360px) {
+        padding: 16px 30px;
+    }
+
     .flex{
         display: flex;
         align-items: center;
         margin-bottom: 16px;
 
         .image{
-            margin-right: 32px;
+            margin-right: clamp(16px, 5.2vw, 24px);
+            max-width: clamp(60px, 23.43vw, 68px);
+            width: 100%;
+
+            img{
+                border-radius: 50%;
+            }
         }
 
         .name{
-            font-weight: 400;
-            font-size: clamp(12px, 1.82vw, 14px);
-            line-height: 21px;
+            font-weight: 500;
+            font-size: clamp(16px, 1.82vw, 24px);
+            line-height: 151%;
+
+            @media (max-width: 360px) {
+            
+            }
         }
 
         .position{
-            font-weight: 300;
-            font-size: clamp(10px, 1.5625vw, 12px);
-            line-height: 16px;
+            font-weight: 400;
+            font-size: clamp(14px, 1.5625vw, 18px);
+            line-height: 151%;
+
+            @media (max-width: 360px) {
+               
+            }
         }
 
         /* @media (max-width: 640px) {
