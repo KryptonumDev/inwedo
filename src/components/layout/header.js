@@ -71,7 +71,6 @@ export default function Header({ location }) {
         }
     }, [isOpen])
 
-
     return (
         <Wrapper id='header' isHovered={isHovered} type={type} isOpen={isOpen} >
             <Container>
@@ -88,7 +87,7 @@ export default function Header({ location }) {
                                 <li>
                                     <details open onMouseEnter={() => { setIsHovered(index) }} onMouseLeave={() => { setIsHovered(false) }}>
                                         <Summary type={type} isHovered={isHovered} index={index} tabIndex='-1' onClick={(e) => { e.preventDefault() }}>
-                                            <Link activeClassName="active" onFocus={() => { setIsHovered(index) }} onClick={(e) => { e.preventDefault() }} to={el.mainLink.url}>{el.menuTitle}</Link>
+                                            <Link partiallyActive={true} activeClassName="active" onFocus={() => { setIsHovered(index) }} onClick={(e) => { e.preventDefault() }} to={el.mainLink.url}>{el.menuTitle}</Link>
                                         </Summary>
                                         <Menu isHovered={isHovered} index={index} className="menu">
                                             <Container>
@@ -103,7 +102,7 @@ export default function Header({ location }) {
                                                             )
                                                         }
                                                         return (
-                                                            <Link onClick={() => { setIsHovered(false); setIsOpen(false) }} className={el.isBold} to={el.url}>{el.name}</Link>
+                                                            <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false) }} className={el.isBold + ' nav'} to={el.url}>{el.name}</Link>
                                                         )
                                                     })}
                                                 </div>
@@ -115,7 +114,7 @@ export default function Header({ location }) {
                                                             )
                                                         }
                                                         return (
-                                                            <Link onClick={() => { setIsHovered(false); setIsOpen(false) }} className={el.isBold} to={el.url}>{el.name}</Link>
+                                                            <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false) }} className={el.isBold + ' nav'} to={el.url}>{el.name}</Link>
                                                         )
                                                     })}
                                                 </div>
@@ -257,10 +256,17 @@ const Summary = styled.summary`
                     display: grid;
                     align-items: center;
                     position: relative;
+                    padding: 0 clamp(12px, 2vw, 25px);
+
+                    @media (max-width: 1024px) {
+                        padding: 0 10px;
+                    }
 
                     @media (max-width: 820px){
                         height: unset;
                         position: unset;
+                        width: fit-content;
+                        padding: 12px 0 ;
                     }
 
                     a{
@@ -331,12 +337,12 @@ const Menu = styled.div`
                     border-top: unset;
                     border-bottom: unset;
                     padding: 38px 0 32px;
-                    left: calc(var(--margin-section) + 240px);
+                    left: calc(var(--margin-m) + 240px);
                     transform: translateX(10px);
                 }
 
                 @media (max-width: 640px) {
-                    left: calc(var(--margin-section) + 130px);
+                    left: calc(var(--margin-m) + 140px);
                 }
 
                 @media (max-width: 360px) {
@@ -356,6 +362,7 @@ const Menu = styled.div`
                     font-size: clamp(14px, 2.08vw, 16px);
                     line-height: 150%;
                     font-family: 'Lexend';
+                    padding: 4px 0 ;
 
                     @media (max-width: 820px) {
                         color: var(--color-black);
@@ -363,6 +370,34 @@ const Menu = styled.div`
 
                     @media (max-width: 360px) {
                         font-size: 12px;
+                    }
+                }
+
+                .nav{
+                    position: relative;
+                    width: fit-content;
+                        
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        width: 0;
+                        height: 2px;
+                        background: var(--color-accent);
+                        transition: width .3s cubic-bezier(0.23, 1, 0.320, 1);
+                    }
+
+                    &.active{
+                        &::after{
+                            width: 40%;
+                        }
+                    }
+
+                    &:hover{
+                        &::after{
+                            width: 100%;
+                        }
                     }
                 }
 
@@ -408,9 +443,13 @@ const Menu = styled.div`
 
                 .column{
                     display: grid;
-                    grid-gap: 32px;
+                    grid-gap: 24px;
                     margin-right: clamp(150px, ${150 / 1024 * 100}vw, 200px);
                     height: fit-content;
+
+                    @media (max-width: 1024px){
+                        margin-right: 100px;
+                    }
 
                     @media (max-width: 820px){
                         margin-right: 0;
@@ -425,16 +464,10 @@ const Menu = styled.div`
 const Navigation = styled.nav`
     ul{
         display: flex;
-        gap: clamp(24px, 4.8vw, 50px);
-
-        @media (max-width: 1024px) {
-            gap: 20px;
-        }
 
         @media (max-width: 820px){
             display: grid;
-            margin-top: 32px;
-            grid-gap: 24px
+            margin-top: 20px;
         }
 
         li{
@@ -442,6 +475,7 @@ const Navigation = styled.nav`
             align-items: center;
         }
     }
+    
 
     @media (max-width: 820px) {
         border-top: 1px solid rgba(0, 0, 0, 0.08);
@@ -465,6 +499,10 @@ const Navigation = styled.nav`
         ${props => props.isOpen ? `
             transform: translateX(0);
         ` : null}
+
+        details{
+            width: 100%;
+        }
     }
 
     @media (max-width: 640px){
@@ -476,6 +514,16 @@ const Navigation = styled.nav`
 
 const ContactButton = styled(Link)`
     padding: 12px 22px; 
+    margin-left: clamp(12px, 2.4vw, 25px);
+
+    @media (max-width: 1024px) {
+        margin-left: 10px;
+    }
+
+    @media (max-width: 820px) {
+        margin-left: 0;
+    }
+
     background: #fff;
     border-radius: 6px;
     color: #495057;
