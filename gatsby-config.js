@@ -22,6 +22,7 @@ module.exports = {
     "gatsby-plugin-sitemap",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    'gatsby-plugin-netlify-cache',
     'gatsby-plugin-postcss',
     {
       resolve: 'gatsby-plugin-manifest',

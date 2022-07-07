@@ -15,9 +15,9 @@ export default function RecruitmentProcess({ data: { sectionTitle, seoTitle, bol
                         <p className="p">{plainText}</p>
                     </div>
                     <div className="video">
-                        <video controls>
+                        {/* <video controls>
                             <source src={video.localFile.publicURL} type="video/mp4" alt={video.localFile.alText}/>
-                        </video>
+                        </video> */}
                     </div>
                 </Flex>
                 <Image className="desctop" image={pathImage.desctop.localFile.childImageSharp.gatsbyImageData} alt={pathImage.desctop.altText} />
