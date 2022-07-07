@@ -12,9 +12,10 @@ import Seo from "../components/seo"
 
 const WebAppPage = ({ data: { allWpPage, alternates }, location }) => {
   let { webApp, language, seo } = allWpPage.nodes[0]
+  debugger
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={webApp.heroWebApp} />
       <TwoColumnFlex data={webApp.twoColumnFlexWebApp} />
       <TestomontialDivider data={webApp.testomontialDividerWebApp} />

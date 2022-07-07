@@ -9,7 +9,7 @@ export default function BlogArchive({ data: { allWpPage, allWpPost, allWpCategor
   let { blogArchive, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Blog Archive'/>
       <Hero data={blogArchive.heroBlog} />
       <Archive otherData={blogArchive.posts} location={location} cta={blogArchive.callToActionBlog} cta2={blogArchive.callToActionBlogSecond} data={allWpPost} categories={allWpCategory} language={language.slug} />
       <StayInTouch data={blogArchive.stayInTouch}/>

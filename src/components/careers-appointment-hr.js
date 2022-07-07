@@ -120,7 +120,18 @@ const Item = styled.div`
 
     .image{
         max-width: 108px;
-        aspect-ratio: 1/1;
+        position: relative;
+
+        &::before {
+            float: left;
+            padding-top: 100%;
+            content: '';
+        }
+        &::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
         img{
             border-radius: 50%;
         }

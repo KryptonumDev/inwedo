@@ -16,7 +16,7 @@ const HowWeWorkPage = ({ data: { allWpPage, alternates }, location }) => {
   let { howWeWork, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='How We Work' />
       <Hero data={howWeWork.heroHowWeWork} />
       <TwoColumnFlex data={howWeWork.twoColumnFlexHowWeWork} />
       <CardsWithTitle data={howWeWork.cardsWithLinks} />

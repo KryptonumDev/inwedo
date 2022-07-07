@@ -84,7 +84,18 @@ const Image = styled.div`
     .image{
         width: 100%;
         max-width: 64px;
-        aspect-ratio: 1/1;
+        position: relative;
+
+        &::before {
+            float: left;
+            padding-top: 100%;
+            content: '';
+        }
+        &::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
     }
 
     @media (max-width:480px){

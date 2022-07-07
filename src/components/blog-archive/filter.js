@@ -110,7 +110,7 @@ export default function Filter({ activeSearch, defaultPosts, setInputValue, inpu
                     </Grid>
                     <form>
                         <div>
-                            <input onKeyDown={(e) => { keyDown(e) }} value={inputValue} placeholder={searchInputPlaceholder} onChange={handleChange} />
+                            <input type="search" onKeyDown={(e) => { keyDown(e) }} value={inputValue} placeholder={searchInputPlaceholder} onChange={handleChange} />
                         </div>
                         <button className="button" type="button" onClick={() => { search() }}>{submitButtonText}</button>
                     </form>

@@ -116,7 +116,7 @@ const ToolsGrid = styled.div`
 
 const ToolsItem = styled.div`
     width: 86px;
-    aspect-ratio: 1/1;
+    height: 86px;
     border-radius: 8px;
     background-color: var(--color-white);
     box-shadow: var(--shadow);

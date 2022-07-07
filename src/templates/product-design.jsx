@@ -18,7 +18,7 @@ const ProductDesignPage = ({ data: { allWpPage, alternates }, location }) => {
   let { productDesign, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={productDesign.heroProductDesign} />
       <DesignProcess data={productDesign.designProcess} />
       <TestomontialDivider data={productDesign.testomontialDividerProductDesign} />

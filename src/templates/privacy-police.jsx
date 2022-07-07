@@ -4,10 +4,10 @@ import styled from "styled-components"
 import Seo from "../components/seo"
 
 const PrivacyPage = ({ data: { allWpPage, alternates }, location }) => {
-    let { content, language, seo } = allWpPage.nodes[0]
+    let { content, language, seo, template } = allWpPage.nodes[0]
     return (
         <main>
-            <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
+            <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type={template.templateName} />
             <Content dangerouslySetInnerHTML={{ __html: content }} />
         </main>
     )
@@ -30,6 +30,9 @@ export const query = graphql`
         }
         allWpPage(filter: {id: {eq: $id}}) {
             nodes {
+                template {
+                  templateName
+                }
                 language {
                   slug
                   name

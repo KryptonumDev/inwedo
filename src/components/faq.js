@@ -21,7 +21,7 @@ export default function FAQ({ data: { title, faqElement } }) {
                             <div
                                 itemProp='acceptedAnswer'
                                 itemType='https://schema.org/Answer'>
-                                <span itemProp='text' dangerouslySetInnerHTML={{ __html: el.answer }}>
+                                <span className="p" itemProp='text' dangerouslySetInnerHTML={{ __html: el.answer }}>
                                 </span>
                             </div>
                         </Item>
@@ -70,7 +70,7 @@ const Title = styled.h2`
 
 const Repeater = styled.div`
     margin: 0 auto;
-    max-width: 1040px;
+    max-width: 985px;
 `
 
 const Item = styled.details`
@@ -146,7 +146,7 @@ const Item = styled.details`
     }
 
     div{
-
+        max-width: 820px;
         padding-left: clamp(50px, 8.46vw, 90px);
         
         @media (max-width: 660px){

@@ -85,6 +85,6 @@ const Item = styled(Link)`
 
     .image{
         width: clamp(60px, 11.32vw, 115px);
-        aspect-ratio: 1/1;
+        height: clamp(60px, 11.32vw, 115px);
     }
 `

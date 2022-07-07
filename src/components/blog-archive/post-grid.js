@@ -12,7 +12,6 @@ export default function PostGrid({ isDefault, data, from, to, isAltLayout, curre
             <Container>
                 <Grid>
                     {data.map((el, index) => {
-                        debugger
                         if (
                             (isAltLayout && index >= (to * (currentPage - 1) + (currentPage - 1)) && index <= (to * (currentPage) + (currentPage - 1)))
                             ||

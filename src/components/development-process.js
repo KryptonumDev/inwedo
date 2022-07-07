@@ -99,7 +99,7 @@ const Item = styled.div`
 
     .image-wrap{
     width: clamp(64px, 9.765vw, 86px);
-    aspect-ratio: 1/1;
+    height: clamp(64px, 9.765vw, 86px);
     border-radius: 8px;
     background-color: #fff;
     z-index: 10;

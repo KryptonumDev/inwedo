@@ -283,8 +283,19 @@ const Grid = styled.div`
 
         width: calc(100% + 120px);
         transform: translateX(-46px);
-        aspect-ratio: 1/1.09;
+        max-height: 920px;
         height: unset;
+
+        &::before {
+            float: left;
+            padding-top: 109%;
+            content: '';
+        }
+        &::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
 
         .lt{
             width: 34.52%;

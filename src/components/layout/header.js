@@ -124,7 +124,7 @@ export default function Header({ location }) {
                                 </li>
                             ))}
                             <li>
-                                <ContactButton to={contactLink.url}>
+                                <ContactButton onClick={() => { setIsHovered(false); setIsOpen(false) }} to={contactLink.url}>
                                     {contactLink.name}
                                 </ContactButton>
                             </li>

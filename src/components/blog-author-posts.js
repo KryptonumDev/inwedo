@@ -137,9 +137,8 @@ const Item = styled.div`
 
     .image{
         width: 100%;
-        aspect-ratio: 1.6/1;
         height: fit-content;
-        border-radius: 8px;
+        position: relative;
 
         img{
             border-radius: 8px;

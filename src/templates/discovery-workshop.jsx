@@ -16,7 +16,7 @@ const DiscoveryWorkshopPage = ({ data: { allWpPage, alternates }, location }) =>
   let { discoveryWorkshop, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location}  type='Services'/>
       <Hero data={discoveryWorkshop.heroWorkshop} />
       <OneColumnText data={discoveryWorkshop.oneColumnTextPart} />
       <TestomontialDivider data={discoveryWorkshop.testomontialDividerWorkshop} />

@@ -12,7 +12,7 @@ const AboutPage = ({ data: { allWpPage, alternates }, location }) => {
   let { about, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='About'/>
       <Hero data={about.heroAbout} />
       <TwoColumnFlex reverse={true} data={about.twoColumnFlex} />
       <OurValues data={about.ourValues} />

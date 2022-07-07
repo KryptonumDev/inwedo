@@ -11,7 +11,7 @@ const PortfolioArchivePage = ({ data: { allWpPage, categoryParents, allWpCaseStu
   const portfolio = allWpPage.nodes[0].portfolioArchive
   return (
     <main>
-      <Seo data={allWpPage.nodes[0].seo} lang={allWpPage.nodes[0].language.slug} alternates={alternates} location={location} />
+      <Seo data={allWpPage.nodes[0].seo} lang={allWpPage.nodes[0].language.slug} alternates={alternates} location={location}  type='Portfolio Archive'/>
       <Hero data={portfolio.heroPortfolio} />
       <ClientCases data={portfolio.clientsPortfolio} />
       <Archive location={location} data={portfolio.postsOtherData} parentCategories={categoryParents} posts={allWpCaseStudies}>

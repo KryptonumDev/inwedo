@@ -65,7 +65,7 @@ const TechnologiesGrid = styled.div`
 
 const TechnologiesLink = styled(Link)`
     width: clamp(55px, 9.11vw, 86px);
-    aspect-ratio: 1/1;
+    height: clamp(55px, 9.11vw, 86px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,7 +81,7 @@ const TechnologiesLink = styled(Link)`
 
 const TechnologiesItem = styled.div`
     width: clamp(55px, 9.11vw, 86px);
-    aspect-ratio: 1/1;
+    height: clamp(55px, 9.11vw, 86px);
     display: flex;
     justify-content: center;
     align-items: center;

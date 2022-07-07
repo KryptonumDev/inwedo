@@ -16,7 +16,7 @@ const TeamExtensionsPage = ({ data: { allWpPage, alternates }, location }) => {
   let { teamExtensionsPage, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={teamExtensionsPage.heroTeamExtensions} />
       <TwoColumnFlex data={teamExtensionsPage.twoColumnFlexTeamExtensions} />
       <TechStack data={teamExtensionsPage.techStackTeamExtensions} />

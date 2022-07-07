@@ -8,9 +8,9 @@ export default function DesignProcess({ data: { sectionTitle, boldText, plainTex
     return (
         <Wrapper>
             <Container>
+                        <h2 className="h4 line">{sectionTitle}</h2>
                 <Content>
                     <TextPart>
-                        <h2 className="h4 line">{sectionTitle}</h2>
                         <p className="h3">{boldText}</p>
                         <p className="h4">{plainText}</p>
                         <GatsbyImage className="image" image={imageUnderTextPart.localFile.childImageSharp.gatsbyImageData} alt={imageUnderTextPart.altText} />
@@ -31,6 +31,18 @@ export default function DesignProcess({ data: { sectionTitle, boldText, plainTex
 
 const Wrapper = styled.section`
     margin-top: var(--margin-section);
+    .line{
+        margin-bottom: 16px;
+        opacity: .5;
+        font-size: clamp(14px, 2.08vw, 18px);
+        line-height: 24px;
+        max-width: calc(50% - clamp(24px,4.8325vw,48px));
+        box-sizing: border-box;
+
+        @media (max-width: 876px) {
+            max-width: 100%;
+        }
+    }
 `
 
 const Content = styled.div`
@@ -44,12 +56,6 @@ const Content = styled.div`
 `
 
 const TextPart = styled.div`
-    .line{
-        margin-bottom: 16px;
-        opacity: .5;
-        font-size: clamp(14px, 2.08vw, 18px);
-        line-height: 24px;
-    }
 
     .h3{
         margin-bottom: 16px;
@@ -79,8 +85,6 @@ const List = styled.ul`
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 32px;
-
-    margin-top: 40px;
 
     @media (max-width: 1024px) {
         margin-top: 0;

@@ -18,7 +18,7 @@ const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts, alternates }, loc
   const { caseStudies, language, seo } = allWpCaseStudies.nodes[0]
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='technology' template='Portfolio Archive' currTemplate={caseStudies.templateName} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='post' template='Portfolio Archive' currTemplate={caseStudies.templateName} />
       <Hero data={caseStudies.heroportfolio} />
       {caseStudies.sectionController.oneColumnTextPart
         ? <OneColumnText alternative={true} data={caseStudies.oneColumnTextPartPortfolio} />
@@ -78,6 +78,7 @@ query PortfolioPageQuery($id: String!) {
   }
     allWpCaseStudies(filter: {id: {eq: $id}}) {
       nodes{
+        id
         language{
           slug
         }
@@ -308,6 +309,7 @@ query PortfolioPageQuery($id: String!) {
     }
     otherPosts : allWpCaseStudies(limit: 3, filter: {id: {ne: $id}}) {
       nodes {
+        id
         language{
           slug
         }

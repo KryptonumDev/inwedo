@@ -7,7 +7,7 @@ const ContactPage = ({ data: { allWpPage, alternates }, location }) => {
   let { contactPage, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Contact' />
       <Content data={contactPage} />
     </main>
   )

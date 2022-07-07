@@ -13,6 +13,7 @@ import Seo from "../components/seo"
 
 const TechnologyPage = ({ data: { allWpTechnology, alternates }, location }) => {
   let { technology, language, seo } = allWpTechnology.nodes[0]
+
   return (
     <main>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='technology' template='Technology' currTemplate={technology.templateName} />

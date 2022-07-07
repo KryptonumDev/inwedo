@@ -147,8 +147,19 @@ const Grid = styled.div`
         margin-bottom: 48px;
 
         max-width: 1040px;
-        aspect-ratio: 1/.9;
         width: 100%;
+        max-height: 950px;
+
+        &::before {
+            float: left;
+            padding-top: 111%;
+            content: '';
+        }
+        &::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
 
         height: unset;
 
@@ -179,7 +190,17 @@ const Grid = styled.div`
 
     @media (max-width: 1088px) {
         max-width: 860px;
-        aspect-ratio: 1/1.09;
+
+        &::before {
+            float: left;
+            padding-top: 109%;
+            content: '';
+        }
+        &::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
     }
 
     @media(max-width: 640px){

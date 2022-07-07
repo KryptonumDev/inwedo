@@ -20,9 +20,9 @@ const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCatego
   let { careersHome, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Careers Homepage'/>
       <Hero data={careersHome.heroCareers} />
-      <JoinUs data={careersHome.joinUs} offers={allWpJobOffer.nodes} categories={allWpCategoryJob.nodes} seniority={allWpSeniority.nodes}/>
+      <JoinUs data={careersHome.joinUs} offers={allWpJobOffer.nodes} categories={allWpCategoryJob.nodes} seniority={allWpSeniority.nodes} />
       <ApointmentWithHr data={careersHome.appointmentWithHr} />
       <HowWeWork data={careersHome.howWeWork} />
       <CareersPaths data={careersHome.careerPaths} />
@@ -31,10 +31,10 @@ const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCatego
       <CallToAction data={careersHome.callToActionCareers} />
       <ProjectsYouCanWorkOn data={careersHome.projectsYouCanWorkOnCareers} />
       <Benefits data={careersHome.benefits} />
-      <MeetUs data={careersHome.meetUs}/>
-      <RecruitmentProcess data={careersHome.recruitmentProcess}/>
+      <MeetUs data={careersHome.meetUs} />
+      <RecruitmentProcess data={careersHome.recruitmentProcess} />
       <ApointmentWithHr data={careersHome.appointmentWithHr} />
-      <OnBoarding data={careersHome.onboarding}/>
+      <OnBoarding data={careersHome.onboarding} />
       <CallToAction data={careersHome.callToActionCareersSecond} />
       {careersHome.faqCareers.map(el => (
         <FAQ data={el} />

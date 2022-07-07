@@ -10,7 +10,7 @@ export default function BlogAuthor({ data: { allWpAuthors, allWpPost, alternates
 
   return (
     <main>
-      <Seo data={author.seo} lang={author.language.slug} alternates={alternates} location={location} type='archive' id={author.id} template='author'/>
+      <Seo data={author.seo} lang={author.language.slug} alternates={alternates} location={location} type='archive' id={author.id} template='author' currTemplate={author.author.userName}/>
       <Hero data={author} />
       <BlogAuthorPosts data={posts} title={author.author.authorPostsTitle} loadMore={author.author.loadMorePostsText} />
     </main>

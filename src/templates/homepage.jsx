@@ -11,9 +11,10 @@ import Seo from "../components/seo"
 
 const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
   let { homepage, language, seo } = allWpPage.nodes[0]
+  
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location}/>
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Homepage'/>
       <Hero data={homepage.heroHome} />
       <Services data={homepage.services} />
       <CallToAction data={homepage.callToAction} />

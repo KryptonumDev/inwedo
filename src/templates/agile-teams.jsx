@@ -18,7 +18,7 @@ const AgileTeamsPage = ({ data: { allWpPage, alternates }, location }) => {
   let { agileTeams, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={agileTeams.heroAgileTeams} />
       <OurFocuses data={agileTeams.ourFocusesAgileTeams} />
       <MiniFaq data={agileTeams.miniFaqAgileTeams} />

@@ -11,7 +11,7 @@ export default function CareersPost({ data: { allWpJobOffer, alternates }, locat
   let { careersPost, language, seo } = allWpJobOffer.nodes[0]
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={careersPost.templateName} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='careers post' template='Blog Archive' currTemplate={careersPost.templateName} />
       <Hero data={careersPost.heroJob} location={location} />
       {careersPost.textParts.map(el => (
         <CareersTextParts data={el} />
@@ -50,6 +50,7 @@ export const query = graphql`
               }
                 id
                 careersPost{
+                    templateName
                     currentPostUrl
                     heroJob {
                       pageTitle

@@ -110,7 +110,7 @@ const Content = styled.div`
             
             .icon{
                 width: clamp(64px, ${73 / 768 * 100}vw, 81px);
-                aspect-ratio: 1/1;
+                height: clamp(64px, ${73 / 768 * 100}vw, 81px);
             }
         }
     }

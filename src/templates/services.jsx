@@ -11,7 +11,7 @@ const ServicesPage = ({ data: { allWpPage, alternates }, location }) => {
   let { servicesPage, language, seo } = allWpPage.nodes[0]
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location}  type='Services'/>
       <Hero data={servicesPage.heroServices} />
       <DevelopmentCards data={servicesPage.developmentCards} />
       <CallToAction data={servicesPage.callToActionServices} />

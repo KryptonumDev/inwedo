@@ -8,7 +8,7 @@ export default function CareerthPath({ data: { allWpCareerPath, alternates }, lo
   let { path, language, seo } = allWpCareerPath.nodes[0]
   return (
     <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='technology' template='Blog Archive' currTemplate={path.templateName} />
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='careers post' template='Blog Archive' currTemplate={path.templateName}/>
       <Hero data={path.heroPath}/>
       <BlogPostContent data={path.content} quickTitle={path.quickNavigation.sectionTitle} />
     </main>

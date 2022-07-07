@@ -155,7 +155,7 @@ const GlassCard = styled.div`
             justify-content: center;
             align-items: center;
             width: 48px;
-            aspect-ratio: 1/1;
+            height: 48px;
             border-radius: 5px;
 
             .tech-logo{

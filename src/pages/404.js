@@ -25,7 +25,7 @@ const NotFoundPage = ({ data: { allWpPage } }) => {
 
   return (
     <Wrapper>
-      <Seo data={seo} />
+      {/* <Seo data={seo} /> */}
       <Container>
         <Content>
           <div className="lotie">

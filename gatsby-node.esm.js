@@ -595,7 +595,7 @@ exports.createPages = async ({
 
   const { data: { allWpPage: { privacyPoliceNodes } } } = await graphql(`
             query {
-              allWpPage(filter: {template: {templateName: {eq: "Privacy Police"}}}) {
+              allWpPage(filter: {template: {templateName: {eq: "Privacy Policy"}}}) {
                 privacyPoliceNodes: nodes {
                   id
                   language {

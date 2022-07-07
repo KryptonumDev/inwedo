@@ -70,7 +70,7 @@ const Grid = styled.div`
         max-width: clamp(48px, ${58 / 768 * 100}vw, 68px);
         min-width: 48px;
         width: 100%;
-        aspect-ratio: 1/1;
+        height: fit-content;
     }
 
     @media (max-width: 640px) {
