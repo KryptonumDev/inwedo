@@ -35,6 +35,14 @@ const Flex = styled(Link)`
     gap: clamp(50px, 10.15vw, 128px);
     margin-bottom: clamp(48px, 9.375vw, 96px);
 
+    &:hover{
+        .link{
+            &::after{
+                background-color: #fff;
+            }
+        }
+    }
+
     .image{
         background-color: var(--color-white);
         box-shadow: var(--shadow);

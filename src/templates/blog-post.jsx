@@ -47,7 +47,7 @@ query BlogPostQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(quality: 80)
                 }
               }
             }
@@ -74,7 +74,7 @@ query BlogPostQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData
+                    gatsbyImageData(quality: 80)
                   }
                 }
               }
@@ -105,7 +105,7 @@ query BlogPostQuery($id: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData
+                      gatsbyImageData(quality: 80)
                     }
                   }
                 }
@@ -126,7 +126,20 @@ query BlogPostQuery($id: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData
+                        gatsbyImageData(quality: 80)
+                      }
+                    }
+                  }
+                }
+                testomontialDividerFotoPost{
+                  personName
+                  personPosition
+                  testomontialText
+                  companyLogo {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData(quality: 80)
                       }
                     }
                   }
@@ -136,7 +149,7 @@ query BlogPostQuery($id: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData
+                      gatsbyImageData(quality: 80)
                     }
                   }
                 }
@@ -162,7 +175,7 @@ query BlogPostQuery($id: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData
+                        gatsbyImageData(quality: 80)
                       }
                     }
                   }
@@ -201,7 +214,7 @@ query BlogPostQuery($id: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData
+                        gatsbyImageData(quality: 80)
                       }
                     }
                   }

@@ -2,6 +2,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../style"
+import Video from './../images/hr.mp4'
 
 export default function RecruitmentProcess({ data: { sectionTitle, seoTitle, boldText, plainText, video, pathImage, applyButton } }) {
     return (
@@ -15,9 +16,9 @@ export default function RecruitmentProcess({ data: { sectionTitle, seoTitle, bol
                         <p className="p">{plainText}</p>
                     </div>
                     <div className="video">
-                        {/* <video controls>
-                            <source src={video.localFile.publicURL} type="video/mp4" alt={video.localFile.alText}/>
-                        </video> */}
+                        <video controls>
+                            <source src={Video} type="video/mp4"/>
+                        </video>
                     </div>
                 </Flex>
                 <Image className="desctop" image={pathImage.desctop.localFile.childImageSharp.gatsbyImageData} alt={pathImage.desctop.altText} />

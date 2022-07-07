@@ -28,6 +28,10 @@ const ContentWrapper = styled.div`
         width: calc(100% + 64px);
         transform: translateX(-32px);
     }
+
+    *:focus-visible{
+        outline-color: #fff;
+    }
 `
 
 const Content = styled.div`

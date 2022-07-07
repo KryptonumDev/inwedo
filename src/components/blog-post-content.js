@@ -24,7 +24,7 @@ export default function BlogPostContent({ data, quickTitle }) {
                     case 'testomontial':
                         return <TestomontialDividerLogo small={true} data={el.testomontialDividerPost} index={id}/>
                     case "testomontial_photo":
-                        return <TestomontialDividerFoto small={true} data={el.testomontialDividerPost} index={id}/>
+                        return <TestomontialDividerFoto small={true} data={el.testomontialDividerFotoPost} index={id}/>
                     case 'table':
                         return <Table data={el.table} index={id}/>
                     default :

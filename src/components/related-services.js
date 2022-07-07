@@ -70,6 +70,11 @@ const Grid = styled.div`
 `
 
 const Item = styled(Link)`
+    transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:hover{
+        transform: translateY(-6px);
+    }
 
     .h2{
         margin-bottom: 16px;

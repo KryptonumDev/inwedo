@@ -77,6 +77,11 @@ const Item = styled(Link)`
     display: grid;
     grid-template-columns: clamp(60px, 11.32vw, 115px) 1fr;
     grid-gap: clamp(16px, 3.125vw, 32px);
+    transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:hover{
+        transform: translateY(-6px);
+    }
 
     h3{
         margin-bottom: clamp(8px, 1.5625vw, 16px);

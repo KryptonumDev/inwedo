@@ -52,7 +52,7 @@ query BlogCategoryQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(quality: 80)
                 }
               }
             }
@@ -60,7 +60,7 @@ query BlogCategoryQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(quality: 80)
                 }
               }
             }
@@ -83,7 +83,7 @@ query BlogCategoryQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData
+                    gatsbyImageData(quality: 80)
                   }
                 }
               }
@@ -110,7 +110,7 @@ query BlogCategoryQuery($id: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData
+                      gatsbyImageData(quality: 80)
                     }
                   }
                 }

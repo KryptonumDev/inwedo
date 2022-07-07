@@ -17,11 +17,15 @@ const ContentWrapper = styled.div`
     border-radius: 24.5221px;
     box-shadow: var(--shadow);
 
-@media (max-width: 1024px) {
-    border-radius: 0;
-    width: calc(100% + 64px);
-    transform: translateX(-32px);
-}
+    @media (max-width: 1024px) {
+        border-radius: 0;
+        width: calc(100% + 64px);
+        transform: translateX(-32px);
+    }
+
+    *:focus-visible{
+        outline-color: #fff;
+    }
 `
 
 const Content = styled.div`

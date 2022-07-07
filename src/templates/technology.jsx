@@ -74,7 +74,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                     childImageSharp {
-                        gatsbyImageData
+                        gatsbyImageData(quality: 80)
                     }
                 }
               }
@@ -91,7 +91,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData
+                    gatsbyImageData(quality: 80)
                   }
                 }
               }
@@ -104,7 +104,7 @@ query TechonologyPageQuery($id: String!) {
                         altText
                         localFile {
                           childImageSharp {
-                            gatsbyImageData
+                            gatsbyImageData(quality: 80)
                           }
                         }
                     }
@@ -118,7 +118,7 @@ query TechonologyPageQuery($id: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData
+                        gatsbyImageData(quality: 80)
                       }
                     }
                 }
@@ -155,7 +155,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData
+                    gatsbyImageData(quality: 80)
                   }
                 }
               }
@@ -182,7 +182,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData
+                    gatsbyImageData(quality: 80)
                   }
                 }
               }
@@ -209,7 +209,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData
+                    gatsbyImageData(quality: 80)
                   }
                 }
               }
@@ -224,7 +224,7 @@ query TechonologyPageQuery($id: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData
+                      gatsbyImageData(quality: 80)
                     }
                   }
                 }
@@ -233,7 +233,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData
+                    gatsbyImageData(quality: 80)
                   }
                 }
               }
@@ -251,7 +251,7 @@ query TechonologyPageQuery($id: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData
+                      gatsbyImageData(quality: 80)
                     }
                   }
                 }
@@ -259,7 +259,7 @@ query TechonologyPageQuery($id: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData
+                      gatsbyImageData(quality: 80)
                     }
                   }
                 }
@@ -280,7 +280,7 @@ query TechonologyPageQuery($id: String!) {
                         altText
                         localFile {
                             childImageSharp {
-                                gatsbyImageData
+                                gatsbyImageData(quality: 80)
                             }
                         }
                     }

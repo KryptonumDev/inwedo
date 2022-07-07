@@ -8,7 +8,7 @@ export default function TwoColumnFlex({ data: { image, title, subTitle, text, bu
     return (
         <Wrapper>
             <Container>
-                <Flex reverse={reverse} to={button.url}>
+                <Flex isLink={button.url} reverse={reverse} to={button.url}>
                     <div className="text">
                         {technology
                             ? <h2 className="h1">{title}</h2>
@@ -41,6 +41,8 @@ const Wrapper = styled.section`
                     box-sizing: border-box;
                 }
         }
+
+
 `
 
 const Flex = styled(Link)`
@@ -49,11 +51,27 @@ const Flex = styled(Link)`
     align-items: center;
     gap: 40px;
 
+        ${props => props.isLink ? `
+            &:hover{
+                .image{
+                    img{
+                        transform: scale(1.03);
+                    }
+                }
+            }
+        `: null}
+
+
     .image{
         box-shadow: var(--shadow);
         border-radius: 8px;
         width: fit-content;
         height: fit-content;
+
+        img{
+            transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+            border-radius: 8px;
+        }
 
         @media (max-width: 850px) {
             width: 100%;

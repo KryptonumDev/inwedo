@@ -26,7 +26,7 @@ const ContentWrapper = styled.div`
 `
 
 const Content = styled.div`
-    max-width: 756px;
+    max-width: 930px;
     margin: 0 auto;
     padding: clamp(64px, 10.68vw, 100px) 30px;
 `

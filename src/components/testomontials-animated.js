@@ -4,13 +4,16 @@ import { Container } from "../style"
 import { motion } from "framer-motion"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-export default function TestomontialsAnimated({ data: { text, seectionTitle, testomontialsFirstRow, testomontialsSecondRow } }) {
+export default function TestomontialsAnimated({ data: { text, seectionTitle, testomontialsFirstRow, testomontialsSecondRow, card } }) {
     const constraintsRef = useRef(null);
     return (
         <Wrapper>
             <Container>
                 <Text className="h3">{text}</Text>
                 <Title className="h4">{seectionTitle}</Title>
+                <Card href={card.cardLink} target="_blank" rel="noopener noreferrer">
+                    <GatsbyImage className="image" image={card.cardImage.localFile.childImageSharp.gatsbyImageData} alt={card.cardImage.altText} />
+                </Card>
                 <Row ref={constraintsRef}>
                     <motion.div drag='x' dragConstraints={constraintsRef} className="slider">
                         {testomontialsFirstRow.map(el => (
@@ -47,6 +50,9 @@ export default function TestomontialsAnimated({ data: { text, seectionTitle, tes
 }
 
 const Wrapper = styled.section`
+    position: relative;
+    margin: 0 auto;
+    max-width: 1920px;
     margin-top: var(--margin-section);
 `
 
@@ -81,6 +87,10 @@ const Title = styled.h2`
 
     &.h4{
         font-size: clamp(14px, 2.08vw, 18px);
+    }
+
+    @media (max-width: 1240px){
+        margin-bottom: 10px;
     }
 `
 
@@ -176,5 +186,47 @@ const Item = styled.div`
                 margin-bottom: 32px;
             }
         } */
+    }
+`
+
+const Card = styled.a`
+    display: block;
+    position: absolute;
+    right: -16px;
+    top: 0;
+    border-radius: 24px;
+    background-color: #fff;
+    box-shadow: var(--shadow);
+    padding: 36px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .image{
+        width: fit-content;
+        height: fit-content;
+        max-width: 192px;
+    }
+
+    @media (max-width: 1240px) {
+        position: relative;
+        .image{
+            max-width: 150px;
+        }
+        padding: 24px 16px;
+        left: 100%;
+        transform: translateX(-80%);
+        position: relative;
+        display: block;
+        width: fit-content;
+        margin-bottom: 16px;
+    }
+
+    @media (max-width: 1024px) {
+        .image{
+            max-width: 100px;
+        }
+        padding: 16px;
+        border-radius: 8px;
     }
 `

@@ -40,8 +40,10 @@ export default function Services({ data: { card, clientsTitle, clientsItems, sec
 }
 
 const Wrapper = styled.section`
-    margin-top: var(--margin-xl);
     position: relative;
+    max-width: 1920px;
+    margin: 0 auto;
+    margin-top: var(--margin-xl);
 
     .h3.title{
         margin-bottom: 32px;
@@ -156,6 +158,11 @@ const Item = styled(Link)`
     border-radius: 8px;
     background-color: #fff;
     box-shadow: var(--shadow);
+    transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:hover{
+        transform: translateY(-6px);
+    }
 
     @media (max-width: 640px) {
         max-width: 500px;    

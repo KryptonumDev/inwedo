@@ -57,7 +57,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(quality: 80)
                 }
               }
             }
@@ -72,7 +72,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData
+                    gatsbyImageData(quality: 80)
                   }
                 }
               }
@@ -83,7 +83,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData
+                        gatsbyImageData(quality: 80)
                       }
                     }
                 }
@@ -100,7 +100,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData
+                      gatsbyImageData(quality: 80)
                     }
                   }
                 }
@@ -110,7 +110,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData
+                    gatsbyImageData(quality: 80)
                   }
                 }
               }
@@ -138,7 +138,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(quality: 80)
                 }
               }
             }
@@ -165,7 +165,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(quality: 80)
                 }
               }
             }
@@ -196,7 +196,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
               }
         }
       }
-      allWpCaseStudies {
+      allWpCaseStudies(sort: {fields: date, order: DESC}) {
         nodes {
           slug
           categoriesPortfolio {
@@ -215,7 +215,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData
+                    gatsbyImageData(quality: 80)
                   }
                 }
               }
@@ -223,7 +223,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData
+                    gatsbyImageData(quality: 80)
                   }
                 }
               }

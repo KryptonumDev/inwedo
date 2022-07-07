@@ -2,6 +2,7 @@ import { graphql, Link, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { urlSystem } from "../../contstants/urlSystem"
 import { Container } from "../../style"
 import { activeLanguage } from './../../helpers/activeLanguage'
 
@@ -19,7 +20,7 @@ export default function Footer({ location }) {
                         altText
                         localFile {
                           childImageSharp {
-                            gatsbyImageData
+                            gatsbyImageData(quality: 100)
                           }
                         }
                       }
@@ -45,7 +46,9 @@ export default function Footer({ location }) {
                         ariaLabel
                         icon {
                           altText
-                          sourceUrl
+                          localFile{
+                            publicURL
+                          }
                         }
                       }
                     }
@@ -60,7 +63,9 @@ export default function Footer({ location }) {
     return (
         <Wrapper>
             <Container>
-                <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
+                <Link to={urlSystem['Homepage'][localeData[0].language.slug]}>
+                    <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
+                </Link>
                 <Content>
                     <div>
                         <div className="additional">
@@ -71,7 +76,7 @@ export default function Footer({ location }) {
                         <Social>
                             {socialLinks.map(el => (
                                 <a rel="me" href={el.link} ariaLabel={el.ariaLabel}>
-                                    <img src={el.icon.sourceUrl} alt={el.icon.altText} />
+                                    <img className="social" src={el.icon.localFile.publicURL} alt={el.icon.altText} />
                                 </a>
                             ))}
                         </Social>
@@ -80,7 +85,7 @@ export default function Footer({ location }) {
                         <div>
                             <ul>
                                 {el.columnRows.map(innerEl => (
-                                    <li><StyledLink isBold={innerEl.isBold === 'bold'} to={innerEl.linkUrl}>{innerEl.linkText}</StyledLink></li>
+                                    <li><StyledLink activeClassName="active" isBold={innerEl.isBold === 'bold'} to={innerEl.linkUrl}>{innerEl.linkText}</StyledLink></li>
                                 ))}
                             </ul>
                         </div>
@@ -91,7 +96,7 @@ export default function Footer({ location }) {
                     <p>{copyright.copyright}</p>
                     <ul>
                         {copyright.additionalLinks.map(el => (
-                            <li><Link to={el.url}>{el.name}</Link></li>
+                            <li><Link activeClassName="active" to={el.url}>{el.name}</Link></li>
                         ))}
                     </ul>
                 </Copyright>
@@ -111,6 +116,7 @@ const Wrapper = styled.footer`
 const Content = styled.div`
     display: flex;
     justify-content: space-between;
+    margin-bottom: 64px;
 
     .additional{
         padding-left: 22px;
@@ -134,7 +140,7 @@ const Content = styled.div`
 
     ul{
         display: grid;
-        grid-gap: 14px;
+        grid-gap: 24px;
 
         li{
             max-width: 280px;
@@ -173,16 +179,44 @@ const Content = styled.div`
 const StyledLink = styled(Link)`
     font-weight: ${props => props.isBold ? 400 : 300} !important;
     font-size: ${props => props.isBold ? '16px' : '14px'} !important;
+    border-radius: 2px;
+                
+                position: relative;
+                padding-bottom: 3px;
+
+                transition: background-size 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+                background: var(--color-accent);
+                background-size: 0px 2px;
+                background-repeat: no-repeat;
+                background-position: left 100%;
+
+                    &.active{
+                        background-size: 40% 2px;
+                    }
+
+                    &:hover {
+                        background-size: 100% 2px;
+                    }
 `
 
 const Social = styled.div`
     width: fit-content;
     display: flex;
     align-items: flex-end;
-    gap: 24px;
-    margin-top: 18px;
+    gap: 32px;
+    margin-top: 24px;
     margin-bottom: 36px;
     margin-left: 22px;
+
+    .social{
+        max-width: 30px;
+        max-height: 30px;
+        transition: transform .2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
 
     @media (max-width: 1024px) {
         margin-left: 0;
@@ -218,6 +252,22 @@ const Copyright = styled.div`
             font-weight: 300;
             font-size: clamp(14px, 2.08vw, 16px);
             line-height: 150%;
+            padding-bottom: 3px;
+            border-radius: 2px;
+
+            transition: background-size 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+            background: var(--color-accent);
+            background-size: 0px 2px;
+            background-repeat: no-repeat;
+            background-position: left 100%;
+
+                &.active{
+                    background-size: 40% 2px;
+                }
+
+                &:hover {
+                    background-size: 100% 2px;
+                }
         }
     }
 

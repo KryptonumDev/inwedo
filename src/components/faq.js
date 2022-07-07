@@ -93,6 +93,13 @@ const Item = styled.details`
     }
     
     &[open]{
+        summary{
+            &:hover{
+                span{
+                    background-size: 0px 2px;
+                }
+            }
+        }
         ::after{
             transform: rotateX(180deg);
             
@@ -125,6 +132,7 @@ const Item = styled.details`
 
     summary{
         cursor: pointer;
+        border-radius: 8px;
 
         padding-left: clamp(50px, 8.46vw, 90px);
 
@@ -141,7 +149,22 @@ const Item = styled.details`
             font-weight: 600;
             font-size: clamp(14px, 2.34375vw, 22px);
             line-height: 150%;
+            padding: 4px 0;
+                
+                position: relative;
+                padding-bottom: 3px;
 
+                transition: background-size 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+                background: var(--color-accent);
+                background-size: 0px 2px;
+                background-repeat: no-repeat;
+                background-position: left 100%;
+        }
+
+        &:hover{
+            span{
+                background-size: 100% 2px;
+            }
         }
     }
 

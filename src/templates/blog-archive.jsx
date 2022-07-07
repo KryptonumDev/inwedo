@@ -74,7 +74,7 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData
+                      gatsbyImageData(quality: 80)
                     }
                   }
                 }
@@ -101,7 +101,7 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData
+                      gatsbyImageData(quality: 80)
                     }
                   }
                 }
@@ -116,7 +116,7 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData
+                        gatsbyImageData(quality: 80)
                       }
                     }
                   }
@@ -125,7 +125,7 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
             }
         }
     }
-    allWpPost {
+    allWpPost(sort: {fields: date, order: DESC}) {
         nodes {
           language{
             slug
@@ -141,7 +141,7 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData
+                    gatsbyImageData(quality: 80)
                   }
                 }
               }
@@ -168,7 +168,7 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData
+                      gatsbyImageData(quality: 80)
                     }
                   }
                 }

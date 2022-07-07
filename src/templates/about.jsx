@@ -58,7 +58,7 @@ export const query = graphql`
                         altText
                         localFile {
                             childImageSharp {
-                                gatsbyImageData
+                                gatsbyImageData(quality: 80)
                             }
                         }
                     }
@@ -75,7 +75,7 @@ export const query = graphql`
                        altText
                        localFile {
                          childImageSharp {
-                           gatsbyImageData
+                           gatsbyImageData(quality: 80)
                          }
                        }
                      }
@@ -89,7 +89,7 @@ export const query = graphql`
                          altText
                          localFile {
                            childImageSharp {
-                             gatsbyImageData
+                             gatsbyImageData(quality: 80)
                            }
                          }
                        }
@@ -116,7 +116,7 @@ export const query = graphql`
                        altText
                        localFile {
                          childImageSharp {
-                           gatsbyImageData
+                           gatsbyImageData(quality: 80)
                          }
                        }
                      }
@@ -124,6 +124,17 @@ export const query = graphql`
                    testomontialsAnimated {
                      text
                      seectionTitle
+                     card{
+                       cardLink
+                       cardImage{
+                         altText
+                         localFile {
+                           childImageSharp {
+                             gatsbyImageData(quality: 80)
+                           }
+                         }
+                       }
+                     }
                      testomontialsFirstRow {
                        authorName
                        authorPosition
@@ -132,7 +143,7 @@ export const query = graphql`
                          altText
                          localFile {
                            childImageSharp {
-                             gatsbyImageData
+                             gatsbyImageData(quality: 80)
                            }
                          }
                        }
@@ -145,7 +156,7 @@ export const query = graphql`
                          altText
                          localFile {
                            childImageSharp {
-                             gatsbyImageData
+                             gatsbyImageData(quality: 80)
                            }
                          }
                        }
@@ -164,7 +175,7 @@ export const query = graphql`
                          altText
                          localFile {
                            childImageSharp {
-                             gatsbyImageData
+                             gatsbyImageData(quality: 80)
                            }
                          }
                        }
@@ -172,7 +183,7 @@ export const query = graphql`
                          altText
                          localFile {
                            childImageSharp {
-                             gatsbyImageData
+                             gatsbyImageData(quality: 80)
                            }
                          }
                        }
@@ -190,7 +201,7 @@ export const query = graphql`
                        altText
                        localFile {
                          childImageSharp {
-                           gatsbyImageData
+                           gatsbyImageData(quality: 80)
                          }
                        }
                      }
@@ -216,7 +227,7 @@ export const query = graphql`
                        altText
                        localFile {
                          childImageSharp {
-                           gatsbyImageData
+                           gatsbyImageData(quality: 80)
                          }
                        }
                      }

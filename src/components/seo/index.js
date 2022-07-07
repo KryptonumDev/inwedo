@@ -22,7 +22,7 @@ export default function Seo({ data, lang, alternates, location, type, id, templa
     } else if (type === 'technology') {
         alternates.nodes = alternates.nodes.filter(el => el.page.template === currTemplate)
         breadcrumbsTechnologies(items, location, lang, currTemplate)
-    } else if (type === 'How We Work'){
+    } else if (type === 'How We Work') {
         breadcrumbsHowWeWork(items, location, lang)
     } else if (type === 'post') {
         alternates.nodes = alternates.nodes.filter(el => el.page.template === currTemplate)
@@ -34,14 +34,27 @@ export default function Seo({ data, lang, alternates, location, type, id, templa
         breadcrumbsServices(items, location, alternates, type, lang)
     }
 
+    const ldJson = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": items
+    };
+
+
     return (
         <Helmet htmlAttributes={{ lang: lang }}>
+
+            <script type="application/ld+json">
+                {JSON.stringify(ldJson)}
+            </script>
 
             {data?.title
                 ? <title>{data.title}</title>
                 : null}
             {fullHead}
             {/* <meta name="google-site-verification" content="6ECIlKWTKRV13uT8My_fm4eN2kHfjUuz74nBH7kNXjE" /> */}
+
+
 
             {alternates?.nodes.map(el => {
                 let href

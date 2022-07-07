@@ -25,6 +25,7 @@ const Content = styled(GatsbyImage)`
     width: 100%;
     height: fit-content;
     max-height: 1000px;
+    max-width: fit-content;
 
     img{
         border-radius: 8px;

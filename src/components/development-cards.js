@@ -10,7 +10,7 @@ export default function DevelopmentCards({ data: { twoColumn, cards, success } }
             <Container>
                 <Flex to={twoColumn.button.url}>
                     <div className="image">
-                        <Image image={twoColumn.image.localFile.childImageSharp.gatsbyImageData} alt={twoColumn.image.altText} />
+                        <Image className="icon" image={twoColumn.image.localFile.childImageSharp.gatsbyImageData} alt={twoColumn.image.altText} />
                     </div>
                     <div className="text">
                         <h2 className="h1 line">{twoColumn.title}</h2>
@@ -64,6 +64,25 @@ const Flex = styled(Link)`
     align-items: center;
     gap: clamp(50px, 10.15vw, 128px);
     margin-bottom: clamp(48px, 9.375vw, 96px);
+
+    &:hover{
+        .link{
+            &::after{
+                background-color: #fff;
+            }
+        }
+        .icon{
+            img{
+                transform: scale(1.03);
+            }
+        }
+    }
+
+    .icon{
+        img{
+            transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
+    }
 
     .image{
         background-color: var(--color-white);
@@ -134,6 +153,11 @@ const Card = styled(Link)`
     width: 100%;
     box-sizing: border-box;
     margin: 0 auto;
+    transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:hover{
+        transform: translateY(-6px);
+    }
 
     .image{
         width: clamp(64px, 10.41vw, 115px);
@@ -181,8 +205,23 @@ const SuccessStories = styled.div`
         grid-template-columns: 1fr 1fr;
         grid-gap: clamp(32px, 10.41vw, 128px);
 
+        &:hover{
+            .link{
+                &::after{
+                    background-color: #fff;
+                }
+            }
+            .image{
+                img{
+                    transform: scale(1.03);
+                }
+            }
+        }
+
         .image{
+                border-radius: 8px;
             img{
+                transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
                 border-radius: 8px;
             }
         }

@@ -8,7 +8,7 @@ export default function Hero({ data: { title, subTitle, button, imgGridH } }) {
     return (
         <Wrapper>
             <LocalContainer>
-                <Image>
+                <Image> 
                     <GatsbyImage className='left' image={imgGridH.imageLeft.localFile.childImageSharp.gatsbyImageData} alt={imgGridH.imageLeft.altText} />
                     <GatsbyImage className='rightTop' image={imgGridH.imageRightTop.localFile.childImageSharp.gatsbyImageData} alt={imgGridH.imageRightTop.altText} />
                     <GatsbyImage className='rightBottom' image={imgGridH.imageRightBottom.localFile.childImageSharp.gatsbyImageData} alt={imgGridH.imageRightBottom.altText} />

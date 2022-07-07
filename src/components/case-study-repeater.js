@@ -27,7 +27,7 @@ export default function CaseStudyRepeater({ data: { title, text, studiesCase } }
                                     </div>
                                     <p className="link">{el.button.name}</p>
                                 </div>
-                                <Image image={el.imgRight.localFile.childImageSharp.gatsbyImageData} alt={el.imgRight.altText} />
+                                <Image className="side-image" image={el.imgRight.localFile.childImageSharp.gatsbyImageData} alt={el.imgRight.altText} />
                             </Item>
                         </Link>
                     ))}
@@ -54,6 +54,12 @@ const Wrapper = styled.section`
     .link{
         font-size: 18px;
     }
+
+    a{
+        border-radius: 8px;
+        &:focus-visible{
+        }
+    }
 `
 
 const Repeater = styled.div`
@@ -66,6 +72,25 @@ const Item = styled.div`
     justify-content: space-between;
     align-items: center;
     gap: 40px;
+
+    &:hover{
+        .side-image{
+            img{
+                transform: scale(1.03);
+            }
+        }
+            .link{
+                &::after{
+                    background-color: #fff;
+                }
+            }
+    }
+
+    .side-image{
+        img{
+            transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
+    }
 
     .h2{
         margin-top: 24px;
@@ -127,6 +152,7 @@ const Image = styled(GatsbyImage)`
     width: 100%;
     height: fit-content;
     min-width: 400px;
+        border-radius: 8px;
     
     img{
         border-radius: 8px;

@@ -64,8 +64,23 @@ const Stories = styled.div`
         grid-template-columns: 1fr 1fr;
         grid-gap: clamp(32px, 10.41vw, 128px);
 
+        &:hover{
+            .link{
+                &::after{
+                    background-color: #fff;
+                }
+            }
+            .image{
+                img{
+                    transform: scale(1.03);
+                }
+            }
+        }
+
         .image{
+                border-radius: 8px;
             img{
+                transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
                 border-radius: 8px;
             }
         }

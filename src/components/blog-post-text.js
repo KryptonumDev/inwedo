@@ -21,6 +21,34 @@ const Content = styled.div`
     display: grid;
     grid-gap: 16px;
 
+    video{
+        width: 100%;
+        height: fit-content;
+    }
+
+    iframe{
+        width: 100% !important;
+        video{
+            width: 100% !important;
+        }
+    }
+
+    figure{
+        width: 100% !important;
+        border-radius: 8px;
+        figcaption{
+            margin-top: 8px;
+            font-weight: 300;
+            font-size: clamp(10px, 1.43vw, 12px);
+            line-height: 220%;
+            font-feature-settings: 'ss01' on;
+        }
+    }
+
+    .wp-video{
+        width: 100% !important;
+    }
+
     h2{
         font-weight: 400;
         font-size: clamp(16px, 3.125vw, 24px);
@@ -49,6 +77,14 @@ const Content = styled.div`
         }
         &.btn{
             color: #fff;
+        }
+
+        strong{
+            background: var(--color-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
         }
     }
 

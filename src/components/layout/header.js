@@ -2,6 +2,7 @@ import { graphql, Link, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
+import { urlSystem } from "../../contstants/urlSystem"
 import { Container } from "../../style"
 import { activeLanguage } from './../../helpers/activeLanguage'
 
@@ -40,7 +41,7 @@ export default function Header({ location }) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData
+                          gatsbyImageData(quality: 100)
                         }
                       }
                     }
@@ -75,7 +76,7 @@ export default function Header({ location }) {
         <Wrapper id='header' isHovered={isHovered} type={type} isOpen={isOpen} >
             <Container>
                 <Content>
-                    <Link onClick={() => { setIsOpen(false) }} ariaLabel='homepage link' to="/">
+                    <Link onClick={() => { setIsOpen(false) }} ariaLabel='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
                         <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
                     </Link>
                     <MobileButton type={type} isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>

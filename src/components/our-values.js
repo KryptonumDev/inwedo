@@ -51,7 +51,7 @@ const Title = styled.h2`
 const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 32px clamp(32px, 7.29vw, 80px);
+    grid-gap: 64px clamp(32px, 7.29vw, 80px);
 
     @media (max-width: 640px) {
         grid-template-columns: 1fr;

@@ -3,6 +3,8 @@ import styled from "styled-components"
 import Slider from "react-slick";
 import { Container } from "../style";
 import { GatsbyImage } from "gatsby-plugin-image";
+import Left from './../images/left.svg'
+import Right from './../images/right.svg'
 
 export default function Testomontials({ data: { title, text, testomontialsItem } }) {
     var settings = {
@@ -13,7 +15,8 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 5000,
+        autoplaySpeed: 7500,
+        arrows: true,
         responsive: [
             {
                 breakpoint: 1024,
@@ -22,16 +25,24 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
                 }
             },
             {
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                    slidesToShow: 2,
+                }
+            },
+            {
                 breakpoint: 640,
                 settings: {
+                    arrows: false,
                     slidesToShow: 1,
                 }
             },
         ]
     };
     return (
-        <Wrapper>
-            <Container>
+        <Wrapper Left={Left} Right={Right}>
+            <LocContainer>
                 <h2 className="h1">{title}</h2>
                 {text
                     ? <p className="p">{text}</p>
@@ -53,7 +64,7 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
                         </Item>
                     ))}
                 </Slider>
-            </Container>
+            </LocContainer>
         </Wrapper>
     )
 }
@@ -72,6 +83,20 @@ const Wrapper = styled.section`
 
     .slick-slide > div{
         height: 100%;
+    }
+
+    .slick-arrow {
+        &.slick-prev{
+            &::before{
+                content: url(${props => props.Left});
+            }
+
+        }
+        &.slick-next{
+            &::before{
+                content: url(${props => props.Right});
+            }
+        }
     }
 
     .slick-dots{
@@ -124,6 +149,10 @@ const Wrapper = styled.section`
         padding-bottom: 16px;
     }
 
+`
+
+const LocContainer = styled(Container)`
+    max-width: 1244px;
 `
 
 const Item = styled.blockquote`
