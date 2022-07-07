@@ -86,7 +86,6 @@ const Card = styled.div`
     }
 
     p{
-        margin-bottom: 32px;
         font-weight: 500;
         font-size: clamp(14px, 2.08vw, 18px);
         line-height: 151%;
@@ -112,6 +111,14 @@ const Card = styled.div`
                 top: 0;
             }
         }
+    }
+
+    p+ul{
+        margin-top: 24px;
+    }
+
+    p+ol{
+        margin-top: 8px;
     }
 
     ol{

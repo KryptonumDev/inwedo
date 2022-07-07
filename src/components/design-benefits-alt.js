@@ -59,14 +59,14 @@ const Item = styled.div`
 
     h3{
         font-weight: 400;
-        font-size: 20px;
+        font-size: clamp(14px, ${17 / 768 * 100}vw,20px);
         line-height: 151%;
         margin-bottom: 12px;
     }
 
     p{
         font-weight: 300;
-        font-size: 18px;
+        font-size: clamp(14px, ${16 / 768 * 100}vw, 18px);
         line-height: 151%;
     }
 `

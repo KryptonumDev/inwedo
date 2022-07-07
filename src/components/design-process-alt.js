@@ -62,6 +62,7 @@ const Content = styled.div`
 `
 
 const TextPart = styled.div`
+    max-width: 507px;
 
     .h3{
         margin-bottom: 16px;
@@ -88,7 +89,7 @@ const TextPart = styled.div`
 `
 
 const ListTitle = styled.h3`
-    font-size: clamp(16px, 2.47vw, 24px);
+    font-size: clamp(16px, 2.47vw, 24px) !important;
 `
 
 const List = styled.ul`

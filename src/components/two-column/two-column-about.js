@@ -61,7 +61,7 @@ const Flex = styled(Link)`
     }
 
     .text{
-        max-width: 610px;
+        max-width: 510px;
         width: 100%;
         .h1{
             margin-bottom: 16px;

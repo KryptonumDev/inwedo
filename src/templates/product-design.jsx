@@ -31,7 +31,7 @@ const ProductDesignPage = ({ data: { allWpPage, alternates }, location }) => {
       <DesignProcessAlt data={productDesign.designProcessSecond} />
       <CallToAction data={productDesign.callToActionProductDesignSecond} />
       <DesignBenefitsAlt data={productDesign.designBenefitsAlt} />
-      <TwoColumnFlex data={productDesign.twoColumnFlexProductDesignThird} />
+      <TwoColumnFlex reverse={true} data={productDesign.twoColumnFlexProductDesignThird} />
       <DesignBenefits data={productDesign.designBenefitsSecond} />
       <CallToAction data={productDesign.callToActionProductDesignThird} />
       <FAQ data={productDesign.faqProductDesign} />
