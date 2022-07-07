@@ -96,12 +96,14 @@ const Grid = styled.div`
 
         .h4{
             margin-bottom: 12px;
+            font-weight: 600;
             font-size: clamp(14px, 2.08vw, 18px);
         }
     }
 
     @media (max-width: 540px) {
         grid-template-columns: 1fr;
+        padding: 0 24px;
     }
 `
 

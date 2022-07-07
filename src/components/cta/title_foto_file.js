@@ -9,7 +9,7 @@ export default ({ title, button, image, downloadFile }) => (
             <div className="content">
                 <Title className="h1">{title}</Title>
                 <Button download href={downloadFile.localFile.publicURL} className='button-white'>
-                    <span className="colored">{button}</span>
+                    <span>{button}</span>
                 </Button>
             </div>
             <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
@@ -43,6 +43,7 @@ const Content = styled.div`
     @media (max-width: 768px) {
         flex-direction: column-reverse;
         text-align: center;
+        padding: 48px 28px 64px;
     }
 `
 
@@ -56,8 +57,11 @@ const Image = styled(GatsbyImage)`
     }
 
     @media (max-width: 768px) {
-        margin-left: 0;
-        margin-bottom: 24px;
+        margin: 0 60px 24px 60px;
+    }
+
+    @media (max-width: 350px) {
+        margin: 0 0 24px 0;
     }
 `
 
@@ -66,8 +70,8 @@ const Title = styled.h2`
     margin-bottom: 32px;
 
     &.h1{
-        font-weight: 600px;
-        font-size: clamp(20px, 3.385vw, 32px);
+        font-weight: 600;
+        font-size: clamp(20px, 3.385vw, 38px);
     }
 `
 
@@ -79,6 +83,8 @@ const Button = styled.a`
         font-weight: 400;
         font-size: clamp(14px, 1.95vw, 16px);
         line-height: 151%;
+        color: #495057;
+        letter-spacing: 0.01em;
     }
 
     @media (max-width: 768px){

@@ -74,6 +74,14 @@ const TextPart = styled.div`
             width: fit-content;
             margin: 0 auto;
             margin-bottom: clamp(12px, 2.083vw, 24px);
+            padding: 16px 0 0;
+
+            &::before{
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                height: 1px;
+            }
         }
 
         .h1{ 

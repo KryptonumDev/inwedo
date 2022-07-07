@@ -74,6 +74,7 @@ const Stories = styled.div`
             display: flex;
             flex-direction: column;
             justify-content: center;
+            max-width: 500px;
 
             .logo{
                 width: max-content;

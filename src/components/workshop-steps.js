@@ -8,7 +8,7 @@ export default function WorkshopSteps({ data }) {
         <React.Fragment>
             {data.map(el => (
                 <Wrapper>
-                    <Container>
+                    <LocContainer>
                         <TextPart side={el.imageSide}>
                             <Number className="colored">{el.stepNumber}</Number>
                             <h2 className="h1">{el.stepTitle}</h2>
@@ -28,7 +28,7 @@ export default function WorkshopSteps({ data }) {
 
                             </div>
                         </Item>
-                    </Container>
+                    </LocContainer>
                     {el.informPlate
                         ? <Plate><span className="colored">{el.informPlate}</span></Plate>
                         : null}
@@ -43,6 +43,10 @@ const Wrapper = styled.section`
     max-width: 1920px;
     margin: 0 auto;
     margin-top: var(--margin-section);
+`
+
+const LocContainer = styled(Container)`
+    max-width: 1164px;
 `
 
 const Image = styled(GatsbyImage)`
@@ -60,6 +64,10 @@ const Image = styled(GatsbyImage)`
         margin: 0 24px;
         margin-bottom: 30px;
     }   
+
+    @media (max-width: 350px) {
+        margin: 0 0 30px 0;
+    }
 `
 
 const Item = styled.div`
@@ -85,12 +93,23 @@ const Item = styled.div`
     .grid{
         display: grid;
         grid-gap: 36px;
+        max-width: 400px;
     }
 
     @media (max-width: 864px) {
         flex-direction: column;
         width: fit-content;
         margin: 0 auto;
+
+        .grid{
+            padding: 0 30px;
+        }
+    }
+
+    @media (max-width: 350px) {
+        .grid{
+            padding: 0;
+        }
     }
 `
 

@@ -22,7 +22,7 @@ export default function RemoteWorkshop({ data: { sectionTitle, subTitle, textUnd
                 <ToolsGrid>
                     {tools.map(el => (
                         <ToolsItem>
-                            <GatsbyImage image={el.toolIcon.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
+                            <GatsbyImage className="image" image={el.toolIcon.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
                         </ToolsItem>
                     ))}
                 </ToolsGrid>
@@ -91,9 +91,13 @@ const CardsItem = styled.div`
     }
 
     h3{
-        font-weight: 500;
+        font-weight: 400;
         font-size: clamp(14px, 2.21vw, 20px);
         line-height: 151%;
+
+        @media(max-width: 680px){
+            font-weight: 500;
+        }
     }
 `
 
@@ -106,7 +110,8 @@ const ToolsGrid = styled.div`
     @media (max-width: 680px) {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 24px 0;
+        grid-gap: 36px;
+        padding: 0 32px;
     }
 
     @media (max-width: 350px) {
@@ -124,7 +129,15 @@ const ToolsItem = styled.div`
     justify-content: center;
     align-items: center;
 
+    .image{
+        width: fit-content;
+        height: fit-content;
+    }
+
     @media (max-width: 680px){
         margin: 0 auto;
+        width: unset;
+        height: unset;
+        padding: 8px;
     }
 `

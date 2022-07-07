@@ -54,6 +54,7 @@ const Wrapper = styled.section`
         font-weight: 400;
         font-size: clamp(14px, 2.08vw, 18px);
         line-height: 151%;
+        max-width: 720px;
     }
 
     .bold + .p{
