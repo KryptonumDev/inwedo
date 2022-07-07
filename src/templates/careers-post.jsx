@@ -89,12 +89,6 @@ export const query = graphql`
                         seoTitle
                         boldText
                         plainText
-                        video {
-                          altText
-                          localFile {
-                            publicURL
-                          }
-                        }
                         applyButton{
                             name
                             url

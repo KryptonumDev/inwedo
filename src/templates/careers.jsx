@@ -402,12 +402,6 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                   seoTitle
                   boldText
                   plainText
-                  video {
-                    altText
-                    localFile {
-                      publicURL
-                    }
-                  }
                   pathImage{
                     tablet{
                       altText
