@@ -38,7 +38,7 @@ const Title = styled.h2`
     margin-bottom: 24px;
 
     &.h1{
-        font-weight: 600px;
+        font-weight: 600;
         font-size: clamp(20px, 3.385vw, 32px);
     }
 `

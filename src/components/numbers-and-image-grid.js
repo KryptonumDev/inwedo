@@ -92,12 +92,18 @@ const Content = styled.div`
         display: grid;
         grid-gap: 32px;
         margin-bottom: 32px;
+        max-width: 538px;
         h1,h2,h3,h4,h5,h6,p{
             font-style: normal;
             font-weight: 300;
             font-size: 16px;
             line-height: 26px;
             font-feature-settings: 'ss01' on;
+
+            strong{
+                font-size: 18px; 
+                font-weight: 400;
+            }
         }
     }
 

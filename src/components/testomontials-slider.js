@@ -12,6 +12,8 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
         responsive: [
             {
                 breakpoint: 1024,
@@ -27,8 +29,6 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
             },
         ]
     };
-    // autoplay: true,
-    // autoplaySpeed: 5000,
     return (
         <Wrapper>
             <Container>
@@ -60,6 +60,7 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
 
 const Wrapper = styled.section`
     margin-top: var(--margin-section);
+    margin-bottom: 86px;
 
     .slick-track{
         display: flex !important;
@@ -96,6 +97,7 @@ const Wrapper = styled.section`
         font-size: clamp(18px, 3.125vw, 32px);
         max-width: 850px;
         margin: 0 auto;
+        font-weight: 500;
 
         &::before{
             content: '';

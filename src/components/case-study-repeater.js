@@ -50,6 +50,10 @@ const Wrapper = styled.section`
         margin-bottom: clamp(64px, 12vw, 128px);
         font-size: clamp(20px, 2.08vw, 32px);
     }
+
+    .link{
+        font-size: 18px;
+    }
 `
 
 const Repeater = styled.div`
@@ -71,6 +75,8 @@ const Item = styled.div`
     .p{
         margin-top: 16px;
         margin-bottom: 32px;
+        max-width: 400px;
+        font-size: 16px;
     }
 
     .flex{
@@ -102,7 +108,7 @@ const Item = styled.div`
     }
 
     .content{
-        max-width: 528px;
+        max-width: 507px;
     }
 
     @media (max-width: 900px) {

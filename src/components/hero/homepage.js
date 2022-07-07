@@ -33,7 +33,12 @@ const Wrapper = styled.section`
     }
 
     .h3{
-        font-size: clamp(13px, 2.34375vw, 24px);
+        font-size: clamp(13px, 2.34375vw, 22px);
+        padding-left: clamp(48px, ${67 / 768 * 100}vw, 86px);
+
+        &::before{
+            width: clamp(32px, ${51 / 768 * 100}vw, 70px);
+        }
     }
 `
 
@@ -117,7 +122,7 @@ const Image = styled.div`
 
     @media (max-width: 860px) {
         position: relative;
-        transform: translateY(-25px);
+        transform: translateY(-10px);
         bottom: 0;
     }
 
@@ -165,5 +170,9 @@ const Content = styled.div`
 
     @media (max-width: 1240px) {
         margin-top: 130px;
+    }
+
+    @media (max-width: 350px) {
+        margin-bottom: 30px;
     }
 `

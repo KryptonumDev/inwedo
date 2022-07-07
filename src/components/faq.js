@@ -52,7 +52,7 @@ const Title = styled.h2`
     padding: clamp(8px, 1.5625vw, 16px) 0;
 
     &.h1{
-        font-size: clamp(18px, 3.125vw, 32px);
+        font-size: clamp(20px, 3.125vw, 24px);
     }
 
     &::before{

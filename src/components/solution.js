@@ -71,18 +71,8 @@ const Rows = styled.div`
 `
 
 const ImagePart = styled.div`
-    max-width: 780px;
-    min-width: 400px;
-    width: 100%;
     position: relative;
-    padding: clamp(32px, 6.25vw, 64px) 16px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    border-radius: 24px;
-    background-color: var(--color-white);
-    box-shadow: var(--shadow);
+    width: 100%;
 
     .image{
         width: 100%;
@@ -114,10 +104,6 @@ const Item = styled.div`
         }
     }
 
-    ${ImagePart}{
-        padding-left: 0;
-    }
-
     &:nth-child(2n){
         flex-direction: row;
         justify-content: flex-start;
@@ -125,12 +111,6 @@ const Item = styled.div`
         .text{
             padding-left: clamp(20px, 7.8vw, 100px);
             padding-right: 0;
-        }
-
-        ${ImagePart}{
-            padding-right: 0;
-            padding-left: 16px;
-            justify-content: flex-end;
         }
     }
 
@@ -142,24 +122,7 @@ const Item = styled.div`
             min-width: unset;
         }
 
-        ${ImagePart}{
-            margin-right: 32px;
-            min-width: unset !important;
-            width: calc(100% - 32px);
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-
         &:nth-child(2n){
-
-            ${ImagePart}{
-                margin-left: 32px;
-                margin-right: 0;
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-                border-top-left-radius: 24px;
-                border-bottom-left-radius: 24px;
-            }
         }
     }
 `

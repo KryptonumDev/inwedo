@@ -33,7 +33,7 @@ export default function Seo({ data, lang, alternates, location, type, id, templa
     } else {
         breadcrumbsServices(items, location, alternates, type, lang)
     }
-    debugger
+
     return (
         <Helmet htmlAttributes={{ lang: lang }}>
 

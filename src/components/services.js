@@ -62,6 +62,7 @@ const Wrapper = styled.section`
     .h1{
         margin-bottom: clamp(56px, 7.29vw, 64px);
         font-size: clamp(20px, 3.3854vw, 32px);
+        max-width: 1040px;
     }
 `
 
@@ -105,12 +106,13 @@ const Card = styled.a`
         right: unset;
         left: 50%;
         transform: translateX(-50%);
+        border-radius: 8px;
     }
 `
 
 const Clients = styled.div`
     margin-bottom: clamp(16px, 5.2vw, 64px);
-    box-shadow: grayscale(1);
+    filter: grayscale(1);
     display: flex;
 
     gap: 32px;
@@ -125,6 +127,7 @@ const Clients = styled.div`
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 20px;
+        padding: 0 50px;
     }
 
     @media (max-width: 340px) {
@@ -135,7 +138,7 @@ const Clients = styled.div`
 const Repeater = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 40px;
+    grid-gap: clamp(32px, ${54 / 1440 * 100}vw, 54px);
 
     @media (max-width: 1024px) {
         grid-template-columns: 1fr 1fr;
@@ -144,6 +147,8 @@ const Repeater = styled.div`
 
     @media (max-width: 640px) {
         grid-template-columns: 1fr;
+        width: fit-content;
+        margin: 0 auto;
     }
 `
 
@@ -153,7 +158,7 @@ const Item = styled(Link)`
     box-shadow: var(--shadow);
 
     @media (max-width: 640px) {
-        max-width: 400px;    
+        max-width: 500px;    
     }
 `
 
@@ -164,7 +169,8 @@ const PreviewImg = styled(GatsbyImage)`
 `
 
 const ItemContent = styled.div`
-    padding: 32px 32px 48px 32px;
+    padding: 32px 30px clamp(24px, ${36 / 768 * 100}vw, 48px) 30px;
+
     .h5{
         margin-bottom: 8px;
         font-size: clamp(10px, 1.43vw, 12px);
