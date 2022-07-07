@@ -82,9 +82,20 @@ const Flex = styled(Link)`
         .h1{
             margin-bottom: clamp(8px, 2.08vw, 24px);
             font-size: clamp(20px, 3.38vw, 32px);
+
+            padding-left: clamp(24px, ${36 / 768 * 100}vw, 48px);
+
+            &::before{
+                width: clamp(16px, ${28 / 768 * 100}vw, 40px);
+
+                @media (max-width: 768px) {
+                    height: 1px;
+                }
+            }
         }
         .h4{
             margin-bottom: clamp(12px, 1.82vw, 16px);
+            font-size: clamp(14px, ${16 / 768 * 100}vw, 18px);
         }
         .p{
             margin-bottom: clamp(12px, 2.08vw, 24px);
@@ -141,7 +152,7 @@ const Card = styled(Link)`
 `
 
 const SuccessStories = styled.div`
-    margin-top: 128px;
+    margin-top: var(--margin-section);
     display: grid;
     grid-gap: clamp(32px, 6.25vw, 64px);
 
@@ -151,6 +162,7 @@ const SuccessStories = styled.div`
         margin: 0 auto 0 auto;
         padding-top: 16px;
         position: relative;
+        font-size: clamp(16px, ${20 / 768 * 100}vw,  24px);
 
         &::before{
             content: "";
@@ -179,6 +191,7 @@ const SuccessStories = styled.div`
             display: flex;
             flex-direction: column;
             justify-content: center;
+            max-width: 500px;
 
             .logo{
                 width: max-content;

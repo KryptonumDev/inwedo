@@ -50,9 +50,20 @@ const Flex = styled(Link)`
         .h1{
             margin-bottom: clamp(8px, 2.08vw, 24px);
             font-size: clamp(20px, 3.38vw, 32px);
+
+            padding-left: clamp(32px, ${44 / 768 * 100}vw, 56px);
+
+            &::before{
+                width: clamp(16px, ${28 / 768 * 100}vw, 40px);
+
+                @media (max-width: 768px) {
+                    height: 1px;
+                }
+            }
         }
         .h4{
             margin-bottom: clamp(12px, 1.82vw, 16px);
+            font-size: clamp(14px, ${16 / 768 * 100}vw, 18px);
         }
         .p{
             margin-bottom: clamp(12px, 2.08vw, 24px);

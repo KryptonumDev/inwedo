@@ -139,7 +139,7 @@ export default function Header({ location }) {
 const Wrapper = styled.header`
     position: absolute;
     z-index: 10;
-    background-color: ${props => props.type === 'main' ? 'transparent' : '#fff'};
+    background-color: ${props => props.type === 'main' ? 'transparent' : 'var(--color-white)'};
     top: 0;
     left: 0;
     right: 0;

@@ -25,7 +25,7 @@ const Wrapper = styled.section`
     background-color: var(--color-white);
     padding: clamp(90px, 11.71vw, 200px) 0 clamp(40px, 9.765vw, 110px) 0;
     border-radius: 24.5221px;
-    box-shadow: drop-shadow(0px 76px 74px rgba(0, 0, 0, 0.02));
+    box-shadow: var(--shadow);
 `
 
 const Content = styled.div`
@@ -44,6 +44,7 @@ const Image = styled(GatsbyImage)`
     width: fit-content;
     height: fit-content;
     min-width: 300px;
+    border-radius: 8px 100px 0px 8px;
     
     img{
         border-radius: 8px 100px 0px 8px;
@@ -51,6 +52,7 @@ const Image = styled(GatsbyImage)`
 
     @media (max-width: 768px){
         min-width: unset;
+        border-radius: 8px;
         
         img{
             border-radius: 8px;
