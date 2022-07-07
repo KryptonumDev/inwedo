@@ -57,7 +57,8 @@ const Flex = styled.div`
         }
         p.h1{
             margin-bottom: clamp(32px, 6.25vw, 64px);
-            font-size: clamp(20px, 3.38vw, 32px);
+            font-size: clamp(20px, 3.38vw, 24px);
+            max-width: 610px;
         }
     }
 
@@ -92,6 +93,7 @@ const Grid = styled.div`
         .icon{
             width: fit-content;
             height: fit-content;
+            margin-top: 8px;
         }
 
         .h4{
@@ -103,7 +105,6 @@ const Grid = styled.div`
 
     @media (max-width: 540px) {
         grid-template-columns: 1fr;
-        padding: 0 24px;
     }
 `
 

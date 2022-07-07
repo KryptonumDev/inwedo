@@ -46,11 +46,13 @@ const Wrapper = styled.section`
         opacity: .5;
         margin-bottom: 12px;
         font-size: clamp(14px, 2.08vw, 16px);
+        max-width: 780px;
     }
 
     .h1{
         margin-bottom: 16px;
         font-size: clamp(20px, 3.38vw, 32px);
+        max-width: 780px;
     }
 
     .text{
@@ -58,6 +60,7 @@ const Wrapper = styled.section`
         font-size: clamp(14px, 2.21vw, 20px);
         line-height: 151%;
         margin-bottom: clamp(32px, 6.25vw, 64px);
+        max-width: 950px;
     }
 `
 

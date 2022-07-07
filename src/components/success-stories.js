@@ -45,7 +45,7 @@ const Stories = styled.div`
         margin: 0 auto 0 auto;
         padding-top: 16px;
         position: relative;
-        font-size: clamp(20px, 2.86vw, 24px);
+        font-size: clamp(16px, 2.86vw, 24px);
 
         &::before{
             content: "";
@@ -78,6 +78,7 @@ const Stories = styled.div`
 
             .logo{
                 width: max-content;
+                max-width: clamp(133px, ${148 / 768 * 100}vw, 165px);
             }
             h3{
                 font-weight: 400;

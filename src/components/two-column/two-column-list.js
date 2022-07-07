@@ -78,6 +78,7 @@ const Card = styled.div`
         width: 50vw;
         position: absolute;
         content: '';
+        max-width: 750px;
 
         @media (max-width: 1024px) {
             width: 100%;
@@ -85,8 +86,8 @@ const Card = styled.div`
     }
 
     p{
-        margin-bottom: 24px;
-        font-weight: 700;
+        margin-bottom: 32px;
+        font-weight: 500;
         font-size: clamp(14px, 2.08vw, 18px);
         line-height: 151%;
         z-index: 2;
@@ -119,7 +120,7 @@ const Card = styled.div`
         li{
             padding-left: 40px;
             font-weight: 300;
-            font-size: clamp(14px, 1.95vw, 16px);
+            font-size: clamp(14px, 2.08vw, 16px);
             line-height: 150%;
             font-feature-settings: 'ss01' on;
             position: relative;

@@ -38,7 +38,7 @@ const Title = styled.h2`
     margin: 0 auto clamp(32px, 6.25vw, 64px) auto;
 
     &.h2{
-        font-size: clamp(20px, 2.86vw, 24px);
+        font-size: clamp(16px, 2.86vw, 24px);
     }
 
     &::before{

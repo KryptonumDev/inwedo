@@ -34,11 +34,11 @@ const Content = styled.div`
 const Title = styled.h2`
     color: var(--color-white);
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 42px;
 
     &.h1{
-        font-weight: 600px;
-        font-size: clamp(20px, 3.385vw, 32px);
+        font-weight: 600;
+        font-size: clamp(20px, 3.385vw, 38px);
     }
 `
 
