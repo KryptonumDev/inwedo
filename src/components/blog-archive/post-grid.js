@@ -40,7 +40,7 @@ export default function PostGrid({ isDefault, data, from, to, isAltLayout, curre
                                                 </AuthorInform>}
                                             <h2 className="h3 title">{el.blogPost.previewCard.previewTitle}</h2>
                                             <p className="p">{el.blogPost.previewCard.previewText}</p>
-                                            <span className="colored">{el.blogPost.previewCard.readMoreButtonText}</span>
+                                            <span className="link">{el.blogPost.previewCard.readMoreButtonText}</span>
                                         </Content>
                                     </Link>
                                 </Item>
@@ -95,9 +95,26 @@ const Item = styled.div`
 
     .image{
         width: 100%;
+        border-radius: 8px;
 
         img{
             border-radius: 8px;
+            transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
+    }
+    
+    a{
+        &:hover{
+            .image{
+                img{
+                    transform: scale(1.03);
+                }
+            }
+            .link{
+                &::after{
+                    width: 100%;
+                }
+            }
         }
     }
 
@@ -183,12 +200,17 @@ const Categories = styled.div`
     .item{
         white-space: nowrap;
         padding: 4px 20px;
-        background: #EBF2F8;
+        background-color: #EBF2F8;
         border-radius: 50px;
         text-transform: uppercase;
         font-weight: 400;
         font-size: clamp(10px, ${11 / 768 * 100}vw, 12px);
         line-height: 26px;
+        transition: background-color .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+        &:hover{
+            background-color: #dBe2e8;
+        }
     }
 `
 
@@ -212,6 +234,6 @@ const AuthorInform = styled.div`
 
     .date{
         margin-left: 24px;
-        opacity: .5;
+        opacity: .55;
     }
 `

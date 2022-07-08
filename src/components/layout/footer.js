@@ -20,7 +20,7 @@ export default function Footer({ location }) {
                         altText
                         localFile {
                           childImageSharp {
-                            gatsbyImageData(quality: 100)
+                            gatsbyImageData(placeholder: BLURRED, quality: 100)
                           }
                         }
                       }
@@ -63,7 +63,7 @@ export default function Footer({ location }) {
     return (
         <Wrapper>
             <Container>
-                <Link to={urlSystem['Homepage'][localeData[0].language.slug]}>
+                <Link aria-label="link to homepage" to={urlSystem['Homepage'][localeData[0].language.slug]}>
                     <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
                 </Link>
                 <Content>
@@ -75,7 +75,7 @@ export default function Footer({ location }) {
                         </div>
                         <Social>
                             {socialLinks.map(el => (
-                                <a rel="me" href={el.link} ariaLabel={el.ariaLabel}>
+                                <a rel="me" href={el.link} aria-label={el.ariaLabel}>
                                     <img className="social" src={el.icon.localFile.publicURL} alt={el.icon.altText} />
                                 </a>
                             ))}

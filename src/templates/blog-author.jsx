@@ -9,7 +9,7 @@ export default function BlogAuthor({ data: { allWpAuthors, allWpPost, alternates
   const posts = allWpPost.nodes
 
   return (
-    <main>
+    <main id='main'>
       <Seo data={author.seo} lang={author.language.slug} alternates={alternates} location={location} type='archive' id={author.id} template='author' currTemplate={author.author.userName}/>
       <Hero data={author} />
       <BlogAuthorPosts data={posts} title={author.author.authorPostsTitle} loadMore={author.author.loadMorePostsText} />
@@ -52,7 +52,7 @@ query BlogCategoryQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 80)
                 }
               }
             }
@@ -60,7 +60,7 @@ query BlogCategoryQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 80)
                 }
               }
             }
@@ -83,7 +83,7 @@ query BlogCategoryQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -110,7 +110,7 @@ query BlogCategoryQuery($id: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }

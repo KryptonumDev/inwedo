@@ -157,6 +157,16 @@ const Button = styled.a`
     border-radius: 8px;
     background-color: transparent;
 
+    &:hover{
+        &::before{
+            opacity: .3;
+        }
+    }
+
+    :focus-visible {
+        outline-offset: 0;
+    }
+
     &.disabled{
         pointer-events: none;
         cursor: default;
@@ -172,8 +182,9 @@ const Button = styled.a`
         bottom: 0;
         background-color: #fff;
         transition: opacity .3s cubic-bezier(0.215, 0.610, 0.355, 1);
-        opacity: ${props => props.active ? '0' : '1'};
+        opacity: ${props => props.active ? '0!important' : '1'};
         border-radius: 8px;
+        transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
     }
 
     span{

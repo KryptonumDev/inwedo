@@ -11,7 +11,7 @@ import Seo from "../components/seo"
 const AboutPage = ({ data: { allWpPage, alternates }, location }) => {
   let { about, language, seo } = allWpPage.nodes[0]
   return (
-    <main>
+    <main id='main'>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='About'/>
       <Hero data={about.heroAbout} />
       <TwoColumnFlex reverse={true} data={about.twoColumnFlex} />
@@ -58,7 +58,7 @@ export const query = graphql`
                         altText
                         localFile {
                             childImageSharp {
-                                gatsbyImageData(quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 80)
                             }
                         }
                     }
@@ -75,7 +75,7 @@ export const query = graphql`
                        altText
                        localFile {
                          childImageSharp {
-                           gatsbyImageData(quality: 80)
+                           gatsbyImageData(placeholder: BLURRED, quality: 80)
                          }
                        }
                      }
@@ -89,7 +89,7 @@ export const query = graphql`
                          altText
                          localFile {
                            childImageSharp {
-                             gatsbyImageData(quality: 80)
+                             gatsbyImageData(placeholder: BLURRED, quality: 80)
                            }
                          }
                        }
@@ -116,7 +116,7 @@ export const query = graphql`
                        altText
                        localFile {
                          childImageSharp {
-                           gatsbyImageData(quality: 80)
+                           gatsbyImageData(placeholder: BLURRED, quality: 80)
                          }
                        }
                      }
@@ -130,7 +130,7 @@ export const query = graphql`
                          altText
                          localFile {
                            childImageSharp {
-                             gatsbyImageData(quality: 80)
+                             gatsbyImageData(placeholder: BLURRED, quality: 80)
                            }
                          }
                        }
@@ -143,7 +143,7 @@ export const query = graphql`
                          altText
                          localFile {
                            childImageSharp {
-                             gatsbyImageData(quality: 80)
+                             gatsbyImageData(placeholder: BLURRED, quality: 80)
                            }
                          }
                        }
@@ -156,7 +156,7 @@ export const query = graphql`
                          altText
                          localFile {
                            childImageSharp {
-                             gatsbyImageData(quality: 80)
+                             gatsbyImageData(placeholder: BLURRED, quality: 80)
                            }
                          }
                        }
@@ -175,7 +175,7 @@ export const query = graphql`
                          altText
                          localFile {
                            childImageSharp {
-                             gatsbyImageData(quality: 80)
+                             gatsbyImageData(placeholder: BLURRED, quality: 80)
                            }
                          }
                        }
@@ -183,7 +183,7 @@ export const query = graphql`
                          altText
                          localFile {
                            childImageSharp {
-                             gatsbyImageData(quality: 80)
+                             gatsbyImageData(placeholder: BLURRED, quality: 80)
                            }
                          }
                        }
@@ -201,7 +201,7 @@ export const query = graphql`
                        altText
                        localFile {
                          childImageSharp {
-                           gatsbyImageData(quality: 80)
+                           gatsbyImageData(placeholder: BLURRED, quality: 80)
                          }
                        }
                      }
@@ -227,7 +227,7 @@ export const query = graphql`
                        altText
                        localFile {
                          childImageSharp {
-                           gatsbyImageData(quality: 80)
+                           gatsbyImageData(placeholder: BLURRED, quality: 80)
                          }
                        }
                      }

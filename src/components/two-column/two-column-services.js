@@ -10,7 +10,7 @@ export default function TwoColumnFlex({ data: { image, title, subTitle, text, bu
             <Container>
                 <Flex to={button.url}>
                     <div className="image">
-                        <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
+                        <Image className="icon" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                     </div>
                     <div className="text">
                         <h2 className="h1 line">{title}</h2>
@@ -38,7 +38,12 @@ const Flex = styled(Link)`
     &:hover{
         .link{
             &::after{
-                background-color: #fff;
+                width: 100%;
+            }
+        }
+        .icon{
+            img{
+                transform: scale(1.03);
             }
         }
     }
@@ -50,6 +55,10 @@ const Flex = styled(Link)`
         padding: clamp(16px, 4.94vw, 54px) clamp(24px, 5.20vw, 64px);
         width: clamp(93px, 20vw, 208px);
         min-width: clamp(93px, 20vw, 208px);
+
+        img{
+            transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
     }
 
     .text{

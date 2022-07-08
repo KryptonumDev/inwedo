@@ -117,7 +117,7 @@ const Item = styled.div`
             font-weight: 500;
             font-size: 14px;
             line-height: 26px;
-            opacity: .5;
+            opacity: .55;
         }
 
         h3{

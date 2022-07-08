@@ -17,7 +17,7 @@ import Seo from "../components/seo"
 const AgileTeamsPage = ({ data: { allWpPage, alternates }, location }) => {
   let { agileTeams, language, seo } = allWpPage.nodes[0]
   return (
-    <main>
+    <main id='main'>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={agileTeams.heroAgileTeams} />
       <OurFocuses data={agileTeams.ourFocusesAgileTeams} />
@@ -73,7 +73,7 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                     childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                 }
               }
@@ -89,7 +89,7 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -107,7 +107,7 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -122,7 +122,7 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                             altText
                             localFile {
                               childImageSharp {
-                                gatsbyImageData(quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 80)
                               }
                             }
                         }
@@ -136,7 +136,7 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                         altText
                         localFile {
                             childImageSharp {
-                                gatsbyImageData(quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 80)
                             }
                         }
                     }
@@ -148,7 +148,7 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                         childImageSharp {
-                            gatsbyImageData(quality: 80)
+                            gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                     }
                 }
@@ -166,7 +166,7 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -174,7 +174,7 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -192,7 +192,7 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -205,7 +205,7 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -232,7 +232,7 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -250,7 +250,7 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }

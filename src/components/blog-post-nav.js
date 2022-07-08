@@ -82,22 +82,23 @@ export default function BlogPostNav({ data, quickTitle }) {
                                 return el.map((inEl, index, arr) => {
                                     if (inEl.quickLink === 'main') {
                                         return (
-                                            <a href={'#' + inEl.quickLinkText.replace(/ /ig, '-')}>
-                                                <li className="main">{outerIndex + 1 - isSubArr + '. ' + inEl.quickLinkText}</li>
-                                            </a>
+                                            <li className="main">
+                                                <a href={'#' + inEl.quickLinkText.replace(/ /ig, '-')}>{outerIndex + 1 - isSubArr + '. ' + inEl.quickLinkText}</a>
+                                            </li>
                                         )
                                     } else if (inEl.quickLink === 'sub') {
                                         return (
-                                            <a href={'#' + inEl.quickLinkText.replace(/ /ig, '-')}>
-                                                <li className="sub">{alphabetSub[index - isPlainArr] + '. ' + inEl.quickLinkText}</li>
-                                            </a>)
+                                            <li className="sub">
+                                                <a href={'#' + inEl.quickLinkText.replace(/ /ig, '-')}>{alphabetSub[index - isPlainArr] + '. ' + inEl.quickLinkText}</a>
+                                            </li>
+                                        )
 
                                     } else {
                                         isPlainArr += 1
                                         return <ol>
                                             {inEl.map((supEl, supIndex) => (
                                                 <li className="plain">
-                                                    <a href={'#' + supEl.quickLinkText.replace(/ /ig, '-')}>{alphabetPlain[supIndex] + '. ' + supEl.quickLinkText}</a>
+                                                    <a href={'#' + supEl.quickLinkText.replace(/ /ig, '-')}><span>{alphabetPlain[supIndex] + '. ' + supEl.quickLinkText}</span></a>
                                                 </li>
                                             ))}
                                         </ol>
@@ -151,6 +152,21 @@ const Nav = styled.nav`
 
         ol{
 
+        }
+
+        a{
+            padding: 4px 0;
+            position: relative;
+
+            transition: background-size 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+            background: var(--color-accent);
+            background-size: 0px 2px;
+            background-repeat: no-repeat;
+            background-position: left 100%;
+
+            &:hover{
+                background-size: 100% 2px;
+            }
         }
     }
 

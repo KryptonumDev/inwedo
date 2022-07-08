@@ -32,7 +32,7 @@ const Wrapper = styled.section`
 
     .h4{
         margin-bottom: clamp(8px, 1.5625vw, 16px);
-        opacity: .5;
+        opacity: .55;
         font-size: clamp(14px, 2.08vw, 18px);
     }
 
@@ -61,6 +61,17 @@ const Card = styled(Link)`
     background-color: var(--color-white);
     box-shadow: var(--shadow);
     border-radius: 8px;
+    transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:hover{
+        transform: translateY(-6px);
+
+        .link{
+            &::after{
+                width: 100%;
+            }
+        }
+    }
 
     .image{
         width: clamp(60px, 11.3vw, 115px);

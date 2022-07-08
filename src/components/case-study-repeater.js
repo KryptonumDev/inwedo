@@ -42,13 +42,18 @@ const Wrapper = styled.section`
 
     .h4{
         margin-bottom: clamp(8px, 1.5625vw, 16px);
-        opacity: .5;
+        opacity: .55;
         font-size: clamp(14px, 2.08vw, 18px);
     }
 
     .h1{
         margin-bottom: clamp(64px, 12vw, 128px);
-        font-size: clamp(20px, 2.08vw, 32px);
+        font-size: clamp(20px, ${26 / 768 * 100}vw, 32px);
+        max-width: 85%;
+
+        @media (max-width: 640px) {
+            max-width: unset;
+        }
     }
 
     .link{
@@ -81,7 +86,7 @@ const Item = styled.div`
         }
             .link{
                 &::after{
-                    background-color: #fff;
+                    width: 100%;
                 }
             }
     }

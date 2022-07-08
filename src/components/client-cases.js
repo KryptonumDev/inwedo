@@ -7,7 +7,7 @@ import { Container } from "../style"
 export default function ClientCases({ data: { sectionTitle, clientsCases, card } }) {
     return (
         <Wrapper>
-            <Card to={card.cardLink}>
+            <Card as={card.cardLink ? 'a' : 'div'} aria-label='link to clatch review' href={card.cardLink} target="_blank" rel="noopener noreferrer">
                 <GatsbyImage className="image" image={card.cardImage.localFile.childImageSharp.gatsbyImageData} alt={card.cardImage.altText} />
             </Card>
             <Container>
@@ -35,7 +35,7 @@ const Wrapper = styled.section`
 `
 
 const Clients = styled.div`
-    box-shadow: grayscale(1);
+    filter: grayscale(1);
     display: grid;
     align-items: center;
     grid-template-columns: repeat(${props => props.count}, auto);

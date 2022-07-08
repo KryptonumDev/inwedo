@@ -18,11 +18,11 @@ export default function Filter({ data, currentFilter, currentSubFilter, changeFi
                 </MainGrid>
                 {data.nodes.map(el => (
                     <SubGrid slug={el.slug} activeSlug={currentFilter}>
-                        <SubFilterItem slug={'all'} activeSlug={currentSubFilter} onClick={() => (changeCurrentSubFilter('all'))}>
+                        <SubFilterItem tabIndex={currentFilter === el.slug ? '0' : '-1'} slug={'all'} activeSlug={currentSubFilter} onClick={() => (changeCurrentSubFilter('all'))}>
                             <span className="p">All</span>
                         </SubFilterItem>
                         {el.wpChildren.nodes.map(innerEl => (
-                            <SubFilterItem slug={innerEl.slug} activeSlug={currentSubFilter} onClick={() => (changeCurrentSubFilter(innerEl.slug))}>
+                            <SubFilterItem slug={innerEl.slug} tabIndex={currentFilter === el.slug ? '0' : '-1'} activeSlug={currentSubFilter} onClick={() => (changeCurrentSubFilter(innerEl.slug))}>
                                 <span className="p">{innerEl.name}</span>
                             </SubFilterItem>
                         ))}
@@ -75,6 +75,12 @@ const FilterItem = styled.button`
     border: none;
     background-color: transparent;
     cursor: pointer;
+
+    &:focus-visible{
+        outline-offset: -2px;
+
+    }
+
     &::after{
         content: "";
         position: absolute;

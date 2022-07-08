@@ -39,7 +39,7 @@ const Wrapper = styled.section`
     margin-top: var(--margin-section);
     .line{
         margin-bottom: 16px;
-        opacity: .5;
+        opacity: .55;
         font-size: clamp(14px, 2.08vw, 18px);
         line-height: 24px;
         max-width: calc(50% - clamp(24px,4.8325vw,48px));

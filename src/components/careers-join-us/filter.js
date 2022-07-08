@@ -57,6 +57,11 @@ const Item = styled.button`
     text-align: center;
     font-feature-settings: 'ss01' on;
     position: relative;
+    transition: background-color .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:hover{
+        background-color: #dBe2e8;
+    }
 
     &.active{
         border: 1px solid transparent;

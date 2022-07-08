@@ -7,7 +7,7 @@ import { Container } from "../style"
 export default function Services({ data: { card, clientsTitle, clientsItems, sectionTitle, sectionText, items } }) {
     return (
         <Wrapper>
-            <Card href={card.cardLink} target="_blank" rel="noopener noreferrer">
+            <Card as={card.cardLink ? 'a' : 'div'} aria-label='link to clatch review' href={card.cardLink} target="_blank" rel="noopener noreferrer">
                 <GatsbyImage className="image" image={card.cardImage.localFile.childImageSharp.gatsbyImageData} alt={card.cardImage.altText} />
             </Card>
             <Container>
@@ -57,14 +57,18 @@ const Wrapper = styled.section`
     .h4.title{
         margin-bottom: clamp(8px, 1.5625vw, 16px);
         color: var(--color-black);
-        opacity: .5;
+        opacity: .55;
         font-size: clamp(14px, 2.08vw, 18px);
     }
 
     .h1{
         margin-bottom: clamp(56px, 7.29vw, 64px);
-        font-size: clamp(20px, 3.3854vw, 32px);
-        max-width: 1040px;
+        font-size: clamp(20px, ${26 / 768 * 100}vw, 32px);
+        max-width: 82%;
+
+        @media (max-width: 640px) {
+            max-width: unset;
+        }
     }
 `
 
@@ -80,6 +84,11 @@ const Card = styled.a`
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:hover{
+        transform: translateX(-6px);
+    }
 
     .image{
         width: fit-content;
@@ -109,6 +118,10 @@ const Card = styled.a`
         left: 50%;
         transform: translateX(-50%);
         border-radius: 8px;
+
+        &:hover{
+            transform: translateX(-50%) translateY(-3px);
+        }
     }
 `
 
@@ -162,6 +175,12 @@ const Item = styled(Link)`
 
     &:hover{
         transform: translateY(-6px);
+
+        .link{
+            &::after{
+                width: 100%;
+            }
+        }
     }
 
     @media (max-width: 640px) {

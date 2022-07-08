@@ -41,7 +41,7 @@ export default function Header({ location }) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 100)
+                          gatsbyImageData(placeholder: BLURRED,quality: 100)
                         }
                       }
                     }
@@ -72,11 +72,21 @@ export default function Header({ location }) {
         }
     }, [isOpen])
 
+    useEffect(() => {
+        document.addEventListener('keydown', (e) => {
+            if(e.code === 'Escape'){
+                setIsOpen(false)
+                setIsHovered(false)
+            }
+        })
+    }, [])
+
     return (
         <Wrapper id='header' isHovered={isHovered} type={type} isOpen={isOpen} >
             <Container>
                 <Content>
-                    <Link onClick={() => { setIsOpen(false) }} ariaLabel='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
+                    <a className="no-focus" href="#main" aria-label='skip link to main content'/>
+                    <Link onClick={() => { setIsOpen(false) }} onFocus={() => { setIsHovered(false) }}  aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
                         <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
                     </Link>
                     <MobileButton type={type} isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>
@@ -93,7 +103,7 @@ export default function Header({ location }) {
                                         <Menu isHovered={isHovered} index={index} className="menu">
                                             <Container>
                                                 <div className="main">
-                                                    <Link onClick={() => { setIsHovered(false); setIsOpen(false) }} to={el.mainLink.url}>{el.mainLink.name}</Link>
+                                                    <Link onClick={() => { setIsHovered(false); setIsOpen(false) }} onFocus={() => { setIsHovered(index) }} to={el.mainLink.url}>{el.mainLink.name}</Link>
                                                 </div>
                                                 <div className="column">
                                                     {el.firstColumn?.map(el => {
@@ -103,7 +113,7 @@ export default function Header({ location }) {
                                                             )
                                                         }
                                                         return (
-                                                            <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false) }} className={el.isBold + ' nav'} to={el.url}>{el.name}</Link>
+                                                            <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false) }} onFocus={() => { setIsHovered(index) }} className={el.isBold + ' nav'} to={el.url}>{el.name}</Link>
                                                         )
                                                     })}
                                                 </div>
@@ -115,7 +125,7 @@ export default function Header({ location }) {
                                                             )
                                                         }
                                                         return (
-                                                            <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false) }} className={el.isBold + ' nav'} to={el.url}>{el.name}</Link>
+                                                            <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false) }} onFocus={() => { setIsHovered(index) }} className={el.isBold + ' nav'} to={el.url}>{el.name}</Link>
                                                         )
                                                     })}
                                                 </div>
@@ -125,7 +135,7 @@ export default function Header({ location }) {
                                 </li>
                             ))}
                             <li>
-                                <ContactButton onClick={() => { setIsHovered(false); setIsOpen(false) }} to={contactLink.url}>
+                                <ContactButton onClick={() => { setIsHovered(false); setIsOpen(false) }} onFocus={() => { setIsHovered(false) }} to={contactLink.url}>
                                     {contactLink.name}
                                 </ContactButton>
                             </li>
@@ -305,6 +315,12 @@ const Summary = styled.summary`
                                 width: 100% !important;
                             }
                         ` : null}
+
+                        &:focus-visible{
+                            &::after{
+                                width: 0 !important;
+                            }
+                        }
 
                         @media (max-width: 820px){
                             color: var(--color-black);

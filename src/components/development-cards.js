@@ -68,7 +68,7 @@ const Flex = styled(Link)`
     &:hover{
         .link{
             &::after{
-                background-color: #fff;
+                width: 100%;
             }
         }
         .icon{
@@ -157,6 +157,12 @@ const Card = styled(Link)`
 
     &:hover{
         transform: translateY(-6px);
+
+        .link{
+            &::after{
+                width: 100%;
+            }
+        }
     }
 
     .image{
@@ -208,7 +214,7 @@ const SuccessStories = styled.div`
         &:hover{
             .link{
                 &::after{
-                    background-color: #fff;
+                    width: 100%;
                 }
             }
             .image{

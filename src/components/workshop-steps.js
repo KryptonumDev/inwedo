@@ -1,9 +1,12 @@
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useRef, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
 
 export default function WorkshopSteps({ data }) {
+
+    const [activeItem, setActiveItem] = useState(0)
+
     return (
         <React.Fragment>
             {data.map(el => (
@@ -18,8 +21,8 @@ export default function WorkshopSteps({ data }) {
                             <Image image={el.stepImage.localFile.childImageSharp.gatsbyImageData} alt={el.stepImage.altText} />
                             <div className="content">
                                 <div className="grid">
-                                    {el.innerSteps.map(innerEl => (
-                                        <SubSteps>
+                                    {el.innerSteps.map((innerEl, index) => (
+                                        <SubSteps className={activeItem === index ? 'active' : ''} onMouseEnter={() => {setActiveItem(index)}}>
                                             <h3 className="h4">{innerEl.title}</h3>
                                             <p className="p">{innerEl.text}</p>
                                         </SubSteps>
@@ -171,9 +174,23 @@ const SubSteps = styled.div`
     p.p{
     }
 
-    &:first-child{
+    transition: margin .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &.active{
         margin-top: 36px;
         margin-bottom: 36px;
+
+        &::after{
+            opacity: 1;
+        }
+
+        @media (max-width: 1060px){ 
+            margin-top: clamp(16px, 7.16vw, 36px);
+            margin-bottom: clamp(16px, 7.16vw, 36px);
+        }
+
+    }    
+
         &::after{
             content: "";
             position: absolute;
@@ -185,6 +202,8 @@ const SubSteps = styled.div`
             box-shadow: var(--shadow);
             border-radius: 8px;
             z-index: -1;
+            opacity: 0;
+            transition: opacity .2s cubic-bezier(0.39, 0.575, 0.565, 1) .1s;
 
             @media (max-width: 1060px){
                 left: clamp(-80px, -7.16vw, -30px);
@@ -193,13 +212,6 @@ const SubSteps = styled.div`
                 top:  clamp(-36px, -3.38vw, -16px);
             }
         }
-
-        @media (max-width: 1060px){ 
-            margin-top: clamp(16px, 7.16vw, 36px);
-            margin-bottom: clamp(16px, 7.16vw, 36px);
-        }
-
-    }
 `
 
 const Plate = styled.span`

@@ -17,7 +17,7 @@ import Seo from "../components/seo"
 const ProductDesignPage = ({ data: { allWpPage, alternates }, location }) => {
   let { productDesign, language, seo } = allWpPage.nodes[0]
   return (
-    <main>
+    <main id='main'>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={productDesign.heroProductDesign} />
       <DesignProcess data={productDesign.designProcess} />
@@ -77,7 +77,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                         childImageSharp {
-                            gatsbyImageData(quality: 80)
+                            gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                     }
                 }
@@ -90,7 +90,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                         childImageSharp {
-                            gatsbyImageData(quality: 80)
+                            gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                     }
                 }
@@ -107,7 +107,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -134,7 +134,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -151,7 +151,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -165,7 +165,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                         altText
                         localFile {
                           childImageSharp {
-                            gatsbyImageData(quality: 80)
+                            gatsbyImageData(placeholder: BLURRED, quality: 80)
                           }
                         }
                     }
@@ -185,7 +185,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                         altText
                         localFile {
                             childImageSharp {
-                                gatsbyImageData(quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 80)
                             }
                         }
                     }
@@ -204,7 +204,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -212,7 +212,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -226,7 +226,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                         childImageSharp {
-                            gatsbyImageData(quality: 80)
+                            gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                     }
                 }
@@ -238,7 +238,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                         altText
                         localFile {
                             childImageSharp {
-                                gatsbyImageData(quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 80)
                             }
                         }
                     }
@@ -266,7 +266,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -281,7 +281,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                         altText
                         localFile {
                           childImageSharp {
-                            gatsbyImageData(quality: 80)
+                            gatsbyImageData(placeholder: BLURRED, quality: 80)
                           }
                         }
                     }
@@ -299,7 +299,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -313,7 +313,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                         altText
                         localFile {
                           childImageSharp {
-                            gatsbyImageData(quality: 80)
+                            gatsbyImageData(placeholder: BLURRED, quality: 80)
                           }
                         }
                     }
@@ -341,7 +341,7 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }

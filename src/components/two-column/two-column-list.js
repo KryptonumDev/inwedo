@@ -43,7 +43,7 @@ const TextPart = styled.div`
     max-width: 470px;
 
     .h4{
-        opacity: .5;
+        opacity: .55;
         margin-bottom: 16px;
         font-size: clamp(14px, 2.08vw, 18px);
     }

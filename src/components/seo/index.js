@@ -40,21 +40,20 @@ export default function Seo({ data, lang, alternates, location, type, id, templa
         "itemListElement": items
     };
 
-
     return (
         <Helmet htmlAttributes={{ lang: lang }}>
 
-            <script type="application/ld+json">
-                {JSON.stringify(ldJson)}
-            </script>
+            {items.length > 1 ? (
+                <script type="application/ld+json">
+                    {JSON.stringify(ldJson)}
+                </script>
+            ) : null}
 
             {data?.title
                 ? <title>{data.title}</title>
                 : null}
             {fullHead}
             {/* <meta name="google-site-verification" content="6ECIlKWTKRV13uT8My_fm4eN2kHfjUuz74nBH7kNXjE" /> */}
-
-
 
             {alternates?.nodes.map(el => {
                 let href

@@ -67,7 +67,7 @@ const Stories = styled.div`
         &:hover{
             .link{
                 &::after{
-                    background-color: #fff;
+                    width: 100%;
                 }
             }
             .image{

@@ -13,6 +13,7 @@ export default ({ title, form }) => (
 )
 
 const ContentWrapper = styled.div`
+margin-top: ${props => props.small ? 'clamp(32px, 6.25vw, 64px)' : 'var(--margin-section)'};
     background: var(--color-white);
     border-radius: 24.5221px;
     box-shadow: var(--shadow);
@@ -24,7 +25,7 @@ const ContentWrapper = styled.div`
     }
 
     *:focus-visible{
-        outline-color: #fff;
+        outline-color: #0B61D6;
     }
 `
 
@@ -34,14 +35,14 @@ const Content = styled.div`
     padding: clamp(64px, 10.68vw, 100px) 30px;
 `
 
-const Title = styled.h2`
+const Title = styled.span`
     text-align: center;
     margin-bottom: 32px;
     font-weight: 400;
     font-size: clamp(16px, ${20/768*100}vw, 24px);
     line-height: 151%;
     margin-bottom: 48px;
-
+    display: block;
 `
 
 const Button = styled(Link)`

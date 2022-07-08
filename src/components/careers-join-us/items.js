@@ -33,6 +33,14 @@ const Item = styled(Link)`
     align-items: center;
     gap: 32px;
 
+    &:hover{
+        .link{
+            &::after{
+                width: 100%;
+            }
+        }
+    }
+
     h3{
         font-weight: 500;
         font-size: clamp(14px, ${16 / 768 * 100}vw, 18px);

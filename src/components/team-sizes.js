@@ -53,6 +53,7 @@ const TextPart = styled.div`
     .line{
         margin-bottom: 16px;
         font-size: clamp(14px, 2.08vw, 18px);
+        opacity: .55;
     }
 
     .h3{

@@ -87,6 +87,11 @@ const Item = styled(motion.div)`
     .image{
         width: 100%;
         border-radius: 8px;
+
+        img{
+            border-radius: 8px;
+            transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
     }
 
     .content{
@@ -105,6 +110,21 @@ const Item = styled(motion.div)`
 
         span{
 
+        }
+    }
+
+    a{
+        &:hover{
+            .link{
+                &::after{
+                    width: 100%;
+                }
+            }
+            .image{
+                img{
+                    transform: scale(1.03);
+                }
+            }
         }
     }
 `

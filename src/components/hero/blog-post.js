@@ -28,7 +28,7 @@ export default function Hero({ data, categories, date, authors }) {
                                 <p className="p date">{date}</p>
                             </AuthorInform>}
                         <h2 className="h3">{data.pageTitle}</h2>
-                        <div className="p" dangerouslySetInnerHTML={{__html: data.text}}></div>
+                        <div className="struktured" dangerouslySetInnerHTML={{__html: data.text}}></div>
                     </TextPart>
                     <Image image={data.image.localFile.childImageSharp.gatsbyImageData} alt={data.image.altText} />
                 </Content>
@@ -41,7 +41,7 @@ const Wrapper = styled.section`
     background-color: var(--color-white);
     padding: clamp(120px, 20.83vw, 200px) 0 clamp(24px, 6.25vw, 64px) 0;
     border-radius: 24.5221px;
-    box-shadow: drop-shadow(0px 76px 74px rgba(0, 0, 0, 0.02));
+    box-shadow: 0px 76px 74px rgba(0, 0, 0, 0.02);
 `
 
 const Content = styled.div`
@@ -67,6 +67,24 @@ const TextPart = styled.div`
     .p{
         margin-bottom: 16px;
         font-size: clamp(14px, 2.08vw, 18px);
+        font-weight: 400;
+    }
+
+    .struktured{
+        h1,h2,h3,h4,h5,h6,p{
+            margin-bottom: 16px;
+            font-size: clamp(14px, 2.08vw, 18px);
+            font-weight: 400;
+            line-height: 151%;
+        }
+
+        a{
+            background: var(--color-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
     }
 
     @media (max-width: 1024px){
@@ -99,12 +117,17 @@ const Categories = styled.div`
     .item{
         white-space: nowrap;
         padding: 4px 20px;
-        background: #EBF2F8;
+        background-color: #EBF2F8;
         border-radius: 50px;
         text-transform: uppercase;
         font-weight: 400;
         font-size: clamp(10px, 1.43vw, 12px);
         line-height: 26px;
+        transition: background-color .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+        &:hover{
+            background-color: #dBe2e8;
+        }
     }
 `
 
@@ -131,6 +154,6 @@ const AuthorInform = styled(Link)`
 
     .date{
         margin-left: 24px;
-        opacity: .5;
+        opacity: .55;
     }
 `

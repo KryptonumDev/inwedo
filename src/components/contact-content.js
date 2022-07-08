@@ -52,7 +52,7 @@ const Titles = styled.div`
 
     .h4{
         margin-bottom: 16px;
-        opacity: .5;
+        opacity: .55;
     }
 `
 

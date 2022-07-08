@@ -14,6 +14,7 @@ export default ({ title, button }) => (
 )
 
 const ContentWrapper = styled.div`
+margin-top: ${props => props.small ? 'clamp(32px, 6.25vw, 64px)' : 'var(--margin-section)'};
     background: var(--color-accent);
     border-radius: 24px;
     box-shadow: var(--shadow);
@@ -35,10 +36,11 @@ const Content = styled.div`
     padding: clamp(54px, 10.68vw, 100px) 30px;
 `
 
-const Title = styled.h2`
+const Title = styled.span`
     color: var(--color-white);
     text-align: center;
     margin-bottom: 42px;
+    display: block;
 
     &.h1{
         font-weight: 600;

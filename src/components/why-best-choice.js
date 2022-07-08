@@ -71,7 +71,7 @@ const Grid = styled.div`
 const TextPart = styled.div`
     .line{
         margin-bottom: 16px;
-        opacity: .5;
+        opacity: .55;
         font-size: clamp(14px, 2.08vw, 18px);
         line-height: 24px;
     }

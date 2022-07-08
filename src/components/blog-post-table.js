@@ -89,7 +89,6 @@ const Grid = styled.div`
     .row{
         display: grid;
         grid-template-columns: repeat(${props => props.count}, 1fr);
-        padding: 0 8px;
         background-color: #fff;
 
         &:nth-child(1){
@@ -98,6 +97,7 @@ const Grid = styled.div`
 
             div{
                 font-weight: 500 !important;
+                font-size: clamp(12px, ${14 / 768 * 100}vw, 16px);
             }
 
             ${props => props.isTitled ? null : `
@@ -118,10 +118,10 @@ const Grid = styled.div`
 
         div{
             font-weight: 300;
-            font-size: clamp(11px, ${14 / 768 * 100}vw, 16px);
+            font-size: clamp(11px, ${13 / 768 * 100}vw, 14px);
             line-height: 160%;
             font-feature-settings: 'ss01' on; 
-            padding: 8px 4px;
+            padding: 12px;
 
             &:nth-child(n+1){
                 border-right: 1px solid #00000016;

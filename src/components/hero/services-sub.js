@@ -31,9 +31,8 @@ const Wrapper = styled.section`
 
 const Content = styled.div`
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: clamp(36px, 7.29vw, 92px);
+    gap: clamp(36px, 7.29vw, 128px);
 
     @media (max-width: 768px) {
         flex-direction: column;
@@ -55,11 +54,11 @@ const Image = styled.div`
 `
 
 const TextPart = styled.div`
-    max-width: 780px;
+    max-width: 660px;
 
     .h4{
         margin-bottom: clamp(12px, 2.083vw, 24px);
-        opacity: .5;
+        opacity: .55;
         font-size: clamp(14px, 2.083vw, 18px);
     }
 

@@ -11,7 +11,7 @@ export default function TestomontialsAnimated({ data: { text, seectionTitle, tes
             <Container>
                 <Text className="h3">{text}</Text>
                 <Title className="h4">{seectionTitle}</Title>
-                <Card href={card.cardLink} target="_blank" rel="noopener noreferrer">
+                <Card as={card.cardLink ? 'a' : 'div'} href={card.cardLink} target="_blank" rel="noopener noreferrer">
                     <GatsbyImage className="image" image={card.cardImage.localFile.childImageSharp.gatsbyImageData} alt={card.cardImage.altText} />
                 </Card>
                 <Row ref={constraintsRef}>
@@ -80,7 +80,7 @@ const Text = styled.p`
 `
 
 const Title = styled.h2`
-    opacity: .5;
+    opacity: .55;
     text-align: center;
     max-width: 850px;
     margin: 0 auto 64px auto;
@@ -103,6 +103,16 @@ const Row = styled.div`
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: clamp(20px, 3.38vw, 32px);
+        cursor: move;
+        cursor: grab;
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+
+        &:active{
+            cursor: grabbing;
+            cursor: -moz-grabbing;
+            cursor: -webkit-grabbing;
+        }
 
         @media (max-width: 400px) {
             width: 960px;
@@ -120,6 +130,16 @@ const Row = styled.div`
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: clamp(20px, 3.38vw, 32px);
+        cursor: move;
+        cursor: grab;
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+
+        &:active{
+            cursor: grabbing;
+            cursor: -moz-grabbing;
+            cursor: -webkit-grabbing;
+        }
 
         @media (max-width: 400px) {
             width: 960px;
@@ -201,6 +221,11 @@ const Card = styled.a`
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:hover{
+        transform: translateX(-6px);
+    }
 
     .image{
         width: fit-content;
@@ -215,11 +240,14 @@ const Card = styled.a`
         }
         padding: 24px 16px;
         left: 100%;
-        transform: translateX(-80%);
+        transform: translateX(-75%);
         position: relative;
         display: block;
         width: fit-content;
         margin-bottom: 16px;
+        &:hover{
+            transform: translateX(calc(-75% - 6px));
+        }
     }
 
     @media (max-width: 1024px) {

@@ -36,7 +36,7 @@ const Wrapper = styled.section`
 
     .h4.line{
         margin-bottom: 16px;
-        opacity: .5;
+        opacity: .55;
         font-size: clamp(14px, 2.08vw, 18px);
     }
 

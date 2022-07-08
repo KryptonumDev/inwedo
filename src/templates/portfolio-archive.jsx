@@ -10,7 +10,7 @@ import Seo from "../components/seo"
 const PortfolioArchivePage = ({ data: { allWpPage, categoryParents, allWpCaseStudies, alternates }, location }) => {
   const portfolio = allWpPage.nodes[0].portfolioArchive
   return (
-    <main>
+    <main id='main'>
       <Seo data={allWpPage.nodes[0].seo} lang={allWpPage.nodes[0].language.slug} alternates={alternates} location={location}  type='Portfolio Archive'/>
       <Hero data={portfolio.heroPortfolio} />
       <ClientCases data={portfolio.clientsPortfolio} />
@@ -57,7 +57,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 80)
                 }
               }
             }
@@ -72,7 +72,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -83,7 +83,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                 }
@@ -100,7 +100,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -110,7 +110,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -138,7 +138,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 80)
                 }
               }
             }
@@ -165,7 +165,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 80)
                 }
               }
             }
@@ -215,7 +215,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -223,7 +223,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }

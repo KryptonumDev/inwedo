@@ -96,7 +96,7 @@ const Flex = styled(Link)`
     }
 
     .h4{
-        opacity: .5;
+        opacity: .55;
         margin-bottom: 16px;
         font-size: clamp(14px, ${16 / 768 * 100}vw, 18px);
     }

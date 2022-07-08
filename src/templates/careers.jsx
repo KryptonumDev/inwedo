@@ -19,7 +19,7 @@ import JoinUs from "../components/careers-join-us"
 const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCategoryJob, allWpSeniority }, location }) => {
   let { careersHome, language, seo } = allWpPage.nodes[0]
   return (
-    <main>
+    <main id='main'>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Careers Homepage'/>
       <Hero data={careersHome.heroCareers} />
       <JoinUs data={careersHome.joinUs} offers={allWpJobOffer.nodes} categories={allWpCategoryJob.nodes} seniority={allWpSeniority.nodes} />
@@ -119,7 +119,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -139,7 +139,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                             altText
                             localFile {
                               childImageSharp {
-                                gatsbyImageData(quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 80)
                               }
                             }
                         }
@@ -171,7 +171,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile{
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -187,7 +187,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile{
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -207,7 +207,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile{
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -221,7 +221,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -229,7 +229,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -237,7 +237,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -245,7 +245,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -260,7 +260,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -288,7 +288,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -315,7 +315,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -330,7 +330,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -346,7 +346,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -357,7 +357,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -377,7 +377,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -386,7 +386,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -407,7 +407,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -415,7 +415,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -423,7 +423,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -435,7 +435,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     } 
                   }
@@ -450,7 +450,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       } 
                     }

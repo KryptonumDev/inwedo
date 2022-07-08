@@ -1,11 +1,41 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
 import Arrow from './../images/faq-arrow.svg'
+import { Helmet } from "react-helmet"
 
 export default function FAQ({ data: { title, faqElement } }) {
+
+    const [items] = useState(() => {
+        const arr = []
+
+        faqElement.forEach(el => {
+            arr.push({
+                "@type": "Question",
+                "name": el.question,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": el.answer
+                }
+            })
+        });
+
+        return arr
+    })
+
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": items
+    };
+
     return (
         <Wrapper>
+            <Helmet>
+                <script type="application/ld+json">
+                    {JSON.stringify(schema)}
+                </script>
+            </Helmet>
             <Container>
                 <Title className="h1">{title}</Title>
                 <Repeater>
@@ -21,8 +51,8 @@ export default function FAQ({ data: { title, faqElement } }) {
                             <div
                                 itemProp='acceptedAnswer'
                                 itemType='https://schema.org/Answer'>
-                                <span className="p" itemProp='text' dangerouslySetInnerHTML={{ __html: el.answer }}>
-                                </span>
+                                <h3 className="p" itemProp='text' dangerouslySetInnerHTML={{ __html: el.answer }}>
+                                </h3>
                             </div>
                         </Item>
                     ))}
@@ -163,7 +193,7 @@ const Item = styled.details`
 
         &:hover{
             span{
-                background-size: 100% 2px;
+                background-size: 100px 2px;
             }
         }
     }

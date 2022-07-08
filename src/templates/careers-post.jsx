@@ -10,7 +10,7 @@ import ApointmentWithHr from "../components/careers-appointment-hr"
 export default function CareersPost({ data: { allWpJobOffer, alternates }, location }) {
   let { careersPost, language, seo } = allWpJobOffer.nodes[0]
   return (
-    <main>
+    <main id='main'>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='careers post' template='Blog Archive' currTemplate={careersPost.templateName} />
       <Hero data={careersPost.heroJob} location={location} />
       {careersPost.textParts.map(el => (
@@ -59,7 +59,7 @@ export const query = graphql`
                         altText
                         localFile {
                           childImageSharp {
-                            gatsbyImageData(quality: 80)
+                            gatsbyImageData(placeholder: BLURRED, quality: 80)
                           }
                         }
                       }
@@ -78,7 +78,7 @@ export const query = graphql`
                                 altText
                                 localFile {
                                   childImageSharp {
-                                    gatsbyImageData(quality: 80)
+                                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                                   }
                                 }
                             }
@@ -98,7 +98,7 @@ export const query = graphql`
                             altText
                             localFile {
                               childImageSharp {
-                                gatsbyImageData(quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 80)
                               }
                             }
                           }
@@ -106,7 +106,7 @@ export const query = graphql`
                             altText
                             localFile {
                               childImageSharp {
-                                gatsbyImageData(quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 80)
                               }
                             }
                           }
@@ -114,7 +114,7 @@ export const query = graphql`
                             altText
                             localFile {
                               childImageSharp {
-                                gatsbyImageData(quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 80)
                               }
                             }
                           }
@@ -127,7 +127,7 @@ export const query = graphql`
                                 altText
                                 localFile {
                                   childImageSharp {
-                                    gatsbyImageData(quality: 80)
+                                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                                   }
                                 }
                             }

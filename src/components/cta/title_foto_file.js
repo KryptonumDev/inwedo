@@ -18,6 +18,7 @@ export default ({ title, button, image, downloadFile }) => (
 )
 
 const ContentWrapper = styled.div`
+margin-top: ${props => props.small ? 'clamp(32px, 6.25vw, 64px)' : 'var(--margin-section)'};
     background: var(--color-accent);
     border-radius: 24.5221px;
     box-shadow: var(--shadow);
@@ -69,9 +70,10 @@ const Image = styled(GatsbyImage)`
     }
 `
 
-const Title = styled.h2`
+const Title = styled.span`
     color: var(--color-white);
     margin-bottom: 32px;
+    display: block;
 
     &.h1{
         font-weight: 600;

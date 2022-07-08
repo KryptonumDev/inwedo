@@ -65,7 +65,7 @@ const TextPart = styled.div`
 
     .h4{
         margin-bottom: clamp(12px, 2.083vw, 24px);
-        opacity: .5;
+        opacity: .55;
         font-size: clamp(14px, 2.083vw, 18px);
     }
 

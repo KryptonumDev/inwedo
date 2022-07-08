@@ -50,6 +50,6 @@ const Title = styled.h2`
         width: 30px;
         height: 2px;
         background-color: var(--color-black);
-        opacity: .5;
+        opacity: .55;
     }
 `

@@ -81,6 +81,12 @@ const Item = styled(Link)`
 
     &:hover{
         transform: translateY(-6px);
+
+        .link{
+            &::after{
+                width: 100%;
+            }
+        }
     }
 
     h3{

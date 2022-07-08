@@ -98,16 +98,16 @@ const Item = styled.div`
     }
 
     .image-wrap{
-    width: clamp(64px, 9.765vw, 86px);
-    height: clamp(64px, 9.765vw, 86px);
-    border-radius: 8px;
-    background-color: #fff;
-    z-index: 10;
-    box-shadow: var(--shadow);
-    margin-bottom: clamp(24px, 5.46vw, 60px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        width: clamp(64px, 9.765vw, 86px);
+        height: clamp(64px, 9.765vw, 86px);
+        border-radius: 8px;
+        background-color: #fff;
+        z-index: 10;
+        box-shadow: var(--shadow);
+        margin-bottom: clamp(24px, 5.46vw, 60px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         .image{
             width: fit-content;

@@ -60,6 +60,13 @@ const TechnologiesGrid = styled.div`
 
     @media (max-width: 876px) {
         flex-wrap: wrap;
+        max-width: 80%;
+        margin: 0 auto;
+        margin-top: clamp(32px, 6.25vw, 64px);
+    }
+
+    @media (max-width: 350px) {
+        max-width: unset;
     }
 `
 
@@ -72,6 +79,11 @@ const TechnologiesLink = styled(Link)`
     border-radius: 8px;
     background-color: var(--color-white);
     box-shadow: var(--shadow);
+    transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:hover{
+        transform: translateY(-6px);
+    }
 
     .image{
         max-width: clamp(35px, 4.94vw, 54px);

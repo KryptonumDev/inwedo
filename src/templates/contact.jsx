@@ -6,7 +6,7 @@ import Seo from "../components/seo"
 const ContactPage = ({ data: { allWpPage, alternates }, location }) => {
   let { contactPage, language, seo } = allWpPage.nodes[0]
   return (
-    <main>
+    <main id='main'>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Contact' />
       <Content data={contactPage} />
     </main>
@@ -76,7 +76,7 @@ query CPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -91,7 +91,7 @@ query CPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }

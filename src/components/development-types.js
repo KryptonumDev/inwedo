@@ -31,7 +31,7 @@ const Wrapper = styled.section`
     margin-top: var(--margin-section);
 
     .h4.line{
-        opacity: .5;
+        opacity: .55;
         margin-bottom: clamp(8px, 1.5625vw, 16px);
         font-size: clamp(14px, 2.08vw, 18px);
     }
@@ -56,6 +56,17 @@ const TypesGrid = styled.div`
 
 const TypesItem = styled(Link)`
     max-width: 336px;
+    transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:hover{
+        transform: translateY(-6px);
+
+        .link{
+            &::after{
+                width: 100%;
+            }
+        }
+    }
 
     .h2{
         margin-bottom: 16px;

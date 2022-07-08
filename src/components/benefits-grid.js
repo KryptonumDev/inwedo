@@ -31,6 +31,8 @@ const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: clamp(32px, 6.25vw, 64px);
+    max-width: 1050px;
+    margin: 0 auto;
 
     @media (max-width: 580px) {
         grid-template-columns: 1fr;

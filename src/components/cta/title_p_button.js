@@ -6,7 +6,7 @@ export default ({ title, text, button }) => (
     <ContentWrapper>
         <Content>
             <Title className="h1">{title}</Title>
-            <Text className="h4">{text}</Text>
+            <Text className="h4" dangerouslySetInnerHTML={{__html: text}}/>
             <Button to={button.url} className='button-white'>
                 <span className="colored">{button.name}</span>
             </Button>
@@ -15,6 +15,7 @@ export default ({ title, text, button }) => (
 )
 
 const ContentWrapper = styled.div`
+margin-top: ${props => props.small ? 'clamp(32px, 6.25vw, 64px)' : 'var(--margin-section)'};
     background: var(--color-accent);
     border-radius: 24px;
     box-shadow: var(--shadow);
@@ -36,10 +37,11 @@ const Content = styled.div`
     padding: 75px 30px;
 `
 
-const Title = styled.h2`
+const Title = styled.span`
     color: var(--color-white);
     text-align: center;
     margin-bottom: 24px;
+    display: block;
 
     &.h1{
         font-weight: 600;
@@ -47,13 +49,18 @@ const Title = styled.h2`
     }
 `
 
-const Text = styled.p`
+const Text = styled.div`
     color: var(--color-white);
     text-align: center;
     margin-bottom: 32px;
 
     &.p{
         font-size: clamp(14px, 2.083vw, 18px);
+    }
+
+    h1,h2,h3,h4,h5,h6,p{
+        font-size: inherit;
+        line-height: inherit;
     }
 `
 

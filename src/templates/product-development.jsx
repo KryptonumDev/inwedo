@@ -15,7 +15,7 @@ import Seo from "../components/seo"
 const ProductDevelopmentPage = ({ data: { allWpPage, alternates }, location }) => {
   let { productDevelopment, language, seo } = allWpPage.nodes[0]
   return (
-    <main>
+    <main id='main'>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={productDevelopment.heroProductDevelop} />
       <TwoColumnFlex data={productDevelopment.twoColumnFlexProductDevelopment} />
@@ -72,7 +72,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                         childImageSharp {
-                            gatsbyImageData(quality: 80)
+                            gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                     }
                 }
@@ -91,7 +91,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                         altText
                         localFile {
                             childImageSharp {
-                                gatsbyImageData(quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 80)
                             }
                         }
                     }
@@ -119,7 +119,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -146,7 +146,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -173,7 +173,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -191,7 +191,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -210,7 +210,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -218,7 +218,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -237,7 +237,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -245,7 +245,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -261,7 +261,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -270,7 +270,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -283,7 +283,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -306,7 +306,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }

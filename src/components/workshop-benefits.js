@@ -33,13 +33,13 @@ const Wrapper = styled.section`
 
     .h4{
         margin-bottom: 16px;
-        opacity: .5;
+        opacity: .55;
         font-size: clamp(14px, 2.08vw, 18px);
     }
     
     .h1{
         margin-bottom: clamp(32px, 6.25vw, 48px);
-        font-size: clamp(20px, 3.38vw, 32px);
+        font-size: clamp(20px, ${22 / 768 * 100}vw, 24px);
     }
 `
 

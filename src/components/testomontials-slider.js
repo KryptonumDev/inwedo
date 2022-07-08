@@ -86,15 +86,26 @@ const Wrapper = styled.section`
     }
 
     .slick-arrow {
+
+        &:focus-visible{
+                &::before{
+                    outline: 2px solid #0B61D6;
+                    outline-offset: 1px;
+                    border-radius: 2px;
+                }
+            }
+
         &.slick-prev{
             &::before{
                 content: url(${props => props.Left});
+                transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
             }
 
         }
         &.slick-next{
             &::before{
                 content: url(${props => props.Right});
+                transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
             }
         }
     }
@@ -102,9 +113,18 @@ const Wrapper = styled.section`
     .slick-dots{
         button{
             &::before{
+                border-radius: 50%;
                 font-size: 12px;
                 color: #C4C4C4 !important;
                 opacity: 0.3;
+                transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+            }
+
+            &:focus-visible{
+                &::before{
+                    outline: 2px solid #0B61D6;
+                    outline-offset: 1px;
+                }
             }
         }
 

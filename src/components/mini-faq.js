@@ -1,12 +1,44 @@
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
 import Arrow from './../images/faq-arrow.svg'
+import { Helmet } from "react-helmet"
 
 export default function MiniFaq({ data: { sectionTitle, text, smallText, questionsAndAnswers, image } }) {
+
+    const [items] = useState(() => {
+        const arr = []
+
+        questionsAndAnswers.forEach(el => {
+
+            arr.push({
+                "@type": "Question",
+                "name": el.question,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": el.answer
+                }
+            })
+            
+        });
+
+        return arr
+    })
+
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": items
+    };
+
     return (
         <Wrapper>
+            <Helmet>
+                <script type="application/ld+json">
+                    {JSON.stringify(schema)}
+                </script>
+            </Helmet>
             <Container>
                 <h2 className="line h4">{sectionTitle}</h2>
                 <p className="h2">{text}</p>
@@ -28,8 +60,8 @@ export default function MiniFaq({ data: { sectionTitle, text, smallText, questio
                                 <div
                                     itemProp='acceptedAnswer'
                                     itemType='https://schema.org/Answer'>
-                                    <span itemProp='text' dangerouslySetInnerHTML={{ __html: el.answer }}>
-                                    </span>
+                                    <h3 itemProp='text' dangerouslySetInnerHTML={{ __html: el.answer }}>
+                                    </h3>
                                 </div>
                             </Item>
                         ))}
@@ -43,7 +75,7 @@ export default function MiniFaq({ data: { sectionTitle, text, smallText, questio
 const Wrapper = styled.section`
     margin-top: var(--margin-section);
     .h4{
-        opacity: .5;
+        opacity: .55;
         margin-bottom: 8px;
         font-size: clamp(14px, 2.08vw, 18px);
         max-width: 1000px;
@@ -140,11 +172,12 @@ const Item = styled.details`
 
     summary{
         padding-left: clamp(40px, 8.46vw, 90px);
+        cursor: pointer;
 
         @media (max-width: 660px){
             padding-left: 30px;
         }
-        cursor: pointer;
+
         span{
             color: #495057;
             font-weight: 600;
@@ -164,7 +197,7 @@ const Item = styled.details`
 
         &:hover{
             span{
-                background-size: 100% 2px;
+                background-size: 100px 2px;
             }
         }
     }

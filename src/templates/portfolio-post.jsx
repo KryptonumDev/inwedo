@@ -17,8 +17,8 @@ import Seo from "../components/seo"
 const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts, alternates }, location }) => {
   const { caseStudies, language, seo } = allWpCaseStudies.nodes[0]
   return (
-    <main>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='post' template='Portfolio Archive' currTemplate={caseStudies.templateName} />
+    <main id='main'>
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='post' template='Portfolio Archive' currTemplate={caseStudies.heroportfolio.pageTitle} />
       <Hero data={caseStudies.heroportfolio} />
       {caseStudies.sectionController.oneColumnTextPart
         ? <OneColumnText alternative={true} data={caseStudies.oneColumnTextPartPortfolio} />
@@ -87,6 +87,7 @@ query PortfolioPageQuery($id: String!) {
           fullHead
         }
         caseStudies {
+          templateName
           sectionController {
             callToAction
             callToActionSecond
@@ -110,7 +111,7 @@ query PortfolioPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -119,7 +120,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 80)
                 }
               }
             }
@@ -127,7 +128,7 @@ query PortfolioPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
             }
@@ -137,7 +138,7 @@ query PortfolioPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -157,7 +158,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 80)
                 }
               }
             }
@@ -171,7 +172,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 80)
                 }
               }
             }
@@ -186,7 +187,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 80)
                 }
               }
             }
@@ -196,7 +197,7 @@ query PortfolioPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -210,7 +211,7 @@ query PortfolioPageQuery($id: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -228,7 +229,7 @@ query PortfolioPageQuery($id: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -256,7 +257,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 80)
                 }
               }
             }
@@ -283,7 +284,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 80)
                 }
               }
             }
@@ -336,7 +337,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 80)
                 }
               }
             }
@@ -344,7 +345,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 80)
                 }
               }
             }

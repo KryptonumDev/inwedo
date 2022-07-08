@@ -15,7 +15,7 @@ import Seo from "../components/seo"
 const HowWeWorkPage = ({ data: { allWpPage, alternates }, location }) => {
   let { howWeWork, language, seo } = allWpPage.nodes[0]
   return (
-    <main>
+    <main id='main'>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='How We Work' />
       <Hero data={howWeWork.heroHowWeWork} />
       <TwoColumnFlex data={howWeWork.twoColumnFlexHowWeWork} />
@@ -73,7 +73,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -97,7 +97,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -114,7 +114,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -127,7 +127,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -153,7 +153,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -169,7 +169,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -183,7 +183,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -209,7 +209,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -226,7 +226,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -239,7 +239,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -266,7 +266,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -284,7 +284,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -311,7 +311,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }

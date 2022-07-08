@@ -51,7 +51,7 @@ const LocalContainer = styled(Container)`
     min-height: 810px;
     overflow: visible;
 
-    @media (max-width: 1240px) {
+    @media (max-width: 1272px) {
         min-height: 960px;
         align-items: flex-start;
     }
@@ -116,7 +116,7 @@ const Image = styled.div`
         transform: translateX(70px);
     }
 
-    @media (max-width: 1240px) {
+    @media (max-width: 1272px) {
         transform: translateX(50px);
     }
 
@@ -168,7 +168,7 @@ const Content = styled.div`
         color: var(--color-white);
     }
 
-    @media (max-width: 1240px) {
+    @media (max-width: 1272px) {
         margin-top: 130px;
     }
 

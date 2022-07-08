@@ -4,11 +4,11 @@ import { Container } from "../../style"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-export default function TwoColumnFlex({ data: { image, sectionTitle, text, teamMembers }, reverse }) {
+export default function TwoColumnFlex({ data: { image, sectionTitle, text, teamMembers }, reverse, size }) {
     return (
         <Wrapper>
             <Container>
-                <Flex reverse={reverse}>
+                <Flex size={size} reverse={reverse}>
                     <div className="mobile text">
                         <h2 className="h4 line">{sectionTitle}</h2>
                         <p className="h1">{text}</p>
@@ -52,12 +52,12 @@ const Flex = styled.div`
         max-width: 680px;
         h2.h4{
             margin-bottom: 16px;
-            opacity: .5;
+            opacity: .55;
             font-size: clamp(14px, 2.08vw, 18px);
         }
         p.h1{
             margin-bottom: clamp(32px, 6.25vw, 64px);
-            font-size: clamp(20px, 3.38vw, 24px);
+            font-size: clamp(20px, 3.38vw, ${props => props.size ? props.size : '24px'});
             max-width: 610px;
         }
     }

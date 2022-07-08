@@ -66,6 +66,13 @@ const Grid = styled.div`
     grid-template-columns: repeat(${props => props.count}, 1fr);
     grid-gap: clamp(24px, ${33 / 768 * 100}vw, 42px);
 
+    a{
+        transition: transform .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+        &:hover{
+            transform: translateY(-4px);
+        }
+    }
+
     .image{
         max-width: clamp(48px, ${58 / 768 * 100}vw, 68px);
         min-width: 48px;

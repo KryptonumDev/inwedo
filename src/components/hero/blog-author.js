@@ -73,7 +73,7 @@ const TextPart = styled.div`
     .h4{
         margin-bottom: 32px;
         font-size: clamp(14px, 2.08vw, 18px);
-        opacity: .5;
+        opacity: .55;
     }
 
     .p{

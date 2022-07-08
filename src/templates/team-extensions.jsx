@@ -15,12 +15,12 @@ import Seo from "../components/seo"
 const TeamExtensionsPage = ({ data: { allWpPage, alternates }, location }) => {
   let { teamExtensionsPage, language, seo } = allWpPage.nodes[0]
   return (
-    <main>
+    <main id='main'>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={teamExtensionsPage.heroTeamExtensions} />
       <TwoColumnFlex data={teamExtensionsPage.twoColumnFlexTeamExtensions} />
       <TechStack data={teamExtensionsPage.techStackTeamExtensions} />
-      <TwoColumnFlexSecond data={teamExtensionsPage.twoColumnFlexTeamExtensionsSecond} />
+      <TwoColumnFlexSecond descReverse={true} data={teamExtensionsPage.twoColumnFlexTeamExtensionsSecond} />
       <BenefitsGrid data={teamExtensionsPage.benefitsGridTeamExtensions} />
       <CallToAction data={teamExtensionsPage.callToActionTeamExtensions} />
       <WorkshopBenefits data={teamExtensionsPage.workshopBenefitsTeamExtensions} />
@@ -70,7 +70,7 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                     childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                 }
               }
@@ -89,7 +89,7 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
                         altText
                         localFile {
                             childImageSharp {
-                                gatsbyImageData(quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 80)
                             }
                         }
                     }
@@ -107,7 +107,7 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -120,7 +120,7 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -148,7 +148,7 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -160,7 +160,7 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -171,7 +171,7 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -188,7 +188,7 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -198,7 +198,7 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -226,7 +226,7 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -244,7 +244,7 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }

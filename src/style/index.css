@@ -24,7 +24,7 @@ body {
     overflow-x: hidden;
 }
 
-.noScroll{
+.noScroll {
     overflow: hidden;
     height: 100vh;
 }
@@ -42,17 +42,28 @@ button {
     color: var(--color-black);
 }
 
-*:focus{
+*:focus {
     outline: none;
 }
 
-*:focus-visible{
+*:focus-visible {
     outline: 2px solid black;
     outline-offset: 4px;
     outline-color: #0B61D6;
 }
 
-a{
+.no-focus{
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    top: 0;
+}
+
+.no-focus:focus-visible{
+    outline: none;
+}
+
+a {
     border-radius: 8px;
 }
 
@@ -140,11 +151,15 @@ a{
     background-color: #fff;
     border-radius: 6px;
     color: var(--color-black);
-    transition: background-color .2s cubic-bezier(0.39, 0.575, 0.565, 1) ;
+    transition: background-color .2s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
-.button-white:hover{
-    background-color: #e5e5e5;
+.button-white:hover {
+    background-color: #dfdfdf;
+}
+
+.button-white:focus-visible{
+    outline-color: #fff;
 }
 
 .button,
@@ -162,19 +177,19 @@ a{
     border-radius: 6px;
     background: var(--color-accent);
     color: var(--color-white);
-    transition: opacity .2s cubic-bezier(0.39, 0.575, 0.565, 1);    
+    transition: opacity .2s cubic-bezier(0.39, 0.575, 0.565, 1);
     outline-offset: 4px;
 }
 
 .button:focus-visible,
 .btn:focus-visible,
-.btn-primary:focus-visible{
+.btn-primary:focus-visible {
     outline-color: #0B61D6;
 }
 
 .button:hover,
 .btn:hover,
-.btn-primary:hover{
+.btn-primary:hover {
     opacity: .8;
 }
 
@@ -189,23 +204,30 @@ a{
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
-    
+
     border-radius: 2px;
     position: relative;
     width: fit-content;
 }
 
-.link::after{
+.link::after {
     content: "";
     position: absolute;
-    left: -20px;
-    right: -20px;
-    top: -11px;
-    bottom: -11px;
-    border-radius: 8px;
-    z-index: -1;
-    background-color: transparent;
-    transition: background-color .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width .3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.link.active::after {
+    width: 40%;
+
+}
+
+.link:hover::after {
+    width: 100%;
 }
 
 .colored {
@@ -219,6 +241,7 @@ a{
 .line {
     padding-left: 48px;
     position: relative;
+    color: #000;
 }
 
 .line::before {

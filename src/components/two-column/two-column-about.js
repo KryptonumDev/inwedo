@@ -4,11 +4,11 @@ import { Container } from "../../style"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-export default function TwoColumnFlex({ data: { image, title, subTitle, text, button }, technology, reverse }) {
+export default function TwoColumnFlex({ data: { image, title, subTitle, text, button }, technology, reverse, descReverse }) {
     return (
         <Wrapper>
             <Container>
-                <Flex isLink={button.url} reverse={reverse} to={button.url}>
+                <Flex isLink={button.url} descReverse={descReverse} reverse={reverse} to={button.url}>
                     <div className="text">
                         {technology
                             ? <h2 className="h1">{title}</h2>
@@ -31,7 +31,7 @@ const Wrapper = styled.section`
         
         .h4{
             margin-bottom: 16px;
-            opacity: .5;
+            opacity: .55;
             font-size: clamp(14px, 2.08vw, 18px);
 
                 @media (max-width: 850px){
@@ -48,6 +48,7 @@ const Wrapper = styled.section`
 const Flex = styled(Link)`
     display: flex;
     justify-content: space-between;
+    flex-direction: ${props => props.descReverse ? 'row-reverse' : 'row'};
     align-items: center;
     gap: 40px;
 
@@ -56,6 +57,11 @@ const Flex = styled(Link)`
                 .image{
                     img{
                         transform: scale(1.03);
+                    }
+                }
+                .link{
+                    &::after{
+                        width: 100%;
                     }
                 }
             }

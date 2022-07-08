@@ -74,6 +74,12 @@ const Item = styled(Link)`
 
     &:hover{
         transform: translateY(-6px);
+
+        .link{
+            &::after{
+                width: 100%;
+            }
+        }
     }
 
     .h2{
@@ -85,6 +91,12 @@ const Item = styled(Link)`
     .h4{
         margin-bottom: 16px;
         font-size: clamp(14px, 2.08vw, 18px);
+    }
+
+    @media (max-width: 480px) {
+        .link{
+            margin: 0 auto;
+        }
     }
 
 `

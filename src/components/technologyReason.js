@@ -48,7 +48,7 @@ const Item = styled.div`
     border-radius: 8px;
     background-color: var(--color-white);
     box-shadow: var(--shadow);
-    padding: 32px 29px;
+    padding: 16px 29px;
 
     display: grid;
     grid-template-columns: auto 1fr;

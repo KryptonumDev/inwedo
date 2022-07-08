@@ -6,7 +6,7 @@ import Seo from "../components/seo"
 const PrivacyPage = ({ data: { allWpPage, alternates }, location }) => {
     let { content, language, seo, template } = allWpPage.nodes[0]
     return (
-        <main>
+        <main id='main'>
             <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type={template.templateName} />
             <Content dangerouslySetInnerHTML={{ __html: content }} />
         </main>

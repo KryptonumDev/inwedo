@@ -15,7 +15,7 @@ import Seo from "../components/seo"
 const DiscoveryWorkshopPage = ({ data: { allWpPage, alternates }, location }) => {
   let { discoveryWorkshop, language, seo } = allWpPage.nodes[0]
   return (
-    <main>
+    <main id='main'>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location}  type='Services'/>
       <Hero data={discoveryWorkshop.heroWorkshop} />
       <OneColumnText data={discoveryWorkshop.oneColumnTextPart} />
@@ -70,7 +70,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -89,7 +89,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -108,7 +108,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -135,7 +135,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -154,7 +154,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -169,7 +169,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -178,7 +178,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -205,7 +205,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -220,7 +220,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -231,7 +231,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -244,7 +244,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                   }
@@ -255,7 +255,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -274,7 +274,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }
@@ -282,7 +282,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 80)
                         }
                       }
                     }

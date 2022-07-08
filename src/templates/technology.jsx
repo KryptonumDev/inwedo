@@ -15,14 +15,14 @@ const TechnologyPage = ({ data: { allWpTechnology, alternates }, location }) => 
   let { technology, language, seo } = allWpTechnology.nodes[0]
 
   return (
-    <main>
+    <main id='main'>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='technology' template='Technology' currTemplate={technology.templateName} />
       <Hero data={technology.heroTechnology} />
       <TwoColumnFlex technology={true} data={technology.twoColumnFlexTechnologySecond} />
       <ReasonsToUse data={technology.reasonsToUse} />
       <WhyBestChoice data={technology.whyBestChoice} />
       <CallToAction data={technology.callToActionTechnology} />
-      <TwoColumnFlexWorkshop reverse={true} data={technology.twoColumnFlexTechnology} />
+      <TwoColumnFlexWorkshop size={'32px'} reverse={true} data={technology.twoColumnFlexTechnology} />
       <CallToAction data={technology.callToActionTechnologySecond} />
       <SuccessStories data={technology.successStoriesTechnology} />
       <CallToAction data={technology.callToActionTechnologyThird} />
@@ -74,7 +74,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                     childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                 }
               }
@@ -91,7 +91,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -104,7 +104,7 @@ query TechonologyPageQuery($id: String!) {
                         altText
                         localFile {
                           childImageSharp {
-                            gatsbyImageData(quality: 80)
+                            gatsbyImageData(placeholder: BLURRED, quality: 80)
                           }
                         }
                     }
@@ -118,7 +118,7 @@ query TechonologyPageQuery($id: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 80)
                       }
                     }
                 }
@@ -155,7 +155,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -182,7 +182,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -209,7 +209,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -224,7 +224,7 @@ query TechonologyPageQuery($id: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -233,7 +233,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 80)
                   }
                 }
               }
@@ -251,7 +251,7 @@ query TechonologyPageQuery($id: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -259,7 +259,7 @@ query TechonologyPageQuery($id: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 80)
                     }
                   }
                 }
@@ -280,7 +280,7 @@ query TechonologyPageQuery($id: String!) {
                         altText
                         localFile {
                             childImageSharp {
-                                gatsbyImageData(quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 80)
                             }
                         }
                     }

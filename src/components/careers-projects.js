@@ -68,7 +68,7 @@ const Flex = styled.div`
         max-width: 560px;
 
         .line{
-            opacity: .5;
+            opacity: .55;
             margin-bottom: 16px;
             font-size: clamp(14px, ${16 / 768 * 100}vw, 18px);
         }

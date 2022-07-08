@@ -21,6 +21,11 @@ const Content = styled.div`
     display: grid;
     grid-gap: 16px;
 
+    font-weight: 300;
+    font-size: clamp(14px, 2.08vw, 16px);
+    line-height: 160%;
+    font-feature-settings: 'ss01' on;
+
     video{
         width: 100%;
         height: fit-content;
@@ -49,23 +54,30 @@ const Content = styled.div`
         width: 100% !important;
     }
 
-    h2{
+    h1, h2{
         font-weight: 400;
         font-size: clamp(16px, 3.125vw, 24px);
         line-height: 151%;
     }
 
-    h3{
+    h3, h4, h5, h6{
         font-weight: 400;
         font-size: clamp(16px, 2.34vw, 18px);
         line-height: 151%;
     }
 
-    p{
+    p, div{
         font-weight: 300;
         font-size: clamp(14px, 2.08vw, 16px);
         line-height: 160%;
         font-feature-settings: 'ss01' on;
+    }
+
+    strong{
+        font-weight: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        font-weight: 700;
     }
         
     a{

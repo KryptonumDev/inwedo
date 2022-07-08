@@ -48,13 +48,13 @@ const Text = styled.div`
     max-width: 530px;
     .h4{
         margin-bottom: 16px;
-        opacity: .5;
+        opacity: .55;
         font-size: clamp(14px, 2.08vw, 18px);
     }
 
     .h1{
         margin-bottom: clamp(16px, 2.6vw, 24px);
-        font-size: clamp(20px, 3.38vw, 32px);
+        font-size: clamp(20px, 3.38vw, 24px);
     }
 
     .p{
@@ -68,7 +68,7 @@ const Text = styled.div`
 
 const Grid = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto auto;
     grid-gap: 32px;
 
     @media (max-width: 480px) {
@@ -84,6 +84,7 @@ const Item = styled.div`
 
     .h4{
         margin-bottom: 12px;
+        font-weight: 500;
         font-size: clamp(14px, 2.08vw, 18px);
     }
 

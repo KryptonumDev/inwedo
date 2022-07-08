@@ -94,7 +94,7 @@ const Card = styled.div`
 
         .h4{
             color: var(--color-black);
-            opacity: .5;
+            opacity: .55;
             text-transform: unset;
         }
 

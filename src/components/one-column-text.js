@@ -7,7 +7,10 @@ export default function OneColumnText({ data: { sectionTitle, subTitle, text, bo
         <Wrapper>
             <Container>
                 <Content>
-                    <h2 className="line h4">{sectionTitle}</h2>
+                    {sectionTitle
+                        ? <h2 className="line h4">{sectionTitle}</h2>
+                        : null
+                    }
                     <h3 className="h1">{subTitle}</h3>
                     {alternative
                         ? <>
@@ -19,7 +22,7 @@ export default function OneColumnText({ data: { sectionTitle, subTitle, text, bo
                             <p className="p bold">{boldText}</p>
                         </>
                     }
-                </Content>  
+                </Content>
             </Container>
         </Wrapper>
     )
@@ -35,7 +38,7 @@ const Wrapper = styled.section`
 
     .h4{
         margin-bottom: 16px;
-        opacity: .5;
+        opacity: .55;
         font-size: clamp(14px, 2.08vw, 18px);
     }
 

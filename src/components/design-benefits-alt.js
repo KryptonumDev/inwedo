@@ -73,7 +73,7 @@ const Item = styled.div`
 
 const Title = styled.div`
     .line{
-        opacity: .5;
+        opacity: .55;
         margin-bottom: 16px;
         font-size: clamp(14px, 2.08vw, 18px);
     }

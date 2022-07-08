@@ -78,7 +78,7 @@ const Content = styled.div`
     width: 100%;
 
     .h4{
-        opacity: .5;
+        opacity: .55;
         margin-bottom: 16px;
         font-size: clamp(14px, 2.08vw, 18px);
     }
@@ -276,7 +276,7 @@ const Grid = styled.div`
         }
     }
 
-    @media (max-width: 1240px) {
+    @media (max-width: 1260px) {
         right: unset;
         left: 594px;
     }

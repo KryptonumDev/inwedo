@@ -177,7 +177,7 @@ const Item = styled.div`
         font-size: 16px;
         line-height: 160%;
         font-feature-settings: 'ss01' on;
-        opacity: .5;
+        opacity: .55;
     }
 
     .testomontial{
@@ -212,7 +212,7 @@ const Card = styled.div`
     }
 
     .h4{
-        opacity: .5;
+        opacity: .55;
         margin-bottom: 16px;
         font-size: clamp(14px, ${16 / 768 * 100}vw, 18px);
     }
