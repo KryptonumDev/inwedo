@@ -58,7 +58,7 @@ const Half = styled.div`
 const Card = styled.div`
     position: absolute;
     width: 100%;
-    max-width: clamp(700px, ${1150 / 1920 * 100}vw, 1150px);
+    max-width: clamp(700px, 90vw, 1120px) ;
     right: -24px;
     top: 50%;
     border-radius: 24px;

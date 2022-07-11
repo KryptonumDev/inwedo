@@ -58,16 +58,14 @@ export default function Seo({ data, lang, alternates, location, type, id, templa
             {alternates?.nodes.map(el => {
                 let href
 
-                if (type === 'archive') {
-                    href = location.origin + urlSystem[template][el.language.slug] + el.page.url
-                } else if (type === 'technology' || type === 'post' || type === 'careers post') {
+                if (type === 'archive' || type === 'technology' || type === 'post' || type === 'careers post') {
                     href = location.origin + urlSystem[template][el.language.slug] + el.page.url
                 } else {
                     href = location.origin + urlSystem[el.template.templateName][el.language.slug]
                 }
 
                 return (
-                    <link rel="alternate" hreflang={el.language.slug === 'en' ? 'x-default' : el.language.slug} href={href} />
+                    <link rel="alternate" hreflang={el.language.slug} href={href} />
                 )
             })}
         </Helmet>

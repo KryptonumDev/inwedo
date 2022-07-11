@@ -7,7 +7,7 @@ export default ({ title, button, image, downloadFile }) => (
     <ContentWrapper>
         <Content>
             <div className="content">
-                <Title className="h1">{title}</Title>
+                <Title className="h1" dangerouslySetInnerHTML={{__html: title}}></Title>
                 <Button download href={downloadFile.localFile.publicURL} className='button-white'>
                     <span>{button}</span>
                 </Button>
@@ -74,6 +74,12 @@ const Title = styled.span`
     color: var(--color-white);
     margin-bottom: 32px;
     display: block;
+
+    h1,h2,h3,h4,h5,h6,p{
+        color: var(--color-white);
+        font-size: inherit;
+        line-height: inherit;
+    }
 
     &.h1{
         font-weight: 600;

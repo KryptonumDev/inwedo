@@ -50,7 +50,7 @@ const Flex = styled(Link)`
     justify-content: space-between;
     flex-direction: ${props => props.descReverse ? 'row-reverse' : 'row'};
     align-items: center;
-    gap: 40px;
+    gap: clamp(32px, ${100 / 1440 * 100}vw, 100px);
 
         ${props => props.isLink ? `
             &:hover{
@@ -73,6 +73,7 @@ const Flex = styled(Link)`
         border-radius: 8px;
         width: fit-content;
         height: fit-content;
+        min-width: 400px;
 
         img{
             transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -81,12 +82,14 @@ const Flex = styled(Link)`
 
         @media (max-width: 850px) {
             width: 100%;
+            min-width: unset;
         }
     }
 
     .text{
         max-width: 510px;
         width: 100%;
+        margin-left: clamp(0px, ${74 / 1440 * 100}vw, 74px);
         .h1{
             margin-bottom: 16px;
         }
@@ -109,6 +112,12 @@ const Flex = styled(Link)`
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-fill-color: transparent;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .text{
+            margin-left: 0;
         }
     }
 

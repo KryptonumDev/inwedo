@@ -40,6 +40,7 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
             },
         ]
     };
+
     return (
         <Wrapper Left={Left} Right={Right}>
             <LocContainer>
@@ -52,7 +53,9 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
                         <Item>
                             <div>
                                 <footer className="person">
-                                    <GatsbyImage className="image" image={el.author.userIconPng.localFile.childImageSharp.gatsbyImageData} alt={el.author.userIconPng.altText} />
+                                    {el.author.userIconPng
+                                        ? <GatsbyImage className="image" image={el.author.userIconPng.localFile.childImageSharp.gatsbyImageData} alt={el.author.userIconPng.altText} />
+                                        : null}
                                     <div>
                                         <cite className="name">{el.author.authorName}</cite>
                                         <cite className="place">{el.author.authorPosition}</cite>
@@ -203,6 +206,7 @@ const Item = styled.blockquote`
 
         .image{
             max-width: 60px;
+            margin-right: 12px;
             
             img{
                 border-radius: 50%;
@@ -210,7 +214,6 @@ const Item = styled.blockquote`
         }
 
         cite{
-            margin-left: 12px;
             display: block;
             font-style: normal;
 

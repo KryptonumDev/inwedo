@@ -90,6 +90,7 @@ const Item = styled(Link)`
 
     .h4{
         margin-bottom: 16px;
+        font-weight: 300;
         font-size: clamp(14px, 2.08vw, 18px);
     }
 

@@ -11,7 +11,7 @@ export default function Hero({ data: { text, pageTitle, subTitle, button, image 
                 <Content>
                     <TextPart>
                         <h1 className="h4 line">{pageTitle}</h1>
-                        <p className="h1">{subTitle}</p>
+                        <div className="h1" dangerouslySetInnerHTML={{__html: subTitle}}/>
                         <p className="h4">{text}</p>
                         <Link className="button" to={button.url}>{button.name}</Link>
                     </TextPart>
@@ -67,7 +67,10 @@ const TextPart = styled.div`
     h1{
         margin-bottom: 16px;
         opacity: .55;
-        font-size: clamp(14px, 2.08vw, 18px);
+
+        h1,h2,h3,h4,h5,h6,p{
+            font-size: clamp(14px, 2.08vw, 18px);
+        }
     }
 
     .h1{

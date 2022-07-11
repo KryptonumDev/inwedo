@@ -1,5 +1,5 @@
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
 import Arrow from './../images/faq-arrow.svg'
@@ -20,7 +20,7 @@ export default function MiniFaq({ data: { sectionTitle, text, smallText, questio
                     "text": el.answer
                 }
             })
-            
+
         });
 
         return arr
@@ -31,6 +31,23 @@ export default function MiniFaq({ data: { sectionTitle, text, smallText, questio
         "@type": "FAQPage",
         "mainEntity": items
     };
+
+    useEffect(() => {
+        const details = document.querySelectorAll("details");
+
+        details.forEach((targetDetail) => {
+            targetDetail.addEventListener("click", () => {
+                details.forEach((detail) => {
+                    if (detail !== targetDetail) {
+                        detail.removeAttribute("open");
+                    }
+                });
+                return false
+            });
+        });
+
+        return false
+    }, [])
 
     return (
         <Wrapper>
@@ -208,7 +225,7 @@ const Item = styled.details`
         @media (max-width: 660px){
             padding-left: 30px;
         }
-        span{
+        h3{
             margin-top: 16px;
             display: block;
             font-weight: 300;

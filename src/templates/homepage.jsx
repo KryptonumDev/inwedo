@@ -8,13 +8,14 @@ import NumbersAndImages from "../components/numbers-and-image-grid"
 import Testomontials from "../components/testomontials-slider"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
+import { Script } from "gatsby"
 
 const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
   let { homepage, language, seo } = allWpPage.nodes[0]
-  
+
   return (
     <main id='main'>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Homepage'/>
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Homepage' />
       <Hero data={homepage.heroHome} />
       <Services data={homepage.services} />
       <CallToAction data={homepage.callToAction} />

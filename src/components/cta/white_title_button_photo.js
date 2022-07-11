@@ -8,7 +8,7 @@ export default ({ title, button, image }) => (
         <Content>
             <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
             <div className="content">
-                <Title className="h1 colored">{title}</Title>
+                <Title className="h1 colored" dangerouslySetInnerHTML={{ __html: title }}></Title>
                 <Button to={button.url} className='button'>
                     <span>{button.name}</span>
                 </Button>
@@ -28,15 +28,32 @@ margin-top: ${props => props.small ? 'clamp(32px, 6.25vw, 64px)' : 'var(--margin
         width: calc(100% + 64px);
         transform: translateX(-32px);
     }
+
+    @media (max-width: 876px){
+        box-shadow: unset;
+        width: 100%;
+        transform: unset;
+    }
 `
 
 const Content = styled.div`
-    padding: clamp(64px, 10.68vw, 100px) 32px;
+    padding: clamp(64px, 10.68vw, 81px) clamp(32px, ${54 / 768 * 100}vw, 75px);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 64px;
+
+    .content{
+        max-width: 500px;
+    }
+
+    @media (max-width: 1024px) {
+        padding: clamp(64px, 10.68vw, 81px) 32px;
+    }
 
     @media (max-width: 876px) {
+        padding: 0;
+        gap: 0;
         flex-direction: column;
         text-align: center;
     }
@@ -44,9 +61,9 @@ const Content = styled.div`
 
 const Image = styled(GatsbyImage)`
     box-shadow: var(--shadow);
-    max-width: 435px;
+    max-width: 508px;
     width: 100%;
-    margin-right: clamp(32px, 9.375vw, 128px);
+    min-width: 400px;
 
     img{
         border-radius: 8px;
@@ -55,6 +72,7 @@ const Image = styled(GatsbyImage)`
     @media (max-width: 876px) {
         margin-right: 0;
         margin-bottom: 32px;
+        min-width: unset;
     }
 `
 
@@ -63,9 +81,15 @@ const Title = styled.span`
     margin-bottom: 32px;
     display: block;
 
+    h1,h2,h3,h4,h5,h6,p{
+        color: var(--color-white);
+        font-size: inherit;
+        line-height: inherit;
+    }
+
     &.h1{
         font-weight: 600px;
-        font-size: clamp(20px, 3.385vw, 32px);
+        font-size: clamp(20px, 3.385vw, 24px);
     }
 `
 

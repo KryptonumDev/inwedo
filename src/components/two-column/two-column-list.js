@@ -4,7 +4,7 @@ import { Container } from "../../style"
 import Mark from './../../images/list-mark.svg'
 import Cirkle from './../../images/cirkle-mark.svg'
 
-export default function TwoColumnFlex({ data: { sectionTitle, subTitle, text, list } }) {
+export default function TwoColumnFlex({ data: { sectionTitle, subTitle, text, list }, webApp }) {
     return (
         <Wrapper>
             <Container>
@@ -32,7 +32,7 @@ const Content = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 32px;
+    gap: clamp(32px, 5.2vw, 75px);
 
     @media (max-width: 1024px) {
         flex-direction: column;
@@ -40,7 +40,7 @@ const Content = styled.div`
 `
 
 const TextPart = styled.div`
-    max-width: 470px;
+    max-width: 610px;
 
     .h4{
         opacity: .55;
@@ -59,10 +59,18 @@ const TextPart = styled.div`
 `
 
 const Card = styled.div`
-    padding: clamp(42px, 6.9vw, 64px) clamp(30px, 6.11vw, 64px);
+    padding: clamp(42px, 6.9vw, 64px) 0 clamp(42px, 6.9vw, 64px) clamp(30px, 6.11vw, 64px);
     position: relative;
     width: 100%;
     max-width: 570px;
+    min-width: 500px;
+    box-sizing: border-box;
+
+    @media (max-width: 1024px) {
+        max-width: 610px;
+        padding: clamp(42px, 6.9vw, 64px) clamp(30px, 6.11vw, 64px);
+        min-width: unset;
+    }
 
     @media (max-width: 500px){
         width: unset;

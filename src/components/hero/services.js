@@ -12,7 +12,7 @@ export default function Hero({ data: { text, pageTitle, button, image } }) {
                     <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                     <TextPart>
                         <h1 className="h4 line">{pageTitle}</h1>
-                        <p className="h1">{text}</p>
+                        <div className="h1" dangerouslySetInnerHTML={{__html: text}}></div>
                         <Link className="button" to={button.url}>{button.name}</Link>
                     </TextPart>
                 </Content>
@@ -71,7 +71,10 @@ const TextPart = styled.div`
 
     .h1{
         margin-bottom: clamp(16px, 3.6458vw, 40px);
-        font-size: clamp(20px, 3.385vw, 32px);
+
+        h1,h2,h3,h4,h5,h6,p{
+            font-size: clamp(20px, 3.385vw, 32px);
+        }
     }
 
     @media (max-width: 768px){

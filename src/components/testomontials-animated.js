@@ -19,7 +19,9 @@ export default function TestomontialsAnimated({ data: { text, seectionTitle, tes
                         {testomontialsFirstRow.map(el => (
                             <Item>
                                 <div className="flex">
-                                    <GatsbyImage className="image" image={el.autorImg.localFile.childImageSharp.gatsbyImageData} alt={el.autorImg.altText} />
+                                    {el.autorImg
+                                        ? <GatsbyImage className="image" image={el.autorImg.localFile.childImageSharp.gatsbyImageData} alt={el.autorImg.altText} />
+                                        : null}
                                     <div>
                                         <p className="name">{el.authorName}</p>
                                         <p className="position">{el.authorPosition}</p>
@@ -33,7 +35,9 @@ export default function TestomontialsAnimated({ data: { text, seectionTitle, tes
                         {testomontialsSecondRow.map(el => (
                             <Item>
                                 <div className="flex">
-                                    <GatsbyImage className="image" image={el.autorImg.localFile.childImageSharp.gatsbyImageData} alt={el.autorImg.altText} />
+                                    {el.autorImg
+                                        ? <GatsbyImage className="image" image={el.autorImg.localFile.childImageSharp.gatsbyImageData} alt={el.autorImg.altText} />
+                                        : null}
                                     <div>
                                         <p className="name">{el.authorName}</p>
                                         <p className="position">{el.authorPosition}</p>

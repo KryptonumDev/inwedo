@@ -8,8 +8,8 @@ export default ({ title, text, image, form }) => (
     <ContentWrapper>
         <Content>
             <div className="content">
-                <Title className="h1">{title}</Title>
-                <Text className="h4">{text}</Text>
+                <Title className="h1" dangerouslySetInnerHTML={{__html: title}}>=</Title>
+                <Text className="h4" dangerouslySetInnerHTML={{__html: text}}></Text>
                 <GetForm data={form}/>
             </div>
             <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
@@ -18,7 +18,7 @@ export default ({ title, text, image, form }) => (
 )
 
 const ContentWrapper = styled.div`
-margin-top: ${props => props.small ? 'clamp(32px, 6.25vw, 64px)' : 'var(--margin-section)'};
+    margin-top: ${props => props.small ? 'clamp(32px, 6.25vw, 64px)' : 'var(--margin-section)'};
     background: var(--color-accent);
     border-radius: 24.5221px;
     box-shadow: var(--shadow);
@@ -69,6 +69,12 @@ const Title = styled.span`
     max-width: 600px;
     display: block;
 
+    h1,h2,h3,h4,h5,h6,p{
+        color: var(--color-white);
+        font-size: inherit;
+        line-height: inherit;
+    }
+
     &.h1{
         font-weight: 600px;
         font-size: clamp(20px, 3.385vw, 32px);
@@ -79,6 +85,12 @@ const Text = styled.p`
     color: var(--color-white);
     margin-bottom: 48px;
     max-width: 600px;
+
+    h1,h2,h3,h4,h5,h6,p{
+        color: var(--color-white);
+        font-size: inherit;
+        line-height: inherit;
+    }
 
     &.p{
         font-size: clamp(14px, 2.083vw, 18px);

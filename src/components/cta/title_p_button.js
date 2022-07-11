@@ -5,7 +5,7 @@ import styled from 'styled-components'
 export default ({ title, text, button }) => (
     <ContentWrapper>
         <Content>
-            <Title className="h1">{title}</Title>
+            <Title className="h1" dangerouslySetInnerHTML={{__html: title}}></Title>
             <Text className="h4" dangerouslySetInnerHTML={{__html: text}}/>
             <Button to={button.url} className='button-white'>
                 <span className="colored">{button.name}</span>
@@ -15,7 +15,7 @@ export default ({ title, text, button }) => (
 )
 
 const ContentWrapper = styled.div`
-margin-top: ${props => props.small ? 'clamp(32px, 6.25vw, 64px)' : 'var(--margin-section)'};
+    margin-top: ${props => props.small ? 'clamp(32px, 6.25vw, 64px)' : 'var(--margin-section)'};
     background: var(--color-accent);
     border-radius: 24px;
     box-shadow: var(--shadow);
@@ -43,6 +43,12 @@ const Title = styled.span`
     margin-bottom: 24px;
     display: block;
 
+    h1,h2,h3,h4,h5,h6,p{
+        color: var(--color-white);
+        font-size: inherit;
+        line-height: inherit;
+    }
+
     &.h1{
         font-weight: 600;
         font-size: clamp(20px, 3.385vw, 32px);
@@ -50,7 +56,6 @@ const Title = styled.span`
 `
 
 const Text = styled.div`
-    color: var(--color-white);
     text-align: center;
     margin-bottom: 32px;
 
@@ -61,6 +66,7 @@ const Text = styled.div`
     h1,h2,h3,h4,h5,h6,p{
         font-size: inherit;
         line-height: inherit;
+        color: var(--color-white);
     }
 `
 

@@ -16,7 +16,7 @@ const WebAppPage = ({ data: { allWpPage, alternates }, location }) => {
     <main id='main'>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={webApp.heroWebApp} />
-      <TwoColumnFlex data={webApp.twoColumnFlexWebApp} />
+      <TwoColumnFlex webApp={true} data={webApp.twoColumnFlexWebApp} />
       <TestomontialDivider data={webApp.testomontialDividerWebApp} />
       <Technologies data={webApp.technologies} />
       <CallToAction data={webApp.callToActionWebApp} />

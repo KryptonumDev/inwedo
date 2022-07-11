@@ -5,7 +5,7 @@ import styled from 'styled-components'
 export default ({ title, button }) => (
     <ContentWrapper>
         <Content>
-            <Title className="h1 colored">{title}</Title>
+            <Title className="h1 colored" dangerouslySetInnerHTML={{__html: title}}></Title>
             <Button to={button.url} className='button'>
                 <span>{button.name}</span>
             </Button>
@@ -37,6 +37,12 @@ const Title = styled.span`
     text-align: center;
     margin-bottom: 42px;
     display: block;
+
+    h1,h2,h3,h4,h5,h6,p{
+        color: var(--color-white);
+        font-size: inherit;
+        line-height: inherit;
+    }
 
     &.h1{
         font-weight: 600;

@@ -91,7 +91,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                         altText
                         localFile {
                             childImageSharp {
-                                gatsbyImageData(placeholder: BLURRED, quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 100)
                             }
                         }
                     }

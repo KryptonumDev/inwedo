@@ -6,7 +6,7 @@ import Newsletter from "../forms/newsletter"
 export default ({ title, form }) => (
     <ContentWrapper>
         <Content>
-            <Title>{title}</Title>
+            <Title dangerouslySetInnerHTML={{__html: title}}></Title>
             <Newsletter data={form}/>
         </Content>
     </ContentWrapper>
@@ -43,6 +43,11 @@ const Title = styled.span`
     line-height: 151%;
     margin-bottom: 48px;
     display: block;
+
+    h1,h2,h3,h4,h5,h6,p{
+        font-size: inherit;
+        line-height: inherit;
+    }
 `
 
 const Button = styled(Link)`

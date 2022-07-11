@@ -118,13 +118,13 @@ const Row = styled.div`
 `
 
 const Item = styled.div`
-    padding: clamp(18px, 2.99vw, 28px) clamp(10px, 1.69vw, 16px);
+    padding: clamp(18px, 2.99vw, 28px) 16px clamp(18px, 2.99vw, 28px) clamp(10px, ${25/768*100}vw, 40px);
     background-color: var(--color-white);
     border-radius: 8px;
     box-shadow: var(--shadow);
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-gap: clamp(30px, 5.2vw, 50px);
+    grid-gap: clamp(30px, 5.2vw, 36px);
     align-items: center;
     
     .image{
@@ -135,10 +135,9 @@ const Item = styled.div`
 
     p{
         font-weight: 400;
-        font-size: clamp(14px, 2.21vw, 20px);
+        font-size: clamp(13px, 2.21vw, 20px);
         line-height: 151%;
         margin-bottom: 0;
-        text-align: center;
     }
 
     @media (max-width: 500px) {
