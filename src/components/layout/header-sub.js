@@ -86,7 +86,7 @@ export default function Header({ location }) {
                     <Link onClick={() => { setIsOpen(false) }} onFocus={() => { setIsHovered(false) }} aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
                         <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
                     </Link>
-                    <MobileButton isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>
+                    <MobileButton aria-label='mobile menu burger' isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>
                         <span />
                     </MobileButton>
                     <Desctop

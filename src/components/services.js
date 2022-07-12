@@ -56,7 +56,6 @@ const Wrapper = styled.section`
 
     .h4.title{
         margin-bottom: clamp(8px, 1.5625vw, 16px);
-        color: var(--color-black);
         opacity: .55;
         font-size: clamp(14px, 2.08vw, 18px);
     }

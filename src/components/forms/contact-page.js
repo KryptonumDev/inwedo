@@ -49,9 +49,10 @@ const Wrapper = styled.form`
     display: grid;
     grid-gap: 22px;
 
-    input, textarea{
+    input, textarea, select{
         &:focus-visible{
-            outline-offset: 0px;
+            border-color: blue;
+            outline: none;
         }
     }
 
