@@ -48,5 +48,5 @@ const LocContainer = styled(Container)`
 `
 
 const Placeholder = styled.div`
-    margin-bottom: clamp(-64px, ${-48/768*100}vw, 0px);
+    margin-bottom: -16px;
 `

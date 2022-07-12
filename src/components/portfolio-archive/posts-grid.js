@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../../style"
-import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion';
 import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from "gatsby";
 
@@ -9,37 +8,28 @@ export default function PostsGrid({ data, from, to }) {
     return (
         <Wrapper>
             <Container>
-                <AnimateSharedLayout>
-                    <AnimatePresence exitBeforeEnter>
-                        <Grid layout>
-                            {data.map((el, index) => {
-                                if (index >= from && index <= to) {
-                                    return (
-                                        <Item
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            layout
-                                        >
-                                            <Link to={el.caseStudies.currentPostUrl}>
-                                                <div className="card">
-                                                    <GatsbyImage className="logo" image={el.caseStudies.previewCard.previewLogo.localFile.childImageSharp.gatsbyImageData} alt={el.caseStudies.previewCard.previewLogo.altText} />
-                                                </div>
-                                                <GatsbyImage className="image" image={el.caseStudies.previewCard.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.caseStudies.previewCard.previewImage.altText} />
-                                                <div className="content">
-                                                    <h3 className="h4">{el.caseStudies.previewCard.previewTitle}</h3>
-                                                    <p className="p">{el.caseStudies.previewCard.previewText}</p>
-                                                    <span className="link">{el.caseStudies.previewCard.readMore}</span>
-                                                </div>
-                                            </Link>
-                                        </Item>
-                                    )
-                                }
-                                return null
-                            })}
-                        </Grid>
-                    </AnimatePresence>
-                </AnimateSharedLayout>
+                <Grid>
+                    {data.map((el, index) => {
+                        if (index >= from && index <= to) {
+                            return (
+                                <Item>
+                                    <Link to={el.caseStudies.currentPostUrl}>
+                                        <div className="card">
+                                            <GatsbyImage className="logo" image={el.caseStudies.previewCard.previewLogo.localFile.childImageSharp.gatsbyImageData} alt={el.caseStudies.previewCard.previewLogo.altText} />
+                                        </div>
+                                        <GatsbyImage className="image" image={el.caseStudies.previewCard.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.caseStudies.previewCard.previewImage.altText} />
+                                        <div className="content">
+                                            <h3 className="h4">{el.caseStudies.previewCard.previewTitle}</h3>
+                                            <p className="p">{el.caseStudies.previewCard.previewText}</p>
+                                            <span className="link">{el.caseStudies.previewCard.readMore}</span>
+                                        </div>
+                                    </Link>
+                                </Item>
+                            )
+                        }
+                        return null
+                    })}
+                </Grid>
             </Container>
         </Wrapper>
     )
@@ -59,7 +49,7 @@ const Grid = styled.div`
     }
 `
 
-const Item = styled(motion.div)`
+const Item = styled.div`
     width: 100%;
     position: relative;
 
@@ -76,9 +66,12 @@ const Item = styled(motion.div)`
             width: fit-content;
             height: fit-content;
             max-width: clamp(91px, 13vw, 112px);
-            /* aspect-ratio: 4.75/1; */
+            max-height: 24px;
 
             img{
+                height: 100%;
+                width: fit-content;
+                margin: 0 auto;
                 /* height: 24px; */
             }
         }
@@ -87,6 +80,18 @@ const Item = styled(motion.div)`
     .image{
         width: 100%;
         border-radius: 8px;
+        position: relative;
+
+        &::before {
+            float: left;
+            padding-top: 55%;
+            content: '';
+        }
+        &::after {
+            display: block;
+            content: '';
+            clear: both;
+        }
 
         img{
             border-radius: 8px;

@@ -92,6 +92,7 @@ const Title = styled.h2`
 const Flex = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: start;
     grid-gap: clamp(32px, ${32 / 768 * 100}vw, 100px);
     position: relative;
 
@@ -190,7 +191,8 @@ const Item = styled.div`
 const Card = styled.div`
     position: sticky;
     z-index: 100;
-    top: 0;
+    top: 64px;
+    align-self: start;
 
     @media (max-width: 1024px){
         max-width: 570px;

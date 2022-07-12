@@ -46,7 +46,18 @@ export default function MiniFaq({ data: { sectionTitle, text, smallText, questio
             });
         });
 
-        return false
+        return () => {
+            details.forEach((targetDetail) => {
+                targetDetail.removeEventListener("click", () => {
+                    details.forEach((detail) => {
+                        if (detail !== targetDetail) {
+                            detail.removeAttribute("open");
+                        }
+                    });
+                    return false
+                });
+            });
+        }
     }, [])
 
     return (
@@ -155,18 +166,22 @@ const Item = styled.details`
     padding-top: 16px;
     padding-bottom: 16px;
 
+    @media (max-width: 660px){
+        padding-bottom: 0;
+    }
+
     &::after{
         content: url(${props => props.Arrow});
         position: absolute;
-        left: clamp(20px, 3.255vw, 40px);
-        top: 24px;
+        left: clamp(0px, 2.25vw, 32px);
+        top: 20px;
         transition: transform .2s cubic-bezier(0.215, 0.610, 0.355, 1);
         pointer-events: none;
 
         @media (max-width: 660px) {
             left: 0;
-            top: 22px;
-            transform: scale(.55);
+            top: 18px;
+            transform: scale(.75);
         }
     }
     
@@ -182,13 +197,13 @@ const Item = styled.details`
             transform: rotateX(180deg);
             
             @media (max-width: 660px) {
-                transform: rotateX(180deg) scale(.55);
+                transform: rotateX(180deg) scale(.75) translateY(-3px);
             }
         }
     }
 
     summary{
-        padding-left: clamp(40px, 8.46vw, 90px);
+        padding-left: clamp(32px, ${48 / 768 * 100}vw, 64px);
         cursor: pointer;
 
         @media (max-width: 660px){
@@ -196,10 +211,10 @@ const Item = styled.details`
         }
 
         span{
-            color: #495057;
-            font-weight: 600;
+            color: #000;
+            font-weight: 500;
             font-size: clamp(14px, 2.08vw, 18px);
-            line-height: 35px;
+            line-height: 28px;
             padding: 4px 0;
                 
                 position: relative;
@@ -220,16 +235,20 @@ const Item = styled.details`
     }
 
     div{
-        padding-left: clamp(40px, 8.46vw, 90px);
+        padding-left: clamp(0px, ${16 / 768 * 100}vw, 32px);
 
         @media (max-width: 660px){
-            padding-left: 30px;
+            padding-left: 0;
         }
         h3{
             margin-top: 16px;
             display: block;
             font-weight: 300;
             font-size: clamp(14px, 1.95vw, 16px);
+
+            @media (max-width: 660px){
+                margin-top: 8px;
+            }
 
             p+p{
                 margin-top: 16px;

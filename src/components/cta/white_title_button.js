@@ -46,7 +46,7 @@ const Title = styled.span`
 
     &.h1{
         font-weight: 600;
-        font-size: clamp(20px, 3.385vw, 38px);
+        font-size: clamp(20px, ${25 / 768 * 100}vw, 30px);
     }
 `
 

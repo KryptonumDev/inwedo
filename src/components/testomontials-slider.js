@@ -202,10 +202,12 @@ const Item = styled.blockquote`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 0 auto 48px auto;
+        margin: 0 auto 32px auto;
+        min-height: 60px;
 
         .image{
             max-width: 60px;
+            max-height: 60px;
             margin-right: 12px;
             
             img{

@@ -64,6 +64,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
           }
           postsOtherData{
             loadMore
+            noPostsText
           }
           clientsPortfolio{
             card : cardOnRightSide{

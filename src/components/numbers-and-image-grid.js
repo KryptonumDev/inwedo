@@ -282,7 +282,6 @@ const Grid = styled.div`
     }
 
     @media (max-width: 920px) {
-        position: relative;
         left: 0;
         margin: 0 auto;
         margin-bottom: 48px;
@@ -291,6 +290,7 @@ const Grid = styled.div`
         transform: translateX(-46px);
         max-height: 920px;
         height: unset;
+        position: relative;
 
         &::before {
             float: left;

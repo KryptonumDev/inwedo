@@ -43,6 +43,15 @@ export default function Header({ location }) {
     const localeData = data.allWpPage.nodes.filter(el => el.language.slug === locale)
     const { siteLogo, headerNavigation, contactLink } = localeData[0].header
 
+    useEffect(() => {
+        const body = document.documentElement
+        if (isOpen) {
+            body.classList.add('noScroll')
+        } else {
+            body.classList.remove('noScroll')
+        }
+    }, [isOpen])
+
     const [isOpen, setIsOpen] = useState(false)
 
     return (

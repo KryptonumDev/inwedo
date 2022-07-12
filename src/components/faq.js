@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
 import Arrow from './../images/faq-arrow.svg'
@@ -28,6 +28,34 @@ export default function FAQ({ data: { title, faqElement } }) {
         "@type": "FAQPage",
         "mainEntity": items
     };
+
+    useEffect(() => {
+        const details = document.querySelectorAll("details");
+
+        details.forEach((targetDetail) => {
+            targetDetail.addEventListener("click", () => {
+                details.forEach((detail) => {
+                    if (detail !== targetDetail) {
+                        detail.removeAttribute("open");
+                    }
+                });
+                return false
+            });
+        });
+
+        return () => {
+            details.forEach((targetDetail) => {
+                targetDetail.removeEventListener("click", () => {
+                    details.forEach((detail) => {
+                        if (detail !== targetDetail) {
+                            detail.removeAttribute("open");
+                        }
+                    });
+                    return false
+                });
+            });
+        }
+    }, [])
 
     return (
         <Wrapper>
@@ -206,7 +234,7 @@ const Item = styled.details`
             padding-left: 40px;
         }
 
-        span{
+        h3{
             margin-top: 24px;
             margin-bottom: 16px;    
             display: block;

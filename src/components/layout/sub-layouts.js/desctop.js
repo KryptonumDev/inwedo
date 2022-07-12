@@ -11,7 +11,7 @@ export default function Desctop({ headerNavigation, setIsHovered, isHovered, set
                     <li>
                         <details open onMouseEnter={() => { setIsHovered(index) }} onMouseLeave={() => { setIsHovered(false) }}>
                             <Summary isHovered={isHovered} index={index} tabIndex='-1' onClick={(e) => { e.preventDefault() }}>
-                                <Link partiallyActive={true} activeClassName="active" onFocus={() => { setIsHovered(index) }} to={el.mainLink.url}>{el.menuTitle}</Link>
+                                <Link onClick={() => { setIsHovered(false) }}  partiallyActive={true} activeClassName="active" onFocus={() => { setIsHovered(index) }} to={el.mainLink.url}>{el.menuTitle}</Link>
                             </Summary>
                             <Menu isHovered={isHovered} index={index} className="menu">
                                 <Container>

@@ -68,6 +68,7 @@ export default function Seo({ data, lang, alternates, location, type, id, templa
                     <link rel="alternate" hreflang={el.language.slug} href={href} />
                 )
             })}
+            <link rel="canonical" href={location.href}/>
         </Helmet>
     )
 }

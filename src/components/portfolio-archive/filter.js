@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Container } from "../../style"
 
-export default function Filter({ data, currentFilter, currentSubFilter, changeFilters, changeCurrentSubFilter }) {
+export default function Filter({ defaultPosts, data, currentFilter, currentSubFilter, changeFilters, changeCurrentSubFilter }) {
     return (
         <Wrapper>
             <LocContainer>
@@ -21,11 +21,26 @@ export default function Filter({ data, currentFilter, currentSubFilter, changeFi
                         <SubFilterItem tabIndex={currentFilter === el.slug ? '0' : '-1'} slug={'all'} activeSlug={currentSubFilter} onClick={() => (changeCurrentSubFilter('all'))}>
                             <span className="p">All</span>
                         </SubFilterItem>
-                        {el.wpChildren.nodes.map(innerEl => (
-                            <SubFilterItem slug={innerEl.slug} tabIndex={currentFilter === el.slug ? '0' : '-1'} activeSlug={currentSubFilter} onClick={() => (changeCurrentSubFilter(innerEl.slug))}>
-                                <span className="p">{innerEl.name}</span>
-                            </SubFilterItem>
-                        ))}
+                        {el.wpChildren.nodes.map(innerEl => {
+                            let isActive = false
+
+                            for(let i = 0; i < defaultPosts.length; i++){
+                                for(let j = 0; j < defaultPosts[i].categoriesPortfolio.nodes.length; j++){
+                                    if(defaultPosts[i].categoriesPortfolio.nodes[j].slug === innerEl.slug){
+                                        isActive = true
+                                    }
+                                }
+                            }
+
+                            if (isActive) {
+                                return (
+                                    <SubFilterItem slug={innerEl.slug} tabIndex={currentFilter === el.slug ? '0' : '-1'} activeSlug={currentSubFilter} onClick={() => (changeCurrentSubFilter(innerEl.slug))}>
+                                        <span className="p">{innerEl.name}</span>
+                                    </SubFilterItem>
+                                )
+                            }
+                            return null
+                        })}
                     </SubGrid>
                 ))}
             </LocContainer>
@@ -35,7 +50,6 @@ export default function Filter({ data, currentFilter, currentSubFilter, changeFi
 
 const Wrapper = styled.div`
     margin-top: 64px;
-    margin-bottom: 128px;
 `
 
 const LocContainer = styled(Container)`
@@ -104,7 +118,7 @@ const SubGrid = styled.div`
     justify-content: center;
     align-items: center;
     gap: clamp(16px, 3.125vw, 32px);
-    position: absolute;
+    position: ${props => props.slug === props.activeSlug ? 'relative' : 'absolute'};;
     left: 50%;
     transform: translateX(-50%);
     transition: opacity .2s linear;

@@ -47,22 +47,30 @@ export default function Archive({ parentCategories, children, posts, data, locat
     return (
         <>
             <Filter
+                defaultPosts={defaultPosts}
                 data={parentCategories}
                 currentFilter={currentFilter}
                 currentSubFilter={currentSubFilter}
                 changeFilters={changeFilters}
                 changeCurrentSubFilter={changeCurrentSubFilter}
             />
-            {filtredPosts.length > 0
-                ? <PostsGrid data={filtredPosts} from={'0'} to={'3'} />
-                : null}
-            {children}
-            {filtredPosts.length > 0
-                ? <PostsGrid data={filtredPosts} from={'4'} to={showCount} />
-                : null}
-            {filtredPosts.length > showCount + 1
-                ? <Button onClick={() => { changeShowCount(showCount + 4) }} className="button">{data.loadMore}</Button>
-                : null}
+            {!!filtredPosts.length
+                ? <>
+                    {filtredPosts.length > 0
+                        ? <PostsGrid data={filtredPosts} from={'0'} to={'3'} />
+                        : null}
+                    {children}
+                    {filtredPosts.length > 0
+                        ? <PostsGrid data={filtredPosts} from={'4'} to={showCount} />
+                        : null}
+                    {filtredPosts.length > showCount + 1
+                        ? <Button onClick={() => { changeShowCount(showCount + 4) }} className="button">{data.loadMore}</Button>
+                        : null}
+                </>
+                : <NoPosts id='posts'>
+                    <span className='colored'>{data.noPostsText}</span>
+                </NoPosts>
+            }
         </>
     )
 }
@@ -70,4 +78,26 @@ export default function Archive({ parentCategories, children, posts, data, locat
 const Button = styled.button`
     margin: 64px auto 0 auto;
     border: none;
+`
+
+const NoPosts = styled.div`
+    padding: 30px 130px;
+    width: fit-content;
+    margin: 64px auto 0 auto;
+    border-radius: 24px;
+    background: var(--color-white);
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span{
+        font-weight: 400;
+        font-size: clamp(16px, ${24 / 768 * 100}vw, 30px);
+        line-height: 160%;
+    }
+
+    @media (max-width: 640px) {
+        padding: 30px;
+    }
 `

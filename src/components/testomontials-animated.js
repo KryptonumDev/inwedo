@@ -171,10 +171,12 @@ const Item = styled.div`
         display: flex;
         align-items: center;
         margin-bottom: 16px;
+        min-height: clamp(60px, 23.43vw, 68px);
 
         .image{
             margin-right: clamp(16px, 5.2vw, 24px);
             max-width: clamp(60px, 23.43vw, 68px);
+            max-height: clamp(60px, 23.43vw, 68px);
             width: 100%;
 
             img{
