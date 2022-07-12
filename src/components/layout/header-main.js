@@ -42,6 +42,7 @@ export default function Header({ location }) {
     const locale = activeLanguage(location)
     const localeData = data.allWpPage.nodes.filter(el => el.language.slug === locale)
     const { siteLogo, headerNavigation, contactLink } = localeData[0].header
+    const [isOpen, setIsOpen] = useState(false)
 
     useEffect(() => {
         const body = document.documentElement
@@ -52,7 +53,6 @@ export default function Header({ location }) {
         }
     }, [isOpen])
 
-    const [isOpen, setIsOpen] = useState(false)
 
     return (
         <Wrapper id='header' isOpen={isOpen}>

@@ -9,7 +9,7 @@ export default function FAQ({ data: { title, faqElement } }) {
     const [items] = useState(() => {
         const arr = []
 
-        faqElement.forEach(el => {
+        faqElement?.forEach(el => {
             arr.push({
                 "@type": "Question",
                 "name": el.question,
@@ -56,38 +56,41 @@ export default function FAQ({ data: { title, faqElement } }) {
             });
         }
     }, [])
-
-    return (
-        <Wrapper>
-            <Helmet>
-                <script type="application/ld+json">
-                    {JSON.stringify(schema)}
-                </script>
-            </Helmet>
-            <Container>
-                <Title className="h1">{title}</Title>
-                <Repeater>
-                    {faqElement.map((el, index) => (
-                        <Item Arrow={Arrow} open={index === 0 ? true : false}>
-                            <summary
-                                itemProp='mainEntity'
-                                itemType='https://schema.org/Question'>
-                                <span itemProp='name'>
-                                    {el.question}
-                                </span>
-                            </summary>
-                            <div
-                                itemProp='acceptedAnswer'
-                                itemType='https://schema.org/Answer'>
-                                <h3 className="p" itemProp='text' dangerouslySetInnerHTML={{ __html: el.answer }}>
-                                </h3>
-                            </div>
-                        </Item>
-                    ))}
-                </Repeater>
-            </Container>
-        </Wrapper>
-    )
+    if (!!faqElement) {
+        return (
+            <Wrapper>
+                <Helmet>
+                    <script type="application/ld+json">
+                        {JSON.stringify(schema)}
+                    </script>
+                </Helmet>
+                <Container>
+                    <Title className="h1">{title}</Title>
+                    <Repeater>
+                        {faqElement.map((el, index) => (
+                            <Item Arrow={Arrow} open={index === 0 ? true : false}>
+                                <summary
+                                    itemProp='mainEntity'
+                                    itemType='https://schema.org/Question'>
+                                    <span itemProp='name'>
+                                        {el.question}
+                                    </span>
+                                </summary>
+                                <div
+                                    itemProp='acceptedAnswer'
+                                    itemType='https://schema.org/Answer'>
+                                    <h3 className="p" itemProp='text' dangerouslySetInnerHTML={{ __html: el.answer }}>
+                                    </h3>
+                                </div>
+                            </Item>
+                        ))}
+                    </Repeater>
+                </Container>
+            </Wrapper>
+        )
+    }
+    
+    return null
 }
 
 const Wrapper = styled.section`

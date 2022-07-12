@@ -49,6 +49,12 @@ const Wrapper = styled.form`
     display: grid;
     grid-gap: 22px;
 
+    input, textarea{
+        &:focus-visible{
+            outline-offset: 0px;
+        }
+    }
+
     label{
         display: grid;
 
@@ -99,6 +105,14 @@ const Wrapper = styled.form`
                 font-size: 14px;
                 line-height: 24px;
                 letter-spacing: 0.005em;
+
+                a{
+                    background: var(--color-accent);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    text-fill-color: transparent;
+                }
             }
 
             input{
