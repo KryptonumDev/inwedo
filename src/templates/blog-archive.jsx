@@ -37,7 +37,11 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
             }
             seo {
               title
-              fullHead
+              metaDesc
+              opengraphSiteName
+              opengraphImage {
+                publicUrl
+              }
             }
             blogArchive {
               heroBlog {
@@ -74,7 +78,7 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -101,7 +105,7 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -116,7 +120,7 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -141,7 +145,7 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -168,7 +172,7 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }

@@ -22,7 +22,7 @@ export default function TwoColumnFlex({ data: { image, sectionTitle, text, teamM
                         <Grid>
                             {teamMembers.map(el => (
                                 <div className="flex">
-                                    <GatsbyImage className="icon" image={el.memberIcon.localFile.childImageSharp.gatsbyImageData} alt={el.memberIcon.altText} />
+                                    <img className="icon" src={el.memberIcon.localFile.publicURL} alt={el.memberIcon.altText} />
                                     <div>
                                         <p className="h4">{el.memberTitle}</p>
                                         <p className="p">{el.memberText}</p>

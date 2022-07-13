@@ -13,7 +13,7 @@ export default function RemoteWorkshop({ data: { sectionTitle, subTitle, textUnd
                 <CardsGrid>
                     {cards.map(el => (
                         <CardsItem>
-                            <GatsbyImage className="image" image={el.cardIcon.localFile.childImageSharp.gatsbyImageData} />
+                            <img className="image" src={el.cardIcon.localFile.publicURL} />
                             <h3>{el.cardText}</h3>
                         </CardsItem>
                     ))}
@@ -22,7 +22,7 @@ export default function RemoteWorkshop({ data: { sectionTitle, subTitle, textUnd
                 <ToolsGrid>
                     {tools.map(el => (
                         <ToolsItem>
-                            <GatsbyImage className="image" image={el.toolIcon.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
+                            <img className="image" src={el.toolIcon.localFile.publicURL} alt={el.altText} />
                         </ToolsItem>
                     ))}
                 </ToolsGrid>

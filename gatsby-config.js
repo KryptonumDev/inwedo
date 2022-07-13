@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `inwedo`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://inwedo.netlify.app`
   },
   plugins: [
     'gatsby-plugin-netlify',
@@ -26,8 +26,16 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
+    "gatsby-transformer-sharp", 
     'gatsby-plugin-postcss',
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://inwedo.netlify.app',
+        sitemap: 'https://inwedo.telify.app/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }],
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -44,9 +52,9 @@ module.exports = {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
         id: "GTM-MKQG64D",
-        includeInDevelopment: false,
+        includeInDevelopment: true,
         defaultDataLayer: { platform: "gatsby" },
-        enableWebVitalsTracking: true,
+        enableWebVitalsTracking: true, 
       },
     },
     {

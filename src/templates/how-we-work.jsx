@@ -58,7 +58,11 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
             }
             seo {
               title
-              fullHead
+              metaDesc
+              opengraphSiteName
+              opengraphImage {
+                publicUrl
+              }
             }
             howWeWork {
                 heroHowWeWork {
@@ -73,7 +77,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -96,9 +100,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     icon {
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
-                        }
+                        publicURL
                       }
                     }
                   }
@@ -114,7 +116,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -127,7 +129,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -153,7 +155,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -168,9 +170,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     focusIconPng {
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
-                        }
+                        publicURL
                       }
                     }
                   }
@@ -183,7 +183,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -209,7 +209,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -226,7 +226,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -238,9 +238,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     benefitIcon {
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
-                        }
+                        publicURL
                       }
                     }
                   }
@@ -266,7 +264,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -283,9 +281,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     servisIcon {
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
-                        }
+                        publicURL
                       }
                     }
                   }
@@ -311,7 +307,7 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }

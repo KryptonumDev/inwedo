@@ -50,7 +50,7 @@ export default function JoinUs({ data: { sectionTitle, categoryTitle, seniorityT
     }, [activeSeniority, activeCategories])
 
     return (
-        <Wrapper>
+        <Wrapper id="offers-listing" >
             <Container>
                 <Title>{sectionTitle}</Title>
                 <Filter title={categoryTitle} filters={categories} set={setActiveCategories} active={activeCategories} />

@@ -10,7 +10,7 @@ export default function TwoColumnFlex({ data: { image, title, subTitle, text, bu
             <Container>
                 <Flex to={button.url}>
                     <div className="image">
-                        <Image className="icon" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
+                        <img className="icon" src={image.localFile.publicURL} alt={image.altText} />
                     </div>
                     <div className="text">
                         <h2 className="h1 line">{title}</h2>
@@ -42,9 +42,7 @@ const Flex = styled(Link)`
             }
         }
         .icon{
-            img{
                 transform: scale(1.03);
-            }
         }
     }
 

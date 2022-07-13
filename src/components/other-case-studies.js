@@ -97,15 +97,25 @@ const Item = styled.div`
             width: fit-content;
             height: fit-content;
             max-width: clamp(91px, 13vw, 112px);
+            max-height: 24px;
+
+            img{
+                height: 100%;
+                width: fit-content;
+                margin: 0 auto;
+                /* height: 24px; */
+            }
         }
     }
 
     .image{
         width: 100%;
         height: 244px;
+        border-radius: 8px;
         
         img{
             border-radius: 8px;
+            transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
         }
     }
 
@@ -129,6 +139,21 @@ const Item = styled.div`
 
         p.p{
             margin-bottom: 16px;
+        }
+    }
+
+    a{
+        &:hover{
+            .link{
+                &::after{
+                    width: 100%;
+                }
+            }
+            .image{
+                img{
+                    transform: scale(1.03);
+                }
+            }
         }
     }
 `

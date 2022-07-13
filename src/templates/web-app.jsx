@@ -51,7 +51,11 @@ query WebAppPageQuery($id: String!, $templateName: String!) {
         }
         seo {
           title
-          fullHead
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            publicUrl
+          }
         }
         webApp {
           heroWebApp {
@@ -64,9 +68,7 @@ query WebAppPageQuery($id: String!, $templateName: String!) {
             icon {
               altText
               localFile {
-                childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
-                }
+                publicURL
               }
             }
           }
@@ -84,7 +86,7 @@ query WebAppPageQuery($id: String!, $templateName: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -102,9 +104,7 @@ query WebAppPageQuery($id: String!, $templateName: String!) {
                 cardIcon {
                   altText
                   localFile {
-                    childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
-                    }
+                    publicURL
                   }
                 }
               }
@@ -131,7 +131,7 @@ query WebAppPageQuery($id: String!, $templateName: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -149,7 +149,7 @@ query WebAppPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -157,7 +157,7 @@ query WebAppPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -176,9 +176,7 @@ query WebAppPageQuery($id: String!, $templateName: String!) {
                   typeIcon{
                     altText
                     localFile {
-                      childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
-                      }
+                      publicURL
                     }
                   }
               }
@@ -205,7 +203,7 @@ query WebAppPageQuery($id: String!, $templateName: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }

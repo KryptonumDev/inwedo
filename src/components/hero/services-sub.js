@@ -10,7 +10,7 @@ export default function Hero({ data: { text, pageTitle, button, icon } }) {
             <Container>
                 <Content>
                     <Image>
-                        <GatsbyImage image={icon.localFile.childImageSharp.gatsbyImageData} alt={icon.altText} />
+                        <img src={icon.localFile.publicURL} alt={icon.altText} />
                     </Image>
                     <TextPart>
                         <h1 className="h4 line">{pageTitle}</h1>
@@ -45,8 +45,11 @@ const Image = styled.div`
     box-shadow: var(--shadow);
     width: fit-content;
     height: fit-content;
-    min-width: clamp(100px, 19.27vw, 196px);
-    width: clamp(100px, 19.27vw, 196px);
+    max-width: clamp(100px, 19.27vw, 196px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
     
     img{
         border-radius: 8px;

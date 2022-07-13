@@ -30,7 +30,7 @@ export default function FAQ({ data: { title, faqElement } }) {
     };
 
     useEffect(() => {
-        const details = document.querySelectorAll("details");
+        const details = document.querySelectorAll(".details");
 
         details.forEach((targetDetail) => {
             targetDetail.addEventListener("click", () => {
@@ -68,19 +68,19 @@ export default function FAQ({ data: { title, faqElement } }) {
                     <Title className="h1">{title}</Title>
                     <Repeater>
                         {faqElement.map((el, index) => (
-                            <Item Arrow={Arrow} open={index === 0 ? true : false}>
+                            <Item className="details" Arrow={Arrow} open={index === 0 ? true : false}>
                                 <summary
                                     itemProp='mainEntity'
                                     itemType='https://schema.org/Question'>
-                                    <span itemProp='name'>
+                                    <h3 itemProp='name'>
                                         {el.question}
-                                    </span>
+                                    </h3>
                                 </summary>
                                 <div
                                     itemProp='acceptedAnswer'
                                     itemType='https://schema.org/Answer'>
-                                    <h3 className="p" itemProp='text' dangerouslySetInnerHTML={{ __html: el.answer }}>
-                                    </h3>
+                                    <span className="p" itemProp='text' dangerouslySetInnerHTML={{ __html: el.answer }}>
+                                    </span>
                                 </div>
                             </Item>
                         ))}
@@ -205,7 +205,7 @@ const Item = styled.details`
             display:none;
         }
 
-        span{
+        h3{
             color: #495057;
             font-weight: 600;
             font-size: clamp(14px, 2.34375vw, 22px);
@@ -237,7 +237,7 @@ const Item = styled.details`
             padding-left: 40px;
         }
 
-        h3{
+        span{
             margin-top: 24px;
             margin-bottom: 16px;    
             display: block;

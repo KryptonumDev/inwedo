@@ -10,7 +10,7 @@ export default function DevelopmentCards({ data: { twoColumn, cards, success } }
             <Container>
                 <Flex to={twoColumn.button.url}>
                     <div className="image">
-                        <Image className="icon" image={twoColumn.image.localFile.childImageSharp.gatsbyImageData} alt={twoColumn.image.altText} />
+                        <img className="icon" src={twoColumn.image.localFile.publicURL} alt={twoColumn.image.altText} />
                     </div>
                     <div className="text">
                         <h2 className="h1 line">{twoColumn.title}</h2>
@@ -22,7 +22,7 @@ export default function DevelopmentCards({ data: { twoColumn, cards, success } }
                 <CardsGrid>
                     {cards.map(el => (
                         <Card to={el.button.url}>
-                            <GatsbyImage className="image" image={el.cardIcon.localFile.childImageSharp.gatsbyImageData} alt={el.cardIcon.altText} />
+                            <img className="image" src={el.cardIcon.localFile.publicURL} alt={el.cardIcon.altText} />
                             <div>
                                 <h3 className="h3">{el.cardTitle}</h3>
                                 <p className="p">{el.cardText}</p>
@@ -72,16 +72,12 @@ const Flex = styled(Link)`
             }
         }
         .icon{
-            img{
                 transform: scale(1.03);
-            }
         }
     }
 
     .icon{
-        img{
             transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
-        }
     }
 
     .image{
@@ -90,9 +86,7 @@ const Flex = styled(Link)`
         padding: clamp(16px, 4.94vw, 54px) clamp(24px, 5.20vw, 64px);
         width: clamp(93px, 20vw, 208px);
         min-width: clamp(93px, 20vw, 208px);
-        img{
             border-radius: 24px;
-        }
     }
 
     .text{
@@ -254,6 +248,13 @@ const SuccessStories = styled.div`
                 margin: clamp(8px, 2.08vw, 24px) 0;
                 font-size: clamp(14px, 1.95vw, 16px);
             }
+        }
+
+        .logo{
+            max-width: 136px;
+            max-height: 60px;
+            width: fit-content;
+            height: fit-content;
         }
 
         @media (max-width: 850px) {

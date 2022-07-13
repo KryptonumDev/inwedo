@@ -14,7 +14,7 @@ export default function DevelopmentTypes({ data: { sectionTitle, text, types } }
                     {types.map(el => (
                         <TypesItem to={el.button.url}>
                             <Image>
-                                <GatsbyImage className="image" image={el.typeIcon.localFile.childImageSharp.gatsbyImageData} alt={el.typeIcon.altText} />
+                                <img className="image" src={el.typeIcon.localFile.publicURL} alt={el.typeIcon.altText} />
                             </Image>
                             <h3 className="h2">{el.typeTitle}</h3>
                             <p className="h4">{el.typeText}</p>

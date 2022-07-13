@@ -3,11 +3,12 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { Container } from './../../style'
+import Video from './../../images/careers.mp4'
 
 export default function Hero({ data: { pageTitle, textUnderTitle, button, backgroundImage } }) {
     return (
         <Wrapper>
-            <Background image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
+            <Background src={Video} type="video/mp4" loop autoPlay muted playsinline />
             <Container>
                 <Content>
                     <h1>{pageTitle}</h1>
@@ -26,13 +27,16 @@ const Wrapper = styled.section`
     display: flex;
 `
 
-const Background = styled(GatsbyImage)`
+const Background = styled.video`
     position: absolute;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     right: 0;
     top: 0;
     bottom: 0;
     z-index: -1;
+    width: 1304px;
+    height: fit-content;
 `
 
 const Content = styled.div`

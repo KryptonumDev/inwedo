@@ -45,7 +45,9 @@ export default function BlogAuthorPosts({ data, title, loadMore }) {
                                             </Categories>
                                             {el.authors.nodes[0]
                                                 ? <AuthorInform>
-                                                    <GatsbyImage className="image-logo" image={el.authors.nodes[0].author.userAvatar.localFile.childImageSharp.gatsbyImageData} alt={el.authors.nodes[0].author.userAvatar.altText} />
+                                                    {el.authors.nodes[0].author.userAvatar
+                                                        ? <GatsbyImage className="image-logo" image={el.authors.nodes[0].author.userAvatar.localFile.childImageSharp.gatsbyImageData} alt={el.authors.nodes[0].author.userAvatar.altText} />
+                                                        : null}
                                                     <p className="p">{el.authors.nodes[0].author.userName}</p>
                                                     <p className="p date">{el.date}</p>
                                                 </AuthorInform>

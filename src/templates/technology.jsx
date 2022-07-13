@@ -58,7 +58,11 @@ query TechonologyPageQuery($id: String!) {
         }
         seo {
           title
-          fullHead
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            publicUrl
+          }
         }
         technology{
             currentPageUrl
@@ -73,9 +77,7 @@ query TechonologyPageQuery($id: String!) {
                 icon {
                 altText
                 localFile {
-                    childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
-                    }
+                  publicURL
                 }
               }
             }
@@ -91,7 +93,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -103,9 +105,7 @@ query TechonologyPageQuery($id: String!) {
                     reasonIcon{
                         altText
                         localFile {
-                          childImageSharp {
-                            gatsbyImageData(placeholder: BLURRED, quality: 80)
-                          }
+                          publicURL
                         }
                     }
                 }
@@ -118,7 +118,7 @@ query TechonologyPageQuery($id: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                 }
@@ -155,7 +155,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -182,7 +182,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -209,7 +209,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -223,9 +223,7 @@ query TechonologyPageQuery($id: String!) {
                 memberIcon {
                   altText
                   localFile {
-                    childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
-                    }
+                    publicURL
                   }
                 }
               }
@@ -233,7 +231,7 @@ query TechonologyPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -251,7 +249,7 @@ query TechonologyPageQuery($id: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -259,7 +257,7 @@ query TechonologyPageQuery($id: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -279,9 +277,7 @@ query TechonologyPageQuery($id: String!) {
                     techologieIcon{
                         altText
                         localFile {
-                            childImageSharp {
-                                gatsbyImageData(placeholder: BLURRED, quality: 80)
-                            }
+                          publicURL
                         }
                     }
                 }

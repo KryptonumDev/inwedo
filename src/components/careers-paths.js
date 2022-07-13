@@ -19,7 +19,7 @@ export default function CareersPaths({ data: { sectionTitle, seoTitle, boldText,
                         {paths.map(el => (
                             <Link className="item" to={el.link.url}>
                                 <div className="icon-wrapper">
-                                    <GatsbyImage className="icon" image={el.icon.localFile.childImageSharp.gatsbyImageData} alt={el.icon.altText} />
+                                    <img className="icon" src={el.icon.localFile.publicURL} alt={el.icon.altText} />
                                 </div>
                                 <div>
                                     <h4 className="h4">{el.title}</h4>
@@ -111,6 +111,18 @@ const Content = styled.div`
             .icon{
                 width: clamp(64px, ${73 / 768 * 100}vw, 81px);
                 height: clamp(64px, ${73 / 768 * 100}vw, 81px);
+            transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+            }
+        }
+
+        &:hover{
+            .link{
+                &::after{
+                    width: 100%;
+                }
+            }
+            .icon{
+                transform: scale(1.06);
             }
         }
     }

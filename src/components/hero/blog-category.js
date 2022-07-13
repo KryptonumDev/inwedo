@@ -13,7 +13,9 @@ export default function Hero({ data: { categoryPageTitle, boldTextUnderTitle, im
                         <h1 className="h1">{boldTextUnderTitle}</h1>
                         <div className="p" dangerouslySetInnerHTML={{ __html: text }}></div>
                     </TextPart>
-                    <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
+                    {image
+                        ? <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
+                        : null}
                 </Content>
             </Container>
         </Wrapper>

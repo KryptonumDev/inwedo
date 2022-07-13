@@ -1,10 +1,15 @@
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
+import { datalayerPush } from "../helpers/datalayer"
 import { Container } from "../style"
 
 export default function CaseStudyRepeater({ data: { title, text, studiesCase } }) {
+
+    useEffect(() => {
+        //inview
+    }, [])
     return (
         <Wrapper>
             <Container>
@@ -12,16 +17,16 @@ export default function CaseStudyRepeater({ data: { title, text, studiesCase } }
                 <p className='h1 medium'>{text}</p>
                 <Repeater>
                     {studiesCase.map(el => (
-                        <Link to={el.button.url}>
+                        <Link onClick={() => {datalayerPush(el.button.datalayerJson)}} to={el.button.url}>
                             <Item>
                                 <div className="content">
-                                    <GatsbyImage className="logo" image={el.firmLogo.localFile.childImageSharp.gatsbyImageData} alt={el.firmLogo.altText} />
+                                    <img className="logo" src={el.firmLogo.localFile.publicURL} alt={el.firmLogo.altText} />
                                     <h3 className="h2">{el.title}</h3>
                                     <p className="p">{el.text}</p>
                                     <div className="flex">
                                         {el.techologies.map(el => (
                                             <div className="wrap">
-                                                <GatsbyImage className="image" image={el.companyLogo.localFile.childImageSharp.gatsbyImageData} alt={el.companyLogo.altText} />
+                                                <img className="image" src={el.companyLogo.localFile.publicURL} alt={el.companyLogo.altText} />
                                             </div>
                                         ))}
                                     </div>
@@ -133,6 +138,7 @@ const Item = styled.div`
 
     .logo{
         max-width: 136px;
+        max-height: 60px;
         width: fit-content;
         height: fit-content;
     }

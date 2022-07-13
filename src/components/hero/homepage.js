@@ -3,6 +3,7 @@ import { GatsbyImage } from 'gatsby-plugin-image'
 import React from 'react'
 import styled from 'styled-components'
 import { Container } from '../../style/index'
+import {datalayerPush} from './../../helpers/datalayer'
 
 export default function Hero({ data: { title, subTitle, button, imgGridH } }) {
     return (
@@ -16,7 +17,7 @@ export default function Hero({ data: { title, subTitle, button, imgGridH } }) {
                 <Content>
                     <h1 className='h3 line'>{title}</h1>
                     <p className='h1 display'>{subTitle}</p>
-                    <Link to={button.url} className='button-white'>{button.name}</Link>
+                    <Link to={button.url} onClick={() => {datalayerPush(button.datalayerJson)}} className='button-white'>{button.name}</Link>
                 </Content>
             </LocalContainer>
         </Wrapper>

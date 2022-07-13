@@ -47,7 +47,11 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
         }
         seo {
           title
-          fullHead
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            publicUrl
+          }
         }
         portfolioArchive {
           heroPortfolio {
@@ -57,7 +61,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -73,7 +77,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -84,7 +88,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                 }
@@ -101,7 +105,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -111,7 +115,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -139,7 +143,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -166,7 +170,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -216,7 +220,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -224,7 +228,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }

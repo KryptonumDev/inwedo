@@ -14,10 +14,10 @@ export default function TechStack({ data: { sectionTitle, technologies } }) {
                         <>
                             {el.technologieUrl
                                 ? <TechnologiesLink to={el.technologieUrl} aria-label='link to technology page'>
-                                    <GatsbyImage className="image" image={el.techologieIcon.localFile.childImageSharp.gatsbyImageData} alt={el.techologieIcon.altText} />
+                                    <img className="image" src={el.techologieIcon.localFile.publicURL} alt={el.techologieIcon.altText} />
                                 </TechnologiesLink>
                                 : <TechnologiesItem>
-                                    <GatsbyImage className="image" image={el.techologieIcon.localFile.childImageSharp.gatsbyImageData} alt={el.techologieIcon.altText} />
+                                    <img className="image" src={el.techologieIcon.localFile.publicURL} alt={el.techologieIcon.altText} />
                                 </TechnologiesItem>
                             }
                         </>

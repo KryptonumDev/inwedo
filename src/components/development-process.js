@@ -12,7 +12,7 @@ export default function DevelopmentProcess({ data: { sectionTitle, processSteps 
                     {processSteps.map(el => (
                         <Item>
                             <div className="image-wrap">
-                                <GatsbyImage className="image" image={el.stepIcon.localFile.childImageSharp.gatsbyImageData} alt={el.stepIcon.altText} />
+                                <img className="image" src={el.stepIcon.localFile.publicURL} alt={el.stepIcon.altText} />
                             </div>
                             <h3 className="h4">{el.stepTitle}</h3>
                         </Item>

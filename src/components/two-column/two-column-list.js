@@ -10,7 +10,9 @@ export default function TwoColumnFlex({ data: { sectionTitle, subTitle, text, li
             <Container>
                 <Content>
                     <TextPart>
-                        <h2 className="line h4">{sectionTitle}</h2>
+                        {sectionTitle
+                            ? <h2 className="line h4">{sectionTitle}</h2>
+                            : null}
                         <p className="h1">{subTitle}</p>
                         <p className="p">{text}</p>
                     </TextPart>
@@ -126,7 +128,7 @@ const Card = styled.div`
     }
 
     p+ol{
-        margin-top: 8px;
+        margin-top: 24px;
     }
 
     ol{

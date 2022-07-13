@@ -13,7 +13,7 @@ export default function CardsWithTitle({ data: { sectionTitle, text, cards } }) 
                 <Grid>
                     {cards.map(el => (
                         <Item to={el.button.url}>
-                            <GatsbyImage className="image" image={el.icon.localFile.childImageSharp.gatsbyImageData} alt={el.icon.altText} />
+                            <img className="image" src={el.icon.localFile.publicURL} alt={el.icon.altText} />
                             <div>
                                 <h3 className="h2">{el.cardTitle}</h3>
                                 <span className="link" >{el.button.name}</span>

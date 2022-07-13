@@ -25,7 +25,7 @@ export default function OnBoarding({ data: { testomontialsRepeater, sectionTitle
                         {testomontialsRepeater.map(el => (
                             <Item quote={Quote}>
                                 <div className="flex">
-                                    <GatsbyImage image={el.avatar.localFile.childImageSharp.gatsbyImageData} alt={el.avatar.altText} />
+                                    <img src={el.avatar.localFile.publicURL} alt={el.avatar.altText} />
                                     <div>
                                         <p className="name">{el.name}</p>
                                         <p className="position">{el.position}</p>
@@ -45,7 +45,7 @@ export default function OnBoarding({ data: { testomontialsRepeater, sectionTitle
                         {testomontialsRepeater.map(el => (
                             <Item quote={Quote}>
                                 <div className="flex">
-                                    <GatsbyImage image={el.avatar.localFile.childImageSharp.gatsbyImageData} alt={el.avatar.altText} />
+                                    <img src={el.avatar.localFile.publicURL} alt={el.avatar.altText} />
                                     <div>
                                         <p className="name">{el.name}</p>
                                         <p className="position">{el.position}</p>

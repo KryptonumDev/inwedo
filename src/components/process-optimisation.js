@@ -15,7 +15,7 @@ export default function ProcessOptimisation({ data: { sectionTitle, boldText, pl
                         <Row>
                             {el.rowItems.map(innerEl => (
                                 <Item>
-                                    <GatsbyImage className="image" image={innerEl.optimisationIcon.localFile.childImageSharp.gatsbyImageData} alt={innerEl.optimisationIcon.altText} />
+                                    <img className="image" src={innerEl.optimisationIcon.localFile.publicURL} alt={innerEl.optimisationIcon.altText} />
                                     <p>{innerEl.title}</p>
                                 </Item>
                             ))}
@@ -27,7 +27,7 @@ export default function ProcessOptimisation({ data: { sectionTitle, boldText, pl
                         <>
                             {el.rowItems.map(innerEl => (
                                 <Item>
-                                    <GatsbyImage className="image" image={innerEl.optimisationIcon.localFile.childImageSharp.gatsbyImageData} alt={innerEl.optimisationIcon.altText} />
+                                    <img className="image" src={innerEl.optimisationIcon.localFile.publicURL} alt={innerEl.optimisationIcon.altText} />
                                     <p>{innerEl.title}</p>
                                 </Item>
                             ))}

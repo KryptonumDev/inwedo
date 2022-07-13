@@ -47,7 +47,11 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
         }
         seo {
           title
-          fullHead
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            publicUrl
+          }
         }
         servicesPage {
           heroServices {
@@ -61,7 +65,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -78,9 +82,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
               image {
                 altText
                 localFile {
-                  childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
-                  }
+                  publicURL
                 }
               }
             }
@@ -94,9 +96,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
               cardIcon {
                 altText
                 localFile {
-                  childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
-                  }
+                  publicURL
                 }
               }
             }
@@ -113,7 +113,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
                         altText
                         localFile {
                           childImageSharp {
-                            gatsbyImageData(placeholder: BLURRED, quality: 80)
+                            gatsbyImageData(placeholder: BLURRED, quality: 95)
                           }
                         }
                     }
@@ -121,7 +121,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
                         altText
                         localFile {
                             childImageSharp {
-                                gatsbyImageData(placeholder: BLURRED, quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 95)
                             }
                         }
                     }
@@ -158,9 +158,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
               image {
                 altText
                 localFile {
-                  childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
-                  }
+                  publicURL
                 }
               }
             }
@@ -174,9 +172,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
               cardIcon {
                 altText
                 localFile {
-                  childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
-                  }
+                  publicURL
                 }
               }
             }
@@ -193,7 +189,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
                         altText
                         localFile {
                           childImageSharp {
-                            gatsbyImageData(placeholder: BLURRED, quality: 80)
+                            gatsbyImageData(placeholder: BLURRED, quality: 95)
                           }
                         }
                     }
@@ -201,7 +197,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
                         altText
                         localFile {
                             childImageSharp {
-                                gatsbyImageData(placeholder: BLURRED, quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 95)
                             }
                         }
                     }
@@ -229,7 +225,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -245,9 +241,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
             image {
               altText
               localFile {
-                childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
-                }
+                publicURL
               }
             }
           }
@@ -262,7 +256,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -272,7 +266,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -289,9 +283,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
             image {
               altText
               localFile {
-                childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
-                }
+                publicURL
               }
             }
           }

@@ -13,7 +13,7 @@ export default function Technologies({ data: { sectionTitle, text, cards } }) {
                 <CardsGrid>
                     {cards.map(el => (
                         <Card to={el.button.url}>
-                            <GatsbyImage className="image" image={el.cardIcon.localFile.childImageSharp.gatsbyImageData} alt={el.cardIcon.altText} />
+                            <img className="image" src={el.cardIcon.localFile.publicURL} alt={el.cardIcon.altText} />
                             <div>
                                 <h3 className="h3">{el.cardTitle}</h3>
                                 <p className="p">{el.cardText}</p>

@@ -58,7 +58,11 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
         }
         seo {
           title
-          fullHead
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            publicUrl
+          }
         }
         productDevelopment {
             heroProductDevelop {
@@ -71,9 +75,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 icon {
                     altText
                     localFile {
-                        childImageSharp {
-                            gatsbyImageData(placeholder: BLURRED, quality: 80)
-                        }
+                      publicURL
                     }
                 }
             }
@@ -90,9 +92,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                     stepIcon{
                         altText
                         localFile {
-                            childImageSharp {
-                                gatsbyImageData(placeholder: BLURRED, quality: 100)
-                            }
+                          publicURL
                         }
                     }
                 }
@@ -119,7 +119,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -146,7 +146,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -173,7 +173,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -190,9 +190,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 servisIcon {
                   altText
                   localFile {
-                    childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
-                    }
+                    publicURL
                   }
                 }
               }
@@ -210,7 +208,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -218,7 +216,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -237,7 +235,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -245,7 +243,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -260,9 +258,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 memberIcon {
                   altText
                   localFile {
-                    childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
-                    }
+                    publicURL
                   }
                 }
               }
@@ -270,7 +266,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -283,7 +279,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -305,9 +301,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                   optimisationIcon{
                     altText
                     localFile {
-                      childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
-                      }
+                      publicURL
                     }
                   }
                 }

@@ -11,7 +11,7 @@ export default function DesignBenefits({ data: { sectionTitle, benefits } }) {
                 <Grid>
                     {benefits.map(el => (
                         <Item>
-                            <GatsbyImage className="image" image={el.benefitIcon.localFile.childImageSharp.gatsbyImageData} alt={el.benefitIcon.altText} />
+                            <img className="image" src={el.benefitIcon.localFile.publicURL} alt={el.benefitIcon.altText} />
                             <div>
                                 <h3>{el.benefitTitle}</h3>
                                 <p>{el.benefitText}</p>

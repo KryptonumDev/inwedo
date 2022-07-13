@@ -33,7 +33,7 @@ export default function MiniFaq({ data: { sectionTitle, text, smallText, questio
     };
 
     useEffect(() => {
-        const details = document.querySelectorAll("details");
+        const details = document.querySelectorAll(".details");
 
         details.forEach((targetDetail) => {
             targetDetail.addEventListener("click", () => {
@@ -77,19 +77,19 @@ export default function MiniFaq({ data: { sectionTitle, text, smallText, questio
                     <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                     <div className="item">
                         {questionsAndAnswers.map((el, index) => (
-                            <Item Arrow={Arrow} open={index === 0 ? true : false}>
+                            <Item className="details" Arrow={Arrow} open={index === 0 ? true : false}>
                                 <summary
                                     itemProp='mainEntity'
                                     itemType='https://schema.org/Question'>
-                                    <span itemProp='name'>
+                                    <h3 itemProp='name'>
                                         {el.question}
-                                    </span>
+                                    </h3>
                                 </summary>
                                 <div
                                     itemProp='acceptedAnswer'
                                     itemType='https://schema.org/Answer'>
-                                    <h3 itemProp='text' dangerouslySetInnerHTML={{ __html: el.answer }}>
-                                    </h3>
+                                    <span itemProp='text' dangerouslySetInnerHTML={{ __html: el.answer }}>
+                                    </span>
                                 </div>
                             </Item>
                         ))}
@@ -194,7 +194,7 @@ const Item = styled.details`
             }
         }
         ::after{
-            transform: rotateX(180deg);
+            transform: rotateX(180deg) translateY(-5px);
             
             @media (max-width: 660px) {
                 transform: rotateX(180deg) scale(.75) translateY(-3px);
@@ -210,7 +210,7 @@ const Item = styled.details`
             padding-left: 30px;
         }
 
-        span{
+        h3{
             color: #000;
             font-weight: 500;
             font-size: clamp(14px, 2.08vw, 18px);
@@ -240,7 +240,7 @@ const Item = styled.details`
         @media (max-width: 660px){
             padding-left: 0;
         }
-        h3{
+        span{
             margin-top: 16px;
             display: block;
             font-weight: 300;

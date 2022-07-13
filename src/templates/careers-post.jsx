@@ -46,7 +46,12 @@ export const query = graphql`
               }
               seo {
                 title
-                fullHead
+                metaDesc
+                opengraphSiteName
+                opengraphModifiedTime
+                opengraphImage {
+                  publicUrl
+                }
               }
                 id
                 careersPost{
@@ -59,7 +64,7 @@ export const query = graphql`
                         altText
                         localFile {
                           childImageSharp {
-                            gatsbyImageData(placeholder: BLURRED, quality: 80)
+                            gatsbyImageData(placeholder: BLURRED, quality: 95)
                           }
                         }
                       }
@@ -77,9 +82,7 @@ export const query = graphql`
                             icon{
                                 altText
                                 localFile {
-                                  childImageSharp {
-                                    gatsbyImageData(placeholder: BLURRED, quality: 80)
-                                  }
+                                  publicURL
                                 }
                             }
                         }
@@ -98,7 +101,7 @@ export const query = graphql`
                             altText
                             localFile {
                               childImageSharp {
-                                gatsbyImageData(placeholder: BLURRED, quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 95)
                               }
                             }
                           }
@@ -106,7 +109,7 @@ export const query = graphql`
                             altText
                             localFile {
                               childImageSharp {
-                                gatsbyImageData(placeholder: BLURRED, quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 95)
                               }
                             }
                           }
@@ -114,7 +117,7 @@ export const query = graphql`
                             altText
                             localFile {
                               childImageSharp {
-                                gatsbyImageData(placeholder: BLURRED, quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 95)
                               }
                             }
                           }
@@ -127,7 +130,7 @@ export const query = graphql`
                                 altText
                                 localFile {
                                   childImageSharp {
-                                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                                   }
                                 }
                             }

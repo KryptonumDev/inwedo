@@ -56,7 +56,11 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
             }
             seo {
               title
-              fullHead
+              metaDesc
+              opengraphSiteName
+              opengraphImage {
+                publicUrl
+              }
             }
             discoveryWorkshop {
               heroWorkshop {
@@ -69,9 +73,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                 icon {
                   altText
                   localFile {
-                    childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
-                    }
+                    publicURL
                   }
                 }
               }
@@ -89,7 +91,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -108,7 +110,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -135,7 +137,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -154,7 +156,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -168,9 +170,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     memberIcon {
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
-                        }
+                        publicURL
                       }
                     }
                   }
@@ -178,7 +178,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -205,7 +205,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -219,9 +219,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     cardIcon {
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
-                        }
+                        publicURL
                       }
                     }
                   }
@@ -230,9 +228,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     toolIcon {
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
-                        }
+                        publicURL
                       }
                     }
                   }
@@ -244,7 +240,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -255,7 +251,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 95)
                         }
                       }
                     }
@@ -274,7 +270,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 95)
                         }
                       }
                     }
@@ -282,7 +278,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 95)
                         }
                       }
                     }

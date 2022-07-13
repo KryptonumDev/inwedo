@@ -20,7 +20,7 @@ export default function DesignProcess({ data: { sectionTitle, boldText, plainTex
                         <List mark={Mark}>
                             {listItems.map(el => (
                                 <li>
-                                    <GatsbyImage className="image" image={el.listIcon.localFile.childImageSharp.gatsbyImageData} alt={el.listIcon.altText} />
+                                    <img className="image" src={el.listIcon.localFile.publicURL} alt={el.listIcon.altText} />
                                     <div>
                                         <h4 className="h3">{el.title}</h4>
                                         <p className="p">{el.text}</p>

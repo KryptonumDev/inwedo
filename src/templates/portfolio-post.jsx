@@ -18,7 +18,7 @@ const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts, alternates }, loc
   const { caseStudies, language, seo } = allWpCaseStudies.nodes[0]
   return (
     <main id='main'>
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='post' template='Portfolio Archive' currTemplate={caseStudies.heroportfolio.pageTitle} />
+      <Seo data={seo} ogImg={caseStudies.previewCard.previewImage.localFile.publicURL} lang={language.slug} alternates={alternates} location={location} type='post' template='Portfolio Archive' currTemplate={caseStudies.heroportfolio.pageTitle} />
       <Hero data={caseStudies.heroportfolio} />
       {caseStudies.sectionController.oneColumnTextPart
         ? <OneColumnText alternative={true} data={caseStudies.oneColumnTextPartPortfolio} />
@@ -84,10 +84,19 @@ query PortfolioPageQuery($id: String!) {
         }
         seo {
           title
-          fullHead
+          metaDesc
+          opengraphSiteName
+          opengraphModifiedTime
         }
         caseStudies {
           templateName
+          previewCard{
+            previewImage{
+              localFile{
+                publicURL
+              }
+            }
+          }
           sectionController {
             callToAction
             callToActionSecond
@@ -110,9 +119,7 @@ query PortfolioPageQuery($id: String!) {
               technologyIcon {
                 altText
                 localFile {
-                  childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
-                  }
+                  publicURL
                 }
               }
             }
@@ -120,7 +127,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -128,7 +135,7 @@ query PortfolioPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
             }
@@ -137,9 +144,7 @@ query PortfolioPageQuery($id: String!) {
               goalIcon {
                 altText
                 localFile {
-                  childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
-                  }
+                  publicURL
                 }
               }
             }
@@ -158,7 +163,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -172,7 +177,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -187,7 +192,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -197,7 +202,7 @@ query PortfolioPageQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -211,7 +216,7 @@ query PortfolioPageQuery($id: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -229,7 +234,7 @@ query PortfolioPageQuery($id: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -257,7 +262,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -284,7 +289,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -337,7 +342,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -345,7 +350,7 @@ query PortfolioPageQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }

@@ -20,7 +20,9 @@ export default function Hero({ data, categories, date, authors }) {
                         </Categories>
                         {authors.nodes[0]
                             ? <AuthorInform to={urlSystem['author'][authors.nodes[0].language.slug] + authors.nodes[0].author.userUrl}>
-                                <GatsbyImage className="image" image={authors.nodes[0].author.userAvatar.localFile.childImageSharp.gatsbyImageData} alt={authors.nodes[0].author.userAvatar.altText} />
+                                {authors.nodes[0].author.userAvatar
+                                    ? <GatsbyImage className="image" image={authors.nodes[0].author.userAvatar.localFile.childImageSharp.gatsbyImageData} alt={authors.nodes[0].author.userAvatar.altText} />
+                                    : null}
                                 <p className="p">{authors.nodes[0].author.userName}</p>
                                 <p className="p date">{date}</p>
                             </AuthorInform>
@@ -28,7 +30,7 @@ export default function Hero({ data, categories, date, authors }) {
                                 <p className="p date">{date}</p>
                             </AuthorInform>}
                         <h2 className="h3">{data.pageTitle}</h2>
-                        <div className="struktured" dangerouslySetInnerHTML={{__html: data.text}}></div>
+                        <div className="struktured" dangerouslySetInnerHTML={{ __html: data.text }}></div>
                     </TextPart>
                     <Image image={data.image.localFile.childImageSharp.gatsbyImageData} alt={data.image.altText} />
                 </Content>

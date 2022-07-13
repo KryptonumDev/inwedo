@@ -4,16 +4,19 @@ import styled from "styled-components"
 import { Container } from "../../style"
 
 export default function Hero({ data: { author: { userPosition, userName, userBigImage, userAvatar }, description } }) {
+    debugger
     return (
         <Wrapper>
             <Container>
                 <Content>
                     <TextPart>
                         <h1 className="h1">{userName}</h1>
-                        <h2 className="h4">{userPosition }</h2>
+                        <h2 className="h4">{userPosition}</h2>
                         <div className="p" dangerouslySetInnerHTML={{ __html: description }}></div>
                     </TextPart>
-                    <Image image={userBigImage.localFile.childImageSharp.gatsbyImageData} alt={userBigImage.altText} />
+                    {userBigImage
+                        ? <Image image={userBigImage.localFile.childImageSharp.gatsbyImageData} alt={userBigImage.altText} />
+                        : null}
                 </Content>
             </Container>
         </Wrapper>

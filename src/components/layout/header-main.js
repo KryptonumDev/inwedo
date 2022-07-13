@@ -1,6 +1,7 @@
 import { graphql, Link, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useEffect, useState } from "react"
+import { Helmet } from "react-helmet"
 import styled from "styled-components"
 import { urlSystem } from "../../contstants/urlSystem"
 import { Container } from "../../style"
@@ -53,10 +54,9 @@ export default function Header({ location }) {
         }
     }, [isOpen])
 
-
     return (
         <Wrapper id='header' isOpen={isOpen}>
-            <Container> 
+            <Container>
                 <Content isOpen={isOpen}>
                     <a className="no-focus" href="#main" aria-label='skip link to main content' />
                     <Link aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
@@ -80,6 +80,7 @@ export default function Header({ location }) {
                         </ul>
                     </Navigation>
                 </Content>
+                <div class='clutch-widget' data-nofollow='true' data-url='https://widget.clutch.co' data-widget-type='2' data-height='45' data-clutchcompany-id='88412'></div>
             </Container>
         </Wrapper >
     )

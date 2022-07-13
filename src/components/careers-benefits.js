@@ -27,7 +27,7 @@ export default function Benefits({ data: { sectionTitle, seoTitle, boldText, pla
                         }
                         return (
                             <Item>
-                                <GatsbyImage className="image" image={el.icon.localFile.childImageSharp.gatsbyImageData} alt={el.icon.altText} />
+                                <img className="image" src={el.icon.localFile.publicURL} alt={el.icon.altText} />
                                 <div>
                                     <h4>{el.title}</h4>
                                     <p>{el.text}</p>

@@ -13,7 +13,7 @@ export default function RelatedServices({ data: { sectionTitle, services } }) {
                     {services.map(el => (
                         <Item to={el.button.url}>
                             <ImageWrapper>
-                                <GatsbyImage className="image" image={el.servisIcon.localFile.childImageSharp.gatsbyImageData} alt={el.servisIcon.altText} />
+                                <img className="image" src={el.servisIcon.localFile.publicURL} alt={el.servisIcon.altText} />
                             </ImageWrapper>
                             <h3 className="h2">{el.servisTitle}</h3>
                             <p className="h4">{el.servisText}</p>

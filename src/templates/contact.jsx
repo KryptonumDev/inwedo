@@ -8,7 +8,7 @@ const ContactPage = ({ data: { allWpPage, alternates }, location }) => {
   return (
     <main id='main'>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Contact' />
-      <Content data={contactPage} />
+      <Content data={contactPage} lang={language.slug}/>
     </main>
   )
 }
@@ -36,7 +36,11 @@ query CPageQuery($id: String!, $templateName: String!) {
             }
             seo {
               title
-              fullHead
+              metaDesc
+              opengraphSiteName
+              opengraphImage {
+                publicUrl
+              }
             }
             slug
             contactPage {
@@ -46,14 +50,17 @@ query CPageQuery($id: String!, $templateName: String!) {
                 nameInput {
                   label
                   placeholder
+                  errorMessage
                 }
                 emailInput {
                   label
                   placehoder
+                  errorMessage
                 }
                 phoneInput {
                   label
                   placeholder
+                  errorMessage
                 }
                 interestedInput {
                   label
@@ -67,7 +74,11 @@ query CPageQuery($id: String!, $templateName: String!) {
                   placeholder
                 }
                 privacyPolice
+                privacyPolicyErrorText
+                newsletterAgreement
                 submit
+                succesSubmitText
+                errorSubmitText
               }
               map {
                 addressTitle
@@ -76,7 +87,7 @@ query CPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -91,7 +102,7 @@ query CPageQuery($id: String!, $templateName: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }

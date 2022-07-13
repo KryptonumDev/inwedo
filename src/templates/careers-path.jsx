@@ -78,7 +78,11 @@ query BlogPathQuery($id: String!) {
             }
             seo {
               title
-              fullHead
+              metaDesc
+              opengraphSiteName
+              opengraphImage {
+                publicUrl
+              }
             }
             id
             path : careerth_path{

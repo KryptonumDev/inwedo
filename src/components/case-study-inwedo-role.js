@@ -8,7 +8,9 @@ export default function InwedoRole({ data: { sectionTitle, subTitle, text, actio
         <Wrapper>
             <Container>
                 <TextPart>
-                    <h2 className="line h4">{sectionTitle}</h2>
+                    {sectionTitle
+                        ? <h2 className="line h4">{sectionTitle}</h2>
+                        : null}
                     <p className="h1">{subTitle}</p>
                     <p className="p">{text}</p>
                 </TextPart>

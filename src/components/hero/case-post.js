@@ -16,7 +16,7 @@ export default function Hero({ data: { pageTitle, textUnderTitle, caseInformatio
                         <div className="goals">
                             {achievedGoals?.map(el => (
                                 <div className="item">
-                                    <GatsbyImage className="tech-logo" image={el.goalIcon.localFile.childImageSharp.gatsbyImageData} altText={el.goalIcon.altText} />
+                                    <img className="tech-logo" src={el.goalIcon.localFile.publicURL} altText={el.goalIcon.altText} />
                                     <p className="h4">{el.goalText}</p>
                                 </div>
                             ))}
@@ -28,7 +28,7 @@ export default function Hero({ data: { pageTitle, textUnderTitle, caseInformatio
                         <div className="technologies">
                             {technologies.map(el => (
                                 <div className="item">
-                                    <GatsbyImage className="tech-logo" image={el.technologyIcon.localFile.childImageSharp.gatsbyImageData} altText={el.technologyIcon.altText} />
+                                    <img className="tech-logo" src={el.technologyIcon.localFile.publicURL} altText={el.technologyIcon.altText} />
                                 </div>
                             ))}
                         </div>

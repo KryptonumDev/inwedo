@@ -8,11 +8,9 @@ import NumbersAndImages from "../components/numbers-and-image-grid"
 import Testomontials from "../components/testomontials-slider"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
-import { Script } from "gatsby"
 
 const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
   let { homepage, language, seo } = allWpPage.nodes[0]
-
   return (
     <main id='main'>
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Homepage' />
@@ -52,7 +50,11 @@ export const query = graphql`
         }
         seo {
           title
-          fullHead
+          metaDesc
+          opengraphSiteName
+          opengraphImage {
+            publicUrl
+          }
         }
         homepage {
             heroHome {
@@ -61,13 +63,14 @@ export const query = graphql`
               button {
                 name
                 url
+                datalayerJson
               }
               imgGridH {
                 imageLeft{
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -75,7 +78,7 @@ export const query = graphql`
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -83,7 +86,7 @@ export const query = graphql`
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -107,7 +110,7 @@ export const query = graphql`
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -121,6 +124,7 @@ export const query = graphql`
                 button {
                   name
                   url
+                  datalayerJson
                 }
                 previewImg {
                   altText
@@ -142,6 +146,7 @@ export const query = graphql`
               }
               button {
                 url
+                datalayerJson
                 name
               }
               downloadFile {
@@ -153,7 +158,7 @@ export const query = graphql`
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -166,31 +171,28 @@ export const query = graphql`
                 text
                 button {
                   url
+                  datalayerJson
                   name
                 }
                 techologies {
                   companyLogo {
                     altText
                     localFile {
-                      childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
-                      }
+                      publicURL
                     }
                   }
                 }
                 firmLogo {
                   altText
                   localFile {
-                    childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
-                    }
+                    publicURL
                   }
                 }
                 imgRight {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -206,6 +208,7 @@ export const query = graphql`
               }
               button {
                 url
+                datalayerJson
                 name
               }
               downloadFile {
@@ -217,7 +220,7 @@ export const query = graphql`
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -229,6 +232,7 @@ export const query = graphql`
                 textContent
                 button {
                   url
+                  datalayerJson
                   name
                 }
               }
@@ -242,7 +246,7 @@ export const query = graphql`
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -250,7 +254,7 @@ export const query = graphql`
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -258,7 +262,7 @@ export const query = graphql`
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -266,7 +270,7 @@ export const query = graphql`
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -283,7 +287,7 @@ export const query = graphql`
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -293,7 +297,7 @@ export const query = graphql`
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }
@@ -309,6 +313,7 @@ export const query = graphql`
               }
               button {
                 url
+                datalayerJson
                 name
               }
               downloadFile {
@@ -320,7 +325,7 @@ export const query = graphql`
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }

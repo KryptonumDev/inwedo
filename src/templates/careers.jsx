@@ -105,7 +105,11 @@ query CareersPageQuery($id: String!, $templateName: String!) {
             }
             seo {
               title
-              fullHead
+              metaDesc
+              opengraphSiteName
+              opengraphImage {
+                publicUrl
+              }
             }
             careersHome{
                 heroCareers {
@@ -119,7 +123,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -139,7 +143,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                             altText
                             localFile {
                               childImageSharp {
-                                gatsbyImageData(placeholder: BLURRED, quality: 80)
+                                gatsbyImageData(placeholder: BLURRED, quality: 95)
                               }
                             }
                         }
@@ -171,7 +175,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile{
                         childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 95)
                         }
                       }
                     }
@@ -187,7 +191,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile{
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -206,9 +210,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     icon{
                       altText
                       localFile{
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
-                        }
+                        publicURL
                       }
                     }
                   }
@@ -221,7 +223,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 95)
                         }
                       }
                     }
@@ -229,7 +231,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 95)
                         }
                       }
                     }
@@ -237,7 +239,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 95)
                         }
                       }
                     }
@@ -245,7 +247,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 95)
                         }
                       }
                     }
@@ -259,9 +261,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     icon{
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
-                        }
+                        publicURL
                       }
                     }
                   }
@@ -288,7 +288,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -315,7 +315,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -330,7 +330,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 95)
                         }
                       }
                     }
@@ -346,7 +346,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -356,9 +356,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     icon{
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
-                        }
+                        publicURL
                       }
                     }
                   }
@@ -377,7 +375,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 95)
                         }
                       }
                     }
@@ -386,7 +384,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     }
                   }
@@ -407,7 +405,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 95)
                         }
                       }
                     }
@@ -415,7 +413,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 95)
                         }
                       }
                     }
@@ -423,7 +421,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                       altText
                       localFile {
                         childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
+                          gatsbyImageData(placeholder: BLURRED, quality: 95)
                         }
                       }
                     }
@@ -435,7 +433,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 80)
+                        gatsbyImageData(placeholder: BLURRED, quality: 95)
                       }
                     } 
                   }
@@ -449,9 +447,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     avatar{
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 80)
-                        }
+                        publicURL
                       } 
                     }
                   }

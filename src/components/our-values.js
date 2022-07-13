@@ -11,7 +11,7 @@ export default function OurValues({ data: { sectionTitle, values } }) {
                 <Grid>
                     {values.map(el => (
                         <Card>
-                            <GatsbyImage className="image" image={el.valueIcon.localFile.childImageSharp.gatsbyImageData} alt={el.valueIcon.altText} />
+                            <img className="image" src={el.valueIcon.localFile.publicURL} alt={el.valueIcon.altText} />
                             <div>
                                 <h3>{el.valueTitle}</h3>
                                 <p className="h4">{el.valueText}</p>

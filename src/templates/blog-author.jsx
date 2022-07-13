@@ -40,7 +40,11 @@ query BlogCategoryQuery($id: String!) {
           }
           seo {
             title
-            fullHead
+            metaDesc
+            opengraphSiteName
+            opengraphImage {
+              publicUrl
+            }
           }
           id
           author {
@@ -52,7 +56,7 @@ query BlogCategoryQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -60,7 +64,7 @@ query BlogCategoryQuery($id: String!) {
               altText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: BLURRED, quality: 80)
+                  gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
               }
             }
@@ -83,7 +87,7 @@ query BlogCategoryQuery($id: String!) {
                 altText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 80)
+                    gatsbyImageData(placeholder: BLURRED, quality: 95)
                   }
                 }
               }
@@ -110,7 +114,7 @@ query BlogCategoryQuery($id: String!) {
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 80)
+                      gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }
                   }
                 }

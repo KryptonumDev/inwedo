@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Container } from "../style"
 import ContactForm from "./forms/contact-page"
 
-export default function Content({ data: { textUnderTitle, pageTitle, form, contactPerson, map } }) {
+export default function Content({ data: { textUnderTitle, pageTitle, form, contactPerson, map }, lang }) {
     return (
         <Wrapper>
             <Container>
@@ -14,7 +14,7 @@ export default function Content({ data: { textUnderTitle, pageTitle, form, conta
                 </Titles>
                 <Flex>
                     <Form>
-                        <ContactForm data={form} />
+                        <ContactForm data={form} lang={lang} />
                     </Form>
                     <OtherInform>
                         <Map>

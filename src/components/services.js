@@ -2,6 +2,7 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { datalayerPush } from "../helpers/datalayer"
 import { Container } from "../style"
 
 export default function Services({ data: { card, clientsTitle, clientsItems, sectionTitle, sectionText, items } }) {
@@ -23,7 +24,7 @@ export default function Services({ data: { card, clientsTitle, clientsItems, sec
                 <p className="h1">{sectionText}</p>
                 <Repeater>
                     {items.map(el => (
-                        <Item to={el.button.url}>
+                        <Item onClick={() => {datalayerPush(el.button.datalayerJson)}} to={el.button.url}>
                             <PreviewImg image={el.previewImg.localFile.childImageSharp.gatsbyImageData} alt={el.previewImg.altText} />
                             <ItemContent>
                                 <h3 className="line h5">{el.title}</h3>
@@ -135,6 +136,11 @@ const Clients = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+
+        img{
+            max-width: 115px;
+            max-height: 40px;
+        }
     }
 
     @media (max-width: 640px) {
@@ -199,6 +205,11 @@ const ItemContent = styled.div`
     .h5{
         margin-bottom: 8px;
         font-size: clamp(10px, 1.43vw, 12px);
+        text-transform: uppercase;
+
+        &::before{
+            height: 1px;
+        }
     }
     .h3{
         margin-bottom: 8px;

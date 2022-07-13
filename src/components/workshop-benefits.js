@@ -14,7 +14,7 @@ export default function WorkshopBenefits({ data: { sectionTitle, text, image, be
                     <BenefitsGrid>
                         {benefits.map(el => (
                             <BenefitsItem>
-                                <GatsbyImage className="image" image={el.benefitIcon.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
+                                <img className="image" src={el.benefitIcon.localFile.publicURL} alt={el.altText} />
                                 <div>
                                     <h3>{el.benefitTitle}</h3>
                                     <p>{el.benfitText}</p>
