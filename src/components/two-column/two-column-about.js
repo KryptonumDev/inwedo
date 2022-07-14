@@ -8,7 +8,7 @@ export default function TwoColumnFlex({ data: { image, title, subTitle, text, bu
     return (
         <Wrapper>
             <Container>
-                <Flex isLink={button.url} descReverse={descReverse} reverse={reverse} to={button.url}>
+                <Flex isLink={button.url} descReverse={descReverse} reverse={reverse} to={button.url} technology={technology}>
                     <div className="text">
                         {technology
                             ? <h2 className="h1">{title}</h2>
@@ -87,9 +87,9 @@ const Flex = styled(Link)`
     }
 
     .text{
-        max-width: 510px;
+        max-width: ${props => props.technology ? `630px` : '509px'};
+        margin-left: ${props => props.technology ? null : `clamp(0px, ${74 / 1440 * 100}vw, 74px)`};
         width: 100%;
-        margin-left: clamp(0px, ${74 / 1440 * 100}vw, 74px);
         .h1{
             margin-bottom: 16px;
         }

@@ -18,7 +18,7 @@ export default function InwedoRole({ data: { sectionTitle, subTitle, text, actio
                     {actions?.map(el => (
                         <Item>
                             <div className="image-wrapper">
-                                <GatsbyImage className="image" image={el.actionIcon.localFile.childImageSharp.gatsbyImageData} />
+                                <img className="image" src={el.actionIcon.localFile.publicURL} />
                             </div>
                             <h3 className="h4">{el.actionTitle}</h3>
                         </Item>
@@ -55,16 +55,20 @@ const TextPart = styled.div`
 `
 
 const Grid = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 32px;
     width: fit-content;
     margin: 0 auto;
+
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr 1fr;
+    }
 `
 
 const Item = styled.div`
     width: fit-content;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;

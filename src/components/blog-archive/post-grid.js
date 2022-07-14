@@ -57,7 +57,7 @@ export default function PostGrid({ isDefault, data, from, to, isAltLayout, curre
 }
 
 const Wrapper = styled.div`
-    padding-top: var(--margin-section);
+    padding-top: 64px;
 `
 
 const Grid = styled.div`

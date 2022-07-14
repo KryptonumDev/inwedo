@@ -19,7 +19,7 @@ export default function TeamSizes({ data: { sectionTitle, subTitle, text, teamSi
                             <SizesItem>
                                 <p>{el.teamSizeName}</p>
                                 <Image>
-                                    <GatsbyImage className="image" image={el.teamIcons.localFile.childImageSharp.gatsbyImageData} alt={el.teamIcons.altText} />
+                                    <img className="image" src={el.teamIcons.localFile.publicURL} alt={el.teamIcons.altText} />
                                 </Image>
                             </SizesItem>
                         ))}

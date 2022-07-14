@@ -8,15 +8,14 @@ import NumbersAndImages from "../components/numbers-and-image-grid"
 import Testomontials from "../components/testomontials-slider"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
-import { Helmet } from "react-helmet"
-import parse from 'html-react-parser';
+import parse from 'html-react-parser'
 
 const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
   let { homepage, language, seo, scryptInjection } = allWpPage.nodes[0]
-  let test = parse(scryptInjection.code)
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
-      {test}
+      {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Homepage' />
       <Hero data={homepage.heroHome} />
       <Services data={homepage.services} />
@@ -48,6 +47,9 @@ export const query = graphql`
     }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
+        scryptInjection {
+          code
+        }
         language {
           slug
           name
@@ -59,9 +61,6 @@ export const query = graphql`
           opengraphImage {
             publicUrl
           }
-        }
-        scryptInjection {
-          code
         }
         homepage {
             heroHome {

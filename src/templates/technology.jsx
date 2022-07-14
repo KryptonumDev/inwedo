@@ -10,12 +10,15 @@ import SuccessStories from "../components/success-stories"
 import FAQ from "../components/faq"
 import TechStack from "../components/tech-stack"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 const TechnologyPage = ({ data: { allWpTechnology, alternates }, location }) => {
-  let { technology, language, seo } = allWpTechnology.nodes[0]
+  let { technology, language, seo, scryptInjection } = allWpTechnology.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
 
   return (
     <main id='main'>
+    {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='technology' template='Technology' currTemplate={technology.templateName} />
       <Hero data={technology.heroTechnology} />
       <TwoColumnFlex technology={true} data={technology.twoColumnFlexTechnologySecond} />
@@ -55,6 +58,9 @@ query TechonologyPageQuery($id: String!) {
         language {
           slug
           name
+        }
+        scryptInjection {
+          code
         }
         seo {
           title

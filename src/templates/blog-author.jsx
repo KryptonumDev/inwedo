@@ -3,13 +3,16 @@ import { graphql } from "gatsby"
 import Hero from "../components/hero/blog-author"
 import BlogAuthorPosts from "../components/blog-author-posts"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 export default function BlogAuthor({ data: { allWpAuthors, allWpPost, alternates }, location }) {
   const author = allWpAuthors.nodes[0]
   const posts = allWpPost.nodes
+  let script = parse(allWpAuthors.nodes[0].scryptInjection.code ? allWpAuthors.nodes[0].scryptInjection.code : '')
 
   return (
     <main id='main'>
+    {script}
       <Seo data={author.seo} lang={author.language.slug} alternates={alternates} location={location} type='archive' id={author.id} template='author' currTemplate={author.author.userName}/>
       <Hero data={author} />
       <BlogAuthorPosts data={posts} title={author.author.authorPostsTitle} loadMore={author.author.loadMorePostsText} />
@@ -34,6 +37,9 @@ query BlogCategoryQuery($id: String!) {
     }
     allWpAuthors(filter: {id: {eq: $id}}) {
         nodes {
+          scryptInjection {
+            code
+          }
           language{
             slug
             locale

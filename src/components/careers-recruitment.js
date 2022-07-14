@@ -21,9 +21,9 @@ export default function RecruitmentProcess({ data: { sectionTitle, seoTitle, bol
                         </video>
                     </div>
                 </Flex>
-                <Image className="desctop" image={pathImage.desctop.localFile.childImageSharp.gatsbyImageData} alt={pathImage.desctop.altText} />
-                <Image className="tablet" image={pathImage.tablet.localFile.childImageSharp.gatsbyImageData} alt={pathImage.tablet.altText} />
-                <Image className="mobile" image={pathImage.phone.localFile.childImageSharp.gatsbyImageData} alt={pathImage.phone.altText} />
+                <Image className="desctop" src={pathImage.desctop.localFile.publicURL} alt={pathImage.desctop.altText} />
+                <Image className="tablet" src={pathImage.tablet.localFile.publicURL} alt={pathImage.tablet.altText} />
+                <Image className="mobile" src={pathImage.phone.localFile.publicURL} alt={pathImage.phone.altText} />
                 {applyButton?.name
                     ? <a className="button" href={applyButton.url}>{applyButton.name}</a>
                     : null}
@@ -58,7 +58,7 @@ const Wrapper = styled.section`
     }
 `
 
-const Image = styled(GatsbyImage)`
+const Image = styled.img`
     width: 100%;
     display: block;
     max-width: fit-content;

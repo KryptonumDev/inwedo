@@ -7,12 +7,14 @@ import CallToAction from "../components/cta"
 import TestomontialsAnimated from "../components/testomontials-animated"
 import SuccessStories from "../components/success-stories"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 const AboutPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { about, language, seo } = allWpPage.nodes[0]
-  debugger
+  let { about, language, seo, scryptInjection } = allWpPage.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
+    {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='About'/>
       <Hero data={about.heroAbout} />
       <TwoColumnFlex reverse={true} data={about.twoColumnFlex} />
@@ -43,6 +45,9 @@ export const query = graphql`
       }
         allWpPage(filter: {id: {eq: $id}}) {
             nodes {
+              scryptInjection {
+                code
+              }
               language {
                 slug
                 name

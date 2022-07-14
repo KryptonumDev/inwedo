@@ -6,6 +6,8 @@ import styled from "styled-components"
 import { urlSystem } from "../../contstants/urlSystem"
 import { Container } from "../../style"
 import { activeLanguage } from './../../helpers/activeLanguage'
+import Desctop from "./main-layouts/desctop"
+import Mobile from "./main-layouts/mobile"
 
 export default function Header({ location }) {
 
@@ -20,7 +22,18 @@ export default function Header({ location }) {
                     headerNavigation {
                         menuTitle
                         mainLink{
+                            name
                             url
+                        }
+                        firstColumn{
+                            name
+                            url
+                            isBold
+                        }
+                        secondColumn{
+                            name
+                            url
+                            isBold
                         }
                     }
                     contactLink{
@@ -30,9 +43,7 @@ export default function Header({ location }) {
                     siteLogo {
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED,quality: 100)
-                        }
+                        publicURL
                       }
                     }
                 }
@@ -43,7 +54,9 @@ export default function Header({ location }) {
     const locale = activeLanguage(location)
     const localeData = data.allWpPage.nodes.filter(el => el.language.slug === locale)
     const { siteLogo, headerNavigation, contactLink } = localeData[0].header
+
     const [isOpen, setIsOpen] = useState(false)
+    const [isHovered, setIsHovered] = useState(false)
 
     useEffect(() => {
         const body = document.documentElement
@@ -54,31 +67,40 @@ export default function Header({ location }) {
         }
     }, [isOpen])
 
+    useEffect(() => {
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Escape') {
+                setIsOpen(false)
+                setIsHovered(false)
+            }
+        })
+    }, [])
+
     return (
-        <Wrapper id='header' isOpen={isOpen}>
+        <Wrapper id='header' isOpen={isOpen} isHovered={isHovered}>
             <Container>
-                <Content isOpen={isOpen}>
+                <Content isOpen={isOpen} isHovered={isHovered}>
                     <a className="no-focus" href="#main" aria-label='skip link to main content' />
                     <Link aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
-                        <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
+                        <img className="logo" src={siteLogo.localFile.publicURL} alt={siteLogo.altText} />
                     </Link>
                     <MobileButton aria-label='mobile menu burger' isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>
                         <span />
                     </MobileButton>
-                    <Navigation isOpen={isOpen}>
-                        <ul>
-                            {headerNavigation.map(el =>
-                                <li>
-                                    <Link tabIndex={isOpen ? '0' : '-1'} onFocus={() => { setIsOpen(true) }} activeClassName="active" to={el.mainLink.url}><span>{el.menuTitle}</span></Link>
-                                </li>
-                            )}
-                            <li>
-                                <ContactButton tabIndex={isOpen ? '0' : '-1'} onFocus={() => { setIsOpen(true) }} onBlur={() => { setIsOpen(false) }} to={contactLink.url}>
-                                    {contactLink.name}
-                                </ContactButton>
-                            </li>
-                        </ul>
-                    </Navigation>
+                    <Desctop
+                        headerNavigation={headerNavigation}
+                        contactLink={contactLink}
+                        isHovered={isHovered}
+                        isOpen={isOpen}
+                        setIsHovered={setIsHovered}
+                        setIsOpen={setIsOpen}
+                    />
+                    <Mobile
+                        isOpen={isOpen}
+                        headerNavigation={headerNavigation}
+                        setIsOpen={setIsOpen}
+                        contactLink={contactLink}
+                    />
                 </Content>
                 <div class='clutch-widget' data-nofollow='true' data-url='https://widget.clutch.co' data-widget-type='2' data-height='45' data-clutchcompany-id='88412'></div>
             </Container>
@@ -100,6 +122,13 @@ const Wrapper = styled.header`
     .logo{
         filter: brightness(0) invert(1);
     }
+
+    ${props => props.isHovered !== false ? `
+        background-color: #fff;
+        .logo{
+            filter: unset;
+        }
+    ` : null}
 
     @media (max-width: 860px) {
 
@@ -124,105 +153,14 @@ const Content = styled.div`
     a:focus-visible{
         outline-color: #fff;
 
+        ${props => props.isHovered !== false ? `
+                outline-color: #0B61D6;
+        ` : null}
+
         @media (max-width: 860px) {
             ${props => props.isOpen ? `
                 outline-color: #0B61D6;
             ` : null}
-        }
-    }
-`
-
-const Navigation = styled.nav`
-    ul{
-        display: flex;
-
-        li{
-            display: flex;
-            align-items: center;
-            height: 81px;
-            a{
-                padding: 4px clamp(12px, ${12 / 768 * 100}vw, 24px);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                span{
-                    position: relative;
-                    padding: 4px 0;
-                    color: #fff;
-
-                    &::after{
-                        content: "";
-                        position: absolute;
-                        left: 0;
-                        bottom: 0;
-                        width: 0;
-                        height: 2px;
-                        background: #fff;
-                        transition: width .3s cubic-bezier(0.23, 1, 0.320, 1);
-                    }
-                }
-
-                &.active{
-                    span::after{
-                        width: 40%;
-                    }
-                }
-
-                &:hover{
-                    span::after{
-                        width: 100%;
-                    }
-                }
-            }
-        }
-    }
-
-    @media (max-width: 860px) {
-        position: fixed;
-        top: 81px;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: var(--color-white);
-        border-top: 1px solid #00000016;
-        transform: translateX(-50px);
-        pointer-events: none;
-        opacity: 0;
-        transition: .3s cubic-bezier(0.39, 0.575, 0.565, 1);
-
-        ${props => props.isOpen ? `
-            transform: unset;
-            opacity: 1;
-            pointer-events: all;
-        `: null}
-
-        ul{
-            margin-top: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 24px;
-
-            li{
-                height: unset;
-                a{
-                    span{
-                        color: var(--color-black);
-
-                        &::after{
-                            background: var(--color-accent);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @media (max-width: 480px) {
-        a, span{
-            font-size: 14px !important;
         }
     }
 `
@@ -309,42 +247,4 @@ const MobileButton = styled.button`
             background-color: var(--color-black);
         ` : null}
     }
-`
-
-const ContactButton = styled(Link)`
-    padding: 12px 22px !important; 
-    height: unset;
-    margin-left: clamp(12px, 2.4vw, 25px);
-    transition: background-color .2s cubic-bezier(0.39, 0.575, 0.565, 1);
-    position: relative;
-
-    &:hover{
-        background-color: #dfdfdf;
-    }
-
-    @media (max-width: 1024px) {
-        margin-left: 10px;
-    }
-
-    @media (max-width: 860px) {
-        margin-left: 0;
-        margin-top: 24px;
-
-        &::before{
-            content: "";
-            position: absolute;
-            width: 50px;
-            left: 50%;
-            top: -24px;
-            transform: translateX(-50%);
-            opacity: 0.1;
-            border: 1px solid #000000;
-        }
-    }
-
-    background: #fff;
-    border-radius: 6px;
-    color: #495057;
-    box-shadow: 0px 2px 21px rgba(13, 150, 225, 0.07);
-    
 `

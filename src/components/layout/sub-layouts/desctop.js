@@ -1,7 +1,7 @@
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import { Container } from './../../../style'
+import { Container } from '../../../style'
 
 export default function Desctop({ headerNavigation, setIsHovered, isHovered, setIsOpen, isOpen, contactLink }) {
     return (
@@ -11,39 +11,38 @@ export default function Desctop({ headerNavigation, setIsHovered, isHovered, set
                     <li>
                         <details open onMouseEnter={() => { setIsHovered(index) }} onMouseLeave={() => { setIsHovered(false) }}>
                             <Summary isHovered={isHovered} index={index} tabIndex='-1' onClick={(e) => { e.preventDefault() }}>
-                                <Link onClick={() => { setIsHovered(false) }}  partiallyActive={true} activeClassName="active" onFocus={() => { setIsHovered(index) }} to={el.mainLink.url}>{el.menuTitle}</Link>
+                                <Link onClick={() => { setIsHovered(false) }} partiallyActive={true} activeClassName="active" onFocus={() => { setIsHovered(index) }} to={el.mainLink.url}>{el.menuTitle}</Link>
                             </Summary>
-                            <Menu isHovered={isHovered} index={index} className="menu">
-                                <Container>
-                                    <div className="main">
-                                        <Link onClick={() => { setIsHovered(false); setIsOpen(false) }} onFocus={() => { setIsHovered(index) }} to={el.mainLink.url}>{el.mainLink.name}</Link>
-                                    </div>
-                                    <div className="column">
-                                        {el.firstColumn?.map(el => {
-                                            if (!el.url) {
+                            {el.firstColumn || el.secondColumn
+                                ? <Menu isHovered={isHovered} index={index} className="menu">
+                                    <Container>
+                                        <div className="column">
+                                            {el.firstColumn?.map(el => {
+                                                if (!el.url) {
+                                                    return (
+                                                        <h3 className={el.isBold}>{el.name}</h3>
+                                                    )
+                                                }
                                                 return (
-                                                    <h3 className={el.isBold}>{el.name}</h3>
+                                                    <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false) }} onFocus={() => { setIsHovered(index) }} className={el.isBold + ' nav'} to={el.url}>{el.name}</Link>
                                                 )
-                                            }
-                                            return (
-                                                <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false) }} onFocus={() => { setIsHovered(index) }} className={el.isBold + ' nav'} to={el.url}>{el.name}</Link>
-                                            )
-                                        })}
-                                    </div>
-                                    <div className="column">
-                                        {el.secondColumn?.map(el => {
-                                            if (!el.url) {
+                                            })}
+                                        </div>
+                                        <div className="column">
+                                            {el.secondColumn?.map(el => {
+                                                if (!el.url) {
+                                                    return (
+                                                        <h3 className={el.isBold}>{el.name}</h3>
+                                                    )
+                                                }
                                                 return (
-                                                    <h3 className={el.isBold}>{el.name}</h3>
+                                                    <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false) }} onFocus={() => { setIsHovered(index) }} className={el.isBold + ' nav'} to={el.url}>{el.name}</Link>
                                                 )
-                                            }
-                                            return (
-                                                <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false) }} onFocus={() => { setIsHovered(index) }} className={el.isBold + ' nav'} to={el.url}>{el.name}</Link>
-                                            )
-                                        })}
-                                    </div>
-                                </Container>
-                            </Menu>
+                                            })}
+                                        </div>
+                                    </Container>
+                                </Menu>
+                                : null}
                         </details>
                     </li>
                 ))}
@@ -143,6 +142,14 @@ const Menu = styled.div`
                     line-height: 150%;
                     font-family: 'Lexend';
                     padding: 4px 0 ;
+
+                    &.bold{
+                        font-weight: 400;
+                    }
+
+                    &.plain{
+                        font-weight: 300;
+                    }
                 }
 
                 .nav{
@@ -175,6 +182,7 @@ const Menu = styled.div`
 
                 ${Container}{
                     display: flex;
+                    justify-content: flex-end;
                 }
 
                 .main{
@@ -189,13 +197,10 @@ const Menu = styled.div`
 
                 .column{
                     display: grid;
-                    grid-gap: 24px;
-                    margin-right: clamp(150px, ${150 / 1024 * 100}vw, 200px);
+                    grid-gap: 12px;
+                    margin-right: 30px;
+                    width: clamp(240px, ${290 / 768 * 100}vw, 340px);
                     height: fit-content;
-
-                    @media (max-width: 1024px){
-                        margin-right: 100px;
-                    }
                 }
 `
 

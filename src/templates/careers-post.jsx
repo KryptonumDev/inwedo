@@ -6,11 +6,14 @@ import CareersTextParts from "../components/job-text-part"
 import Benefits from "../components/job-benefits"
 import RecruitmentProcess from '../components/careers-recruitment'
 import ApointmentWithHr from "../components/careers-appointment-hr"
+import parse from 'html-react-parser'
 
 export default function CareersPost({ data: { allWpJobOffer, alternates }, location }) {
-  let { careersPost, language, seo } = allWpJobOffer.nodes[0]
+  let { careersPost, language, seo, scryptInjection } = allWpJobOffer.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
+    {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='careers post' template='Blog Archive' currTemplate={careersPost.templateName} />
       <Hero data={careersPost.heroJob} location={location} />
       {careersPost.textParts.map(el => (
@@ -40,6 +43,9 @@ export const query = graphql`
         }
         allWpJobOffer(filter: {id: {eq: $id}}){
             nodes{
+              scryptInjection {
+                code
+              }
               language{
                   slug
                   locale
@@ -100,25 +106,19 @@ export const query = graphql`
                           tablet{
                             altText
                             localFile {
-                              childImageSharp {
-                                gatsbyImageData(placeholder: BLURRED, quality: 95)
-                              }
+                              publicURL
                             }
                           }
                           phone{
                             altText
                             localFile {
-                              childImageSharp {
-                                gatsbyImageData(placeholder: BLURRED, quality: 95)
-                              }
+                              publicURL
                             }
                           }
                           desctop{
                             altText
                             localFile {
-                              childImageSharp {
-                                gatsbyImageData(placeholder: BLURRED, quality: 95)
-                              }
+                              publicURL
                             }
                           }
                         }

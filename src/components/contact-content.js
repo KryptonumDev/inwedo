@@ -18,7 +18,7 @@ export default function Content({ data: { textUnderTitle, pageTitle, form, conta
                     </Form>
                     <OtherInform>
                         <Map>
-                            <GatsbyImage className="image" image={map.mapImg.localFile.childImageSharp.gatsbyImageData} alt={map.mapImg.altText} />
+                            <img className="image" src={map.mapImg.localFile.publicURL} alt={map.mapImg.altText} />
                             <div className="content">
                                 <p className="h3">{map.addressTitle}</p>
                                 <div className="p" dangerouslySetInnerHTML={{ __html: map.addressText }} />
@@ -75,6 +75,10 @@ const Map = styled.div`
         .h3{
             margin-bottom: 16px;
         }
+    }
+
+    .image{
+        width: 100%;
     }
 
     @media (max-width: 768px){

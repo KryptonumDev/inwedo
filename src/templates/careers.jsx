@@ -15,11 +15,14 @@ import RecruitmentProcess from "../components/careers-recruitment"
 import OnBoarding from "../components/careers-onboarding"
 import FAQ from "../components/faq"
 import JoinUs from "../components/careers-join-us"
+import parse from 'html-react-parser'
 
 const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCategoryJob, allWpSeniority }, location }) => {
-  let { careersHome, language, seo } = allWpPage.nodes[0]
+  let { careersHome, language, seo, scryptInjection } = allWpPage.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
+    {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Careers Homepage'/>
       <Hero data={careersHome.heroCareers} />
       <JoinUs data={careersHome.joinUs} offers={allWpJobOffer.nodes} categories={allWpCategoryJob.nodes} seniority={allWpSeniority.nodes} />
@@ -99,6 +102,9 @@ query CareersPageQuery($id: String!, $templateName: String!) {
     }
     allWpPage(filter: {id: {eq: $id}}) {
           nodes {
+            scryptInjection {
+              code
+            }
             language {
               slug
               name

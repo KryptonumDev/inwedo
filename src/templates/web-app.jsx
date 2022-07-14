@@ -9,11 +9,14 @@ import SuccessStories from "../components/success-stories"
 import DevelopmentTypes from "../components/development-types"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 const WebAppPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { webApp, language, seo } = allWpPage.nodes[0]
+  let { webApp, language, seo, scryptInjection } = allWpPage.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
+      {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={webApp.heroWebApp} />
       <TwoColumnFlex webApp={true} data={webApp.twoColumnFlexWebApp} />
@@ -56,6 +59,9 @@ query WebAppPageQuery($id: String!, $templateName: String!) {
           opengraphImage {
             publicUrl
           }
+        }
+        scryptInjection {
+          code
         }
         webApp {
           heroWebApp {

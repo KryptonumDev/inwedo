@@ -13,11 +13,14 @@ import CallToAction from "../components/cta"
 import RelatedServices from "../components/related-services"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 const AgileTeamsPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { agileTeams, language, seo } = allWpPage.nodes[0]
+  let { agileTeams, language, seo, scryptInjection } = allWpPage.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
+    {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={agileTeams.heroAgileTeams} />
       <OurFocuses data={agileTeams.ourFocusesAgileTeams} />
@@ -53,6 +56,9 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
   }
     allWpPage(filter: {id: {eq: $id}}) {
       nodes {
+        scryptInjection {
+          code
+        }
         language {
           slug
           name
@@ -121,9 +127,7 @@ query AgileTeamsPageQuery($id: String!, $templateName: String!) {
                     teamIcons{
                             altText
                             localFile {
-                              childImageSharp {
-                                gatsbyImageData(placeholder: BLURRED, quality: 95)
-                              }
+                              publicURL
                             }
                         }
                 }

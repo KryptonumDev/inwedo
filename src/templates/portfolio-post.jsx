@@ -13,11 +13,14 @@ import TwoColumnFlex from "../components/two-column/two-column-list"
 import ImpactAchieved from "../components/impact-achieved"
 import OtherCaseStudies from "../components/other-case-studies"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts, alternates }, location }) => {
-  const { caseStudies, language, seo } = allWpCaseStudies.nodes[0]
+  const { caseStudies, language, seo, scryptInjection } = allWpCaseStudies.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
+    {script}
       <Seo data={seo} ogImg={caseStudies.previewCard.previewImage.localFile.publicURL} lang={language.slug} alternates={alternates} location={location} type='post' template='Portfolio Archive' currTemplate={caseStudies.heroportfolio.pageTitle} />
       <Hero data={caseStudies.heroportfolio} />
       {caseStudies.sectionController.oneColumnTextPart
@@ -81,6 +84,9 @@ query PortfolioPageQuery($id: String!) {
         id
         language{
           slug
+        }
+        scryptInjection {
+          code
         }
         seo {
           title
@@ -215,9 +221,7 @@ query PortfolioPageQuery($id: String!) {
                   actionIcon{
                     altText
                     localFile {
-                      childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 95)
-                      }
+                      publicURL
                     }
                   }
                   actionTitle

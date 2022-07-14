@@ -27,13 +27,13 @@ export default function CallToAction({ data: { typeOfCta, title, text, form, but
                             return <Type5 title={title} button={button} image={image} />
                         case 'six':
                             // <Type6 title={title} text={text} image={image} form={form} />
-                            return <Placeholder/>
+                            return <Placeholder />
                         case 'seven':
                             // <Type7 title={title} form={form} />
-                            return <Placeholder/>
+                            return <Placeholder />
                         case 'eight':
                             // <Type8 title={title} downloadFile={downloadFile} image={image} button={buttonText} />
-                            return <Placeholder/>
+                            return <Placeholder />
                     }
                 })()}
             </LocContainer>
@@ -42,6 +42,8 @@ export default function CallToAction({ data: { typeOfCta, title, text, form, but
 }
 
 const Wrapper = styled.section`
+
+    margin-top: ${props => props.small ? `clamp(-64px, ${-44 / 768 * 100}vw, -16px)` : '0px'};
 `
 
 const LocContainer = styled(Container)`

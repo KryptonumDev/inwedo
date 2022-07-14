@@ -131,6 +131,7 @@ const Item = styled.div`
                 width: fit-content;
                 height: fit-content;
                 max-width: 36px;
+                max-height: 36px;
                 filter: grayscale(1);
             }
         }

@@ -13,11 +13,14 @@ import TechStack from "../components/tech-stack"
 import SuccessStories from "../components/success-stories"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 const ProductDesignPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { productDesign, language, seo } = allWpPage.nodes[0]
+  let { productDesign, language, seo, scryptInjection } = allWpPage.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
+    {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={productDesign.heroProductDesign} />
       <DesignProcess data={productDesign.designProcess} />
@@ -60,6 +63,9 @@ query ProductDesignPageQuery($id: String!, $templateName: String!) {
         language {
           slug
           name
+        }
+        scryptInjection {
+          code
         }
         seo {
           title

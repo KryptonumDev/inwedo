@@ -132,7 +132,7 @@ const SearchedPhrase = styled.div`
     position: absolute;
     bottom: 0;
     z-index: -1;
-    transform: translateY(calc(100% + clamp(24px, ${44 / 768 * 100}vw, 64px)));
+    transform: translateY(200%);
 `
 
 const Wrapper = styled.div`

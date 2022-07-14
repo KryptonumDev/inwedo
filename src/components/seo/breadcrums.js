@@ -1,5 +1,14 @@
 import { urlSystem } from "../../contstants/urlSystem"
 
+export const breadcrumbsBlogPagination = (items, location, lang, type) => {
+    items.push({
+        "@type": "ListItem",
+        "position": 2,
+        "name": urlSystem[type][lang + '-name'],
+        "item": location.href
+    })
+}
+
 export const breadcrumbsHowWeWork = (items, location, lang) => {
     let elemntsToAddCount = -1
     let elementsHashes = []

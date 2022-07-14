@@ -11,11 +11,14 @@ import TestomontialDivider from "../components/testomontial-divider-logo"
 import FAQ from "../components/faq"
 import ProcessOptimisation from "../components/process-optimisation"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 const ProductDevelopmentPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { productDevelopment, language, seo } = allWpPage.nodes[0]
+  let { productDevelopment, language, seo, scryptInjection } = allWpPage.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
+    {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={productDevelopment.heroProductDevelop} />
       <TwoColumnFlex data={productDevelopment.twoColumnFlexProductDevelopment} />
@@ -63,6 +66,9 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
           opengraphImage {
             publicUrl
           }
+        }
+        scryptInjection {
+          code
         }
         productDevelopment {
             heroProductDevelop {

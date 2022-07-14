@@ -2,11 +2,14 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import Content from "../components/contact-content"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 const ContactPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { contactPage, language, seo } = allWpPage.nodes[0]
+  let { contactPage, language, seo, scryptInjection } = allWpPage.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
+    {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Contact' />
       <Content data={contactPage} lang={language.slug}/>
     </main>
@@ -30,6 +33,9 @@ query CPageQuery($id: String!, $templateName: String!) {
   }
     allWpPage(filter: {id: {eq: $id}}) {
           nodes {
+            scryptInjection {
+              code
+            }
             language {
               slug
               name
@@ -86,9 +92,7 @@ query CPageQuery($id: String!, $templateName: String!) {
                 mapImg {
                   altText
                   localFile {
-                    childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 95)
-                    }
+                    publicURL
                   }
                 }
               }

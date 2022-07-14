@@ -162,10 +162,10 @@ const Item = styled.details`
             }
         }
         ::after{
-            transform: rotateX(180deg);
+            transform: rotateX(180deg) translateY(-3px);
             
             @media (max-width: 660px) {
-                transform: rotateX(180deg) scale(.55);
+                transform: rotateX(180deg) scale(.55) translateY(-3px);
             }
         }
     }

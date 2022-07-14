@@ -11,11 +11,14 @@ import TwoColumnFlexImg from './../components/two-column/two-column-about'
 import BenefitsGrid from "../components/benefits-grid"
 import RelatedServices from "../components/related-services"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 const HowWeWorkPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { howWeWork, language, seo } = allWpPage.nodes[0]
+  let { howWeWork, language, seo, scryptInjection } = allWpPage.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
+    {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='How We Work' />
       <Hero data={howWeWork.heroHowWeWork} />
       <TwoColumnFlex data={howWeWork.twoColumnFlexHowWeWork} />
@@ -55,6 +58,9 @@ query HowWeWorkPageQuery($id: String!, $templateName: String!) {
             language {
               slug
               name
+            }
+            scryptInjection {
+              code
             }
             seo {
               title

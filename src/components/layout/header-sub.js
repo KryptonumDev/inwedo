@@ -5,8 +5,8 @@ import styled from "styled-components"
 import { urlSystem } from "../../contstants/urlSystem"
 import { Container } from "../../style"
 import { activeLanguage } from './../../helpers/activeLanguage'
-import Desctop from "./sub-layouts.js/desctop"
-import Mobile from "./sub-layouts.js/mobile"
+import Desctop from "./sub-layouts/desctop"
+import Mobile from "./sub-layouts/mobile"
 
 export default function Header({ location }) {
 
@@ -43,9 +43,7 @@ export default function Header({ location }) {
                     siteLogo {
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED,quality: 100)
-                        }
+                        publicURL
                       }
                     }
                 }
@@ -84,7 +82,7 @@ export default function Header({ location }) {
                 <Content>
                     <a className="no-focus" href="#main" aria-label='skip link to main content' />
                     <Link onClick={() => { setIsOpen(false) }} onFocus={() => { setIsHovered(false) }} aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
-                        <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
+                        <img className="logo" src={siteLogo.localFile.publicURL} alt={siteLogo.altText} />
                     </Link>
                     <MobileButton aria-label='mobile menu burger' isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>
                         <span />

@@ -11,11 +11,14 @@ import Testomontials from "../components/testomontials-slider"
 import RelatedServices from "../components/related-services"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 const TeamExtensionsPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { teamExtensionsPage, language, seo } = allWpPage.nodes[0]
+  let { teamExtensionsPage, language, seo, scryptInjection } = allWpPage.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
+    {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={teamExtensionsPage.heroTeamExtensions} />
       <TwoColumnFlex data={teamExtensionsPage.twoColumnFlexTeamExtensions} />
@@ -53,6 +56,9 @@ query TeamExtensionsPageQuery($id: String!, $templateName: String!) {
         language{
           slug
           locale
+        }
+        scryptInjection {
+          code
         }
         seo {
           title

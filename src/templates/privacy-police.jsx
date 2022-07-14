@@ -2,11 +2,14 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 const PrivacyPage = ({ data: { allWpPage, alternates }, location }) => {
-    let { content, language, seo, template } = allWpPage.nodes[0]
+    let { content, language, seo, template, scryptInjection } = allWpPage.nodes[0]
+    let script = parse(scryptInjection.code ? scryptInjection.code : '')
     return (
         <main id='main'>
+        {script}
             <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type={template.templateName} />
             <Content dangerouslySetInnerHTML={{ __html: content }} />
         </main>
@@ -36,6 +39,9 @@ export const query = graphql`
                 language {
                   slug
                   name
+                }
+                scryptInjection {
+                  code
                 }
                 seo {
                   title

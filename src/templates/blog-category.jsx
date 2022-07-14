@@ -4,13 +4,16 @@ import BlogAuthorPosts from "../components/blog-author-posts"
 import FAQ from './../components/faq'
 import Hero from "../components/hero/blog-category"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 export default function BlogCategory({ data: { allWpCategory, allWpPost, alternates }, location }) {
   const category = allWpCategory.nodes[0]
   const posts = allWpPost.nodes
+  let script = parse(allWpCategory.nodes[0].scryptInjection.code ? allWpCategory.nodes[0].scryptInjection.code : '')
   
   return (
     <main id='main'>
+    {script}
       <Seo data={category.seo} lang={category.language.slug} alternates={alternates} location={location} type='archive' id={category.id} template='category' currTemplate={category.slug.substr(3)}/>
       <Hero data={category.blogCategory} />
       <BlogAuthorPosts data={posts} title={category.blogCategory.otherPostsTitle} loadMore={category.blogCategory.viewMoreButtonText} />
@@ -36,6 +39,9 @@ query BlogAuthorQuery($id: String!) {
       }
       allWpCategory(filter: {id: {eq: $id}}) {
         nodes {
+          scryptInjection {
+            code
+          }
             slug
             language {
               slug

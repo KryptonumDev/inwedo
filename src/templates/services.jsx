@@ -6,11 +6,14 @@ import CallToAction from "../components/cta"
 import TwoColumnFlex from "../components/two-column/two-column-services"
 import Testomontials from "../components/testomontials-slider"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 const ServicesPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { servicesPage, language, seo } = allWpPage.nodes[0]
+  let { servicesPage, language, seo, scryptInjection } = allWpPage.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
+    {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location}  type='Services'/>
       <Hero data={servicesPage.heroServices} />
       <DevelopmentCards data={servicesPage.developmentCards} />
@@ -44,6 +47,9 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
         language {
           slug
           name
+        }
+        scryptInjection {
+          code
         }
         seo {
           title

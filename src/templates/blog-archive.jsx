@@ -4,11 +4,14 @@ import Hero from "../components/hero/blog"
 import Archive from "../components/blog-archive"
 import Seo from "../components/seo"
 import StayInTouch from "../components/stay-in-touch"
+import parse from 'html-react-parser'
 
 export default function BlogArchive({ data: { allWpPage, allWpPost, allWpCategory, alternates }, location }) {
-  let { blogArchive, language, seo } = allWpPage.nodes[0]
+  let { blogArchive, language, seo, scryptInjection } = allWpPage.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
+    {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Blog Archive'/>
       <Hero data={blogArchive.heroBlog} />
       <Archive otherData={blogArchive.posts} location={location} cta={blogArchive.callToActionBlog} cta2={blogArchive.callToActionBlogSecond} data={allWpPost} categories={allWpCategory} language={language.slug} />
@@ -32,6 +35,9 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
   }
     allWpPage(filter: {id: {eq: $id}}) {
         nodes{
+          scryptInjection {
+            code
+          }
             language{
               slug
             }

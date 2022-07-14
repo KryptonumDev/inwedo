@@ -140,6 +140,8 @@ const Content = styled.div`
 const Image = styled(GatsbyImage)`
     box-shadow: var(--shadow);
     height: fit-content;
+    max-width: 500px;
+    min-width: 400px;
     
     img{
         border-radius: 8px;
@@ -147,13 +149,13 @@ const Image = styled(GatsbyImage)`
 
     @media (max-width: 1240px) {
         width: 100%;
-        min-width: 400px;
         max-width: fit-content;
     }
 
     @media (max-width: 876px){
         margin: 0 auto;
         min-width: unset;
+        max-width: 400px;
     }
 
     @media (max-width: 660px){

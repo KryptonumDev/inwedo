@@ -53,12 +53,12 @@ const Wrapper = styled.section`
         text-align: center;
         max-width: 600px;
         margin: 0 auto;
-        margin-bottom: 16px;
         font-size: clamp(14px, 1.95vw, 16px);
     }
 `
 
 const Grid = styled.div`
+    margin-top: clamp(32px, 5.46vw, 48px);
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: clamp(16px, 5.46vw, 64px);

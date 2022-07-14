@@ -19,9 +19,7 @@ export default function Footer({ location }) {
                       siteLogo {
                         altText
                         localFile {
-                          childImageSharp {
-                            gatsbyImageData(placeholder: BLURRED, quality: 100)
-                          }
+                            publicURL
                         }
                       }
                       navigation {
@@ -64,7 +62,7 @@ export default function Footer({ location }) {
         <Wrapper>
             <Container>
                 <Link aria-label="link to homepage" to={urlSystem['Homepage'][localeData[0].language.slug]}>
-                    <GatsbyImage className="logo" image={siteLogo.localFile.childImageSharp.gatsbyImageData} alt={siteLogo.altText} />
+                    <img className="logo" src={siteLogo.localFile.publicURL} alt={siteLogo.altText} />
                 </Link>
                 <Content>
                     <div>

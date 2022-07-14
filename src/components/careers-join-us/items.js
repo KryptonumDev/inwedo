@@ -69,6 +69,12 @@ const Item = styled(Link)`
         display: flex;
         align-items: center;
         gap: 32px;
+
+        a{
+            display: block;
+            position: relative;
+            z-index: 10;
+        }
     }
 
     &:nth-child(n + 2){

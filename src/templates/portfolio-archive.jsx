@@ -6,11 +6,14 @@ import Testomontials from "../components/testomontials-slider"
 import CallToAction from "../components/cta"
 import Archive from "../components/portfolio-archive"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 const PortfolioArchivePage = ({ data: { allWpPage, categoryParents, allWpCaseStudies, alternates }, location }) => {
   const portfolio = allWpPage.nodes[0].portfolioArchive
+  let script = parse(allWpPage.nodes[0].scryptInjection.code ? allWpPage.nodes[0].scryptInjection.code : '')
   return (
     <main id='main'>
+    {script}
       <Seo data={allWpPage.nodes[0].seo} lang={allWpPage.nodes[0].language.slug} alternates={alternates} location={location}  type='Portfolio Archive'/>
       <Hero data={portfolio.heroPortfolio} />
       <ClientCases data={portfolio.clientsPortfolio} />
@@ -44,6 +47,9 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
         language {
           slug
           name
+        }
+        scryptInjection {
+          code
         }
         seo {
           title

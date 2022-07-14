@@ -60,7 +60,6 @@ export default function JoinUs({ data: { sectionTitle, categoryTitle, seniorityT
                     : <NoPosts>
                         <span className='colored'>{noPostsText}</span>
                     </NoPosts>}
-
             </Container>
         </Wrapper>
     )

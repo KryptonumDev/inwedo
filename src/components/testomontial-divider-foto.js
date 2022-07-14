@@ -51,10 +51,8 @@ const Card = styled.div`
 
         .image{
             margin-right: clamp(16px, 5.2vw, 24px);
-            max-width: clamp(60px, 23.43vw, 68px);
-            max-height: clamp(60px, 23.43vw, 68px);
-            width: 100%;
-            height: 100%;
+            width: clamp(60px, 23.43vw, 68px);
+            height: clamp(60px, 23.43vw, 68px);
 
             img{
                 border-radius: 50%;

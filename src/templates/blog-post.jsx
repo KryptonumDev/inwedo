@@ -4,13 +4,16 @@ import BlogPostContent from "../components/blog-post-content"
 import Hero from "../components/hero/blog-post"
 import BlogAuthorPosts from "../components/blog-author-posts"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 export default function BlogPost({ data: { allWpPost, otherPosts, alternates }, location }) {
-  let { blogPost, categories, date, authors, language, seo } = allWpPost.nodes[0]
-  debugger
+  let { blogPost, categories, date, authors, language, seo, scryptInjection } = allWpPost.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
+
   return (
     <main id='main'>
-      <Seo author={authors.nodes[0]?.author?.userName} data={seo} lang={language.slug} alternates={alternates} location={location} type='post' template='Blog Archive' currTemplate={blogPost.previewCard.previewTitle} ogImg={blogPost.previewCard.previewImage.localFile.publicURL}/>
+    {script}
+      <Seo preview={blogPost.previewCard} author={authors.nodes[0]?.author} data={seo} lang={language.slug} alternates={alternates} location={location} type='post' template='Blog Archive' currTemplate={blogPost.previewCard.previewTitle} ogImg={blogPost.previewCard.previewImage.localFile.publicURL}/>
       <Hero data={blogPost.heroPost} categories={categories} date={date} authors={authors} />
       <BlogPostContent data={blogPost.content} quickTitle={blogPost.quickNavigation.sectionTitle} />
       <BlogAuthorPosts data={otherPosts.nodes} title={blogPost.otherPosts.sectionTitle} />
@@ -91,6 +94,9 @@ query BlogPostQuery($id: String!) {
             slug
             name
           }
+          scryptInjection {
+            code
+          }
           seo {
             title
             metaDesc
@@ -101,6 +107,7 @@ query BlogPostQuery($id: String!) {
               templateName
               previewCard {
                 previewTitle
+                previewText
                 previewImage {
                   altText
                   localFile {

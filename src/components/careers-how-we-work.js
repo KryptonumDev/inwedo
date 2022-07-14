@@ -27,7 +27,7 @@ export default function HowWeWork({ data: { sectionTitle, titleFirst, boldTextFi
                 <Title>
                     {sectionTitle}
                 </Title>
-                <MainFlex to={linkFirst.url}>
+                <MainFlex as={linkFirst.url ? null : 'div'} to={linkFirst.url}>
                     <div>
                         <h3 className="line h4">{titleFirst}</h3>
                         <p className="h3">{boldTextFirst}</p>
@@ -106,6 +106,14 @@ const MainFlex = styled(Link)`
     grid-template-columns: 1fr 1fr;
     grid-gap: 64px;
     align-items: center;
+
+    &:hover{
+        .link{
+            &::after{
+                width: 100%;
+            }
+        }
+    }
 
     .image{
         box-shadow: var(--shadow);

@@ -11,11 +11,14 @@ import WorkshopBenefits from "../components/workshop-benefits"
 import SuccessStories from "../components/success-stories"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
+import parse from 'html-react-parser'
 
 const DiscoveryWorkshopPage = ({ data: { allWpPage, alternates }, location }) => {
-  let { discoveryWorkshop, language, seo } = allWpPage.nodes[0]
+  let { discoveryWorkshop, language, seo, scryptInjection } = allWpPage.nodes[0]
+  let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
+    {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location}  type='Services'/>
       <Hero data={discoveryWorkshop.heroWorkshop} />
       <OneColumnText data={discoveryWorkshop.oneColumnTextPart} />
@@ -50,6 +53,9 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
   }
     allWpPage(filter: {id: {eq: $id}}) {
           nodes {
+            scryptInjection {
+              code
+            }
             language {
               slug
               name
