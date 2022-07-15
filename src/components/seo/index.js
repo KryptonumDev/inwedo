@@ -41,7 +41,7 @@ export default function Seo({ data, lang, alternates, location, type, id, templa
 
     const canonical = (() => {
         let string = location.href
-        if(string?.indexOf("#")){
+        if (string?.indexOf("#")) {
             string = string.split('#')[0]
         }
         return string?.slice(-1) === '/' ? string : string + '/'
@@ -49,6 +49,7 @@ export default function Seo({ data, lang, alternates, location, type, id, templa
 
     return (
         <Helmet htmlAttributes={{ lang: lang }}>
+            <script type='text/javascript' src="https://widget.clutch.co/static/js/widget.js"></script>
             <meta charSet="utf-8" />
             <meta name="robots" content="noindex" />
 

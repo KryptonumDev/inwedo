@@ -3,21 +3,18 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useEffect } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
+import { datalayerPush } from './../helpers/datalayer'
 
-export default function CaseStudyRepeater({ data: { title, text, studiesCase } }) {
+export default function CaseStudyRepeater({ data: { title, text, studiesCase }, analytics }) {
 
-    useEffect(() => {
-        //inview
-    }, [])
-    
     return (
         <Wrapper>
             <Container>
                 <h2 className='h4 line'>{title}</h2>
                 <p className='h1 medium'>{text}</p>
                 <Repeater>
-                    {studiesCase.map(el => (
-                        <Link to={el.button.url}>
+                    {studiesCase.map((el, index) => (
+                        <Link onClick={() => { datalayerPush(analytics[index](el.title)) }} key={el.title} to={el.button.url}>
                             <Item>
                                 <div className="content">
                                     <img className="logo" src={el.firmLogo.localFile.publicURL} alt={el.firmLogo.altText} />

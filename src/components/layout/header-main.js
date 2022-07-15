@@ -121,7 +121,6 @@ export default function Header({ location }) {
                         isScrolled={offset}
                     />
                 </Content>
-                <div class='clutch-widget' data-nofollow='true' data-url='https://widget.clutch.co' data-widget-type='2' data-height='45' data-clutchcompany-id='88412'></div>
             </Container>
         </Wrapper >
     )

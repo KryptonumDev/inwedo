@@ -10,21 +10,24 @@ import FAQ from "../components/faq"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
 
+import Analytics from './../analytics/homepage'
+
 const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
   let { homepage, language, seo, scryptInjection } = allWpPage.nodes[0]
   let script = parse(scryptInjection.code ? scryptInjection.code : '')
+
   return (
     <main id='main'>
       {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Homepage' />
-      <Hero data={homepage.heroHome} />
-      <Services data={homepage.services} />
-      <CallToAction data={homepage.callToAction} />
-      <CaseStudyRepeater data={homepage.caseStudies} />
-      <CallToAction data={homepage.callToActionCopy} />
-      <NumbersAndImages data={homepage.impactNumbersAndImgGrid} />
+      <Hero data={homepage.heroHome} analytics={Analytics.hero}  />
+      <Services data={homepage.services} analytics={Analytics.services} />
+      <CallToAction data={homepage.callToAction} analytics={Analytics.cta.first}/>
+      <CaseStudyRepeater data={homepage.caseStudies} analytics={Analytics.caseStudies}/>
+      <CallToAction data={homepage.callToActionCopy}  analytics={Analytics.cta.second}/>
+      <NumbersAndImages data={homepage.impactNumbersAndImgGrid} analytics={Analytics.numbers}/>
       <Testomontials data={homepage.testomontials} />
-      <CallToAction data={homepage.callToActionCopyCopy} />
+      <CallToAction data={homepage.callToActionCopyCopy}  analytics={Analytics.cta.third}/>
       <FAQ data={homepage.faq} />
     </main>
   )
@@ -98,17 +101,6 @@ export const query = graphql`
               }
             }
             services {
-              card{
-                cardLink
-                cardImage{
-                  altText
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 90)
-                    }
-                  }
-                }
-              }
               clientsTitle
               clientsItems {
                 logoClients {

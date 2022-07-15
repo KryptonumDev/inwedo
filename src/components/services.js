@@ -1,14 +1,25 @@
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
+import { datalayerPush } from './../helpers/datalayer'
+import { useInView } from 'react-intersection-observer';
 
-export default function Services({ data: { card, clientsTitle, clientsItems, sectionTitle, sectionText, items } }) {
+export default function Services({ data: { card, clientsTitle, clientsItems, sectionTitle, sectionText, items }, analytics }) {
+
+    const { ref, inView, entry } = useInView();
+
+    useEffect(() => {
+        if (inView) {
+            datalayerPush(analytics(items))
+        }
+    }, [inView])
+
     return (
-        <Wrapper>
-            <Card as={card.cardLink ? 'a' : 'div'} aria-label='link to clatch review' href={card.cardLink} target="_blank" rel="noopener noreferrer">
-                <GatsbyImage className="image" image={card.cardImage.localFile.childImageSharp.gatsbyImageData} alt={card.cardImage.altText} />
+        <Wrapper ref={ref}>
+            <Card>
+                <div class='clutch-widget' data-nofollow='true' data-url='https://widget.clutch.co' data-widget-type='2' data-height='45' data-clutchcompany-id='88412'></div>
             </Card>
             <Container>
                 <h2 className="h3 title">{clientsTitle}</h2>
@@ -45,6 +56,14 @@ const Wrapper = styled.section`
     margin: 0 auto;
     margin-top: var(--margin-xl);
 
+    @media (max-width: 1024px) {
+        margin-top: 20px;
+    }
+
+    @media (max-width: 640px){
+        margin-top: 8px;
+    }
+
     .h3.title{
         margin-bottom: 32px;
         font-size: clamp(18px, 2.734375vw, 24px);
@@ -71,10 +90,10 @@ const Wrapper = styled.section`
     }
 `
 
-const Card = styled.a`
+const Card = styled.div`
     display: block;
     position: absolute;
-    right: -16px;
+    right: -100px;
     top: 0;
     border-radius: 24px;
     background-color: var(--color-white);
@@ -89,38 +108,27 @@ const Card = styled.a`
         transform: translateX(-6px);
     }
 
-    .image{
-        width: fit-content;
-        height: fit-content;
-        max-width: 192px;
-    }
-
     @media (max-width: 1240px) {
-        .image{
-            max-width: 150px;
-        }
         padding: 24px 16px;
-        right: -8px;
+        right: -100px;
         top: -32px;
     }
 
     @media (max-width: 1024px) {
-        .image{
-            max-width: 100px;
+        position: relative;
+        right: unset;
+        width: fit-content;
+        top: unset;
+        width: 200px;
+        margin: 0 var(--margin-m);
+        margin-bottom: 8px;
+        &:hover{
+            transform: translateY(-3px);
         }
-        padding: 16px;
-        top: -56px;
     }
 
     @media (max-width: 640px) {
-        right: unset;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 8px;
-
-        &:hover{
-            transform: translateX(-50%) translateY(-3px);
-        }
+        margin: 0 auto 8px auto;
     }
 `
 
@@ -146,7 +154,7 @@ const Clients = styled.div`
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 20px;
-        padding: 0 50px;
+        padding: 0 16px;
     }
 
     @media (max-width: 340px) {

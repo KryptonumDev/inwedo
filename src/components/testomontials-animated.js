@@ -11,8 +11,8 @@ export default function TestomontialsAnimated({ data: { text, seectionTitle, tes
             <Container>
                 <Text className="h3">{text}</Text>
                 <Title className="h4">{seectionTitle}</Title>
-                <Card as={card.cardLink ? 'a' : 'div'} href={card.cardLink} target="_blank" rel="noopener noreferrer">
-                    <GatsbyImage className="image" image={card.cardImage.localFile.childImageSharp.gatsbyImageData} alt={card.cardImage.altText} />
+                <Card>
+                    <div class='clutch-widget' data-nofollow='true' data-url='https://widget.clutch.co' data-widget-type='2' data-height='45' data-clutchcompany-id='88412'></div>
                 </Card>
                 <Row ref={constraintsRef}>
                     <motion.div drag='x' dragConstraints={constraintsRef} className="slider">
@@ -215,7 +215,7 @@ const Item = styled.div`
     }
 `
 
-const Card = styled.a`
+const Card = styled.div`
     display: block;
     position: absolute;
     right: -16px;
