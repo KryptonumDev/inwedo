@@ -3,14 +3,14 @@ import React from "react"
 import styled from "styled-components"
 import { Container } from '../../../style'
 
-export default function Desctop({ headerNavigation, setIsHovered, isHovered, setIsOpen, isOpen, contactLink }) {
+export default function Desctop({ headerNavigation, setIsHovered, isHovered, setIsOpen, isOpen, contactLink, isScrolled }) {
     return (
         <Navigation isHovered={isHovered} isOpen={isOpen}>
             <ul>
                 {headerNavigation.map((el, index) => (
                     <li>
                         <details open onMouseEnter={() => { setIsHovered(index) }} onMouseLeave={() => { setIsHovered(false) }}>
-                            <Summary isHovered={isHovered} index={index} tabIndex='-1' onClick={(e) => { e.preventDefault() }}>
+                            <Summary isScrolled={isScrolled} isHovered={isHovered} index={index} tabIndex='-1' onClick={(e) => { e.preventDefault() }}>
                                 <Link onClick={() => { setIsHovered(false) }} partiallyActive={true} activeClassName="active" onFocus={() => { setIsHovered(index) }} to={el.mainLink.url}>{el.menuTitle}</Link>
                             </Summary>
                             {el.firstColumn || el.secondColumn
@@ -109,7 +109,7 @@ const Summary = styled.summary`
                             }
                         }
 
-                        ${props => props.isHovered !== false ? `
+                        ${props => props.isHovered !== false || props.isScrolled ? `
                             color: var(--color-black);
                         ` : null}
 

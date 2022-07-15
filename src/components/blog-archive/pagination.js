@@ -23,10 +23,13 @@ export default function Pagination({ defaultUrl, currentPage, itemCount, changeC
         const href = document.getElementById("posts")
         const offsetTop = href.offsetTop
 
-        window.scroll({
-            top: offsetTop,
-            behavior: "smooth"
-        });
+        setTimeout(() => {
+            window.scroll({
+                top: offsetTop,
+                behavior: "smooth"
+            });
+        }, 1)
+
     }
 
     if (itemCount < 11) {
@@ -146,8 +149,8 @@ const Wrapper = styled.div`
 
 const Button = styled.a`
     border: none;
-    width: clamp(32px, ${44/768*100}vw, 50px);
-    height: clamp(32px, ${44/768*100}vw, 50px);
+    width: clamp(32px, ${44 / 768 * 100}vw, 50px);
+    height: clamp(32px, ${44 / 768 * 100}vw, 50px);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -8,6 +8,7 @@ import { Container } from "../../style"
 import { activeLanguage } from './../../helpers/activeLanguage'
 import Desctop from "./main-layouts/desctop"
 import Mobile from "./main-layouts/mobile"
+import scrollLock from './../../helpers/scrollLock'
 
 export default function Header({ location }) {
 
@@ -57,34 +58,50 @@ export default function Header({ location }) {
 
     const [isOpen, setIsOpen] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
+    const [offset, setOffset] = useState(0)
+    const [scrollDirection, setScrollDirection] = useState(false)
 
     useEffect(() => {
-        const body = document.documentElement
         if (isOpen) {
-            body.classList.add('noScroll')
+            scrollLock.enable()
         } else {
-            body.classList.remove('noScroll')
+            scrollLock.disable()
         }
     }, [isOpen])
 
     useEffect(() => {
-        document.addEventListener('keydown', (e) => {
-            if (e.code === 'Escape') {
-                setIsOpen(false)
-                setIsHovered(false)
+        if (typeof document !== `undefined`) {
+            document.addEventListener('keydown', (e) => {
+                if (e.code === 'Escape') {
+                    setIsOpen(false)
+                    setIsHovered(false)
+                }
+            })
+        }
+        if (typeof window !== `undefined`) {
+            let lastScrol = window.pageYOffset
+            window.onscroll = () => {
+                console.log(offset - window.pageYOffset)
+                if (lastScrol > window.pageYOffset) {
+                    setScrollDirection(true)
+                } else {
+                    setScrollDirection(false)
+                }
+                lastScrol = window.pageYOffset
+                setOffset(window.pageYOffset)
             }
-        })
+        }
     }, [])
 
     return (
-        <Wrapper id='header' isOpen={isOpen} isHovered={isHovered}>
+        <Wrapper scrollDirection={scrollDirection} isScrolled={offset} id='header' isOpen={isOpen} isHovered={isHovered}>
             <Container>
-                <Content isOpen={isOpen} isHovered={isHovered}>
+                <Content isScrolled={offset} isOpen={isOpen} isHovered={isHovered}>
                     <a className="no-focus" href="#main" aria-label='skip link to main content' />
                     <Link aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
                         <img className="logo" src={siteLogo.localFile.publicURL} alt={siteLogo.altText} />
                     </Link>
-                    <MobileButton aria-label='mobile menu burger' isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>
+                    <MobileButton isScrolled={offset} aria-label='mobile menu burger' isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>
                         <span />
                     </MobileButton>
                     <Desctop
@@ -94,12 +111,14 @@ export default function Header({ location }) {
                         isOpen={isOpen}
                         setIsHovered={setIsHovered}
                         setIsOpen={setIsOpen}
+                        isScrolled={offset}
                     />
                     <Mobile
                         isOpen={isOpen}
                         headerNavigation={headerNavigation}
                         setIsOpen={setIsOpen}
                         contactLink={contactLink}
+                        isScrolled={offset}
                     />
                 </Content>
                 <div class='clutch-widget' data-nofollow='true' data-url='https://widget.clutch.co' data-widget-type='2' data-height='45' data-clutchcompany-id='88412'></div>
@@ -109,7 +128,7 @@ export default function Header({ location }) {
 }
 
 const Wrapper = styled.header`
-    position: absolute;
+    position: fixed;
     z-index: 10;
     background-color: transparent;
     top: 0;
@@ -123,7 +142,15 @@ const Wrapper = styled.header`
         filter: brightness(0) invert(1);
     }
 
-    ${props => props.isHovered !== false ? `
+    ${props => props.isScrolled > 100 ? `
+        transform: translateY(-100%);
+    ` : null}
+
+    ${props => props.scrollDirection ? `
+        transform: translateY(0);
+    ` : null}
+
+    ${props => props.isHovered !== false || props.isScrolled ? `
         background-color: #fff;
         .logo{
             filter: unset;
@@ -153,7 +180,7 @@ const Content = styled.div`
     a:focus-visible{
         outline-color: #fff;
 
-        ${props => props.isHovered !== false ? `
+        ${props => props.isHovered !== false || props.isScrolled ? `
                 outline-color: #0B61D6;
         ` : null}
 
@@ -247,4 +274,17 @@ const MobileButton = styled.button`
             background-color: var(--color-black);
         ` : null}
     }
+
+    ${props => props.isScrolled > 100 ? `
+        &::after{
+            background-color: #000;
+        }
+        &::before{
+            background-color: #000;
+        }
+        span{
+            background-color: #000;
+        }
+    ` : null}
+
 `

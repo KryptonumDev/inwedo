@@ -49,7 +49,7 @@ const Background = styled(GatsbyImage)`
     left: 50%;
     transform: translateX(-50%);
     top: 0;
-    width: fit-content;
+    width: 100%;
     height: fit-content;
     height: 400px;
 `
@@ -81,7 +81,13 @@ const GlassCard = styled.div`
 
     .logo{
         margin-bottom: clamp(24px, 4.68vw, 48px); 
-        max-width: clamp(120px, 23.43vw, 240px);
+
+        img{
+            max-width: clamp(120px, 23.43vw, 240px);
+            max-height: 48px;
+            display: block;
+            width: fit-content;
+        }
     }
 
     .h1{
@@ -90,7 +96,7 @@ const GlassCard = styled.div`
     }
 
     .h3{
-        margin-bottom: 24px;
+        margin-bottom: 36px;
         font-size: clamp(16px, 2.6vw, 24px);
     }
 

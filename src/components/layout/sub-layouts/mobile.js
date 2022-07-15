@@ -3,9 +3,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { Container } from "../../../style"
 
-export default function Mobile({ isOpen, backToMainMenu, headerNavigation, setIsHovered, setIsOpen, contactLink }) {
-
-    const [openedTab, setOpenedTab] = useState(false)
+export default function Mobile({ isOpen, backToMainMenu, headerNavigation, setIsHovered, setIsOpen, contactLink, setOpenedTab, openedTab }) {
 
     return (
         <Navigation isOpen={isOpen}>
@@ -77,6 +75,7 @@ const Navigation = styled.nav`
     right: 0;
     bottom: 0;
     top: 81px;
+    height: 100vh;
     background-color: var(--color-white);
     border-top: 1px solid #00000016;
 
@@ -98,6 +97,7 @@ const SubMenu = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
+    height: 100vh;
 	background-color: var(--color-white);
 
     transition: .3s cubic-bezier(0.39, 0.575, 0.565, 1);

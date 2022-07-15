@@ -22,8 +22,8 @@ const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCatego
   let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
-    {script}
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Careers Homepage'/>
+      {script}
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Careers Homepage' />
       <Hero data={careersHome.heroCareers} />
       <JoinUs data={careersHome.joinUs} offers={allWpJobOffer.nodes} categories={allWpCategoryJob.nodes} seniority={allWpSeniority.nodes} />
       <ApointmentWithHr data={careersHome.appointmentWithHr} />
@@ -176,8 +176,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     name
                     url
                   }
-                  imageCarousel{
-                    image{
+                  imageFirst{
                       altText
                       localFile{
                         childImageSharp {
@@ -185,7 +184,6 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                         }
                       }
                     }
-                  }
                   titleSecond
                   boldTextSecond
                   plainTextSecond
@@ -410,25 +408,19 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     tablet{
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 95)
-                        }
+                        publicURL
                       }
                     }
                     phone{
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 95)
-                        }
+                        publicURL
                       }
                     }
                     desctop{
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 95)
-                        }
+                        publicURL
                       }
                     }
                   }

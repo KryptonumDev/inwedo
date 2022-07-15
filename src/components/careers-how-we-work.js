@@ -5,7 +5,7 @@ import Slider from "react-slick"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-export default function HowWeWork({ data: { sectionTitle, titleFirst, boldTextFirst, plainTextFirst, linkFirst, imageCarousel, titleSecond, boldTextSecond, plainTextSecond, linkSecond, image } }) {
+export default function HowWeWork({ data: { sectionTitle, titleFirst, boldTextFirst, plainTextFirst, linkFirst, imageFirst, titleSecond, boldTextSecond, plainTextSecond, linkSecond, image } }) {
     var settings = {
         dots: true,
         arrows: true,
@@ -35,9 +35,7 @@ export default function HowWeWork({ data: { sectionTitle, titleFirst, boldTextFi
                         <span className="link">{linkFirst.name}</span>
                     </div>
                     <div>
-                        {imageCarousel?.map((el, index) => (
-                            <GatsbyImage className="image" key={index} image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
-                        ))}
+                        <GatsbyImage className="image" image={imageFirst.localFile.childImageSharp.gatsbyImageData} alt={imageFirst.altText} />
                     </div>
                 </MainFlex>
                 <SecondFlex to={linkSecond.url}>

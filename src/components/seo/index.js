@@ -39,10 +39,20 @@ export default function Seo({ data, lang, alternates, location, type, id, templa
         "itemListElement": items
     };
 
+    const canonical = (() => {
+        let string = location.href
+        if(string?.indexOf("#")){
+            string = string.split('#')[0]
+        }
+        return string?.slice(-1) === '/' ? string : string + '/'
+    })()
+
     return (
         <Helmet htmlAttributes={{ lang: lang }}>
             <meta charSet="utf-8" />
             <meta name="robots" content="noindex" />
+
+            <link rel="canonical" href={canonical} />
 
             {items.length > 1 ? (
                 <script type="application/ld+json">
@@ -112,7 +122,7 @@ export default function Seo({ data, lang, alternates, location, type, id, templa
                     <link rel="alternate" hreflang={el.language.slug} href={href} />
                 )
             })}
-            <link rel="canonical" href={location.href} />
+
 
             {type === 'post' && preview
                 ? <script type="application/ld+json">

@@ -78,6 +78,7 @@ const Navigation = styled.nav`
         left: 0;
         right: 0;
         bottom: 0;
+        height: 100vh;
         background-color: var(--color-white);
         border-top: 1px solid #00000016;
         transform: translateX(-50px);

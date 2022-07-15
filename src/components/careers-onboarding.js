@@ -116,6 +116,34 @@ const Flex = styled.div`
 
         .slider{
             display: block;
+            padding-bottom: 32px;
+
+            .slick-dots{
+                padding-bottom: 24px;
+                button{
+                    &::before{
+                        border-radius: 50%;
+                        font-size: 12px;
+                        color: #C4C4C4 !important;
+                        opacity: 0.3;
+                        transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+                    }
+
+                    &:focus-visible{
+                        &::before{
+                            outline: 2px solid #0B61D6;
+                            outline-offset: 1px;
+                        }
+                    }
+                }
+
+                .slick-active button{
+                    &::before{
+                        color: #C4C4C4 ;
+                        opacity: .8;
+                    }
+                }
+            }
         }
     }
 `
@@ -165,6 +193,12 @@ const Item = styled.div`
         grid-gap: 24px;
         align-items: center;
         margin-bottom: 16px;
+
+        img{
+            border-radius: 50%;
+            width: 68px;
+            height: 68px;
+        }
     }
 
     .name{

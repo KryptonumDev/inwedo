@@ -69,7 +69,6 @@ export const query = graphql`
               button {
                 name
                 url
-                datalayerJson
               }
               imgGridH {
                 imageLeft{
@@ -130,7 +129,6 @@ export const query = graphql`
                 button {
                   name
                   url
-                  datalayerJson
                 }
                 previewImg {
                   altText
@@ -152,7 +150,6 @@ export const query = graphql`
               }
               button {
                 url
-                datalayerJson
                 name
               }
               downloadFile {
@@ -177,7 +174,6 @@ export const query = graphql`
                 text
                 button {
                   url
-                  datalayerJson
                   name
                 }
                 techologies {
@@ -214,7 +210,6 @@ export const query = graphql`
               }
               button {
                 url
-                datalayerJson
                 name
               }
               downloadFile {
@@ -238,7 +233,6 @@ export const query = graphql`
                 textContent
                 button {
                   url
-                  datalayerJson
                   name
                 }
               }
@@ -319,7 +313,6 @@ export const query = graphql`
               }
               button {
                 url
-                datalayerJson
                 name
               }
               downloadFile {

@@ -22,6 +22,14 @@ const Content = styled.div`
     padding: 0 32px;
     margin: 200px auto 0 auto;
 
+    *{
+      margin-top: 16px;
+    }
+
+    img{
+      width: 100%;
+    }
+
     h1{
         margin-bottom: 32px;
         font-weight: 400;
@@ -44,8 +52,6 @@ const Content = styled.div`
     }
 
     ul, ol{
-        display: grid;
-        grid-gap: 16px;
         li{
             list-style: disc;
             margin-left: 20px;

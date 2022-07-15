@@ -247,6 +247,7 @@ const Item = styled.details`
             display: block;
             font-weight: 300;
             font-size: clamp(14px, 1.95vw, 16px);
+            line-height: 160%;
 
             @media (max-width: 660px){
                 margin-top: 8px;

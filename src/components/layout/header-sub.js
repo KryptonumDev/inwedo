@@ -7,6 +7,7 @@ import { Container } from "../../style"
 import { activeLanguage } from './../../helpers/activeLanguage'
 import Desctop from "./sub-layouts/desctop"
 import Mobile from "./sub-layouts/mobile"
+import scrollLock from './../../helpers/scrollLock'
 
 export default function Header({ location }) {
 
@@ -57,34 +58,51 @@ export default function Header({ location }) {
 
     const [isOpen, setIsOpen] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
+    const [openedTab, setOpenedTab] = useState(false)
+    const [offset, setOffset] = useState(0)
+    const [scrollDirection, setScrollDirection] = useState(false)
 
     useEffect(() => {
-        const body = document.documentElement
         if (isOpen) {
-            body.classList.add('noScroll')
+            scrollLock.enable()
         } else {
-            body.classList.remove('noScroll')
+            scrollLock.disable()
         }
     }, [isOpen])
 
     useEffect(() => {
-        document.addEventListener('keydown', (e) => {
-            if (e.code === 'Escape') {
-                setIsOpen(false)
-                setIsHovered(false)
+        if (typeof document !== `undefined`) {
+            document.addEventListener('keydown', (e) => {
+                if (e.code === 'Escape') {
+                    setIsOpen(false)
+                    setIsHovered(false)
+                }
+            })
+        }
+        if (typeof window !== `undefined`) {
+            let lastScrol = window.pageYOffset
+            window.onscroll = () => {
+                console.log(offset - window.pageYOffset)
+                if (lastScrol > window.pageYOffset) {
+                    setScrollDirection(true)
+                } else {
+                    setScrollDirection(false)
+                }
+                lastScrol = window.pageYOffset
+                setOffset(window.pageYOffset)
             }
-        })
+        }
     }, [])
 
     return (
-        <Wrapper id='header' isHovered={isHovered} isOpen={isOpen} >
+        <Wrapper scrollDirection={scrollDirection} isScrolled={offset} id='header' isHovered={isHovered} isOpen={isOpen} >
             <Container>
                 <Content>
                     <a className="no-focus" href="#main" aria-label='skip link to main content' />
                     <Link onClick={() => { setIsOpen(false) }} onFocus={() => { setIsHovered(false) }} aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
                         <img className="logo" src={siteLogo.localFile.publicURL} alt={siteLogo.altText} />
                     </Link>
-                    <MobileButton aria-label='mobile menu burger' isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>
+                    <MobileButton aria-label='mobile menu burger' isOpen={isOpen} onClick={() => { setIsOpen(!isOpen); setOpenedTab(false) }}>
                         <span />
                     </MobileButton>
                     <Desctop
@@ -102,6 +120,8 @@ export default function Header({ location }) {
                         isOpen={isOpen}
                         setIsOpen={setIsOpen}
                         contactLink={contactLink}
+                        openedTab={openedTab}
+                        setOpenedTab={setOpenedTab}
                     />
                 </Content>
             </Container>
@@ -110,7 +130,7 @@ export default function Header({ location }) {
 }
 
 const Wrapper = styled.header`
-    position: absolute;
+    position: fixed;
     z-index: 10;
     background-color: #fff;
     top: 0;
@@ -119,20 +139,13 @@ const Wrapper = styled.header`
     transition: .5s cubic-bezier(0.23, 1, 0.320, 1);
     z-index: 1000;
 
-    /* ${props => props.isOpen ? `
-        position: fixed;
-    ` : null} */
-
-    /* ${props => props.isHovered !== false ? `
-        background-color: var(--color-white);
+    ${props => props.isScrolled > 100 ? `
+        transform: translateY(-100%);
     ` : null}
 
-    ${props => props.isOpen ? `
-        background-color: var(--color-white);
-        .logo{
-            filter: unset;
-        }
-    ` : null} */
+    ${props => props.scrollDirection ? `
+        transform: translateY(0);
+    ` : null}
 `
 
 const Content = styled.div`

@@ -1,13 +1,12 @@
 import { Link } from "gatsby"
 import React from "react"
 import styled from 'styled-components'
-import { datalayerPush } from "../../helpers/datalayer"
 
 export default ({ title, button }) => (
     <ContentWrapper>
         <Content>
             <Title className="h1" dangerouslySetInnerHTML={{ __html: title }}></Title>
-            <Button to={button.url} onClick={() => {datalayerPush(button.datalayerJson)}} className='button-white'>
+            <Button to={button.url} className='button-white'>
                 <span className="colored">{button.name}</span>
             </Button>
         </Content>

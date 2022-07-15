@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Container } from "../style"
 import Video from './../images/hr.mp4'
 
-export default function RecruitmentProcess({ data: { sectionTitle, seoTitle, boldText, plainText, video, pathImage, applyButton } }) {
+export default function RecruitmentProcess({ data: { sectionTitle, seoTitle, boldText, plainText, pathImage, applyButton } }) {
     return (
         <Wrapper>
             <Container>

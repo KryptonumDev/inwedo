@@ -24,85 +24,7 @@ module.exports = {
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
-    {
-      resolve: `gatsby-plugin-advanced-sitemap`,
-      options: {
-        query: `
-          {
-            allWpPage{
-              edges{
-                node{
-                  id
-                  slug
-                }
-              }
-            }
-            allWpPost{
-              edges{
-                node{
-                  id
-                  slug
-                }
-              }
-            }
-            allWpTechnology{
-              edges{
-                node{
-                  id
-                  slug
-                }
-              }
-            }
-            allWpCaseStudies{
-              edges{
-                node{
-                  id
-                  slug
-                }
-              }
-            }
-            allWpJobOffer{
-              edges{
-                node{
-                  id
-                  slug
-                }
-              }
-            }
-            allWpCareerPath{
-              edges{
-                node{
-                  id
-                  slug
-                }
-              }
-            }
-          }
-        `,
-        output: '/sitemap-index.xml',
-        mapping: {
-          allWpPost: {
-            sitemap: 'posts'
-          },
-          allWpPage: {
-            sitemap: 'pages'
-          },
-          allWpTechnology: {
-            sitemap: 'pages'
-          },
-          allWpCaseStudies: {
-            sitemap: 'pages'
-          },
-          allWpJobOffer: {
-            sitemap: 'pages'
-          },
-          allWpCareerPath: {
-            sitemap: 'pages'
-          },
-        },
-        addUncaughtPages: true
-      }
-    },
+    'gatsby-plugin-advanced-sitemap',
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp", 
     'gatsby-plugin-postcss',
@@ -111,7 +33,7 @@ module.exports = {
       options: {
         host: 'https://inwedo.netlify.app',
         sitemap: 'https://inwedo.netlify.app/sitemap-index.xml',
-        policy: [{ userAgent: '*', allow: '/' }],
+        policy: [{ userAgent: 'WhatWeb/0.4.8-dev', allow: '/static', disallow: '/services' }],
       },
     },
     {

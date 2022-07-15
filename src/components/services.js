@@ -2,7 +2,6 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
-import { datalayerPush } from "../helpers/datalayer"
 import { Container } from "../style"
 
 export default function Services({ data: { card, clientsTitle, clientsItems, sectionTitle, sectionText, items } }) {
@@ -24,7 +23,7 @@ export default function Services({ data: { card, clientsTitle, clientsItems, sec
                 <p className="h1">{sectionText}</p>
                 <Repeater>
                     {items.map(el => (
-                        <Item onClick={() => {datalayerPush(el.button.datalayerJson)}} to={el.button.url}>
+                        <Item to={el.button.url}>
                             <PreviewImg image={el.previewImg.localFile.childImageSharp.gatsbyImageData} alt={el.previewImg.altText} />
                             <ItemContent>
                                 <h3 className="line h5">{el.title}</h3>

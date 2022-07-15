@@ -56,6 +56,7 @@ export default function FAQ({ data: { title, faqElement } }) {
             });
         }
     }, [])
+    
     if (!!faqElement) {
         return (
             <Wrapper>
@@ -79,7 +80,7 @@ export default function FAQ({ data: { title, faqElement } }) {
                                 <div
                                     itemProp='acceptedAnswer'
                                     itemType='https://schema.org/Answer'>
-                                    <span className="p" itemProp='text' dangerouslySetInnerHTML={{ __html: el.answer }}>
+                                    <span className="p parent" itemProp='text' dangerouslySetInnerHTML={{ __html: el.answer }}>
                                     </span>
                                 </div>
                             </Item>
@@ -89,7 +90,7 @@ export default function FAQ({ data: { title, faqElement } }) {
             </Wrapper>
         )
     }
-    
+
     return null
 }
 
@@ -109,7 +110,7 @@ const Title = styled.h2`
     text-align: center;
     position: relative;
     max-width: 850px;
-    margin: 0 auto 64px auto;
+    margin: 0 auto clamp(32px, ${48 / 768 * 100}vw, 64px) auto;
     padding: clamp(8px, 1.5625vw, 16px) 0;
 
     &.h1{
@@ -237,15 +238,59 @@ const Item = styled.details`
             padding-left: 40px;
         }
 
-        span{
+        .parent{
             margin-top: 24px;
-            margin-bottom: 16px;    
-            display: block;
+            display: grid;
+            grid-gap: 16px;
 
             font-size: clamp(12px, 1.82vw, 16px);
 
-            p+p{
-                margin-top: 16px;
+            a{
+                font-family: 'Lexend Deca';
+                font-style: normal;
+                font-weight: 600;
+                font-size: clamp(14px, 2.08vw, 16px);
+                line-height: 26px;
+                background: var(--color-accent);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-fill-color: transparent;
+
+                border-radius: 2px;
+                position: relative;
+                width: fit-content;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 0;
+                    height: 2px;
+                    background: var(--color-accent);
+                    transition: width .3s cubic-bezier(0.23, 1, 0.320, 1);
+                }
+
+                &:hover{
+                    &::after {
+                        width: 100%;
+                    }
+                }
+            }
+
+            ul, ol{
+                display: grid;
+                grid-gap: 16px;
+                li{
+                    list-style: disc;
+                    margin-left: 20px;
+
+                    font-weight: 300;
+                    font-size: clamp(14px, 2.08vw, 16px);
+                    line-height: 160%;
+                    font-feature-settings: 'ss01' on;
+                }
             }
         }
     }

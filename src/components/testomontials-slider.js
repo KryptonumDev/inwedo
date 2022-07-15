@@ -243,6 +243,13 @@ const Image = styled(GatsbyImage)`
     width: fit-content;
     display: block;
     margin: 0 auto;
+    max-height: 36px;
     max-width: 120px;
     height: fit-content;
+
+    img{
+        display: block;
+        margin: 0 auto;
+        max-height: 36px;
+    }
 `

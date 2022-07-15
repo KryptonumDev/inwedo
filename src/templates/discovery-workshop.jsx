@@ -256,9 +256,7 @@ query WorkshopPageQuery($id: String!, $templateName: String!) {
                     benefitIcon {
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 95)
-                        }
+                        publicURL
                       }
                     }
                   }

@@ -2,7 +2,6 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from 'styled-components'
-import { datalayerPush } from "../../helpers/datalayer"
 
 export default ({ title, button, image }) => (
     <ContentWrapper>
@@ -10,7 +9,7 @@ export default ({ title, button, image }) => (
             <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
             <div className="content">
                 <Title className="h1 colored" dangerouslySetInnerHTML={{ __html: title }}></Title>
-                <Button onClick={() => {datalayerPush(button.datalayerJson)}} to={button.url} className='button'>
+                <Button to={button.url} className='button'>
                     <span>{button.name}</span>
                 </Button>
             </div>
