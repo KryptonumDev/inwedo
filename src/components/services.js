@@ -4,20 +4,15 @@ import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
 import { datalayerPush } from './../helpers/datalayer'
-import { useInView } from 'react-intersection-observer';
 
 export default function Services({ data: { card, clientsTitle, clientsItems, sectionTitle, sectionText, items }, analytics }) {
 
-    const { ref, inView, entry } = useInView();
-
     useEffect(() => {
-        if (inView) {
-            datalayerPush(analytics(items))
-        }
-    }, [inView])
+        datalayerPush(analytics(items))
+    }, [analytics, items])
 
     return (
-        <Wrapper ref={ref}>
+        <Wrapper>
             <Card>
                 <div class='clutch-widget' data-nofollow='true' data-url='https://widget.clutch.co' data-widget-type='2' data-height='45' data-clutchcompany-id='88412'></div>
             </Card>
