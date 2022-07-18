@@ -24,7 +24,7 @@ module.exports = {
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
-    'gatsby-plugin-advanced-sitemap',
+    'gatsby-plugin-sitemap',
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp", 
     'gatsby-plugin-postcss',
@@ -32,7 +32,7 @@ module.exports = {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: 'https://inwedo.netlify.app',
-        sitemap: 'https://inwedo.netlify.app/sitemap-index.xml',
+        sitemap: 'https://inwedo.netlify.app/sitemap/sitemap-index.xml',
         policy: [{ userAgent: 'WhatWeb/0.4.8-dev', allow: '/static', disallow: '/services' }],
       },
     },

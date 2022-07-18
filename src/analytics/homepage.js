@@ -8,13 +8,18 @@ export default {
     },
     services: (items) => {
         const listItems = []
-
-        items.map(el => {
+        items.map((el, index) => {
             listItems.push({
                 'list': 'Services',
                 'name': el.title,
                 'brand ': 'inwedo.com',
-                'position': 1,
+                'position': index+1,
+                'category': el.title,
+                'variant': 'page-site',
+                'price': '88.53', //ilość znaków w artykule / 100
+                'id': 'post-3441', //idstrony
+                'dimension1': 'inwedo',
+                'dimension2': '18072022'
             })
         })
 

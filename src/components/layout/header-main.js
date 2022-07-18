@@ -59,7 +59,6 @@ export default function Header({ location }) {
     const [isOpen, setIsOpen] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
     const [offset, setOffset] = useState(0)
-    const [scrollDirection, setScrollDirection] = useState(false)
 
     useEffect(() => {
         if (isOpen) {
@@ -79,22 +78,14 @@ export default function Header({ location }) {
             })
         }
         if (typeof window !== `undefined`) {
-            let lastScrol = window.pageYOffset
             window.onscroll = () => {
-                console.log(offset - window.pageYOffset)
-                if (lastScrol > window.pageYOffset) {
-                    setScrollDirection(true)
-                } else {
-                    setScrollDirection(false)
-                }
-                lastScrol = window.pageYOffset
                 setOffset(window.pageYOffset)
             }
         }
     }, [])
 
     return (
-        <Wrapper scrollDirection={scrollDirection} isScrolled={offset} id='header' isOpen={isOpen} isHovered={isHovered}>
+        <Wrapper isScrolled={offset} id='header' isOpen={isOpen} isHovered={isHovered}>
             <Container>
                 <Content isScrolled={offset} isOpen={isOpen} isHovered={isHovered}>
                     <a className="no-focus" href="#main" aria-label='skip link to main content' />
@@ -140,14 +131,6 @@ const Wrapper = styled.header`
     .logo{
         filter: brightness(0) invert(1);
     }
-
-    ${props => props.isScrolled > 100 ? `
-        transform: translateY(-100%);
-    ` : null}
-
-    ${props => props.scrollDirection ? `
-        transform: translateY(0);
-    ` : null}
 
     ${props => props.isHovered !== false || props.isScrolled ? `
         background-color: #fff;

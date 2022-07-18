@@ -40,7 +40,6 @@ export default function JoinUs({ data: { sectionTitle, categoryTitle, seniorityT
                             return true
                         })
                     }
-                    debugger
                     return (isSeniority && isCategory)
                 })
             }
@@ -94,19 +93,26 @@ const Title = styled.h2`
 
 
 const NoPosts = styled.div`
-    padding: 30px 130px;
+    padding: 30px;
     width: fit-content;
-    margin: 128px auto 0 auto;
+    margin: 0 auto;
+    margin-top: clamp(48px,7.291666666666667vw,64px);
     border-radius: 24px;
     background: var(--color-white);
     box-shadow: var(--shadow);
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 
     span{
         font-weight: 400;
-        font-size: 29.7931px;
+        font-size: clamp(20px, ${24 / 768 * 100}vw, 30px);
         line-height: 160%;
+        max-width: 736px;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
     }
 `

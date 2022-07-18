@@ -59,8 +59,6 @@ export default function Header({ location }) {
     const [isOpen, setIsOpen] = useState(false)
     const [isHovered, setIsHovered] = useState(false)
     const [openedTab, setOpenedTab] = useState(false)
-    const [offset, setOffset] = useState(0)
-    const [scrollDirection, setScrollDirection] = useState(false)
 
     useEffect(() => {
         if (isOpen) {
@@ -79,23 +77,10 @@ export default function Header({ location }) {
                 }
             })
         }
-        if (typeof window !== `undefined`) {
-            let lastScrol = window.pageYOffset
-            window.onscroll = () => {
-                console.log(offset - window.pageYOffset)
-                if (lastScrol > window.pageYOffset) {
-                    setScrollDirection(true)
-                } else {
-                    setScrollDirection(false)
-                }
-                lastScrol = window.pageYOffset
-                setOffset(window.pageYOffset)
-            }
-        }
     }, [])
 
     return (
-        <Wrapper scrollDirection={scrollDirection} isScrolled={offset} id='header' isHovered={isHovered} isOpen={isOpen} >
+        <Wrapper  id='header' isHovered={isHovered} isOpen={isOpen} >
             <Container>
                 <Content>
                     <a className="no-focus" href="#main" aria-label='skip link to main content' />
@@ -138,14 +123,6 @@ const Wrapper = styled.header`
     right: 0;
     transition: .5s cubic-bezier(0.23, 1, 0.320, 1);
     z-index: 1000;
-
-    ${props => props.isScrolled > 100 ? `
-        transform: translateY(-100%);
-    ` : null}
-
-    ${props => props.scrollDirection ? `
-        transform: translateY(0);
-    ` : null}
 `
 
 const Content = styled.div`

@@ -2,7 +2,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 
-export default function Hero({ data: { pageTitle, text, topImage }, location }) {
+export default function Hero({ data: { pageTitle, text, topImage, button }, location, apply }) {
 
     let title = pageTitle
     if (location.search !== '') {
@@ -18,6 +18,7 @@ export default function Hero({ data: { pageTitle, text, topImage }, location }) 
             <div className="content">
                 <PageTitle>{title}</PageTitle>
                 <Text>{text}</Text>
+                <a href={apply.linkToApply} className="button">{apply.applyButtonText}</a>
             </div>
         </Wrapper>
     )
@@ -40,6 +41,10 @@ const Wrapper = styled.section`
         max-width: 720px;
         padding: 0 24px;
         margin: 0 auto;
+
+        a{
+            margin-top: 16px;
+        }
     }
 `
 

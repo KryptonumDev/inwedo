@@ -54,7 +54,7 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
                             <div>
                                 <footer className="person">
                                     {el.author.userIconPng
-                                        ? <GatsbyImage className="image" image={el.author.userIconPng.localFile.childImageSharp.gatsbyImageData} alt={el.author.userIconPng.altText} />
+                                        ? <img className="image" src={el.author.userIconPng.localFile.publicURL} alt={el.author.userIconPng.altText} />
                                         : null}
                                     <div>
                                         <cite className="name">{el.author.authorName}</cite>
@@ -63,7 +63,7 @@ export default function Testomontials({ data: { title, text, testomontialsItem }
                                 </footer>
                                 <p className="text p">{el.testomontialText}</p>
                             </div>
-                            <Image image={el.companyLogo.localFile.childImageSharp.gatsbyImageData} alt={el.companyLogo.altText} />
+                            <Image src={el.companyLogo.localFile.publicURL} alt={el.companyLogo.altText} />
                         </Item>
                     ))}
                 </Slider>
@@ -239,7 +239,7 @@ const Item = styled.blockquote`
     }
 `
 
-const Image = styled(GatsbyImage)`
+const Image = styled.img`
     width: fit-content;
     display: block;
     margin: 0 auto;

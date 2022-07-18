@@ -15,7 +15,7 @@ export default function CareersPost({ data: { allWpJobOffer, alternates }, locat
     <main id='main'>
     {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='careers post' template='Blog Archive' currTemplate={careersPost.templateName} />
-      <Hero data={careersPost.heroJob} location={location} />
+      <Hero apply={careersPost.jobInformation} data={careersPost.heroJob} location={location} />
       {careersPost.textParts.map(el => (
         <CareersTextParts data={el} />
       ))}
@@ -63,6 +63,10 @@ export const query = graphql`
                 careersPost{
                     templateName
                     currentPostUrl
+                    jobInformation{
+                      linkToApply
+                      applyButtonText
+                    }
                     heroJob {
                       pageTitle
                       text

@@ -93,9 +93,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                 logoClients{
                     altText
                     localFile {
-                      childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 95)
-                      }
+                      publicURL
                     }
                 }
             }
@@ -110,9 +108,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
                 userIconPng {
                   altText
                   localFile {
-                    childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 95)
-                    }
+                    publicURL
                   }
                 }
               }
@@ -120,9 +116,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
               companyLogo {
                 altText
                 localFile {
-                  childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 95)
-                  }
+                  publicURL
                 }
               }
             }

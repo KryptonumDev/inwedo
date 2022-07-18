@@ -218,7 +218,7 @@ const Item = styled.div`
 const Card = styled.div`
     display: block;
     position: absolute;
-    right: -16px;
+    right: -100px;
     top: 0;
     border-radius: 24px;
     background-color: #fff;
@@ -245,7 +245,7 @@ const Card = styled.div`
             max-width: 150px;
         }
         padding: 24px 16px;
-        left: 100%;
+        left: calc(100% + 60px);
         transform: translateX(-75%);
         position: relative;
         display: block;
@@ -261,6 +261,15 @@ const Card = styled.div`
             max-width: 100px;
         }
         padding: 16px;
-        border-radius: 8px;
+    }
+
+    @media (max-width: 370px) {
+        left: 0;
+        transform: unset;
+        width: 200px;
+        margin: 0 auto 16px auto;
+        &:hover{
+            transform: unset;
+        }
     }
 `

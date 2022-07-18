@@ -26,6 +26,28 @@ const Content = styled.div`
       margin-top: 16px;
     }
 
+    h1{
+      margin-top: 36px;
+    }
+
+    h2{
+      margin-top: 32px;
+    }
+
+    h3{
+      margin-top: 24px;
+    }
+
+    .wp-block-button{
+      &.aligncenter {
+        margin: 0 auto;
+      }
+      a{
+        color: #fff;
+        margin-top: 0;
+      }
+    }
+
     img{
       width: 100%;
     }
@@ -51,7 +73,7 @@ const Content = styled.div`
         font-feature-settings: 'ss01' on;
     }
 
-    ul, ol{
+    ul{
         li{
             list-style: disc;
             margin-left: 20px;
@@ -61,6 +83,22 @@ const Content = styled.div`
             line-height: 160%;
             font-feature-settings: 'ss01' on;
         }
+    }
+
+    ol{
+        li{
+            list-style: auto;
+            margin-left: 20px;
+
+            font-weight: 300;
+            font-size: clamp(14px, 2.08vw, 16px);
+            line-height: 160%;
+            font-feature-settings: 'ss01' on;
+        }
+    }
+
+    .has-text-align-center{
+      text-align: center;
     }
 `
 

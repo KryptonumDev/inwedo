@@ -223,6 +223,7 @@ const SuccessStories = styled.div`
             img{
                 transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
                 border-radius: 8px;
+                width: fit-content;
             }
         }
 

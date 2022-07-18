@@ -7,15 +7,19 @@ import TwoColumnFlex from "../components/two-column/two-column-services"
 import Testomontials from "../components/testomontials-slider"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import styled from "styled-components"
 
 const ServicesPage = ({ data: { allWpPage, alternates }, location }) => {
   let { servicesPage, language, seo, scryptInjection } = allWpPage.nodes[0]
   let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
-    {script}
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location}  type='Services'/>
+      {script}
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={servicesPage.heroServices} />
+      <Card>
+        <div class='clutch-widget' data-nofollow='true' data-url='https://widget.clutch.co' data-widget-type='2' data-height='45' data-clutchcompany-id='88412'></div>
+      </Card>
       <DevelopmentCards data={servicesPage.developmentCards} />
       <CallToAction data={servicesPage.callToActionServices} />
       <DevelopmentCards data={servicesPage.developmentCardsSecond} />
@@ -28,6 +32,14 @@ const ServicesPage = ({ data: { allWpPage, alternates }, location }) => {
 }
 
 export default ServicesPage
+
+const Card = styled.div`
+  position: fixed;
+  right: -100px;
+  top: 120px;
+  padding: 12px 16px;
+  background-color: #fff;
+`
 
 export const query = graphql`
 query ServicesPageQuery($id: String!, $templateName: String!) {

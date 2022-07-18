@@ -15,7 +15,7 @@ export default function ClientCases({ data: { sectionTitle, clientsCases, card }
                 <Clients count={clientsCases.length}>
                     {clientsCases.map(el => (
                         <div className="item">
-                            <GatsbyImage className='image' image={el.logoClients.localFile.childImageSharp.gatsbyImageData} alt={el.logoClients.altText} />
+                            <img className='image' src={el.logoClients.localFile.publicURL} alt={el.logoClients.altText} />
                         </div>
                     ))}
                 </Clients>
@@ -51,6 +51,12 @@ const Clients = styled.div`
         .image{
             width: fit-content;
             height: fit-content;
+            max-height: 60px;
+            max-width: clamp(60px, ${76 / 768 * 100}vw, 120px);
+
+            @media (max-width: 640px) {
+                max-width: 80%;
+            }
         }
     }
 
@@ -58,6 +64,7 @@ const Clients = styled.div`
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 20px;
+        max-width: 400px;
     }
 
     @media (max-width: 340px) {

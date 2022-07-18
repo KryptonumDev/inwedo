@@ -119,7 +119,8 @@ const Item = styled.div`
     }
 
     .image{
-        max-width: 108px;
+        width: clamp(92px, ${100/768*100}vw, 108px);
+        height: clamp(92px, ${100/768*100}vw, 108px);
         position: relative;
 
         &::before {
@@ -180,6 +181,22 @@ const Item = styled.div`
             svg{
                 margin-right: 16px;
             }
+        }
+    }
+
+    @media (max-width: 420px) {
+        .flex{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            p, a{
+                text-align: center;
+                margin: 0 auto;
+            }
+        }
+        .buttons{
+            flex-direction: column;
+            margin-top: 16px;
         }
     }
 `

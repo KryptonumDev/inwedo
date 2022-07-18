@@ -7,13 +7,18 @@ export default function Items({ data, showOfferText, applyOfferText }) {
     return (
         <Wrapper>
             {data.map(el => (
-                <Item to={urlSystem['Careers Homepage'][el.language.slug] + el.careersPost.currentPostUrl}>
-                    <div className="names">
-                        <h3>{el.careersPost.jobInformation.jobTitle}</h3>
-                        <p>{el.careersPost.jobInformation.jobSallary}</p>
-                    </div>
-                    <div className="buttons">
-                        <span className="link">{showOfferText}</span>
+                <Item >
+                    <Link className="wrap" to={urlSystem['Careers Homepage'][el.language.slug] + el.careersPost.currentPostUrl}>
+                        <div className="names">
+                            <h3>{el.careersPost.jobInformation.jobTitle}</h3>
+                            <p>{el.careersPost.jobInformation.jobSallary}</p>
+                        </div>
+                        <div className="buttons">
+                            <span className="link desctop">{showOfferText}</span>
+                        </div>
+                    </Link>
+                    <div className="mobile-flex">
+                        <Link to={urlSystem['Careers Homepage'][el.language.slug] + el.careersPost.currentPostUrl} className="link mobile">{showOfferText}</Link>
                         <a href={el.careersPost.jobInformation.linkToApply} rel='nofollow noopener' className="button">{applyOfferText}</a>
                     </div>
                 </Item>
@@ -26,17 +31,29 @@ const Wrapper = styled.div`
     margin-top: clamp(48px, ${56 / 768 * 100}vw, 64px);
 `
 
-const Item = styled(Link)`
-    padding: 24px;
+const Item = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 32px;
 
-    &:hover{
-        .link{
-            &::after{
-                width: 100%;
+    .mobile{
+        display: none;
+    }
+
+    .wrap{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 24px;
+        box-sizing: border-box;
+
+        &:hover{
+            .link{
+                &::after{
+                    width: 100%;
+                }
             }
         }
     }
@@ -99,5 +116,25 @@ const Item = styled(Link)`
             justify-content: space-between;
             gap: 16px;
         }
+
+        .mobile{
+            display: block;
+        }
+
+        .desctop{
+            display: none;
+        }
+
+        .mobile-flex{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px 24px 24px;
+        }
+
+        .wrap{
+            padding-bottom: 0;
+        }
     }
+
 `
