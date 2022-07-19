@@ -4,7 +4,7 @@ export default {
         "section": "homepage",
         "pageURL": "/",
         "buttonName": "Contact us",
-        "location": "Menu"
+        "location": "top of the page"
     },
     services: (items) => {
         const listItems = []

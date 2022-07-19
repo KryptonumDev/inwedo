@@ -730,66 +730,6 @@ exports.createPages = async ({
     });
   });
 
-  // COOKIE POLICE
-
-  const { data: { allWpPage: { cookiePoliceNodes } } } = await graphql(`
-    query {
-      allWpPage(filter: {template: {templateName: {eq: "Cookie Policy"}}}) {
-        cookiePoliceNodes: nodes {
-          id
-          language {
-            slug
-          }
-          template {
-            templateName
-          }
-        }
-      }
-    }
-  `);
-
-  cookiePoliceNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
-    createPage({
-      path: urlSystem[templateName][slug],
-      component: resolve('src/templates/privacy-police.jsx'),
-      context: {
-        id,
-        slug,
-        templateName
-      },
-    });
-  });
-
-  // TERMS AND CONDITIONS
-
-  const { data: { allWpPage: { termsAndConditionsNodes } } } = await graphql(`
-    query {
-      allWpPage(filter: {template: {templateName: {eq: "Terms And Conditions"}}}) {
-        termsAndConditionsNodes: nodes {
-          id
-          language {
-            slug
-          }
-          template {
-            templateName
-          }
-        }
-      }
-    }
-  `);
-
-  termsAndConditionsNodes.forEach(({ id, language: { slug }, template: { templateName } }) => {
-    createPage({
-      path: urlSystem[templateName][slug],
-      component: resolve('src/templates/privacy-police.jsx'),
-      context: {
-        id,
-        slug,
-        templateName
-      },
-    });
-  });
-
   // Careers
 
   const { data: { allWpPage: { careersNodes } } } = await graphql(`

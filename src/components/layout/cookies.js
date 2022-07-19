@@ -53,77 +53,101 @@ export default function CokieBanner({ location }) {
     const { firstTab, secondTab, thirdTab, controlButtons } = localeData[0].cookieBanner
 
     const [activeTab, setActiveTab] = useState(1)
+    const [activeCookie, setActiveCookies] = useState(() => {
+        const arr = []
+        secondTab.cookiesTypes.map(el => {
+            arr.push({ name: el.typeTitle, isActive: true })
+        })
+        return arr
+    })
+
+    const changeActiveCookies = () => {
+        
+    }
 
     return (
-        <Wrapper>
-            <Content>
-                <TabsGrid>
-                    <button className={activeTab === 1 ? 'active' : ''} onClick={() => { setActiveTab(1) }}>
-                        {firstTab.tabTitle}
-                    </button>
-                    <button className={activeTab === 2 ? 'active' : ''} onClick={() => { setActiveTab(2) }}>
-                        {secondTab.tabTitle}
-                    </button>
-                    <button className={activeTab === 3 ? 'active' : ''} onClick={() => { setActiveTab(3) }}>
-                        {thirdTab.tabTitle}
-                    </button>
-                </TabsGrid>
-                <TabContent>
-                    {activeTab === 1
-                        ? <div className="p" dangerouslySetInnerHTML={{ __html: firstTab.tabContent }} />
-                        : null}
+        <>
+            <Overlay />
+            <Wrapper>
+                <Content>
+                    <TabsGrid>
+                        <button className={activeTab === 1 ? 'active' : ''} onClick={() => { setActiveTab(1) }}>
+                            {firstTab.tabTitle}
+                        </button>
+                        <button className={activeTab === 2 ? 'active' : ''} onClick={() => { setActiveTab(2) }}>
+                            {secondTab.tabTitle}
+                        </button>
+                        <button className={activeTab === 3 ? 'active' : ''} onClick={() => { setActiveTab(3) }}>
+                            {thirdTab.tabTitle}
+                        </button>
+                    </TabsGrid>
+                    <TabContent>
+                        {activeTab === 1
+                            ? <div className="p" dangerouslySetInnerHTML={{ __html: firstTab.tabContent }} />
+                            : null}
 
-                    {activeTab === 2
-                        ? (
-                            <div>
-                                {secondTab.cookiesTypes.map(el => (
-                                    <TypeItem>
-                                        <details>
-                                            <summary>
-                                                <p className="title">{el.typeTitle}</p>
-                                                <p className="text">{el.typeText}</p>
-                                            </summary>
-                                            <div>
-                                                {el.subType?.map(el => (
-                                                    <>
-                                                        <details>
-                                                            <summary>
-                                                                <p className="subTitle">{el.subTypeTitle}</p>
-                                                            </summary>
-                                                            <div className="subText" dangerouslySetInnerHTML={{ __html: el.subTypeContent }} />
-                                                        </details>
-                                                        <a className="link" href={el.subTypeLink.url}>{el.subTypeLink.name}</a>
-                                                    </>
-                                                ))}
-                                            </div>
-                                        </details>
-                                    </TypeItem>
-                                ))}
-                            </div>
-                        )
-                        : null}
+                        {activeTab === 2
+                            ? (
+                                <div>
+                                    {secondTab.cookiesTypes.map((el, index) => (
+                                        <TypeItem className={activeCookie[index].isActive ? 'active' : ''}>
+                                            <details>
+                                                <summary>
+                                                    <p className="title">{el.typeTitle}</p>
+                                                    <p className="text p">{el.typeText}</p>
+                                                </summary>
+                                                <div>
+                                                    {el.subType?.map(el => (
+                                                        <div className="subitem">
+                                                            <details>
+                                                                <summary>
+                                                                    <p className="subTitle">{el.subTypeTitle}</p>
+                                                                </summary>
+                                                                <div className="subText p" dangerouslySetInnerHTML={{ __html: el.subTypeContent }} />
+                                                            </details>
+                                                            <a className="link" href={el.subTypeLink.url}>{el.subTypeLink.name}</a>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </details>
+                                            <button onClick={() => { activeCookie[index].isActive = !activeCookie[index].isActive }} className="switch"></button>
+                                        </TypeItem>
+                                    ))}
+                                </div>
+                            )
+                            : null}
 
-                    {activeTab === 3
-                        ? <div className="p" dangerouslySetInnerHTML={{ __html: thirdTab.tabContent }} />
-                        : null}
-                </TabContent>
-                <Buttons>
-                    <button className="button">{controlButtons.acceptAll}</button>
-
-                    {activeTab === 2
-                        ? <button className="button-white">{controlButtons.acceptPart}</button>
-                        : null}
-                    {activeTab !== 2
-                        ? <button className="button-white">{controlButtons.confguration}</button>
-                        : null}
-                    {activeTab === 2
-                        ? <button className="button-white">{controlButtons.reject}</button>
-                        : null}
-                </Buttons>
-            </Content>
-        </Wrapper>
+                        {activeTab === 3
+                            ? <div className="p" dangerouslySetInnerHTML={{ __html: thirdTab.tabContent }} />
+                            : null}
+                    </TabContent>
+                    <Buttons>
+                        <button className="button">{controlButtons.acceptAll}</button>
+                        {activeTab === 2
+                            ? <button className="button-white">{controlButtons.acceptPart}</button>
+                            : null}
+                        {activeTab !== 2
+                            ? <button className="button-white">{controlButtons.confguration}</button>
+                            : null}
+                        {activeTab === 2
+                            ? <button className="button-white">{controlButtons.reject}</button>
+                            : null}
+                    </Buttons>
+                </Content>
+            </Wrapper>
+        </>
     )
 }
+
+const Overlay = styled.div`
+    position: fixed;
+    z-index: 1000000;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #00000048;
+`
 
 const Wrapper = styled.div`
     position: fixed;
@@ -131,16 +155,16 @@ const Wrapper = styled.div`
     border: 1px solid #D9DBE9;
     box-shadow: 0px 5px 14px rgba(8, 15, 52, 0.04);
     border-radius: 20px;
-    z-index: 100;
-    bottom: var(--margin-m);
-    left: var(--margin-m);
-    right: var(--margin-m);
+    z-index: 100000000;
+    width: fit-content;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `
 
 const Content = styled.div`
     max-width: 900px;
     padding: 64px 128px;
-    max-height: 50vh;
     margin: 0 auto;
 `
 
@@ -148,13 +172,13 @@ const TypeItem = styled.div`
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 60px;
-        padding-top: 16px;
-        padding-bottom: 48px;
-        border-top: 1px solid #00000016;
+    padding-top: 16px;
+    padding-bottom: 48px;
+    border-top: 1px solid #00000016;
 
         &:first-child{
             border-top: unset;
-            padding-bottom: 0;
+            padding-top: 0;
         }
 
         &:last-child{
@@ -163,6 +187,10 @@ const TypeItem = styled.div`
 
     .title{
         margin-bottom: 16px;
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 159% ;
+        color: #495057;
     }
 
     .text{
@@ -170,9 +198,44 @@ const TypeItem = styled.div`
     }
 
     details{
+        padding-left: 48px;
+
+        .subitem{
+            padding-top: 32px;
+            padding-bottom: 32px;
+                padding-left: 36px;
+                margin-left: -36px;
+            border-bottom: 1px solid #00000016;
+
+            a{
+                margin-top: 10px;
+                margin-left: 36px;
+                display: block;
+            }
+
+            &:last-child{
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+        }
 
         details{
-            
+            padding-left: 0;
+            padding-left: 0;
+
+            .subTitle{
+                font-weight: 600;
+                font-size: 22px;
+                line-height: 159%;
+                padding-left: 36px;
+                color: #495057;
+            }
+
+            .subText{
+                padding: 16px 0;
+                border-bottom: 1px solid #00000016;
+                padding-left: 36px;
+            }
         }
     }
 `
@@ -214,7 +277,7 @@ const TabContent = styled.div`
     padding-top: 24px;
     padding-bottom: 24px;
     overflow-y: scroll;
-    height: 200px;
+    max-height: 300px;
 
     strong{
         display: block;
