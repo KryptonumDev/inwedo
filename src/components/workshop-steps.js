@@ -22,13 +22,12 @@ export default function WorkshopSteps({ data }) {
                             <div className="content">
                                 <div className="grid">
                                     {el.innerSteps.map((innerEl, index) => (
-                                        <SubSteps className={activeItem === index ? 'active' : ''} onMouseEnter={() => {setActiveItem(index)}}>
+                                        <SubSteps className={activeItem === index ? 'active' : ''} >
                                             <h3 className="h4">{innerEl.title}</h3>
                                             <p className="p">{innerEl.text}</p>
                                         </SubSteps>
                                     ))}
                                 </div>
-
                             </div>
                         </Item>
                     </LocContainer>
@@ -53,7 +52,7 @@ const LocContainer = styled(Container)`
 `
 
 const Image = styled(GatsbyImage)`
-    min-width: 400px;
+    max-width: 400px;
     height: fit-content;
     box-shadow: var(--shadow);
         img{

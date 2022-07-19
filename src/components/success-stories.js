@@ -15,7 +15,7 @@ export default function SuccessStories({ data: { sectionTitle, success } }) {
                             <GatsbyImage className="image" image={el.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.previewImage.altText} />
                             <div className="text">
                                 {el.caseLogo
-                                    ? <GatsbyImage className="logo" image={el.caseLogo.localFile.childImageSharp.gatsbyImageData} alt={el.caseLogo.altText} />
+                                    ? <img className="logo" src={el.caseLogo.localFile.publicURL} alt={el.caseLogo.altText} />
                                     : null}
                                 {el.caseTitle
                                     ? <h3>{el.caseTitle}</h3>
@@ -94,6 +94,8 @@ const Stories = styled.div`
             .logo{
                 width: max-content;
                 max-width: clamp(133px, ${148 / 768 * 100}vw, 165px);
+                width: fit-content;
+                max-height: 60px;
             }
             h3{
                 font-weight: 400;
