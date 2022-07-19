@@ -5,7 +5,8 @@ import styled from 'styled-components'
 import { Container } from '../../style/index'
 import { datalayerPush } from '../../helpers/datalayer'
 
-export default function Hero({ data: { title, subTitle, button, imgGridH }, analytics }) {
+export default function Hero({ data: { title, subTitle, button, imgGridH }, analytics, location }) {
+    debugger
     return (
         <Wrapper>
             <LocalContainer>
@@ -17,7 +18,7 @@ export default function Hero({ data: { title, subTitle, button, imgGridH }, anal
                 <Content>
                     <h1 className='h3 line'>{title}</h1>
                     <p className='h1 display'>{subTitle}</p>
-                    <Link onClick={() => { datalayerPush(analytics) }} to={button.url} className='button-white'>{button.name}</Link>
+                    <Link onClick={() => { datalayerPush(analytics(location)) }} to={button.url} className='button-white'>{button.name}</Link>
                 </Content>
             </LocalContainer>
         </Wrapper>

@@ -1,10 +1,16 @@
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
+import { datalayerPush } from './../helpers/datalayer'
 
-export default function DevelopmentCards({ data: { twoColumn, cards, success } }) {
+export default function DevelopmentCards({ data: { twoColumn, cards, success }, location, analytics }) {
+
+    useEffect(() => {
+        datalayerPush(analytics.listView(twoColumn, cards))
+    }, [])
+
     return (
         <Wrapper>
             <Container>
@@ -33,8 +39,8 @@ export default function DevelopmentCards({ data: { twoColumn, cards, success } }
                 </CardsGrid>
                 <SuccessStories>
                     <h2 className="h3">{success.title}</h2>
-                    {success.storiesCase.map(el => (
-                        <Link to={el.button.url} className="flex">
+                    {success.storiesCase.map((el, index) => (
+                        <Link onClick={() => { datalayerPush(analytics.caseStudies(index, el.caseTitle, location)) }} to={el.button.url} className="flex">
                             <GatsbyImage className="image" image={el.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.previewImage.altText} />
                             <div className="text">
                                 {el.caseLogo

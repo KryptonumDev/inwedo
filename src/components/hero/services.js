@@ -3,8 +3,9 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../../style"
+import { datalayerPush } from '../../helpers/datalayer'
 
-export default function Hero({ data: { text, pageTitle, button, image } }) {
+export default function Hero({ data: { text, pageTitle, button, image }, location, analytics }) {
     return (
         <Wrapper>
             <Container>
@@ -12,8 +13,8 @@ export default function Hero({ data: { text, pageTitle, button, image } }) {
                     <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                     <TextPart>
                         <h1 className="h4 line">{pageTitle}</h1>
-                        <div className="h1" dangerouslySetInnerHTML={{__html: text}}></div>
-                        <Link className="button" to={button.url}>{button.name}</Link>
+                        <div className="h1" dangerouslySetInnerHTML={{ __html: text }}></div>
+                        <Link onClick={() => { datalayerPush(analytics(location)) }} className="button" to={button.url}>{button.name}</Link>
                     </TextPart>
                 </Content>
             </Container>

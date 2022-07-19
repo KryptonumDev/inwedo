@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { Container } from "../style"
 import { datalayerPush } from './../helpers/datalayer'
 
-export default function NumbersAndImages({ data: { imgGrid, numbersContent, textContent }, analytics }) {
+export default function NumbersAndImages({ data: { imgGrid, numbersContent, textContent }, analytics , location}) {
     return (
         <Wrapper>
             <LocalContainer>
@@ -14,7 +14,7 @@ export default function NumbersAndImages({ data: { imgGrid, numbersContent, text
                         <h2 className="h4 line">{textContent.title}</h2>
                         <h3 className="h1">{textContent.subTitle}</h3>
                         <div dangerouslySetInnerHTML={{ __html: textContent.textContent }} />
-                        <Link onClick={() => { datalayerPush(analytics) }} className="button" to={textContent.button.url}>{textContent.button.name}</Link>
+                        <Link onClick={() => { datalayerPush(analytics(location)) }} className="button" to={textContent.button.url}>{textContent.button.name}</Link>
                     </Content>
                     <Numbers>
                         <NumbersMainItem>

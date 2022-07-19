@@ -9,22 +9,22 @@ import Type6 from './downalod_form'
 import Type7 from './newsletter'
 import Type8 from './title_foto_file'
 
-export default function CallToAction({ analytics, data: { typeOfCta, title, text, form, button, downloadFile, image, buttonText }, small, index }) {
+export default function CallToAction({ analytics, data: { typeOfCta, title, text, form, button, downloadFile, image, buttonText }, small, index, location }) {
     return (
         <Wrapper id={index} small={small}>
             <LocContainer>
                 {(() => {
                     switch (typeOfCta) {
                         case 'one':
-                            return <Type1 title={title} text={text} button={button} analytics={analytics} />
+                            return <Type1 location={location} title={title} text={text} button={button} analytics={analytics} />
                         case 'two':
-                            return <Type2 title={title} button={button} analytics={analytics} />
+                            return <Type2 location={location} title={title} button={button} analytics={analytics} />
                         case 'three':
                             return null
                         case 'four':
-                            return <Type4 title={title} button={button} analytics={analytics} />
+                            return <Type4 location={location} title={title} button={button} analytics={analytics} />
                         case 'five':
-                            return <Type5 title={title} button={button} image={image} analytics={analytics} />
+                            return <Type5 location={location} title={title} button={button} image={image} analytics={analytics} />
                         case 'six':
                             // <Type6 title={title} text={text} image={image} form={form} />
                             return <Placeholder />

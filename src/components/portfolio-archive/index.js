@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import Filter from "./filter"
 import PostsGrid from "./posts-grid"
+import { datalayerPush } from '../../helpers/datalayer'
 
-export default function Archive({ parentCategories, children, posts, data, location }) {
+export default function Archive({ parentCategories, children, posts, data, location, analytics }) {
 
     const [currentFilter, changeCurrentFilter] = useState('all')
 
@@ -20,29 +21,54 @@ export default function Archive({ parentCategories, children, posts, data, locat
     const [filtredPosts, changeFiltredPosts] = useState(posts.nodes)
 
     useEffect(() => {
-        changeFiltredPosts(defaultPosts.filter(el => {
-            if (currentSubFilter === 'all' && currentFilter === 'all') {
-                return defaultPosts
-            }
-
-            if (currentSubFilter === 'all') {
-                for (let i = 0; i < el.categoriesPortfolio.nodes.length; i++) {
-                    if (el.categoriesPortfolio.nodes[i].slug === currentFilter) {
-                        changeCurrentFilter(currentFilter)
-                        return true
+        if (currentSubFilter === 'all' && currentFilter === 'all') {
+            dataleyerAnalytics(defaultPosts, 'all', showCount)
+            changeFiltredPosts(defaultPosts)
+        } else {
+            let filtredPosts = defaultPosts.filter(el => {
+                if (currentSubFilter === 'all') {
+                    for (let i = 0; i < el.categoriesPortfolio.nodes.length; i++) {
+                        if (el.categoriesPortfolio.nodes[i].slug === currentFilter) {
+                            return true
+                        }
+                    }
+                } else {
+                    for (let i = 0; i < el.categoriesPortfolio.nodes.length; i++) {
+                        if (el.categoriesPortfolio.nodes[i].slug === currentSubFilter) {
+                            return true
+                        }
                     }
                 }
-            } else {
-                for (let i = 0; i < el.categoriesPortfolio.nodes.length; i++) {
-                    if (el.categoriesPortfolio.nodes[i].slug === currentSubFilter) {
-                        return true
-                    }
-                }
-            }
 
-            return false
-        }))
+                return false
+            })
+
+            dataleyerAnalytics(filtredPosts, currentFilter + ' | ' + currentSubFilter, showCount)
+            changeFiltredPosts(filtredPosts)
+        }
     }, [currentFilter, currentSubFilter])
+
+    const LoadMore = () => {
+        let clickCount = (showCount - 5) / 4
+        datalayerPush(analytics.loadMore(location, clickCount))
+        changeShowCount(showCount + 4)
+
+        if (currentSubFilter === 'all' && currentFilter === 'all') {
+            dataleyerAnalytics(defaultPosts, 'all', showCount+4)
+        } else {
+            dataleyerAnalytics(defaultPosts, currentFilter + ' | ' + currentSubFilter, showCount+4)
+        }
+    }
+
+    const dataleyerAnalytics = (posts, filter, loadCount) => {
+        const showedPosts = []
+        posts.forEach((el, index) => {
+            if (index <= loadCount) {
+                showedPosts.push(el)
+            }
+        })
+        datalayerPush(analytics.inView(showedPosts, filter))
+    }
 
     return (
         <>
@@ -64,7 +90,7 @@ export default function Archive({ parentCategories, children, posts, data, locat
                         ? <PostsGrid data={filtredPosts} from={'4'} to={showCount} />
                         : null}
                     {filtredPosts.length > showCount + 1
-                        ? <Button onClick={() => { changeShowCount(showCount + 4) }} className="button">{data.loadMore}</Button>
+                        ? <Button onClick={() => { LoadMore() }} className="button">{data.loadMore}</Button>
                         : null}
                 </>
                 : <NoPosts id='posts'>

@@ -8,6 +8,7 @@ import Testomontials from "../components/testomontials-slider"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
 import styled from "styled-components"
+import Analytics from './../analytics/services'
 
 const ServicesPage = ({ data: { allWpPage, alternates }, location }) => {
   let { servicesPage, language, seo, scryptInjection } = allWpPage.nodes[0]
@@ -16,17 +17,17 @@ const ServicesPage = ({ data: { allWpPage, alternates }, location }) => {
     <main id='main'>
       {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
-      <Hero data={servicesPage.heroServices} />
-      <Card>
+      <Hero data={servicesPage.heroServices} analytics={Analytics.hero} location={location.pathname} />
+      {/* <Card>
         <div class='clutch-widget' data-nofollow='true' data-url='https://widget.clutch.co' data-widget-type='2' data-height='45' data-clutchcompany-id='88412'></div>
-      </Card>
-      <DevelopmentCards data={servicesPage.developmentCards} />
-      <CallToAction data={servicesPage.callToActionServices} />
-      <DevelopmentCards data={servicesPage.developmentCardsSecond} />
-      <CallToAction data={servicesPage.callToActionServicesCopy} />
-      <TwoColumnFlex data={servicesPage.twoColumnFlexServices} />
+      </Card> */}
+      <DevelopmentCards data={servicesPage.developmentCards} analytics={Analytics.devCards} location={location.pathname} />
+      <CallToAction data={servicesPage.callToActionServices} analytics={Analytics.cta.first} location={location.pathname}  />
+      <DevelopmentCards data={servicesPage.developmentCardsSecond} analytics={Analytics.devCards} location={location.pathname} />
+      <CallToAction data={servicesPage.callToActionServicesCopy} analytics={Analytics.cta.second} location={location.pathname}  />
+      <TwoColumnFlex data={servicesPage.twoColumnFlexServices}  analytics={Analytics.twoColumn} />
       <Testomontials data={servicesPage.testomontialsServices} />
-      <TwoColumnFlex data={servicesPage.twoColumnFlexServicesSecond} />
+      <TwoColumnFlex data={servicesPage.twoColumnFlexServicesSecond}  analytics={Analytics.twoColumn} />
     </main>
   )
 }

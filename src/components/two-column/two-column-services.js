@@ -1,22 +1,28 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { Container } from "../../style"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+import { datalayerPush } from '../../helpers/datalayer'
 
-export default function TwoColumnFlex({ data: { image, title, subTitle, text, button } }) {
+export default function TwoColumnFlex({ data, analytics }) {
+
+    useEffect(() => {
+        datalayerPush(analytics(data))
+    }, [])
+
     return (
         <Wrapper>
             <Container>
-                <Flex to={button.url}>
+                <Flex to={data.button.url}>
                     <div className="image">
-                        <img className="icon" src={image.localFile.publicURL} alt={image.altText} />
+                        <img className="icon" src={data.image.localFile.publicURL} alt={data.image.altText} />
                     </div>
                     <div className="text">
-                        <h2 className="h1 line">{title}</h2>
-                        <p className="h4">{subTitle}</p>
-                        <p className="p">{text}</p>
-                        <p className="link">{button.name}</p>
+                        <h2 className="h1 line">{data.title}</h2>
+                        <p className="h4">{data.subTitle}</p>
+                        <p className="p">{data.text}</p>
+                        <p className="link">{data.button.name}</p>
                     </div>
                 </Flex>
             </Container>

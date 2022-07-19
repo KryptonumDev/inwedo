@@ -198,7 +198,7 @@ a {
     font-style: normal;
     font-weight: 600;
     font-size: clamp(14px, 2.08vw, 16px);
-    line-height: 26px;
+    line-height: 150%;
     background: var(--color-accent);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

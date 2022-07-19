@@ -1,10 +1,12 @@
 export default {
-    hero: {
-        "event": "contact",
-        "section": "homepage",
-        "pageURL": "/",
-        "buttonName": "Contact us",
-        "location": "top of the page"
+    hero: (url) => {
+        return {
+            "event": "contact",
+            "section": "homepage",
+            "pageURL":  url ? url : '/',
+            "buttonName": "Contact us",
+            "location": "top of the page"
+        }
     },
     services: (items) => {
         const listItems = []
@@ -13,7 +15,7 @@ export default {
                 'list': 'Services',
                 'name': el.title,
                 'brand ': 'inwedo.com',
-                'position': index+1,
+                'position': index + 1,
                 'category': el.title,
                 'variant': 'page-site',
                 'price': '88.53', //ilość znaków w artykule / 100
@@ -32,36 +34,42 @@ export default {
         }
     },
     cta: {
-        first: {
-            'event': 'See_more',
-            'section': 'homepage',
-            'pageURL': '/',
-            'buttonName': 'See all services',
-            'location': 'top of the page'
+        first: (url) => {
+            return {
+                'event': 'See_more',
+                'section': 'homepage',
+                'pageURL': url ? url : '/',
+                'buttonName': 'See all services',
+                'location': 'top of the page'
+            }
         },
-        second: {
-            'event': 'contact',
-            'section': 'homepage',
-            'pageURL': '/',
-            'buttonName': 'Estimate project',
-            'location': 'middle of the page',
-            'position': '1'
+        second: (url) => {
+            return {
+                'event': 'contact',
+                'section': 'homepage',
+                'pageURL': url ? url : '/',
+                'buttonName': 'Estimate project',
+                'location': 'middle of the page',
+                'position': '1'
+            }
         },
-        third: {
-            'event': 'contact',
-            'section': 'homepage',
-            'pageURL': '/',
-            'buttonName': 'Estimate project',
-            'location': 'bottom of the page',
-            'position': '2'
+        third: (url) => {
+            return {
+                'event': 'contact',
+                'section': 'homepage',
+                'pageURL': url ? url : '/',
+                'buttonName': 'Estimate project',
+                'location': 'bottom of the page',
+                'position': '2'
+            }
         }
     },
     caseStudies: [
-        (name) => {
+        (name, url) => {
             return {
                 'event': 'learn_more',
                 'section': 'homepage',
-                'pageURL': '/',
+                'pageURL': url ? url : '/',
                 'buttonName': 'Read case study',
                 'location': 'middle of the page',
                 'type': 'case study',
@@ -69,11 +77,11 @@ export default {
                 'position': '1'
             }
         },
-        (name) => {
+        (name, url) => {
             return {
                 'event': 'learn_more',
                 'section': 'homepage',
-                'pageURL': '/',
+                'pageURL': url ? url : '/',
                 'buttonName': 'Read case study',
                 'location': 'middle of the page',
                 'type': 'case study',
@@ -81,11 +89,11 @@ export default {
                 'position': '2'
             }
         },
-        (name) => {
+        (name, url) => {
             return {
                 'event': 'learn_more',
                 'section': 'homepage',
-                'pageURL': '/',
+                'pageURL': url ? url : '/',
                 'buttonName': 'Read case study',
                 'location': 'middle of the page',
                 'type': 'case study',
@@ -94,11 +102,13 @@ export default {
             }
         }
     ],
-    numbers: {
-        'event': 'See_more',
-        'section': 'homepage',
-        'pageURL': '/',
-        'buttonName': 'About us',
-        'location': 'middle of the page'
+    numbers: (url) => {
+        return {
+            'event': 'See_more',
+            'section': 'homepage',
+            'pageURL': url ? url : '/',
+            'buttonName': 'About us',
+            'location': 'middle of the page'
+        }
     }
 }

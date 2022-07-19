@@ -4,13 +4,13 @@ import React from "react"
 import styled from 'styled-components'
 import { datalayerPush } from "../../helpers/datalayer"
 
-export default ({ analytics, title, button, image }) => (
+export default ({ analytics, title, button, image, location }) => (
     <ContentWrapper>
         <Content>
             <Image image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
             <div className="content">
                 <Title className="h1 colored" dangerouslySetInnerHTML={{ __html: title }}></Title>
-                <Button onClick={() => { datalayerPush(analytics) }} to={button.url} className='button'>
+                <Button onClick={() => { datalayerPush(analytics(location)) }} to={button.url} className='button'>
                     <span>{button.name}</span>
                 </Button>
             </div>

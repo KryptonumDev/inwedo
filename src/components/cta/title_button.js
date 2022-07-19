@@ -3,11 +3,11 @@ import React from "react"
 import styled from 'styled-components'
 import { datalayerPush } from "../../helpers/datalayer"
 
-export default ({ analytics, title, button }) => (
+export default ({ analytics, title, button, location }) => (
     <ContentWrapper>
         <Content>
             <Title className="h1" dangerouslySetInnerHTML={{ __html: title }}></Title>
-            <Button onClick={() => { datalayerPush(analytics) }} to={button.url} className='button-white'>
+            <Button onClick={() => { datalayerPush(analytics(location)) }} to={button.url} className='button-white'>
                 <span className="colored">{button.name}</span>
             </Button>
         </Content>

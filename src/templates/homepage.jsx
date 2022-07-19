@@ -9,7 +9,6 @@ import Testomontials from "../components/testomontials-slider"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
-
 import Analytics from './../analytics/homepage'
 
 const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
@@ -20,14 +19,14 @@ const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
     <main id='main'>
       {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Homepage' />
-      <Hero data={homepage.heroHome} analytics={Analytics.hero}  />
+      <Hero data={homepage.heroHome} analytics={Analytics.hero} location={location.pathname} />
       <Services data={homepage.services} analytics={Analytics.services} />
-      <CallToAction data={homepage.callToAction} analytics={Analytics.cta.first}/>
-      <CaseStudyRepeater data={homepage.caseStudies} analytics={Analytics.caseStudies}/>
-      <CallToAction data={homepage.callToActionCopy}  analytics={Analytics.cta.second}/>
-      <NumbersAndImages data={homepage.impactNumbersAndImgGrid} analytics={Analytics.numbers}/>
+      <CallToAction data={homepage.callToAction} analytics={Analytics.cta.first} location={location.pathname} />
+      <CaseStudyRepeater data={homepage.caseStudies} analytics={Analytics.caseStudies} location={location.pathname} />
+      <CallToAction data={homepage.callToActionCopy} analytics={Analytics.cta.second} location={location.pathname} />
+      <NumbersAndImages data={homepage.impactNumbersAndImgGrid} analytics={Analytics.numbers} location={location.pathname} />
       <Testomontials data={homepage.testomontials} />
-      <CallToAction data={homepage.callToActionCopyCopy}  analytics={Analytics.cta.third}/>
+      <CallToAction data={homepage.callToActionCopyCopy} analytics={Analytics.cta.third} location={location.pathname} />
       <FAQ data={homepage.faq} />
     </main>
   )

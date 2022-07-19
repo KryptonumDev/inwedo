@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { Container } from "../style"
 import { datalayerPush } from './../helpers/datalayer'
 
-export default function CaseStudyRepeater({ data: { title, text, studiesCase }, analytics }) {
+export default function CaseStudyRepeater({ data: { title, text, studiesCase }, analytics, location }) {
 
     return (
         <Wrapper>
@@ -14,7 +14,7 @@ export default function CaseStudyRepeater({ data: { title, text, studiesCase }, 
                 <p className='h1 medium'>{text}</p>
                 <Repeater>
                     {studiesCase.map((el, index) => (
-                        <Link onClick={() => { datalayerPush(analytics[index](el.title)) }} key={el.title} to={el.button.url}>
+                        <Link onClick={() => { datalayerPush(analytics[index](el.title, location)) }} key={el.title} to={el.button.url}>
                             <Item>
                                 <div className="content">
                                     <img className="logo" src={el.firmLogo.localFile.publicURL} alt={el.firmLogo.altText} />

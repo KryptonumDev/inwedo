@@ -7,6 +7,7 @@ import CallToAction from "../components/cta"
 import Archive from "../components/portfolio-archive"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/portfolio'
 
 const PortfolioArchivePage = ({ data: { allWpPage, categoryParents, allWpCaseStudies, alternates }, location }) => {
   const portfolio = allWpPage.nodes[0].portfolioArchive
@@ -17,11 +18,11 @@ const PortfolioArchivePage = ({ data: { allWpPage, categoryParents, allWpCaseStu
       <Seo data={allWpPage.nodes[0].seo} lang={allWpPage.nodes[0].language.slug} alternates={alternates} location={location}  type='Portfolio Archive'/>
       <Hero data={portfolio.heroPortfolio} />
       <ClientCases data={portfolio.clientsPortfolio} />
-      <Archive location={location} data={portfolio.postsOtherData} parentCategories={categoryParents} posts={allWpCaseStudies}>
-        <CallToAction data={portfolio.callToActionPortfolioArchive} />
+      <Archive analytics={Analytics} location={location.pathname} data={portfolio.postsOtherData} parentCategories={categoryParents} posts={allWpCaseStudies}>
+        <CallToAction data={portfolio.callToActionPortfolioArchive} analytics={Analytics.cta.first} location={location.pathname} />
       </Archive>
       <Testomontials data={portfolio.testomontialsPortfolio} />
-      <CallToAction data={portfolio.callToActionPortfolioArchiveSecond} />
+      <CallToAction data={portfolio.callToActionPortfolioArchiveSecond} analytics={Analytics.cta.second} location={location.pathname} />
     </main>
   )
 }
@@ -203,6 +204,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
       }
       allWpCaseStudies(sort: {fields: date, order: DESC}) {
         nodes {
+          id
           slug
           categoriesPortfolio {
             nodes {

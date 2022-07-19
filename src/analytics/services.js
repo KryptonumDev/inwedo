@@ -1,10 +1,13 @@
 export default {
-    hero: {
-        "event": "contact",
-        "section": "services",
-        "pageURL": "/",
-        "buttonName": "Let’s talk",
-        "location": "top of the page"
+    hero: (url) => {
+        return {
+            "event": "contact",
+            "section": "services",
+            "pageURL": url ? url : '/',
+            "pageURL": "/",
+            "buttonName": "Let’s talk",
+            "location": "top of the page"
+        }
     },
     devCards: {
         listView: (twoColumn, items) => {
@@ -44,11 +47,11 @@ export default {
                 }
             }
         },
-        caseStudies: (position, name) => {
+        caseStudies: (position, name, url) => {
             return {
                 'event': 'learn_more',
                 'section': 'services',
-                'pageURL': '/',
+                'pageURL': url ? url : '/',
                 'buttonName': 'Read case study',
                 'location': 'middle of the page',
                 'type': 'case study',
@@ -56,18 +59,22 @@ export default {
                 'position': position
             }
         },
-        cta: {
-            first: {
+    },
+    cta: {
+        first: (url) => {
+            return {
                 'event': 'contact',
                 'section': 'services',
-                'pageURL': '/',
+                'pageURL': url ? url : '/',
                 'buttonName': 'Book a call',
                 'location': 'middle of the page'
-            },
-            second: {
+            }
+        },
+        second: (url) => {
+            return {
                 'event': 'contact',
                 'section': 'services',
-                'pageURL': '/',
+                'pageURL': url ? url : '/',
                 'buttonName': 'Estimate Project',
                 'location': 'bottom of the page'
             }

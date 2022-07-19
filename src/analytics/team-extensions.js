@@ -17,7 +17,7 @@ export default {
                 'category': el.techologieIcon.altText ? el.techologieIcon.altText : 'technologies alt is empty',
                 'variant': 'page-site',
                 'price': '88.53', //ilość znaków w artykule / 100
-                'id': 'post-3441', //idstrony
+                'id': 'post-3441', //idstrony   
                 'dimension1': 'inwedo',
                 'dimension2': '18072022'
             })
