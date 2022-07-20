@@ -110,9 +110,8 @@ const Item = styled.div`
         align-items: center;
 
         .image{
-            width: fit-content;
-            height: fit-content;
-            max-width: clamp(30px, 4.8vw, 44px);
+            width:  clamp(30px, 4.8vw, 44px);
+            height:  clamp(30px, 4.8vw, 44px);
         }
     }
 `

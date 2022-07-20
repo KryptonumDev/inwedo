@@ -14,29 +14,30 @@ import SuccessStories from "../components/success-stories"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/product-design'
 
 const ProductDesignPage = ({ data: { allWpPage, alternates }, location }) => {
   let { productDesign, language, seo, scryptInjection } = allWpPage.nodes[0]
   let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
-    {script}
+      {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
-      <Hero data={productDesign.heroProductDesign} />
+      <Hero data={productDesign.heroProductDesign} analytics={Analytics.hero} location={location.pathname} />
       <DesignProcess data={productDesign.designProcess} />
       <TestomontialDivider data={productDesign.testomontialDividerProductDesign} />
-      <CallToAction data={productDesign.callToActionProductDesign} />
+      <CallToAction data={productDesign.callToActionProductDesign} analytics={Analytics.cta.first} location={location.pathname} />
       <TwoColumnFlex data={productDesign.twoColumnFlexProductDesign} />
       <DesignBenefits data={productDesign.designBenefits} />
       <TwoColumnFlexList data={productDesign.twoColumnFlexProductDesignSecond} />
       <TechStack data={productDesign.techStackProductDesign} />
-      <SuccessStories data={productDesign.successStoriesProductDesign} />
+      <SuccessStories data={productDesign.successStoriesProductDesign} analytics={Analytics.successStories} location={location.pathname} />
       <DesignProcessAlt data={productDesign.designProcessSecond} />
-      <CallToAction data={productDesign.callToActionProductDesignSecond} />
+      <CallToAction data={productDesign.callToActionProductDesignSecond} analytics={Analytics.cta.second} location={location.pathname} />
       <DesignBenefitsAlt data={productDesign.designBenefitsAlt} />
       <TwoColumnFlex reverse={true} data={productDesign.twoColumnFlexProductDesignThird} />
       <DesignBenefits data={productDesign.designBenefitsSecond} />
-      <CallToAction data={productDesign.callToActionProductDesignThird} />
+      <CallToAction data={productDesign.callToActionProductDesignThird} analytics={Analytics.cta.third} location={location.pathname} />
       <FAQ data={productDesign.faqProductDesign} />
     </main>
   )

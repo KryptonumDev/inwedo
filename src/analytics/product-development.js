@@ -1,58 +1,66 @@
 export default {
-    hero: {
-        "event": "contact",
-        "section": "Services",
-        "pageURL": "/",
-        "buttonName": "Get your product development plan",
-        "location": "top of the page"
-    },
-    cta: {
-        first: {
-            'event': 'See_more',
-            'section': 'Services',
-            'pageURL': '/',
-            'buttonName': 'Learn more about how we work',
-            'location': 'top of the page'
-        },
-        second: {
-            'event': 'contact',
-            'section': 'Services',
-            'pageURL': '/',
-            'buttonName': 'Let’s talk',
-            'location': 'middle of the page'
-        },
-        third: {
-            'event': 'contact',
-            'section': 'Services',
-            'pageURL': '/',
-            'buttonName': 'Let’s talk',
-            'location': 'bottom of the page'
+    hero: (url) => {
+        return {
+            "event": "contact",
+            "section": "Services | Product Development",
+            "pageURL": url ? url : '/',
+            "buttonName": "Get your product development plan",
+            "location": "top of the page"
         }
     },
-    caseStudies: (position, name) => {
+    cta: {
+        first: (url) => {
+            return {
+                'event': 'See_more',
+                "section": "Services | Product Development",
+                "pageURL": url ? url : '/',
+                'buttonName': 'Learn more about how we work',
+                'location': 'top of the page'
+            }
+        },
+        second: (url) => {
+            return {
+                'event': 'contact',
+                "section": "Services | Product Development",
+                "pageURL": url ? url : '/',
+                'buttonName': 'Let’s talk',
+                'location': 'middle of the page'
+            }
+        },
+        third: (url) => {
+            return {
+                'event': 'contact',
+                "section": "Services | Product Development",
+                "pageURL": url ? url : '/',
+                'buttonName': 'Let’s talk',
+                'location': 'bottom of the page'
+            }
+        }
+    },
+    successStories: (position, name, url) => {
         return {
             'event': 'learn_more',
-            'section': 'Services',
-            'pageURL': '/',
-            'buttonName': 'Read case study',
+            "section": "Services | Product Development",
+            "pageURL": url ? url : '/',
+            'buttonName': 'Read more',
             'location': 'middle of the page',
-            'type': 'case study',
+            'type': 'post',
             'name': name,
-            'position': position
+            'position': position + 1
         }
     },
     related: (items) => {
         const listItems = []
         items.map((el, index) => {
             listItems.push({
-                'list': 'Services',
+                "list": "Services | Product Development",
                 'name': el.servisTitle,
                 'brand ': 'inwedo.com',
                 'position': index + 1,
                 'category': el.servisTitle,
                 'variant': 'page-site',
-                'price': '88.53', //ilość znaków w artykule / 100
-                'id': 'post-3441', //idstrony
+                'price': 'none',
+                'id': el.button.url,
                 'dimension1': 'inwedo',
                 'dimension2': '18072022'
             })

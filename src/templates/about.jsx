@@ -8,22 +8,23 @@ import TestomontialsAnimated from "../components/testomontials-animated"
 import SuccessStories from "../components/success-stories"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/about-us'
 
 const AboutPage = ({ data: { allWpPage, alternates }, location }) => {
   let { about, language, seo, scryptInjection } = allWpPage.nodes[0]
   let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
-    {script}
-      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='About'/>
+      {script}
+      <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='About' />
       <Hero data={about.heroAbout} />
-      <TwoColumnFlex reverse={true} data={about.twoColumnFlex} />
+      <TwoColumnFlex reverse={true} data={about.twoColumnFlex} analytics={Analytics.twoColumn} location={location.pathname} />
       <OurValues data={about.ourValues} />
-      <CallToAction data={about.callToActionAbout} />
+      <CallToAction data={about.callToActionAbout} analytics={Analytics.cta.first} location={location.pathname} />
       <TestomontialsAnimated data={about.testomontialsAnimated} />
-      <SuccessStories data={about.successStories} />
-      <TwoColumnFlex data={about.twoColumnFlexSecond} />
-      <CallToAction data={about.callToActionAboutSecond} />
+      <SuccessStories data={about.successStories} analytics={Analytics.successStories} location={location.pathname} />
+      <TwoColumnFlex data={about.twoColumnFlexSecond} analytics={Analytics.twoColumn} location={location.pathname} />
+      <CallToAction data={about.callToActionAboutSecond} analytics={Analytics.cta.second} location={location.pathname} />
     </main>
   )
 }
@@ -190,9 +191,7 @@ export const query = graphql`
                        caseLogo {
                          altText
                          localFile {
-                           childImageSharp {
-                             gatsbyImageData(placeholder: BLURRED, quality: 95)
-                           }
+                           publicURL
                          }
                        }
                      }

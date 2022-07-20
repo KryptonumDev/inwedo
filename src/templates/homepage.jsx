@@ -105,9 +105,7 @@ export const query = graphql`
                 logoClients {
                   altText
                   localFile {
-                    childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 95)
-                    }
+                    publicURL
                   }
                 }
               }
@@ -277,9 +275,7 @@ export const query = graphql`
                   userIconPng {
                     altText
                     localFile {
-                      childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 95)
-                      }
+                      publicURL
                     }
                   }
                 }
@@ -287,9 +283,7 @@ export const query = graphql`
                 companyLogo {
                   altText
                   localFile {
-                    childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 95)
-                    }
+                    publicURL
                   }
                 }
               }

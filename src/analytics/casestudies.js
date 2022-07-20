@@ -2,20 +2,26 @@ export default {
     cta: {
         first: (url) => {
             return {
-                'empty': 'empty'
+                'event': 'contact',
+                'section': 'homepage',
+                'pageURL': url ? url : '/',
+                'buttonName': "Let's talk!",
+                'location': 'middle of the page',
+                'position': '1'
             }
         },
         second: (url) => {
             return {
                 'event': 'contact',
-                'section': 'Portfolio',
+                'section': 'homepage',
                 'pageURL': url ? url : '/',
-                'buttonName': 'Get an estimate',
-                'location': 'bottom of the page'
+                'buttonName': "Let's talk!",
+                'location': 'bottom of the page',
+                'position': '2'
             }
-        }
+        },
     },
-    inView: (items, filter) => {
+    inView: (items) => {
         const listItems = []
         items.map((el, index) => {
 
@@ -29,7 +35,7 @@ export default {
             })
 
             listItems.push({
-                'list': filter,
+                'list': 'other posts',
                 'name': el.caseStudies.previewCard.previewTitle,
                 'brand ': 'inwedo.com',
                 'position': index + 1,
@@ -80,12 +86,4 @@ export default {
             },
         }
     },
-    loadMore: (url, count) => {
-        return {
-            'event': 'LoadMore',
-            'action': 'click - Load More | ' + count,
-            'buttonName': 'Load More',
-            'pageURL': url ? url : '/',
-        }
-    }
 }

@@ -11,6 +11,7 @@ import FAQ from "../components/faq"
 import TechStack from "../components/tech-stack"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/technology'
 
 const TechnologyPage = ({ data: { allWpTechnology, alternates }, location }) => {
   let { technology, language, seo, scryptInjection } = allWpTechnology.nodes[0]
@@ -18,18 +19,18 @@ const TechnologyPage = ({ data: { allWpTechnology, alternates }, location }) => 
 
   return (
     <main id='main'>
-    {script}
+      {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='technology' template='Technology' currTemplate={technology.templateName} />
-      <Hero data={technology.heroTechnology} />
+      <Hero data={technology.heroTechnology} analytics={Analytics.hero} location={location.pathname} />
       <TwoColumnFlex technology={true} data={technology.twoColumnFlexTechnologySecond} />
       <ReasonsToUse data={technology.reasonsToUse} />
       <WhyBestChoice data={technology.whyBestChoice} />
-      <CallToAction data={technology.callToActionTechnology} />
+      <CallToAction data={technology.callToActionTechnology} analytics={Analytics.cta.first} location={location.pathname} />
       <TwoColumnFlexWorkshop size={'32px'} reverse={true} data={technology.twoColumnFlexTechnology} />
-      <CallToAction data={technology.callToActionTechnologySecond} />
-      <SuccessStories data={technology.successStoriesTechnology} />
-      <CallToAction data={technology.callToActionTechnologyThird} />
-      <TechStack data={technology.techStackTechnology} />
+      <CallToAction data={technology.callToActionTechnologySecond} analytics={Analytics.cta.second} location={location.pathname} />
+      <SuccessStories data={technology.successStoriesTechnology} analytics={Analytics.successStories} location={location.pathname} />
+      <CallToAction data={technology.callToActionTechnologyThird} analytics={Analytics.cta.third} location={location.pathname} />
+      <TechStack data={technology.techStackTechnology} analytics={Analytics.technologies} />
       <FAQ data={technology.faqTechnology} />
     </main>
   )

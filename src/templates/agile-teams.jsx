@@ -14,6 +14,7 @@ import RelatedServices from "../components/related-services"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/agile-teams'
 
 const AgileTeamsPage = ({ data: { allWpPage, alternates }, location }) => {
   let { agileTeams, language, seo, scryptInjection } = allWpPage.nodes[0]
@@ -22,17 +23,17 @@ const AgileTeamsPage = ({ data: { allWpPage, alternates }, location }) => {
     <main id='main'>
     {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
-      <Hero data={agileTeams.heroAgileTeams} />
+      <Hero data={agileTeams.heroAgileTeams} analytics={Analytics.hero} location={location.pathname} />
       <OurFocuses data={agileTeams.ourFocusesAgileTeams} />
       <MiniFaq data={agileTeams.miniFaqAgileTeams} />
       <TeamSizes data={agileTeams.teamSizes} />
       <TechStack data={agileTeams.techStack} />
       <ImageDivider data={agileTeams.imageDivider} />
-      <SuccessStories data={agileTeams.successStoriesAgileTeams} />
-      <TwoColumnFlex data={agileTeams.twoColumnFlexAgileTeams} />
+      <SuccessStories data={agileTeams.successStoriesAgileTeams} analytics={Analytics.successStories} location={location.pathname}/>
+      <TwoColumnFlex data={agileTeams.twoColumnFlexAgileTeams} analytics={Analytics.twoColumn} location={location.pathname}/>
       <TestomontialDivider data={agileTeams.testomontialDividerAgileTeams} />
-      <CallToAction data={agileTeams.callToActionAgileTeams} />
-      <RelatedServices data={agileTeams.relatedServicesAgileTeams} />
+      <CallToAction data={agileTeams.callToActionAgileTeams} analytics={Analytics.cta.first} location={location.pathname}/>
+      <RelatedServices data={agileTeams.relatedServicesAgileTeams} analytics={Analytics.relatedServices}/>
       <FAQ data={agileTeams.faqAgileTeams} />
     </main>
   )

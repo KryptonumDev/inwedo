@@ -274,9 +274,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
                 userIconPng {
                   altText
                   localFile {
-                    childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 95)
-                    }
+                    publicURL
                   }
                 }
               }
@@ -284,9 +282,7 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
               companyLogo {
                 altText
                 localFile {
-                  childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 95)
-                  }
+                  publicURL
                 }
               }
             }

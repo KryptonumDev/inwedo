@@ -1,10 +1,16 @@
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
+import { datalayerPush } from './../helpers/datalayer'
 
-export default function Technologies({ data: { sectionTitle, text, cards } }) {
+export default function Technologies({ data: { sectionTitle, text, cards }, analytics }) {
+
+    useEffect(() => {
+        datalayerPush(analytics(cards))
+    }, [])
+
     return (
         <Wrapper>
             <Container>

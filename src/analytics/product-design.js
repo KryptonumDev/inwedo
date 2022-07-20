@@ -1,44 +1,52 @@
 export default {
-    hero: {
-        "event": "contact",
-        "section": "Services",
-        "pageURL": "/services/digital-product-design-ux-ui/",
-        "buttonName": "Work with our product designers",
-        "location": "top of the page"
-    },
-    cta: {
-        first: {
-            'event': 'contact',
-            'section': 'Services',
-            'pageURL': '/services/digital-product-design-ux-ui/',
-            'buttonName': 'Discovery Workshops',
-            'location': 'top of the page'
-        },
-        second: {
-            'event': 'contact',
-            'section': 'Services',
-            'pageURL': '/services/digital-product-design-ux-ui/',
-            'buttonName': 'Let’s talk',
-            'location': 'middle of the page'
-        },
-        third: {
-            'event': 'contact',
-            'section': 'Services',
-            'pageURL': '/services/digital-product-design-ux-ui/',
-            'buttonName': 'Learn more',
-            'location': 'bottom of the page'
+    hero: (url) => {
+        return {
+            "event": "contact",
+            "section": "Services | Product Design",
+            "pageURL": url ? url : '/',
+            "buttonName": "Work with our product designers",
+            "location": "top of the page"
         }
     },
-    caseStudies: (position, name) => {
+    cta: {
+        first: (url) => {
+            return {
+                'event': 'contact',
+                "section": "Services | Product Design",
+                "pageURL": url ? url : '/',
+                'buttonName': 'Discovery Workshops',
+                'location': 'top of the page'
+            }
+        },
+        second: (url) => {
+            return {
+                'event': 'contact',
+                "section": "Services | Product Design",
+                "pageURL": url ? url : '/',
+                'buttonName': 'Let’s talk',
+                'location': 'middle of the page'
+            }
+        },
+        third: (url) => {
+            return {
+                'event': 'contact',
+                "section": "Services | Product Design",
+                "pageURL": url ? url : '/',
+                'buttonName': 'Learn more',
+                'location': 'bottom of the page'
+            }
+        }
+    },
+    successStories: (position, name, url) => {
         return {
             'event': 'learn_more',
-            'section': 'Services',
-            'pageURL': '/',
-            'buttonName': 'Read case study',
+            "section": "Services | Product Design",
+            "pageURL": url ? url : '/',
+            'buttonName': 'Read more',
             'location': 'middle of the page',
-            'type': 'case study',
+            'type': 'post',
             'name': name,
-            'position': position
+            'position': position + 1
         }
     }
 }

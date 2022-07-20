@@ -1,10 +1,10 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { graphql, Link, useStaticQuery } from "gatsby"
 import { activeLanguage } from "../../helpers/activeLanguage"
 import Arrow from './../../images/cookie-arrow.png'
 import { getCookie, setCookie } from './../../helpers/cookie-manager'
-import { datalayerPush } from "../../helpers/datalayer"
+import { datalayerArguments } from "../../helpers/datalayer"
 
 export default function CokieBanner({ location }) {
 
@@ -61,33 +61,7 @@ export default function CokieBanner({ location }) {
     }
     const { firstTab, secondTab, thirdTab, controlButtons } = banerData[0].cookieBanner
 
-    const [isAlreadyApplied, setIsAllreadyApplied] = useState(() => {
-
-        if (getCookie('necessary')) {
-
-            datalayerPush("consent", "default", {
-                'ad_storage': getCookie('marketing'),
-                'analytics_storage': getCookie('statistics'),
-                'functionality_storage': getCookie('necessary'),
-                'personalization_storage': getCookie('preferences'),
-                'wait_for_update': 2500
-            });
-            datalayerPush("set", "ads_data_redaction", true);
-
-            return true
-        }
-
-        datalayerPush("consent", "default", {
-            'ad_storage': "denied",
-            'analytics_storage': "denied",
-            'functionality_storage': "denied",
-            'personalization_storage': "denied",
-            'security_storage': "granted",
-            'wait_for_update': 2500
-        });
-        datalayerPush("set", "ads_data_redaction", true);
-        return false
-    })
+    const [isAlreadyApplied, setIsAllreadyApplied] = useState(null)
     const [activeTab, setActiveTab] = useState(1)
     const [activeCookie, setActiveCookies] = useState(() => {
         const arr = []
@@ -99,8 +73,10 @@ export default function CokieBanner({ location }) {
 
     const changeActiveCookies = (index) => {
         const arr = [...activeCookie]
-        arr[index].isActive = !arr[index].isActive
-        setActiveCookies(arr)
+        if (arr[index].name !== 'necessary') {
+            arr[index].isActive = !arr[index].isActive
+            setActiveCookies(arr)
+        }
     }
 
     const applyCookie = (type) => {
@@ -108,7 +84,7 @@ export default function CokieBanner({ location }) {
             activeCookie.forEach(el => {
                 setCookie(el.name, true, 365)
             })
-            datalayerPush('consent', 'update', {
+            datalayerArguments('consent', 'update', {
                 'ad_storage': 'granted',
                 'analytics_storage': "granted",
                 'functionality_storage': "granted",
@@ -119,7 +95,7 @@ export default function CokieBanner({ location }) {
                 setCookie(el.name, el.isActive ? 'granted' : 'denied', 365)
             })
 
-            datalayerPush('consent', 'update', {
+            datalayerArguments('consent', 'update', {
                 'ad_storage': getCookie('marketing'),
                 'analytics_storage': getCookie('statistics'),
                 'functionality_storage': getCookie('necessary'),
@@ -134,6 +110,38 @@ export default function CokieBanner({ location }) {
     const rejectCookie = () => {
         setIsAllreadyApplied(true)
     }
+
+    useEffect(() => {
+        setIsAllreadyApplied(() => {
+            if (getCookie('necessary')) {
+
+                datalayerArguments("consent", "default", {
+                    'ad_storage': getCookie('marketing'),
+                    'analytics_storage': getCookie('statistics'),
+                    'functionality_storage': getCookie('necessary'),
+                    'personalization_storage': getCookie('preferences'),
+                    'wait_for_update': 2500
+                });
+                datalayerArguments("set", "ads_data_redaction", true);
+
+                return true
+            }
+
+            datalayerArguments("consent", "default", {
+                'ad_storage': "denied",
+                'analytics_storage': "denied",
+                'functionality_storage': "denied",
+                'personalization_storage': "denied",
+                'security_storage': "granted",
+                'wait_for_update': 2500
+            });
+            datalayerArguments("set", "ads_data_redaction", true);
+
+            return false
+        })
+    }, [])
+
+    console.log(isAlreadyApplied)
 
     return (
         <Cookie display={isAlreadyApplied}>
@@ -180,7 +188,7 @@ export default function CokieBanner({ location }) {
                                                     ))}
                                                 </div>
                                             </details>
-                                            <button onClick={() => { changeActiveCookies(index) }} className="switch"></button>
+                                            <button onClick={() => { changeActiveCookies(index) }} className={"switch " + el.officialTypeName}></button>
                                         </TypeItem>
                                     ))}
                                 </div>
@@ -210,7 +218,15 @@ export default function CokieBanner({ location }) {
 }
 
 const Cookie = styled.div`
-    display: ${props => props.display ? 'none' : 'block'};
+    display: block;
+
+    ${props => props.display === false ? `
+        display: block;
+    ` : props.display === null ? `
+        display: none;
+    ` : props.display === true ? `
+        display: none;
+    ` : null}
 `
 
 const Overlay = styled.div`
@@ -317,6 +333,18 @@ const TypeItem = styled.div`
         border: none;
         position: relative;
 
+        &.necessary{
+            opacity: .5;
+            &::after{
+                left: calc(100% - 26px);
+                opacity: 1;
+
+                @media (max-width: 640px) {
+                    left: calc(100% - 18px);
+                }
+            }
+        }
+
         @media (max-width: 640px){
             width: 30px;
             height: 18px;
@@ -345,15 +373,69 @@ const TypeItem = styled.div`
     }
 
     details{
-        padding-left: 48px;
+        padding-left: clamp(32px, ${32 / 768 * 100}vw, 48px);
         position: relative;
 
         &::before{
             content: url(${props => props.arrow});
             position: absolute;
             left: 0;
-            top: 0;
+            top: 5px;
+            transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+            transform: rotateZ(180deg);
+
+            @media (max-width: 864px) {
+                top: 7px;
+                transform: rotateZ(180deg) scale(.7);
+            }
+
+            @media (max-width: 864px){
+                top: 5px;
+            }
+
+            @media (max-width: 720px) {
+                top: 3px;
+            }
+
+            @media (max-width: 650px){
+                transform: rotateZ(180deg) scale(.5);
+            }
+
+            @media (max-width: 600px) {
+                top: 1px;
+            }
         }
+
+        @media (max-width: 720px) {
+            details{
+                &::before{
+                    left: -3px;
+                }
+            }
+        }
+
+        @media (max-width: 600px) {
+            details{
+                &::before{
+                    left: -10px;
+                }
+            }
+        }
+
+        &[open]{
+            &::before{
+                transform: rotateZ(0);
+
+                @media (max-width: 864px) {
+                    transform: rotateZ(0) scale(.7);
+                }
+
+                @media (max-width: 650px){
+                    transform: rotateZ(0) scale(.5);
+                }
+            }
+        }
+        
 
         .subitem{
             padding-top: 32px;
@@ -394,6 +476,12 @@ const TypeItem = styled.div`
                 padding: clamp(8px, ${12 / 768 * 100}vw, 16px) 0;
                 border-bottom: 1px solid #00000016;
                 padding-left: clamp(16px, ${26 / 768 * 100}vw, 36px);
+
+                strong{
+                    font-size: inherit;
+                    line-height: inherit;
+                    margin-bottom: 0;
+                }
             }
         }
     }

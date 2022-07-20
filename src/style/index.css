@@ -70,8 +70,8 @@ a {
 .h1 {
     font-style: normal;
     font-weight: 400;
-    font-size: 32px;
-    line-height: 151%;
+    font-size: clamp(20px, 3.38vw, 32px);
+    line-height: 141%;
 }
 
 .h1.display {

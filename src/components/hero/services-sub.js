@@ -1,10 +1,10 @@
 import { Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../../style"
+import { datalayerPush } from '../../helpers/datalayer'
 
-export default function Hero({ data: { text, pageTitle, button, icon } }) {
+export default function Hero({ data: { text, pageTitle, button, icon }, analytics, location }) {
     return (
         <Wrapper>
             <Container>
@@ -15,7 +15,7 @@ export default function Hero({ data: { text, pageTitle, button, icon } }) {
                     <TextPart>
                         <h1 className="h4 line">{pageTitle}</h1>
                         <p className="h1">{text}</p>
-                        <Link className="button" to={button.url}>{button.name}</Link>
+                        <Link onClick={() => { datalayerPush(analytics(location)) }} className="button" to={button.url}>{button.name}</Link>
                     </TextPart>
                 </Content>
             </Container>
@@ -45,7 +45,7 @@ const Image = styled.div`
     box-shadow: var(--shadow);
     width: fit-content;
     height: fit-content;
-    max-width: clamp(100px, 19.27vw, 196px);
+    max-width: clamp(160px, 19.27vw, 310px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -53,6 +53,8 @@ const Image = styled.div`
     
     img{
         border-radius: 8px;
+        min-width: 160px;
+        max-width: 100%;
     }
 `
 

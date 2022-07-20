@@ -12,26 +12,27 @@ import FAQ from "../components/faq"
 import ProcessOptimisation from "../components/process-optimisation"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/product-development'
 
 const ProductDevelopmentPage = ({ data: { allWpPage, alternates }, location }) => {
   let { productDevelopment, language, seo, scryptInjection } = allWpPage.nodes[0]
   let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
-    {script}
+      {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
-      <Hero data={productDevelopment.heroProductDevelop} />
+      <Hero data={productDevelopment.heroProductDevelop} analytics={Analytics.hero} location={location.pathname} />
       <TwoColumnFlex data={productDevelopment.twoColumnFlexProductDevelopment} />
       <DevelopmentProcess data={productDevelopment.developmentProcess} />
-      <CallToAction data={productDevelopment.callToActionProductDevelopment} />
-      <RelatedServices data={productDevelopment.relatedServicesProductDevelopment} />
-      <SuccessStories data={productDevelopment.successStoriesProductDevelopment} />
+      <CallToAction data={productDevelopment.callToActionProductDevelopment} analytics={Analytics.cta.first} location={location.pathname}/>
+      <RelatedServices data={productDevelopment.relatedServicesProductDevelopment} analytics={Analytics.related} />
+      <SuccessStories data={productDevelopment.successStoriesProductDevelopment} analytics={Analytics.successStories} location={location.pathname}/>
       <TwoColumnFlexWorkshop reverse={true} data={productDevelopment.twoColumnFlexProductDevelopmentSecond} />
       <TestomontialDivider data={productDevelopment.testomontialDividerProductDevelopment} />
       <ProcessOptimisation data={productDevelopment.processOptimisation} />
-      <CallToAction data={productDevelopment.callToActionProductDevelopmentSecond} />
-      <SuccessStories data={productDevelopment.successStoriesProductDevelopmentSecond} />
-      <CallToAction data={productDevelopment.callToActionProductDevelopmentThird} />
+      <CallToAction data={productDevelopment.callToActionProductDevelopmentSecond} analytics={Analytics.cta.second} location={location.pathname}/>
+      <SuccessStories data={productDevelopment.successStoriesProductDevelopmentSecond} analytics={Analytics.successStories} location={location.pathname}/>
+      <CallToAction data={productDevelopment.callToActionProductDevelopmentThird} analytics={Analytics.cta.third} location={location.pathname}/>
       <FAQ data={productDevelopment.faqProductDevelopment} />
     </main>
   )

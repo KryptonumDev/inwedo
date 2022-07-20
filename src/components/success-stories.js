@@ -3,15 +3,16 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../style"
+import { datalayerPush } from './../helpers/datalayer'
 
-export default function SuccessStories({ data: { sectionTitle, success } }) {
+export default function SuccessStories({ data: { sectionTitle, success }, analytics, location }) {
     return (
         <Wrapper>
             <Container>
                 <Stories>
                     <h2 className="h3">{sectionTitle}</h2>
-                    {success.map(el => (
-                        <Link className="flex" to={el.button.url}>
+                    {success.map((el, index) => (
+                        <Link key={el.caseTitle} onClick={() => {datalayerPush(analytics(el.caseTitle, index, location))}} className="flex" to={el.button.url}>
                             <GatsbyImage className="image" image={el.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.previewImage.altText} />
                             <div className="text">
                                 {el.caseLogo

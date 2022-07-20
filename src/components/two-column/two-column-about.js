@@ -3,12 +3,20 @@ import styled from "styled-components"
 import { Container } from "../../style"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+import { datalayerPush } from "../../helpers/datalayer"
 
-export default function TwoColumnFlex({ data: { image, title, subTitle, text, button }, technology, reverse, descReverse }) {
+export default function TwoColumnFlex({ data: { image, title, subTitle, text, button }, technology, reverse, descReverse, analytics, location }) {
+
+    const click = () => {
+        if (button.url) {
+            datalayerPush(analytics(location))
+        }
+    }
+
     return (
         <Wrapper>
             <Container>
-                <Flex isLink={button.url} descReverse={descReverse} reverse={reverse} to={button.url} technology={technology}>
+                <Flex as={button.url ? null : 'div'} onClick={() => { click() }} isLink={button.url} descReverse={descReverse} reverse={reverse} to={button.url} technology={technology}>
                     <div className="text">
                         {technology
                             ? <h2 className="h1">{title}</h2>

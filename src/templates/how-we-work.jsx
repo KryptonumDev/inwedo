@@ -12,28 +12,29 @@ import BenefitsGrid from "../components/benefits-grid"
 import RelatedServices from "../components/related-services"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/how-we-work'
 
 const HowWeWorkPage = ({ data: { allWpPage, alternates }, location }) => {
   let { howWeWork, language, seo, scryptInjection } = allWpPage.nodes[0]
   let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
     <main id='main'>
-    {script}
+      {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='How We Work' />
-      <Hero data={howWeWork.heroHowWeWork} />
+      <Hero data={howWeWork.heroHowWeWork} analytics={Analytics.hero} location={location.pathname} />
       <TwoColumnFlex data={howWeWork.twoColumnFlexHowWeWork} />
-      <CardsWithTitle data={howWeWork.cardsWithLinks} />
+      <CardsWithTitle data={howWeWork.cardsWithLinks} analytics={Analytics.cards} />
       <MiniFaq data={howWeWork.miniFaq} />
       <TestomontialDivider data={howWeWork.testomontialDivider} />
-      <CallToAction data={howWeWork.callToActionHowWeWork} />
+      <CallToAction data={howWeWork.callToActionHowWeWork} analytics={Analytics.cta.first} location={location.pathname} />
       <OurFocuses data={howWeWork.ourFocuses} />
       <TestomontialDivider data={howWeWork.testomontialDividerSecond} />
-      <CallToAction data={howWeWork.callToActionHowWeWorkSecond} />
+      <CallToAction data={howWeWork.callToActionHowWeWorkSecond} analytics={Analytics.cta.second} location={location.pathname} />
       <TwoColumnFlexImg data={howWeWork.twoColumnFlexHowWeWorkImg} />
       <BenefitsGrid data={howWeWork.benefitsGrid} />
-      <CallToAction data={howWeWork.callToActionHowWeWorkThird} />
-      <RelatedServices data={howWeWork.relatedServices} />
-      <CallToAction data={howWeWork.callToActionHowWeWorkFourth} />
+      <CallToAction data={howWeWork.callToActionHowWeWorkThird} analytics={Analytics.cta.third} location={location.pathname} />
+      <RelatedServices data={howWeWork.relatedServices} analytics={Analytics.related} />
+      <CallToAction data={howWeWork.callToActionHowWeWorkFourth} analytics={Analytics.cta.fourth} location={location.pathname} />
     </main>
   )
 }

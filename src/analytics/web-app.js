@@ -1,23 +1,25 @@
 export default {
-    hero: {
-        "event": "contact",
-        "section": "Services",
-        "pageURL": "/",
-        "buttonName": "Schedule a consultation",
-        "location": "top of the page"
+    hero: (url) => {
+        return {
+            "event": "contact",
+            "section": "Services | Web App",
+            "pageURL": url ? url : '/',
+            "buttonName": "Schedule a consultation",
+            "location": "top of the page"
+        }
     },
     technologies: (items) => {
         const listItems = []
         items.map((el, index) => {
             listItems.push({
-                'list': 'Services',
+                'list': 'Services | Web App',
                 'name': el.cardTitle,
                 'brand ': 'inwedo.com',
                 'position': index + 1,
                 'category': el.cardTitle,
                 'variant': 'page-site',
-                'price': '88.53', //ilość znaków w artykule / 100
-                'id': 'post-3441', //idstrony
+                'price': 'none',
+                'id': el.button.url,
                 'dimension1': 'inwedo',
                 'dimension2': '18072022'
             })
@@ -32,45 +34,49 @@ export default {
         }
     },
     cta: {
-        first: {
-            'event': 'contact',
-            'section': 'Services',
-            'pageURL': '/',
-            'buttonName': 'Get our web development advice',
-            'location': 'middle of the page'
+        first: (url) => {
+            return {
+                'event': 'contact',
+                'section': 'Services | Web App',
+                "pageURL": url ? url : '/',
+                'buttonName': 'Get our web development advice',
+                'location': 'middle of the page'
+            }
         },
-        second: {
-            'event': 'contact',
-            'section': 'Services',
-            'pageURL': '/',
-            'buttonName': 'Let’s talk',
-            'location': 'bottom of the page'
+        second: (url) => {
+            return {
+                'event': 'contact',
+                'section': 'Services | Web App',
+                "pageURL": url ? url : '/',
+                'buttonName': 'Let’s talk',
+                'location': 'bottom of the page'
+            }
         }
     },
-    successStories: (position, name) => {
+    successStories: (name, position, url) => {
         return {
             'event': 'learn_more',
-            'section': 'Services',
-            'pageURL': '/',
-            'buttonName': 'Read case study',
+            'section': 'Services | Web App',
+            "pageURL": url ? url : '/',
+            'buttonName': 'Read more',
             'location': 'middle of the page',
-            'type': 'case study',
+            'type': 'post',
             'name': name,
-            'position': position
+            'position': position + 1
         }
     },
     developmentTypes: (items) => {
         const listItems = []
         items.map((el, index) => {
             listItems.push({
-                'list': 'Services',
+                'list': 'Services | Web App',
                 'name': el.typeTitle,
                 'brand ': 'inwedo.com',
                 'position': index + 1,
                 'category': el.typeTitle,
                 'variant': 'page-site',
-                'price': '88.53', //ilość znaków w artykule / 100
-                'id': 'post-3441', //idstrony
+                'price': 'none',
+                'id': el.button.url,
                 'dimension1': 'inwedo',
                 'dimension2': '18072022'
             })

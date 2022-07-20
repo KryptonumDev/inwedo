@@ -12,6 +12,7 @@ import SuccessStories from "../components/success-stories"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/discovery-workshop'
 
 const DiscoveryWorkshopPage = ({ data: { allWpPage, alternates }, location }) => {
   let { discoveryWorkshop, language, seo, scryptInjection } = allWpPage.nodes[0]
@@ -20,17 +21,17 @@ const DiscoveryWorkshopPage = ({ data: { allWpPage, alternates }, location }) =>
     <main id='main'>
     {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location}  type='Services'/>
-      <Hero data={discoveryWorkshop.heroWorkshop} />
+      <Hero data={discoveryWorkshop.heroWorkshop} analytics={Analytics.hero} location={location.pathname} />
       <OneColumnText data={discoveryWorkshop.oneColumnTextPart} />
       <TestomontialDivider data={discoveryWorkshop.testomontialDividerWorkshop} />
       <WorkshopSteps data={discoveryWorkshop.steps} />
-      <CallToAction data={discoveryWorkshop.callToActionWorkshop} />
+      <CallToAction data={discoveryWorkshop.callToActionWorkshop} analytics={Analytics.cta.first} location={location.pathname}/>
       <WorkshopSteps data={discoveryWorkshop.stepsSecond} />
       <TwoColumnFlex reverse={true} data={discoveryWorkshop.twoColumnFlexWorkshop} />
-      <CallToAction data={discoveryWorkshop.callToActionWorkshopSecond} />
+      <CallToAction data={discoveryWorkshop.callToActionWorkshopSecond} analytics={Analytics.cta.second} location={location.pathname}/>
       <RemoteWorkshop data={discoveryWorkshop.remoteWorkshop} />
       <WorkshopBenefits data={discoveryWorkshop.workshopBenefits} />
-      <SuccessStories data={discoveryWorkshop.successStoriesWorkshop} />
+      <SuccessStories data={discoveryWorkshop.successStoriesWorkshop} analytics={Analytics.successStories} location={location.pathname}/>
       <FAQ data={discoveryWorkshop.faqWorkshop} />
     </main>
   )

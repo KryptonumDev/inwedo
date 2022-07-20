@@ -14,6 +14,7 @@ import ImpactAchieved from "../components/impact-achieved"
 import OtherCaseStudies from "../components/other-case-studies"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/casestudies'
 
 const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts, alternates }, location }) => {
   const { caseStudies, language, seo, scryptInjection } = allWpCaseStudies.nodes[0]
@@ -39,7 +40,7 @@ const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts, alternates }, loc
         ? <Solution data={caseStudies.solution} />
         : null}
       {caseStudies.sectionController.callToAction
-        ? <CallToAction data={caseStudies.callToActionPortfolio} />
+        ? <CallToAction data={caseStudies.callToActionPortfolio} analytics={Analytics.cta.first} location={location.pathname} />
         : null}
       {caseStudies.sectionController.testomontialDividerSecond
         ? <TestomontialDividerAlt data={caseStudies.testomontialDividerPortfolioSecond} />
@@ -53,9 +54,9 @@ const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts, alternates }, loc
       {caseStudies.sectionController.testomontialDividerThird
         ? <TestomontialDividerExpanded data={caseStudies.testomontialDividerPortfolioThird} />
         : null}
-      <OtherCaseStudies data={otherPosts} title={caseStudies.otherPosts.sectionTitle} />
+      <OtherCaseStudies data={otherPosts} title={caseStudies.otherPosts.sectionTitle} analytics={Analytics}/>
       {caseStudies.sectionController.callToActionSecond
-        ? <CallToAction data={caseStudies.callToActionPortfolioSecond} />
+        ? <CallToAction data={caseStudies.callToActionPortfolioSecond} analytics={Analytics.cta.second} location={location.pathname} />
         : null}
     </main>
   )
@@ -82,6 +83,7 @@ query PortfolioPageQuery($id: String!) {
     allWpCaseStudies(filter: {id: {eq: $id}}) {
       nodes{
         id
+        guid
         language{
           slug
         }
@@ -319,6 +321,7 @@ query PortfolioPageQuery($id: String!) {
     }
     otherPosts : allWpCaseStudies(limit: 3, filter: {id: {ne: $id}}) {
       nodes {
+        guid
         id
         language{
           slug

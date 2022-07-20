@@ -93,6 +93,10 @@ const Flex = styled(Link)`
         width: clamp(93px, 20vw, 208px);
         min-width: clamp(93px, 20vw, 208px);
             border-radius: 24px;
+
+            img{
+                width: clamp(93px,20vw,208px);
+            }
     }
 
     .text{

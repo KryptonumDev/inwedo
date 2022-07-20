@@ -13,7 +13,9 @@ export default function Desctop({ headerNavigation, setIsHovered, isHovered, set
                     <li>
                         <details open onMouseEnter={() => { setIsHovered(index) }} onMouseLeave={() => { setIsHovered(false) }}>
                             <Summary isScrolled={isScrolled} isHovered={isHovered} index={index} tabIndex='-1' onClick={(e) => { e.preventDefault() }}>
-                                <Link onClick={() => { setIsHovered(false); datalayerPush(Analytics.mainLinks(index, el.menuTitle)) }} partiallyActive={true} activeClassName="active" onFocus={() => { setIsHovered(index) }} to={el.mainLink.url}>{el.menuTitle}</Link>
+                                <Link onClick={() => { setIsHovered(false); datalayerPush(Analytics.mainLinks(index, el.menuTitle)) }} partiallyActive={true} activeClassName="active" onFocus={() => { setIsHovered(index) }} to={el.mainLink.url}>
+                                    <span>{el.menuTitle}</span>
+                                </Link>
                             </Summary>
                             {el.firstColumn || el.secondColumn
                                 ? <Menu isHovered={isHovered} index={index} className="menu">
@@ -63,39 +65,44 @@ const Summary = styled.summary`
                     display: grid;
                     align-items: center;
                     position: relative;
-                    padding: 0 clamp(12px,1.5625vw,24px);
-
-                    @media (max-width: 1024px) {
-                        padding: 0 10px;
-                    }
+                    padding: 0;
 
                     a{
-                        padding: 4px 0;
                         line-height: 24px;
+                        height: 32px;
+                        padding: ${49/2}px clamp(12px,1.5625vw,24px);
                         color: ${props => props.isHovered ? 'var(--color-black)' : '#fff'};
-                        position: relative;
-
+                        span{
+                            display: block;
+                            padding: 4px 0;
+                            position: relative;
+                            color: inherit;
                         
-                        &::after{
-                            content: "";
-                            position: absolute;
-                            left: 0;
-                            bottom: 0;
-                            width: 0;
-                            height: 2px;
-                            background: var(--color-accent);
-                            transition: width .3s cubic-bezier(0.23, 1, 0.320, 1);
+                            &::after{
+                                content: "";
+                                position: absolute;
+                                left: 0;
+                                bottom: 0;
+                                width: 0;
+                                height: 2px;
+                                background: var(--color-accent);
+                                transition: width .3s cubic-bezier(0.23, 1, 0.320, 1);
+                            }
                         }
 
                         &.active{
-                            &::after{
-                                width: 40%;
+                            span{
+                                &::after{
+                                    width: 40%;
+                                }
                             }
                         }
 
                         &:hover{
-                            &::after{
-                                width: 100%;
+                            span{
+                                &::after{
+                                    width: 100%;
+                                }
                             }
                         }
 

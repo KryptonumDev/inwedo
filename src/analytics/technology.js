@@ -1,44 +1,53 @@
 export default {
-    hero: {
-        "event": "contact",
-        "section": "Services",
-        "pageURL": "/",
-        "buttonName": "Get your product development plan",
-        "location": "top of the page"
-    },
-    cta: {
-        first: {
-            'event': 'See_more',
-            'section': 'homepage',
-            'pageURL': '/',
-            'buttonName': 'See all services',
-            'location': 'top of the page'
-        },
-        second: {
-            'event': 'contact',
-            'section': 'homepage',
-            'pageURL': '/',
-            'buttonName': 'Estimate project',
-            'location': 'middle of the page',
-            'position': '1'
-        },
-        third: {
-            'event': 'contact',
-            'section': 'homepage',
-            'pageURL': '/',
-            'buttonName': 'Estimate project',
-            'location': 'bottom of the page',
-            'position': '2'
+    hero: (url) => {
+        return {
+            "event": "contact",
+            "section": "Services | Technology",
+            "pageURL": url ? url : '/',
+            "buttonName": "Get your product development plan",
+            "location": "top of the page"
         }
     },
-    caseStudies: (position, name) => {
+    cta: {
+        first: (url) => {
+            return {
+                'event': 'See_more',
+                'section': "Services | Technology",
+                "pageURL": url ? url : '/',
+                'buttonName': 'Let’s talk',
+                'location': 'top of the page',
+                'position': '1'
+            }
+        },
+        second: (url) => {
+            return {
+                'event': 'contact',
+                'section': "Services | Technology",
+                "pageURL": url ? url : '/',
+                'buttonName': 'Learn more about technology',
+                'location': 'middle of the page',
+                'position': '2'
+            }
+        },
+        third: (url) => {
+            return {
+                'event': 'contact',
+                'section': "Services | Technology",
+                "pageURL": url ? url : '/',
+                'buttonName': 'Let’s talk',
+                'location': 'bottom of the page',
+                'position': '3'
+            }
+        }
+    },
+    successStories: (position, name, url) => {
         return {
             'event': 'learn_more',
-            'section': 'Services',
-            'pageURL': '/',
-            'buttonName': 'Read case study',
+            'section': "Services | Technology",
+            "pageURL": url ? url : '/',
+            'buttonName': 'Read more',
             'location': 'middle of the page',
-            'type': 'case study',
+            'type': 'post',
             'name': name,
             'position': position
         }
@@ -47,14 +56,14 @@ export default {
         const listItems = []
         items.map((el, index) => {
             listItems.push({
-                'list': 'Technologies',
+                'list': "Services | Technology",
                 'name': el.techologieIcon.altText ? el.techologieIcon.altText : 'technologies alt is empty',
                 'brand ': 'inwedo.com',
                 'position': index + 1,
                 'category': el.techologieIcon.altText ? el.techologieIcon.altText : 'technologies alt is empty',
                 'variant': 'page-site',
-                'price': '88.53', //ilość znaków w artykule / 100
-                'id': 'post-3441', //idstrony
+                'price': 'none',
+                'id': el.technologieUrl,
                 'dimension1': 'inwedo',
                 'dimension2': '18072022'
             })

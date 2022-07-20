@@ -10,6 +10,7 @@ import DevelopmentTypes from "../components/development-types"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/web-app'
 
 const WebAppPage = ({ data: { allWpPage, alternates }, location }) => {
   let { webApp, language, seo, scryptInjection } = allWpPage.nodes[0]
@@ -18,14 +19,14 @@ const WebAppPage = ({ data: { allWpPage, alternates }, location }) => {
     <main id='main'>
       {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
-      <Hero data={webApp.heroWebApp} />
+      <Hero data={webApp.heroWebApp} analytics={Analytics.hero} location={location.pathname} />
       <TwoColumnFlex webApp={true} data={webApp.twoColumnFlexWebApp} />
       <TestomontialDivider data={webApp.testomontialDividerWebApp} />
-      <Technologies data={webApp.technologies} />
-      <CallToAction data={webApp.callToActionWebApp} />
-      <SuccessStories data={webApp.successStoriesWebApp} />
-      <DevelopmentTypes data={webApp.typesOfDevelopment} />
-      <CallToAction data={webApp.callToActionWebAppSecond} />
+      <Technologies data={webApp.technologies} analytics={Analytics.technologies} location={location.pathname} />
+      <CallToAction data={webApp.callToActionWebApp} analytics={Analytics.cta.first} location={location.pathname}/>
+      <SuccessStories data={webApp.successStoriesWebApp} analytics={Analytics.successStories} location={location.pathname}/>
+      <DevelopmentTypes data={webApp.typesOfDevelopment} analytics={Analytics.developmentTypes}/>
+      <CallToAction data={webApp.callToActionWebAppSecond} analytics={Analytics.cta.second} location={location.pathname}/>
       <FAQ data={webApp.faqWebApp} />
     </main>
   )

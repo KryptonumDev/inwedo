@@ -240,7 +240,29 @@ const Wrapper = styled.form`
                     -webkit-text-fill-color: transparent;
                     background-clip: text;
                     text-fill-color: transparent;
+
+                    border-radius: 2px;
+                    position: relative;
+                    width: fit-content;
+
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        width: 0;
+                        height: 2px;
+                        background: var(--color-accent);
+                        transition: width .3s cubic-bezier(0.23, 1, 0.320, 1);
+                    }
+                    
+                    &:hover{
+                        &::after{
+                            width: 100%;
+                        }
+                    }
                 }
+
             }
 
             input{

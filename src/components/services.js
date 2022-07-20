@@ -1,6 +1,6 @@
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
 import { datalayerPush } from './../helpers/datalayer'
@@ -21,7 +21,7 @@ export default function Services({ data: { card, clientsTitle, clientsItems, sec
                 <Clients count={clientsItems.length}>
                     {clientsItems.map(el => (
                         <div className="item">
-                            <GatsbyImage image={el.logoClients.localFile.childImageSharp.gatsbyImageData} alt={el.logoClients.altText} />
+                            <img src={el.logoClients.localFile.publicURL} alt={el.logoClients.altText} />
                         </div>
                     ))}
                 </Clients>
@@ -140,9 +140,16 @@ const Clients = styled.div`
         justify-content: center;
 
         img{
-            max-width: 115px;
-            max-height: 40px;
+            width: fit-content;
+            height: fit-content;
+            max-height: 60px;
+            max-width: clamp(60px, ${76 / 768 * 100}vw, 120px);
+
+            @media (max-width: 640px) {
+                max-width: 80%;
+            }
         }
+
     }
 
     @media (max-width: 640px) {

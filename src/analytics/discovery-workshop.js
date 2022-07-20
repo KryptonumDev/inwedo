@@ -1,31 +1,39 @@
 export default {
-    hero: {
-        "event": "contact",
-        "section": "Services",
-        "pageURL": "/",
-        "buttonName": "Define your own MVP backlog",
-        "location": "top of the page"
-
-    },
-    cta: {
-        first: {
-            'event': 'contact',
-            'section': 'Services',
-            'pageURL': '/',
-            'buttonName': 'Let’s talk',
-            'location': 'middle of the page'
+    hero: (url) => {
+        return {
+            "event": "contact",
+            "section": "Services | Discovery Workshop",
+            "pageURL": url ? url : '/',
+            "buttonName": "Define your own MVP backlog",
+            "location": "top of the page"
         }
     },
-    caseStudies: (position, name) => {
+    cta: {
+        first: (url) => {
+            return {
+                'empty': 'empty'
+            }
+        },
+        second: (url) => {
+            return {
+                'event': 'contact',
+                "section": "Services | Discovery Workshop",
+                "pageURL": url ? url : '/',
+                'buttonName': 'Let’s talk',
+                'location': 'bottom of the page'
+            }
+        }
+    },
+    caseStudies: (position, name, url) => {
         return {
             'event': 'learn_more',
-            'section': 'Services',
-            'pageURL': '/',
-            'buttonName': 'Read case study',
+            "section": "Services | Discovery Workshop",
+            "pageURL": url ? url : '/',
+            'buttonName': 'Read more',
             'location': 'middle of the page',
-            'type': 'case study',
+            'type': 'post',
             'name': name,
-            'position': position
+            'position': position + 1
         }
     }
 }

@@ -12,6 +12,7 @@ import RelatedServices from "../components/related-services"
 import FAQ from "../components/faq"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/team-extensions'
 
 const TeamExtensionsPage = ({ data: { allWpPage, alternates }, location }) => {
   let { teamExtensionsPage, language, seo, scryptInjection } = allWpPage.nodes[0]
@@ -20,16 +21,16 @@ const TeamExtensionsPage = ({ data: { allWpPage, alternates }, location }) => {
     <main id='main'>
     {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
-      <Hero data={teamExtensionsPage.heroTeamExtensions} />
+      <Hero data={teamExtensionsPage.heroTeamExtensions} analytics={Analytics.hero} location={location.pathname} />
       <TwoColumnFlex data={teamExtensionsPage.twoColumnFlexTeamExtensions} />
-      <TechStack data={teamExtensionsPage.techStackTeamExtensions} />
+      <TechStack data={teamExtensionsPage.techStackTeamExtensions} analytics={Analytics.technologies}/>
       <TwoColumnFlexSecond descReverse={true} data={teamExtensionsPage.twoColumnFlexTeamExtensionsSecond} />
       <BenefitsGrid data={teamExtensionsPage.benefitsGridTeamExtensions} />
-      <CallToAction data={teamExtensionsPage.callToActionTeamExtensions} />
+      <CallToAction data={teamExtensionsPage.callToActionTeamExtensions} analytics={Analytics.cta.first} location={location.pathname}/>
       <WorkshopBenefits data={teamExtensionsPage.workshopBenefitsTeamExtensions} />
-      <Testomontials data={teamExtensionsPage.testomontialsTeamExtensions} />
+      <Testomontials data={teamExtensionsPage.testomontialsTeamExtensions} analytics={Analytics.cta.second} location={location.pathname}/>
       <CallToAction data={teamExtensionsPage.callToActionTeamExtensionsSecond} />
-      <RelatedServices data={teamExtensionsPage.relatedServicesTeamExtensions} />
+      <RelatedServices data={teamExtensionsPage.relatedServicesTeamExtensions} analytics={Analytics.related}/>
       <FAQ data={teamExtensionsPage.faqTeamExtensions} />
     </main>
   )

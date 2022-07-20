@@ -1,19 +1,25 @@
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
 import { urlSystem } from './../contstants/urlSystem'
+import { datalayerPush } from './../helpers/datalayer'
 
-export default function OtherCaseStudies({ data: { nodes: items }, title }) {
+export default function OtherCaseStudies({ data: { nodes: items }, title, analytics }) {
+
+    useEffect(() => {
+        datalayerPush(analytics.inView(items))
+    }, [])
+
     return (
         <Wrapper>
             <Container>
                 <Title className="h3">{title}</Title>
                 <Grid>
-                    {items.map(el => (
+                    {items.map((el, index) => (
                         <Item>
-                            <Link to={urlSystem['Portfolio Archive'][el.language.slug] + el.caseStudies.currentPostUrl}>
+                            <Link onClick={() => { datalayerPush(analytics.productClick(el, index)) }} to={urlSystem['Portfolio Archive'][el.language.slug] + el.caseStudies.currentPostUrl}>
                                 <div className="card">
                                     <GatsbyImage className="logo" image={el.caseStudies.previewCard.previewLogo.localFile.childImageSharp.gatsbyImageData} alt={el.caseStudies.previewCard.previewLogo.altText} />
                                 </div>
