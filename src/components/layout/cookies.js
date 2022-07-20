@@ -4,6 +4,7 @@ import { graphql, Link, useStaticQuery } from "gatsby"
 import { activeLanguage } from "../../helpers/activeLanguage"
 import Arrow from './../../images/cookie-arrow.png'
 import { getCookie, setCookie } from './../../helpers/cookie-manager'
+import { datalayerPush } from "../../helpers/datalayer"
 
 export default function CokieBanner({ location }) {
 
@@ -61,11 +62,30 @@ export default function CokieBanner({ location }) {
     const { firstTab, secondTab, thirdTab, controlButtons } = banerData[0].cookieBanner
 
     const [isAlreadyApplied, setIsAllreadyApplied] = useState(() => {
+
         if (getCookie('necessary')) {
-            if (getCookie('statistics')) {
-            }
+
+            datalayerPush("consent", "default", {
+                'ad_storage': getCookie('marketing'),
+                'analytics_storage': getCookie('statistics'),
+                'functionality_storage': getCookie('necessary'),
+                'personalization_storage': getCookie('preferences'),
+                'wait_for_update': 2500
+            });
+            datalayerPush("set", "ads_data_redaction", true);
+
             return true
         }
+
+        datalayerPush("consent", "default", {
+            'ad_storage': "denied",
+            'analytics_storage': "denied",
+            'functionality_storage': "denied",
+            'personalization_storage': "denied",
+            'security_storage': "granted",
+            'wait_for_update': 2500
+        });
+        datalayerPush("set", "ads_data_redaction", true);
         return false
     })
     const [activeTab, setActiveTab] = useState(1)
@@ -88,10 +108,23 @@ export default function CokieBanner({ location }) {
             activeCookie.forEach(el => {
                 setCookie(el.name, true, 365)
             })
+            datalayerPush('consent', 'update', {
+                'ad_storage': 'granted',
+                'analytics_storage': "granted",
+                'functionality_storage': "granted",
+                'personalization_storage': "granted",
+            });
         } else if (type === 'part') {
             activeCookie.forEach(el => {
-                setCookie(el.name, el.isActive, 365)
+                setCookie(el.name, el.isActive ? 'granted' : 'denied', 365)
             })
+
+            datalayerPush('consent', 'update', {
+                'ad_storage': getCookie('marketing'),
+                'analytics_storage': getCookie('statistics'),
+                'functionality_storage': getCookie('necessary'),
+                'personalization_storage': getCookie('preferences'),
+            });
         }
         if (getCookie('statistics')) {
         }
