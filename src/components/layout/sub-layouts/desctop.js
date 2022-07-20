@@ -2,6 +2,8 @@ import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import { Container } from '../../../style'
+import { datalayerPush } from '../../../helpers/datalayer'
+import Analytics from '../../../analytics/header'
 
 export default function Desctop({ headerNavigation, setIsHovered, isHovered, setIsOpen, isOpen, contactLink }) {
     return (
@@ -11,32 +13,32 @@ export default function Desctop({ headerNavigation, setIsHovered, isHovered, set
                     <li>
                         <details open onMouseEnter={() => { setIsHovered(index) }} onMouseLeave={() => { setIsHovered(false) }}>
                             <Summary isHovered={isHovered} index={index} tabIndex='-1' onClick={(e) => { e.preventDefault() }}>
-                                <Link onClick={() => { setIsHovered(false) }} partiallyActive={true} activeClassName="active" onFocus={() => { setIsHovered(index) }} to={el.mainLink.url}>{el.menuTitle}</Link>
+                                <Link onClick={() => { setIsHovered(false); datalayerPush(Analytics.mainLinks(index, el.menuTitle)) }} partiallyActive={true} activeClassName="active" onFocus={() => { setIsHovered(index) }} to={el.mainLink.url}>{el.menuTitle}</Link>
                             </Summary>
                             {el.firstColumn || el.secondColumn
                                 ? <Menu isHovered={isHovered} index={index} className="menu">
                                     <Container>
                                         <div className="column">
-                                            {el.firstColumn?.map(el => {
-                                                if (!el.url) {
+                                            {el.firstColumn?.map((subEl, subIndex) => {
+                                                if (!subEl.url) {
                                                     return (
-                                                        <h3 className={el.isBold}>{el.name}</h3>
+                                                        <h3 className={subEl.isBold}>{subEl.name}</h3>
                                                     )
                                                 }
                                                 return (
-                                                    <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false) }} onFocus={() => { setIsHovered(index) }} className={el.isBold + ' nav'} to={el.url}>{el.name}</Link>
+                                                    <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false); datalayerPush(Analytics.subLinks(el.menuTitle, subIndex, subEl.name)) }} onFocus={() => { setIsHovered(index) }} className={subEl.isBold + ' nav'} to={subEl.url}>{subEl.name}</Link>
                                                 )
                                             })}
                                         </div>
                                         <div className="column">
-                                            {el.secondColumn?.map(el => {
-                                                if (!el.url) {
+                                            {el.secondColumn?.map((subEl, subIndex) => {
+                                                if (!subEl.url) {
                                                     return (
-                                                        <h3 className={el.isBold}>{el.name}</h3>
+                                                        <h3 className={subEl.isBold}>{subEl.name}</h3>
                                                     )
                                                 }
                                                 return (
-                                                    <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false) }} onFocus={() => { setIsHovered(index) }} className={el.isBold + ' nav'} to={el.url}>{el.name}</Link>
+                                                    <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false); datalayerPush(Analytics.subLinks(el.menuTitle, subIndex, subEl.name)) }} onFocus={() => { setIsHovered(index) }} className={subEl.isBold + ' nav'} to={subEl.url}>{subEl.name}</Link>
                                                 )
                                             })}
                                         </div>
@@ -47,7 +49,7 @@ export default function Desctop({ headerNavigation, setIsHovered, isHovered, set
                     </li>
                 ))}
                 <li>
-                    <ContactButton activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false) }} onFocus={() => { setIsHovered(false) }} to={contactLink.url}>
+                    <ContactButton activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false); datalayerPush(Analytics.mainLinks(headerNavigation.length, contactLink.name)) }} onFocus={() => { setIsHovered(false) }} to={contactLink.url}>
                         {contactLink.name}
                     </ContactButton>
                 </li>

@@ -6,7 +6,6 @@ import { Container } from '../../style/index'
 import { datalayerPush } from '../../helpers/datalayer'
 
 export default function Hero({ data: { title, subTitle, button, imgGridH }, analytics, location }) {
-    debugger
     return (
         <Wrapper>
             <LocalContainer>

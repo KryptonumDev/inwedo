@@ -7,11 +7,11 @@ export default {
         },
         second: (url) => {
             return {
-                'event': 'See_more',
-                'section': 'homepage',
+                'event': 'contact',
+                'section': 'Portfolio',
                 'pageURL': url ? url : '/',
-                'buttonName': 'See all services',
-                'location': 'top of the page'
+                'buttonName': 'Get an estimate',
+                'location': 'bottom of the page'
             }
         }
     },
@@ -34,9 +34,9 @@ export default {
                 'brand ': 'inwedo.com',
                 'position': index + 1,
                 'category': category ? category : 'none',
-                'variant': 'casestudies',
-                'price': 'undefined',
-                'id': el.id,
+                'variant': 'post',
+                'price': 'none',
+                'id': el.guid,
                 'dimension1': 'inwedo',
                 'dimension2': '18072022'
             })
@@ -48,6 +48,37 @@ export default {
                 'currencyCode': 'PLN',
                 'impressions': listItems
             }
+        }
+    },
+    productClick: (item, index) => {
+
+        let category = ''
+        item.categoriesPortfolio.nodes.forEach((el, index) => {
+            if (index > 0) {
+                category += (' | ' + el.name)
+            } else {
+                category += el.name
+            }
+        })
+
+        return {
+            'event': 'productClick',
+            'ecommerce': {
+                'click': {
+                    'actionField': {
+                        'list': 'Portfolio'
+                    },
+                    'products': [{
+                        'category': category ? category : 'none',
+                        'name': item.caseStudies.previewCard.previewTitle,
+                        'price': 'none',
+                        'id': item.guid,
+                        'variant': 'post',
+                        'brand ': 'inwedo.com',
+                        'position': index+1
+                    }]
+                }
+            },
         }
     },
     loadMore: (url, count) => {

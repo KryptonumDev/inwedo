@@ -470,8 +470,10 @@ exports.createPages = async ({
           `);
 
   technologiesNodes.forEach(({ id, language: { slug }, technology: { currentPageUrl }, template: { templateName } }) => {
+    let url = urlSystem['Technology'][slug] + currentPageUrl
+    url = url?.slice(-1) === '/' ? url : url + '/'
     createPage({
-      path: urlSystem['Technology'][slug] + currentPageUrl,
+      path: url,
       component: resolve('src/templates/technology.jsx'),
       context: {
         id,
@@ -545,8 +547,10 @@ exports.createPages = async ({
           `);
 
   portfolioPageNodes.forEach(({ id, language: { slug }, caseStudies: { currentPostUrl } }) => {
+    let url = urlSystem["Portfolio Archive"][slug] + currentPostUrl
+    url = url?.slice(-1) === '/' ? url : url + '/'
     createPage({
-      path: urlSystem["Portfolio Archive"][slug] + currentPostUrl,
+      path: url,
       component: resolve('src/templates/portfolio-post.jsx'),
       context: {
         id,
@@ -628,8 +632,10 @@ exports.createPages = async ({
 
   PostPageNodes.forEach(({ id, language: { slug }, blogPost: { currentPostUrl } }) => {
     if (currentPostUrl !== null) {
+      let url = urlSystem['Blog Post'][slug] + currentPostUrl
+      url = url?.slice(-1) === '/' ? url : url + '/'
       createPage({
-        path: urlSystem['Blog Post'][slug] + currentPostUrl,
+        path: url,
         component: resolve('src/templates/blog-post.jsx'),
         context: {
           id,
@@ -658,8 +664,10 @@ exports.createPages = async ({
           `);
 
   BlogAuthorsNodes.forEach(({ id, language: { slug }, author: { userUrl } }) => {
+    let url = urlSystem['author'][slug] + userUrl
+    url = url?.slice(-1) === '/' ? url : url + '/'
     createPage({
-      path: urlSystem['author'][slug] + userUrl,
+      path: url,
       component: resolve('src/templates/blog-author.jsx'),
       context: {
         id,
@@ -687,16 +695,16 @@ exports.createPages = async ({
           `);
 
   BlogCategoryNodes.forEach(({ id, language: { slug }, blogCategory: { categoryUrl } }) => {
-    if (slug != 'pl') {  // TODO: usunąć pl disable
-      createPage({
-        path: urlSystem['category'][slug] + categoryUrl,
-        component: resolve('src/templates/blog-category.jsx'),
-        context: {
-          id,
-          slug,
-        },
-      });
-    }
+    let url = urlSystem['category'][slug] + categoryUrl
+    url = url?.slice(-1) === '/' ? url : url + '/'
+    createPage({
+      path: url,
+      component: resolve('src/templates/blog-category.jsx'),
+      context: {
+        id,
+        slug,
+      },
+    });
   });
 
 
@@ -779,8 +787,10 @@ exports.createPages = async ({
   `);
 
   careersPostNodes.forEach(({ id, language: { slug }, careersPost: { currentPostUrl } }) => {
+    let url = urlSystem["Careers Homepage"][slug] + currentPostUrl
+    url = url?.slice(-1) === '/' ? url : url + '/'
     createPage({
-      path: urlSystem["Careers Homepage"][slug] + currentPostUrl,
+      path: url,
       component: resolve('src/templates/careers-post.jsx'),
       context: {
         id,
@@ -808,8 +818,10 @@ exports.createPages = async ({
   `);
 
   careersPathNodes.forEach(({ id, language: { slug }, path: { currentPostUrl } }) => {
+    let url = urlSystem["Careers Path"][slug] + currentPostUrl
+    url = url?.slice(-1) === '/' ? url : url + '/'
     createPage({
-      path: urlSystem["Careers Path"][slug] + currentPostUrl,
+      path: url,
       component: resolve('src/templates/careers-path.jsx'),
       context: {
         id,

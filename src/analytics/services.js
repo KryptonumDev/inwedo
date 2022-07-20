@@ -19,8 +19,8 @@ export default {
                 'position': 1,
                 'category': twoColumn.title,
                 'variant': 'page-site',
-                'price': '88.53', //ilość znaków w artykule / 100
-                'id': 'post-3441', //idstrony
+                'price': 'none',
+                'id': twoColumn.button.url,
                 'dimension1': 'inwedo',
                 'dimension2': '18072022'
             })
@@ -32,8 +32,8 @@ export default {
                     'position': index + 2,
                     'category': el.cardTitle,
                     'variant': 'page-site',
-                    'price': '88.53', //ilość znaków w artykule / 100
-                    'id': 'post-3441', //idstrony
+                    'price': 'none',
+                    'id': el.button.url,
                     'dimension1': 'inwedo',
                     'dimension2': '18072022'
                 })
@@ -52,11 +52,11 @@ export default {
                 'event': 'learn_more',
                 'section': 'services',
                 'pageURL': url ? url : '/',
-                'buttonName': 'Read case study',
+                'buttonName': 'Read more',
                 'location': 'middle of the page',
-                'type': 'case study',
+                'type': 'post',
                 'name': name,
-                'position': position
+                'position': position + 1
             }
         },
     },
@@ -92,8 +92,8 @@ export default {
                     'position': 1,
                     'category': twoColumn.title,
                     'variant': 'page-site',
-                    'price': '88.53', //ilość znaków w artykule / 100
-                    'id': 'post-3441', //idstrony
+                    'price': 'none',
+                    'id': 'twoColumn.button.url',
                     'dimension1': 'inwedo',
                     'dimension2': '18072022'
                 }

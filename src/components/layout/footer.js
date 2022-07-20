@@ -5,6 +5,8 @@ import styled from "styled-components"
 import { urlSystem } from "../../contstants/urlSystem"
 import { Container } from "../../style"
 import { activeLanguage } from './../../helpers/activeLanguage'
+import Analytics from './../../analytics/footer'
+import { datalayerPush } from '../../helpers/datalayer'
 
 export default function Footer({ location }) {
 
@@ -31,6 +33,7 @@ export default function Footer({ location }) {
                       }
                       additionalInform {
                         row
+                        link
                       }
                       copyright {
                         copyright
@@ -67,23 +70,27 @@ export default function Footer({ location }) {
                 <Content>
                     <div>
                         <div className="additional">
-                            {additionalInform.map(el => (
-                                <p>{el.row}</p>
-                            ))}
+                            {additionalInform.map(el => {
+                                if (el.link) {
+                                    return <a href={el.link}>{el.row}</a>
+                                }
+                                return <p >{el.row}</p>
+
+                            })}
                         </div>
                         <Social>
                             {socialLinks.map(el => (
-                                <a rel="me" href={el.link} aria-label={el.ariaLabel}>
+                                <a onClick={() => { datalayerPush(Analytics.socialMedia(el.ariaLabel, location.pathname, el.link)) }} rel="me" target='_blank' href={el.link} aria-label={el.ariaLabel}>
                                     <img className="social" src={el.icon.localFile.publicURL} alt={el.icon.altText} />
                                 </a>
                             ))}
                         </Social>
                     </div>
-                    {navigation.map(el => (
-                        <div>
+                    {navigation.map((el, index) => (
+                        <div key={index}>
                             <ul>
-                                {el.columnRows.map(innerEl => (
-                                    <li><StyledLink activeClassName="active" isBold={innerEl.isBold === 'bold'} to={innerEl.linkUrl}>{innerEl.linkText}</StyledLink></li>
+                                {el.columnRows.map((innerEl, index) => (
+                                    <li><StyledLink onClick={() => { datalayerPush(Analytics.mainLinks(index, innerEl.linkText)) }} activeClassName="active" isBold={innerEl.isBold === 'bold'} to={innerEl.linkUrl}>{innerEl.linkText}</StyledLink></li>
                                 ))}
                             </ul>
                         </div>
@@ -93,8 +100,8 @@ export default function Footer({ location }) {
                 <Copyright>
                     <p>{copyright.copyright}</p>
                     <ul>
-                        {copyright.additionalLinks.map(el => (
-                            <li><Link activeClassName="active" to={el.url}>{el.name}</Link></li>
+                        {copyright.additionalLinks.map((el, index) => (
+                            <li><Link onClick={() => { datalayerPush(Analytics.mainLinks(index, el.name)) }} activeClassName="active" to={el.url}>{el.name}</Link></li>
                         ))}
                     </ul>
                 </Copyright>
@@ -121,11 +128,27 @@ const Content = styled.div`
         display: grid;
         grid-gap: 14px;
 
-        p{
+        p, a{
             font-weight: 300;
             font-size: 16px;
             line-height: 26px;
             color: #495057;
+        }
+
+        a{
+            width: fit-content;
+            position: relative;
+            padding-bottom: 3px;
+
+            transition: background-size 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+            background: var(--color-accent);
+            background-size: 0px 2px;
+            background-repeat: no-repeat;
+            background-position: left 100%;
+
+            &:hover{
+                background-size: 100% 2px;
+            }
         }
     }
 

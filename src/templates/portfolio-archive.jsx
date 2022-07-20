@@ -204,7 +204,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
       }
       allWpCaseStudies(sort: {fields: date, order: DESC}) {
         nodes {
-          id
+          guid
           slug
           categoriesPortfolio {
             nodes {

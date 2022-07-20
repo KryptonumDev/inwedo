@@ -18,8 +18,8 @@ export default {
                 'position': index + 1,
                 'category': el.title,
                 'variant': 'page-site',
-                'price': '88.53', //ilość znaków w artykule / 100
-                'id': 'post-3441', //idstrony
+                'price': 'none',
+                'id': el.button.url,
                 'dimension1': 'inwedo',
                 'dimension2': '18072022'
             })
@@ -72,7 +72,7 @@ export default {
                 'pageURL': url ? url : '/',
                 'buttonName': 'Read case study',
                 'location': 'middle of the page',
-                'type': 'case study',
+                'type': 'post',
                 'name': name,
                 'position': '1'
             }
@@ -84,7 +84,7 @@ export default {
                 'pageURL': url ? url : '/',
                 'buttonName': 'Read case study',
                 'location': 'middle of the page',
-                'type': 'case study',
+                'type': 'post',
                 'name': name,
                 'position': '2'
             }
@@ -96,7 +96,7 @@ export default {
                 'pageURL': url ? url : '/',
                 'buttonName': 'Read case study',
                 'location': 'middle of the page',
-                'type': 'case study',
+                'type': 'post',
                 'name': name,
                 'position': '3'
             }

@@ -6323,7 +6323,7 @@ gatsby-plugin-catch-links@^4.20.0-next.0:
     "@babel/runtime" "^7.15.4"
     escape-string-regexp "^1.0.5"
 
-gatsby-plugin-google-tagmanager@^4.18.0:
+gatsby-plugin-google-tagmanager@^4.19.0:
   version "4.19.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-google-tagmanager/-/gatsby-plugin-google-tagmanager-4.19.0.tgz#086b4737d231b5300237774a90c62ce2253e51d0"
   integrity sha512-3VOZC+Ma6cYLNwUJtTr7Gg1t0QCvSkZp1B5ArcDAwMS4zYwPMTQUwIm2JqhQK0MnowJVlw2q/rmlb8VsLx9ZJw==

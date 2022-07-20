@@ -2,21 +2,21 @@ export default {
     mainLinks: (position, name) => {
         return {
             'event': 'menu_click',
-            'section': 'homepage',
+            'section': 'header',
             'pageURL': '/',
             'buttonName': name,
             'location': 'menu',
-            'position': position
+            'position': position+1
         }
     },
-    subLinks: (position, name) => {
+    subLinks: (parent, position, name) => {
         return {
             'event': 'menu_click',
-            'section': 'homepage',
+            'section': 'header',
             'pageURL': '/',
             'buttonName': name,
-            'location': 'sub-menu',
-            'position': position
+            'location': parent + ' sub-menu',
+            'position': position+1
         }
     }
 }

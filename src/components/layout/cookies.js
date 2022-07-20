@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { graphql, Link, useStaticQuery } from "gatsby"
 import { activeLanguage } from "../../helpers/activeLanguage"
 import Arrow from './../../images/cookie-arrow.png'
+import { getCookie, setCookie } from './../../helpers/cookie-manager'
 
 export default function CokieBanner({ location }) {
 
@@ -21,6 +22,7 @@ export default function CokieBanner({ location }) {
               secondTab {
                 tabTitle
                 cookiesTypes {
+                  officialTypeName
                   typeTitle
                   typeText
                   subType {
@@ -51,17 +53,26 @@ export default function CokieBanner({ location }) {
 
     const locale = activeLanguage(location)
     const localeData = data.allWpPage.nodes.filter(el => el.language.slug === locale)
-    const { firstTab, secondTab, thirdTab, controlButtons } = localeData[0].cookieBanner
+
+    let banerData = data.allWpPage.nodes.filter(el => el.language.slug === 'en')
+    if (localeData[0]) {
+        banerData = localeData
+    }
+    const { firstTab, secondTab, thirdTab, controlButtons } = banerData[0].cookieBanner
 
     const [isAlreadyApplied, setIsAllreadyApplied] = useState(() => {
-        // let a = document.cookie
-        // debugger
+        if (getCookie('necessary')) {
+            if (getCookie('statistics')) {
+            }
+            return true
+        }
+        return false
     })
     const [activeTab, setActiveTab] = useState(1)
     const [activeCookie, setActiveCookies] = useState(() => {
         const arr = []
         secondTab.cookiesTypes.map(el => {
-            arr.push({ name: el.typeTitle, isActive: true })
+            arr.push({ name: el.officialTypeName, isActive: true })
         })
         return arr
     })
@@ -72,14 +83,23 @@ export default function CokieBanner({ location }) {
         setActiveCookies(arr)
     }
 
-    const applyCookie = () => {
-        // let a = JSON.stringify(activeCookie)
-        // let b = JSON.parse(document.cookie)
-        // debugger
+    const applyCookie = (type) => {
+        if (type === 'all') {
+            activeCookie.forEach(el => {
+                setCookie(el.name, true, 365)
+            })
+        } else if (type === 'part') {
+            activeCookie.forEach(el => {
+                setCookie(el.name, el.isActive, 365)
+            })
+        }
+        if (getCookie('statistics')) {
+        }
+        setIsAllreadyApplied(true)
     }
 
     const rejectCookie = () => {
-        setIsAllreadyApplied(false)
+        setIsAllreadyApplied(true)
     }
 
     return (
@@ -139,15 +159,15 @@ export default function CokieBanner({ location }) {
                             : null}
                     </TabContent>
                     <Buttons>
-                        <button onClick={() => { applyCookie() }} className="button">{controlButtons.acceptAll}</button>
+                        <button onClick={() => { applyCookie('all') }} className="button">{controlButtons.acceptAll}</button>
                         {activeTab === 2
-                            ? <button className="button-white">{controlButtons.acceptPart}</button>
+                            ? <button onClick={() => { applyCookie('part') }} className="button-white">{controlButtons.acceptPart}</button>
                             : null}
                         {activeTab !== 2
                             ? <button onClick={() => { setActiveTab(2) }} className="button-white">{controlButtons.confguration}</button>
                             : null}
                         {activeTab === 2
-                            ? <button className="button-white">{controlButtons.reject}</button>
+                            ? <button onClick={() => { rejectCookie() }} className="button-white">{controlButtons.reject}</button>
                             : null}
                     </Buttons>
                 </Content>

@@ -83,11 +83,11 @@ export default function Archive({ parentCategories, children, posts, data, locat
             {!!filtredPosts.length
                 ? <>
                     {filtredPosts.length > 0
-                        ? <PostsGrid data={filtredPosts} from={'0'} to={'3'} />
+                        ? <PostsGrid analytics={analytics} data={filtredPosts} from={'0'} to={'3'} />
                         : null}
                     {children}
                     {filtredPosts.length > 0
-                        ? <PostsGrid data={filtredPosts} from={'4'} to={showCount} />
+                        ? <PostsGrid analytics={analytics} data={filtredPosts} from={'4'} to={showCount} />
                         : null}
                     {filtredPosts.length > showCount + 1
                         ? <Button onClick={() => { LoadMore() }} className="button">{data.loadMore}</Button>

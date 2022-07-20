@@ -1,10 +1,11 @@
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../../style"
-import { GatsbyImage } from "gatsby-plugin-image";
-import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image"
+import { Link } from "gatsby"
+import { datalayerPush } from '../../helpers/datalayer'
 
-export default function PostsGrid({ data, from, to }) {
+export default function PostsGrid({ analytics, data, from, to }) {
     return (
         <Wrapper>
             <Container>
@@ -13,7 +14,7 @@ export default function PostsGrid({ data, from, to }) {
                         if (index >= from && index <= to) {
                             return (
                                 <Item>
-                                    <Link to={el.caseStudies.currentPostUrl}>
+                                    <Link onClick={() => { datalayerPush(analytics.productClick(el, index)) }} to={el.caseStudies.currentPostUrl}>
                                         <div className="card">
                                             <GatsbyImage className="logo" image={el.caseStudies.previewCard.previewLogo.localFile.childImageSharp.gatsbyImageData} alt={el.caseStudies.previewCard.previewLogo.altText} />
                                         </div>

@@ -40,7 +40,7 @@ export default function DevelopmentCards({ data: { twoColumn, cards, success }, 
                 <SuccessStories>
                     <h2 className="h3">{success.title}</h2>
                     {success.storiesCase.map((el, index) => (
-                        <Link onClick={() => { datalayerPush(analytics.caseStudies(index, el.caseTitle, location)) }} to={el.button.url} className="flex">
+                        <Link onClick={() => { datalayerPush(analytics.caseStudies(index, el.caseTitle ? el.caseTitle : el.previewImage.altText, location)) }} to={el.button.url} className="flex">
                             <GatsbyImage className="image" image={el.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.previewImage.altText} />
                             <div className="text">
                                 {el.caseLogo

@@ -1,18 +1,20 @@
 import { Link } from "gatsby"
 import React from "react"
-import styled from "styled-components"  
+import styled from "styled-components"
+import { datalayerPush } from '../../../helpers/datalayer'
+import Analytics from '../../../analytics/header'
 
 export default function Mobile({ isOpen, headerNavigation, setIsOpen, contactLink }) {
     return (
         <Navigation isOpen={isOpen}>
             <ul>
-                {headerNavigation.map(el =>
-                    <li>
-                        <Link tabIndex={isOpen ? '0' : '-1'} onFocus={() => { setIsOpen(true) }} activeClassName="active" to={el.mainLink.url}><span>{el.menuTitle}</span></Link>
+                {headerNavigation.map((el, index) =>
+                    <li key={el.menuTitle}>
+                        <Link onClick={() => { datalayerPush(Analytics.mainLinks(index, el.menuTitle)) }} tabIndex={isOpen ? '0' : '-1'} onFocus={() => { setIsOpen(true) }} activeClassName="active" to={el.mainLink.url}><span>{el.menuTitle}</span></Link>
                     </li>
                 )}
                 <li>
-                    <ContactButton tabIndex={isOpen ? '0' : '-1'} onFocus={() => { setIsOpen(true) }} onBlur={() => { setIsOpen(false) }} to={contactLink.url}>
+                    <ContactButton onClick={() => { datalayerPush(Analytics.mainLinks(headerNavigation.length, contactLink.name)) }} tabIndex={isOpen ? '0' : '-1'} onFocus={() => { setIsOpen(true) }} onBlur={() => { setIsOpen(false) }} to={contactLink.url}>
                         {contactLink.name}
                     </ContactButton>
                 </li>

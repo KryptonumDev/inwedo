@@ -103,7 +103,12 @@ const Grid = styled.div`
         width: fit-content;
         height: fit-content;
         display: block;
-        margin: 0 auto;
+
+        img{
+            max-height: 34px;
+            width: fit-content;
+            margin: 0 auto;
+        }
 
         &:nth-child(1){
             margin-left: -10px;
