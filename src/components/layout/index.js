@@ -24,7 +24,7 @@ export default function Layout({ children, location }) {
 
     return (
         <React.Fragment>
-            <CokieBanner location={location}/>
+            {/* <CokieBanner location={location}/> */}
             {isHomepage
                 ? <MainHeader location={location} />
                 : <SubHeader location={location} />}
