@@ -63,9 +63,16 @@ export default function Archive({ parentCategories, children, posts, data, locat
     const dataleyerAnalytics = (posts, filter, loadCount) => {
         const showedPosts = []
         posts.forEach((el, index) => {
-            if (index <= loadCount) {
-                showedPosts.push(el)
+            if(loadCount > showCount){
+                if (index <= loadCount && index > showCount) {
+                    showedPosts.push(el)
+                }
+            } else {
+                if (index <= loadCount) {
+                    showedPosts.push(el)
+                }
             }
+
         })
         datalayerPush(analytics.inView(showedPosts, filter))
     }

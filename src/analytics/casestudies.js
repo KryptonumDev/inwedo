@@ -80,10 +80,41 @@ export default {
                         'id': item.guid,
                         'variant': 'post',
                         'brand ': 'inwedo.com',
-                        'position': index+1
+                        'position': index + 1
                     }]
                 }
             },
         }
     },
+    productView: (item) => {
+        let category = ''
+        item.categoriesPortfolio.nodes.forEach((el, index) => {
+            if (index > 0) {
+                category += (' | ' + el.name)
+            } else {
+                category += el.name
+            }
+        })
+        return {
+            'event': 'ViewProduct',
+            'ecommerce': {
+                'detail': {
+                    'actionField': {
+                        'list': 'Portfolio'
+                    },
+                    'products': [{
+                        'category': category ? category : 'none',
+                        'name': item.caseStudies.previewCard.previewTitle,
+                        'price': 'none',
+                        'id': item.guid,
+                        'variant': 'post',
+                        'brand ': 'inwedo.com',
+                        'position': 1,
+                        'dimension1': 'inwedo',
+                        'dimension2': '18072022'
+                    }]
+                }
+            }
+        }
+    }
 }

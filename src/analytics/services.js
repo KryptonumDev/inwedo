@@ -93,7 +93,7 @@ export default {
                     'category': twoColumn.title,
                     'variant': 'page-site',
                     'price': 'none',
-                    'id': 'twoColumn.button.url',
+                    'id': twoColumn.button.url,
                     'dimension1': 'inwedo',
                     'dimension2': '18072022'
                 }

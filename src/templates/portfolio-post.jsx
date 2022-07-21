@@ -15,10 +15,16 @@ import OtherCaseStudies from "../components/other-case-studies"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
 import Analytics from './../analytics/casestudies'
+import { datalayerPush } from "../helpers/datalayer"
 
 const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts, alternates }, location }) => {
   const { caseStudies, language, seo, scryptInjection } = allWpCaseStudies.nodes[0]
   let script = parse(scryptInjection.code ? scryptInjection.code : '')
+
+  React.useEffect(() => {
+    datalayerPush(Analytics.productView(allWpCaseStudies.nodes[0]))
+  }, [])
+
   return (
     <main id='main'>
     {script}
@@ -85,8 +91,14 @@ query PortfolioPageQuery($id: String!) {
   }
     allWpCaseStudies(filter: {id: {eq: $id}}) {
       nodes{
-        id
         guid
+        slug
+        categoriesPortfolio {
+          nodes {
+            slug
+            name
+          }
+        }
         language{
           slug
         }
