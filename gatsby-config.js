@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `inwedo`,
-    siteUrl: `https://inwedo.netlify.app`
+    siteUrl: `https://inwedo.com`
   },
   plugins: [
     'gatsby-plugin-netlify',
@@ -9,7 +9,6 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         schema: {
-          previewRequestConcurrency: 2,
           timeout: 3000000,
         },
         "url": "https://datainwedo.com/graphql",
@@ -31,8 +30,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://inwedo.netlify.app',
-        sitemap: 'https://inwedo.netlify.app/sitemap/sitemap-index.xml',
+        host: 'https://inwedo.com',
+        sitemap: 'https://inwedo.com/sitemap/sitemap-index.xml',
         policy: [{ userAgent: 'WhatWeb/0.4.8-dev', allow: '/static', disallow: '/services' }],
       },
     },

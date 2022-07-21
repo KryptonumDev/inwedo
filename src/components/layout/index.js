@@ -22,14 +22,16 @@ export default function Layout({ children, location }) {
         })
     }, [location])
 
+    const [isAlreadyApplied, setIsAllreadyApplied] = useState(null)
+
     return (
         <React.Fragment>
-            <CokieBanner location={location}/>
+            <CokieBanner isAlreadyApplied={isAlreadyApplied} setIsAllreadyApplied={setIsAllreadyApplied} location={location}/>
             {isHomepage
                 ? <MainHeader location={location} />
                 : <SubHeader location={location} />}
             {children}
-            <Footer location={location} />
+            <Footer setIsAllreadyApplied={setIsAllreadyApplied} location={location} />
         </React.Fragment>
     )
 }

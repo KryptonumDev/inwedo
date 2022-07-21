@@ -8,7 +8,7 @@ import { activeLanguage } from './../../helpers/activeLanguage'
 import Analytics from './../../analytics/footer'
 import { datalayerPush } from '../../helpers/datalayer'
 
-export default function Footer({ location }) {
+export default function Footer({ location, setIsAllreadyApplied }) {
 
     const data = useStaticQuery(graphql`
         query{
@@ -37,6 +37,7 @@ export default function Footer({ location }) {
                       }
                       copyright {
                         copyright
+                        cookieText
                         additionalLinks {
                           url
                           name
@@ -103,6 +104,7 @@ export default function Footer({ location }) {
                         {copyright.additionalLinks.map((el, index) => (
                             <li><Link onClick={() => { datalayerPush(Analytics.mainLinks(index, el.name)) }} activeClassName="active" to={el.url}>{el.name}</Link></li>
                         ))}
+                        <li><button onClick={() => {setIsAllreadyApplied(false)}}>{copyright.cookieText}</button></li>
                     </ul>
                 </Copyright>
             </Container>
@@ -268,13 +270,14 @@ const Copyright = styled.div`
             gap: 12px;
         }
 
-        a{
+        a, button{
             color: #ACB5BD;
             font-weight: 300;
             font-size: clamp(14px, 2.08vw, 16px);
             line-height: 150%;
             padding-bottom: 3px;
             border-radius: 2px;
+            border: none;
 
             transition: background-size 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
             background: var(--color-accent);

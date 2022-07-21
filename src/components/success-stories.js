@@ -12,7 +12,7 @@ export default function SuccessStories({ data: { sectionTitle, success }, analyt
                 <Stories>
                     <h2 className="h3">{sectionTitle}</h2>
                     {success.map((el, index) => (
-                        <Link key={el.caseTitle} onClick={() => {datalayerPush(analytics(el.caseTitle, index, location))}} className="flex" to={el.button.url}>
+                        <Link key={el.caseTitle} onClick={() => {datalayerPush(analytics(el.caseTitle ? el.caseTitle : el.caseLogo.altText, index, location))}} className="flex" to={el.button.url}>
                             <GatsbyImage className="image" image={el.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.previewImage.altText} />
                             <div className="text">
                                 {el.caseLogo

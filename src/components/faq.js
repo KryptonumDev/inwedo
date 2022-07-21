@@ -56,7 +56,7 @@ export default function FAQ({ data: { title, faqElement } }) {
             });
         }
     }, [])
-    
+
     if (!!faqElement) {
         return (
             <Wrapper>
@@ -203,7 +203,7 @@ const Item = styled.details`
         }
 
         &::-webkit-details-marker{
-            display:none;
+            display: none;
         }
 
         h3{

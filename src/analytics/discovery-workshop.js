@@ -24,7 +24,7 @@ export default {
             }
         }
     },
-    caseStudies: (position, name, url) => {
+    caseStudies: (name, position, url) => {
         return {
             'event': 'learn_more',
             "section": "Services | Discovery Workshop",

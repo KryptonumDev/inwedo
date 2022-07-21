@@ -29,7 +29,7 @@ export default function Hero({ data, categories, date, authors }) {
                             : <AuthorInform>
                                 <p className="p date">{date}</p>
                             </AuthorInform>}
-                        <h2 className="h3">{data.pageTitle}</h2>
+                        <h1 className="h3">{data.pageTitle}</h1>
                         <div className="struktured" dangerouslySetInnerHTML={{ __html: data.text }}></div>
                     </TextPart>
                     <Image image={data.image.localFile.childImageSharp.gatsbyImageData} alt={data.image.altText} />

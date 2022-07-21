@@ -6,7 +6,7 @@ import Arrow from './../../images/cookie-arrow.png'
 import { getCookie, setCookie } from './../../helpers/cookie-manager'
 import { datalayerArguments } from "../../helpers/datalayer"
 
-export default function CokieBanner({ location }) {
+export default function CokieBanner({ location, setIsAllreadyApplied, isAlreadyApplied }) {
 
     const data = useStaticQuery(graphql`
     query {
@@ -61,7 +61,6 @@ export default function CokieBanner({ location }) {
     }
     const { firstTab, secondTab, thirdTab, controlButtons } = banerData[0].cookieBanner
 
-    const [isAlreadyApplied, setIsAllreadyApplied] = useState(null)
     const [activeTab, setActiveTab] = useState(1)
     const [activeCookie, setActiveCookies] = useState(() => {
         const arr = []
@@ -109,6 +108,13 @@ export default function CokieBanner({ location }) {
 
     const rejectCookie = () => {
         setIsAllreadyApplied(true)
+        datalayerArguments('consent', 'update', {
+            'ad_storage': "denied",
+            'analytics_storage': "denied",
+            'functionality_storage': "denied",
+            'personalization_storage': "denied",
+            'security_storage': "granted",
+        });
     }
 
     useEffect(() => {
@@ -141,8 +147,6 @@ export default function CokieBanner({ location }) {
         })
     }, [])
 
-    console.log(isAlreadyApplied)
-
     return (
         <Cookie display={isAlreadyApplied}>
             <Overlay />
@@ -169,25 +173,30 @@ export default function CokieBanner({ location }) {
                                 <div>
                                     {secondTab.cookiesTypes.map((el, index) => (
                                         <TypeItem arrow={Arrow} className={activeCookie[index].isActive ? 'active' : ''}>
-                                            <details>
-                                                <summary>
+                                            {el.subType
+                                                ? <details>
+                                                    <summary className="main-title">
+                                                        <p className="title">{el.typeTitle}</p>
+                                                        <p className="text p">{el.typeText}</p>
+                                                    </summary>
+                                                    <div className="main-text">
+                                                        {el.subType?.map(el => (
+                                                            <div className="subitem">
+                                                                <details>
+                                                                    <summary className="sub-title">
+                                                                        <p className="subTitle">{el.subTypeTitle}</p>
+                                                                    </summary>
+                                                                    <div className="subText p" dangerouslySetInnerHTML={{ __html: el.subTypeContent }} />
+                                                                </details>
+                                                                <a className="link" rel='nofollow' i target='_blank' href={el.subTypeLink.url}>{el.subTypeLink.name}</a>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </details>
+                                                : <div className="no-sub">
                                                     <p className="title">{el.typeTitle}</p>
                                                     <p className="text p">{el.typeText}</p>
-                                                </summary>
-                                                <div>
-                                                    {el.subType?.map(el => (
-                                                        <div className="subitem">
-                                                            <details>
-                                                                <summary>
-                                                                    <p className="subTitle">{el.subTypeTitle}</p>
-                                                                </summary>
-                                                                <div className="subText p" dangerouslySetInnerHTML={{ __html: el.subTypeContent }} />
-                                                            </details>
-                                                            <a className="link" href={el.subTypeLink.url}>{el.subTypeLink.name}</a>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </details>
+                                                </div>}
                                             <button onClick={() => { changeActiveCookies(index) }} className={"switch " + el.officialTypeName}></button>
                                         </TypeItem>
                                     ))}
@@ -207,9 +216,7 @@ export default function CokieBanner({ location }) {
                         {activeTab !== 2
                             ? <button onClick={() => { setActiveTab(2) }} className="button-white">{controlButtons.confguration}</button>
                             : null}
-                        {activeTab === 2
-                            ? <button onClick={() => { rejectCookie() }} className="button-white">{controlButtons.reject}</button>
-                            : null}
+                        <button onClick={() => { rejectCookie() }} className="button-white">{controlButtons.reject}</button>
                     </Buttons>
                 </Content>
             </Wrapper>
@@ -270,6 +277,10 @@ const TypeItem = styled.div`
     padding-bottom: clamp(36px, ${42 / 768 * 100}vw, 48px);
     border-top: 1px solid #00000016;
     position: relative;
+
+    *{
+        outline-offset: 0px;
+    }
 
     .link{
         font-size: clamp(11px, ${13 / 768 * 100}vw, 16px);
@@ -372,12 +383,39 @@ const TypeItem = styled.div`
         }
     }
 
+    .no-sub{
+        padding-left: clamp(32px, ${32 / 768 * 100}vw, 48px);   
+    }
+
     details{
-        padding-left: clamp(32px, ${32 / 768 * 100}vw, 48px);
         position: relative;
+
+        .main-title{
+            padding-left: clamp(32px, ${32 / 768 * 100}vw, 48px);
+            cursor: pointer;
+            .title{
+                position: relative;
+                transition: background-size 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
+                background: var(--color-accent);
+                background-size: 0px 2px;
+                background-repeat: no-repeat;
+                background-position: left 100%;
+                width: fit-content;
+            }
+            &:hover{
+                .title{
+                    background-size: 100% 2px;
+                }
+            }
+        }
+        .main-text{
+            padding-left: clamp(32px, ${32 / 768 * 100}vw, 48px);
+        }
+
 
         &::before{
             content: url(${props => props.arrow});
+            pointer-events: none;
             position: absolute;
             left: 0;
             top: 5px;
@@ -460,12 +498,27 @@ const TypeItem = styled.div`
             padding-left: 0;
             padding-left: 0;
 
+            .sub-title{
+                padding-left: clamp(16px, ${26 / 768 * 100}vw, 36px);
+                &:hover{
+                    .subTitle{
+                        background-size: 100% 2px;
+                    }
+                }
+            }
+
             .subTitle{
                 font-weight: 600;
                 font-size: clamp(14px, ${18 / 768 * 100}vw, 22px);
                 line-height: 159%;
-                padding-left: clamp(16px, ${26 / 768 * 100}vw, 36px);
                 color: #495057;
+                position: relative;
+                transition: background-size 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
+                background: var(--color-accent);
+                background-size: 0px 2px;
+                background-repeat: no-repeat;
+                background-position: left 100%;
+                width: fit-content;
 
                 @media (max-width: 640px) {
                     font-weight: 400;
@@ -476,6 +529,10 @@ const TypeItem = styled.div`
                 padding: clamp(8px, ${12 / 768 * 100}vw, 16px) 0;
                 border-bottom: 1px solid #00000016;
                 padding-left: clamp(16px, ${26 / 768 * 100}vw, 36px);
+                
+                p+p{
+                    margin-top: 8px;
+                }
 
                 strong{
                     font-size: inherit;

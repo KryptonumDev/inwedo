@@ -37,7 +37,7 @@ export default {
             }
         }
     },
-    successStories: (position, name, url) => {
+    successStories: (name, position, url) => {
         return {
             'event': 'learn_more',
             "section": "Services | Product Development",
