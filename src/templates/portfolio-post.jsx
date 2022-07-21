@@ -22,7 +22,7 @@ const PortfolioPage = ({ data: { allWpCaseStudies, otherPosts, alternates }, loc
   return (
     <main id='main'>
     {script}
-      <Seo data={seo} ogImg={caseStudies.previewCard.previewImage.localFile.publicURL} lang={language.slug} alternates={alternates} location={location} type='post' template='Portfolio Archive' currTemplate={caseStudies.heroportfolio.pageTitle} />
+      <Seo data={seo} ogImg={caseStudies.previewCard.previewImage.localFile.publicURL} lang={language.slug} alternates={alternates} location={location} type='post' template='Portfolio Archive' currTemplate={caseStudies.previewCard.previewTitle} />
       <Hero data={caseStudies.heroportfolio} />
       {caseStudies.sectionController.oneColumnTextPart
         ? <OneColumnText alternative={true} data={caseStudies.oneColumnTextPartPortfolio} />
@@ -77,6 +77,9 @@ query PortfolioPageQuery($id: String!) {
       page : blogPost{
         url : currentPostUrl
         template : templateName
+        previewCard{
+          previewTitle
+        }
       }
     }
   }
@@ -99,6 +102,7 @@ query PortfolioPageQuery($id: String!) {
         caseStudies {
           templateName
           previewCard{
+            previewTitle
             previewImage{
               localFile{
                 publicURL
