@@ -33,6 +33,9 @@ query BlogPostQuery($id: String!) {
         page : blogPost{
           url : currentPostUrl
           template : templateName
+          previewCard{
+            previewTitle
+          }
         }
       }
     }
@@ -43,6 +46,7 @@ query BlogPostQuery($id: String!) {
         }
         blogPost {
           currentPostUrl
+          templateName
           previewCard {
             previewTitle
             previewText

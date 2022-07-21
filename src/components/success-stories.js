@@ -98,6 +98,9 @@ const Stories = styled.div`
                 width: fit-content;
                 max-height: 60px;
             }
+            img+h3{
+                margin-top: 12px;
+            }
             h3{
                 font-weight: 400;
                 font-size: 22px;

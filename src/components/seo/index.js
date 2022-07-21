@@ -22,7 +22,7 @@ export default function Seo({ data, lang, alternates, location, type, id, templa
     } else if (type === 'How We Work') {
         breadcrumbsHowWeWork(items, location, lang)
     } else if (type === 'post') {
-        alternates.nodes = alternates.nodes.filter(el => el.page.template === currTemplate)
+        alternates.nodes = alternates.nodes.filter(el => el.page.previewCard.previewTitle === currTemplate)
         breadcrumbsBlog(items, location, lang, currTemplate)
     } else if (type === 'careers post') {
         alternates.nodes = alternates.nodes.filter(el => el.page.template === currTemplate)
@@ -112,7 +112,6 @@ export default function Seo({ data, lang, alternates, location, type, id, templa
 
             {alternates?.nodes.map(el => {
                 let href
-
                 if (type === 'archive' || type === 'technology' || type === 'post' || type === 'careers post') {
                     href = location.origin + urlSystem[template][el.language.slug] + el.page.url
                 } else {

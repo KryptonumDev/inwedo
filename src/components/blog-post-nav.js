@@ -71,7 +71,7 @@ export default function BlogPostNav({ data, quickTitle }) {
         return (
             <Wrapper>
                 <Content>
-                    <h2 className="h4">{quickTitle}</h2>
+                    <p className="h4">{quickTitle}</p>
                     <Nav>
                         <ul>
                             {tabs.map((el, outerIndex) => {

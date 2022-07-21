@@ -7,6 +7,8 @@ import Benefits from "../components/job-benefits"
 import RecruitmentProcess from '../components/careers-recruitment'
 import ApointmentWithHr from "../components/careers-appointment-hr"
 import parse from 'html-react-parser'
+import { Container } from "../style"
+import FixedApply from "../components/fixed-apply"
 
 export default function CareersPost({ data: { allWpJobOffer, alternates }, location }) {
   let { careersPost, language, seo, scryptInjection } = allWpJobOffer.nodes[0]
@@ -15,6 +17,7 @@ export default function CareersPost({ data: { allWpJobOffer, alternates }, locat
     <main id='main'>
     {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='careers post' template='Blog Archive' currTemplate={careersPost.templateName} />
+      <FixedApply data={careersPost.jobInformation}/>
       <Hero apply={careersPost.jobInformation} data={careersPost.heroJob} location={location} />
       {careersPost.textParts.map(el => (
         <CareersTextParts data={el} />
@@ -64,6 +67,8 @@ export const query = graphql`
                     templateName
                     currentPostUrl
                     jobInformation{
+                      jobSallary
+                      jobTitle
                       linkToApply
                       applyButtonText
                     }

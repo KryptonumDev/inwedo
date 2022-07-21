@@ -222,9 +222,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 caseLogo {
                   altText
                   localFile {
-                    childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 95)
-                    }
+                    publicURL
                   }
                 }
               }
@@ -249,9 +247,7 @@ query ProductDevelopmentPageQuery($id: String!, $templateName: String!) {
                 caseLogo {
                   altText
                   localFile {
-                    childImageSharp {
-                      gatsbyImageData(placeholder: BLURRED, quality: 95)
-                    }
+                    publicURL
                   }
                 }
               }

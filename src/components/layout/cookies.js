@@ -65,7 +65,8 @@ export default function CokieBanner({ location, setIsAllreadyApplied, isAlreadyA
     const [activeCookie, setActiveCookies] = useState(() => {
         const arr = []
         secondTab.cookiesTypes.map(el => {
-            arr.push({ name: el.officialTypeName, isActive: true })
+            const isActive = el.name === 'necessary'
+            arr.push({ name: el.officialTypeName, isActive: isActive })
         })
         return arr
     })

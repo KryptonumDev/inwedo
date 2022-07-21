@@ -19,7 +19,7 @@ export default function Items({ data, showOfferText, applyOfferText }) {
                     </Link>
                     <div className="mobile-flex">
                         <Link to={urlSystem['Careers Homepage'][el.language.slug] + el.careersPost.currentPostUrl} className="link mobile">{showOfferText}</Link>
-                        <a href={el.careersPost.jobInformation.linkToApply} rel='nofollow noopener' className="button">{applyOfferText}</a>
+                        <a href={el.careersPost.jobInformation.linkToApply} rel='nofollow noopener' target='_blank' className="button">{applyOfferText}</a>
                     </div>
                 </Item>
             ))}

@@ -5,8 +5,11 @@ import styled from "styled-components"
 export default function Hero({ data: { pageTitle, text, topImage, button }, location, apply }) {
 
     let title = pageTitle
-    if (location.search !== '') {
-        let name = location.search.replace('?name=', '')
+
+    const urlParams = new URLSearchParams(location.search);
+    const name = urlParams.get('name')
+    
+    if(name){
         title = pageTitle.replace('<name>', name)
     } else {
         title = pageTitle.replace(' <name>', '')
