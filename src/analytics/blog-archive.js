@@ -7,20 +7,43 @@ export default {
         },
         second: (url) => {
             return {
-                'event': 'contact',
-                'section': 'Portfolio',
-                'pageURL': url ? url : '/',
-                'buttonName': 'Get an estimate',
-                'location': 'bottom of the page'
+                'empty': 'empty'
             }
         }
     },
-    inView: (items, filter) => {
+    filter: (url, filter) => {
+        let filterName = ''
+        filter?.forEach((el, index) => {
+            if (index === 0) {
+                filterName += el
+            } else {
+                filterName += (" | " + el)
+            }
+        });
+        if (filter === null) {
+            filterName = 'all'
+        }
+
+        return {
+            'event': 'tag',
+            'name': filterName,
+            'pageURL': url ? url : '/',
+        }
+    },
+    pagination: (url, page, event) => {
+        return {
+            'event': event,
+            'action': 'click - Page | ' + page,
+            'buttonName': 'Page ' + page,
+            'pageURL': url ? url : '/',
+        }
+    },
+    listView: (items, filter) => {
         const listItems = []
         items.map((el, index) => {
 
             let category = ''
-            el.categoriesPortfolio.nodes.forEach((el, index) => {
+            el.categories.nodes.forEach((el, index) => {
                 if (index > 0) {
                     category += (' | ' + el.name)
                 } else {
@@ -30,7 +53,7 @@ export default {
 
             listItems.push({
                 'list': filter,
-                'name': el.caseStudies.previewCard.previewTitle,
+                'name': el.blogPost.previewCard.previewTitle,
                 'brand ': 'inwedo.com',
                 'position': index + 1,
                 'category': category ? category : 'none',
@@ -42,6 +65,12 @@ export default {
             })
         })
 
+        if (!listItems.length) {
+            listItems.push({
+                'list': filter + ' | empty'
+            })
+        }
+
         return {
             'event': 'listView',
             'ecommerce': {
@@ -52,10 +81,10 @@ export default {
     },
     productClick: (item, index) => {
         let category = ''
-        item.categoriesPortfolio.nodes.forEach((el, index) => {
+        item.categories.nodes.forEach((el, index) => {
             if (index > 0) {
                 category += (' | ' + el.name)
-            } else {
+            } else { 
                 category += el.name
             }
         })
@@ -65,11 +94,11 @@ export default {
             'ecommerce': {
                 'click': {
                     'actionField': {
-                        'list': 'Portfolio'
+                        'list': 'Blog'
                     },
                     'products': [{
                         'category': category ? category : 'none',
-                        'name': item.caseStudies.previewCard.previewTitle,
+                        'name': item.blogPost.previewCard.previewTitle,
                         'price': 'none',
                         'id': item.guid,
                         'variant': 'post',
@@ -80,19 +109,12 @@ export default {
             },
         }
     },
-    filter: (url, filter) => {
+    socialMedia: (name, url) => {
         return {
-            'event': 'tag',
-            'name': filter,
-            'pageURL': url ? url : '/',
-        }
-    },
-    loadMore: (url, count) => {
-        return {
-            'event': 'LoadMore',
-            'action': 'click - Load More | ' + count,
-            'buttonName': 'Load More',
-            'pageURL': url ? url : '/',
+            'event': 'SM_click',
+            'buttonName': name,
+            'type': 'Let’s stay in touch!',
+            'pageURL': url,
         }
     }
 }

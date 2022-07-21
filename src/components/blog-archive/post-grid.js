@@ -3,9 +3,10 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useState } from "react"
 import styled from "styled-components"
 import { urlSystem } from "../../contstants/urlSystem"
+import { datalayerPush } from "../../helpers/datalayer"
 import { Container } from "../../style"
 
-export default function PostGrid({ isDefault, data, from, to, isAltLayout, currentPage, id }) {
+export default function PostGrid({ isDefault, data, from, to, isAltLayout, currentPage, id, analytics }) {
 
     return (
         <Wrapper id={id}>
@@ -19,7 +20,7 @@ export default function PostGrid({ isDefault, data, from, to, isAltLayout, curre
                         ) {
                             return (
                                 <Item isAltLayout={isAltLayout} isDefault={isDefault}>
-                                    <Link className="wrap" to={urlSystem['Blog Post'][el.language.slug] + el.blogPost.currentPostUrl}>
+                                    <Link onClick={() => { datalayerPush(analytics.productClick(el, index)) }} className="wrap" to={urlSystem['Blog Post'][el.language.slug] + el.blogPost.currentPostUrl}>
                                         <GatsbyImage className='image' image={el.blogPost.previewCard.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.blogPost.previewCard.previewImage.altText} />
                                         <Content className="content">
                                             <Categories>

@@ -3,7 +3,7 @@ export default {
         first: (url) => {
             return {
                 'event': 'contact',
-                'section': 'homepage',
+                'section': 'portfolio post',
                 'pageURL': url ? url : '/',
                 'buttonName': "Let's talk!",
                 'location': 'middle of the page',
@@ -13,7 +13,7 @@ export default {
         second: (url) => {
             return {
                 'event': 'contact',
-                'section': 'homepage',
+                'section': 'portfolio post',
                 'pageURL': url ? url : '/',
                 'buttonName': "Let's talk!",
                 'location': 'bottom of the page',

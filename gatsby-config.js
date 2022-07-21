@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `inwedo`,
-    siteUrl: `https://inwedo.com`
+    siteUrl: `https://inwedo.com/`
   },
   plugins: [
     'gatsby-plugin-netlify',
@@ -30,8 +30,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://inwedo.com',
-        sitemap: 'https://inwedo.com/sitemap/sitemap-index.xml',
+        host: 'https://inwedo-new.netlify.app/',
+        sitemap: 'https://inwedo-new.netlify.app/sitemap/sitemap-index.xml',
         policy: [{ userAgent: 'WhatWeb/0.4.8-dev', allow: '/static', disallow: '/services' }],
       },
     },

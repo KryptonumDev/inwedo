@@ -6,8 +6,9 @@ import PostGrid from "./post-grid"
 import Pagination from "./pagination"
 import { fakeRelocate, resetFiltredPosts, resetSearchedPosts } from "./functions"
 import styled from "styled-components"
+import { datalayerPush } from '../../helpers/datalayer'
 
-export default function Archive({ location, data, cta, cta2, categories, language, otherData }) {
+export default function Archive({ location, data, cta, cta2, categories, language, otherData, analytics }) {
 
     const [defaultUrl] = useState(checkLanguageUrl(location, '/blog/'))
 
@@ -20,7 +21,6 @@ export default function Archive({ location, data, cta, cta2, categories, languag
     })
 
     const [isAltLayout, setIsAltLayout] = useState(currentPage !== 1)
-
     const [activeFilters, changeActiveFilters] = useState(null)
     const [activeSearch, setActiveSearch] = useState('')
     const [inputValue, setInputValue] = useState('')
@@ -39,11 +39,10 @@ export default function Archive({ location, data, cta, cta2, categories, languag
         }
 
         posts.push(...unfiltredPosts.splice(featuredId, 1))
-        posts = [...posts, ... unfiltredPosts]
+        posts = [...posts, ...unfiltredPosts]
 
         return posts
     })
-
     const [filtredPosts, changeFiltredPosts] = useState(resetFiltredPosts(defaultPosts, activeFilters))
 
     const setFilter = (e, filter) => {
@@ -69,6 +68,8 @@ export default function Archive({ location, data, cta, cta2, categories, languag
             newArr = [filter] // add first filter
         }
 
+        inView('filter', newArr)
+        datalayerPush(analytics.filter(defaultUrl, newArr))
         changeActiveFilters(newArr)
         setInputValue('')
         setActiveSearch('')
@@ -88,26 +89,98 @@ export default function Archive({ location, data, cta, cta2, categories, languag
             setIsAltLayout(true)
         }
 
+        inView('search', inputValue)
         changeFiltredPosts(resetSearchedPosts(defaultPosts, inputValue))
         setInputValue('')
         changeCurrentPage(1)
     }
 
+    const setPage = (page) => {
+        changeCurrentPage(page)
+        if (activeFilters === null && activeSearch === '') {
+            datalayerPush(analytics.pagination(defaultUrl + currentPage + '/', page, 'pagination'))
+        } else if (activeFilters !== null) {
+            datalayerPush(analytics.pagination(defaultUrl, page, 'pagination with filter'))
+        } else if (activeSearch !== '') {
+            datalayerPush(analytics.pagination(defaultUrl, page, 'pagination with search'))
+        }
+    }
+
     useEffect(() => {
         const newURL = defaultUrl + currentPage + '/'
         if (activeFilters === null && activeSearch === '') {
+            inView('default')
             if (currentPage !== 1) {
                 fakeRelocate(newURL, location)
             } else {
                 fakeRelocate(defaultUrl, location)
             }
         } else if (activeFilters !== null) {
+            inView('filter', activeFilters)
             fakeRelocate(defaultUrl, location)
         } else if (activeSearch !== '') {
+            inView('search', activeSearch)
             fakeRelocate(defaultUrl, location)
         }
         setIsAltLayout(currentPage !== 1 || activeFilters !== null || activeSearch !== '')
     }, [currentPage])
+
+    const inView = (type, phrase) => {
+        let filter = ''
+        const items = []
+
+        if (type === 'filter') {
+            let filterName = ''
+            phrase?.forEach((el, index) => {
+                if (index === 0) {
+                    filterName += el
+                } else {
+                    filterName += (" | " + el)
+                }
+            });
+            if (filter === null) {
+                filterName = 'all'
+            }
+            filter = 'Filter: ' + filterName
+            
+            let filtered = resetFiltredPosts(defaultPosts, phrase)
+            filtered.forEach((el, index) => {
+                if (
+                    (isAltLayout && index >= (9 * (currentPage - 1) + (currentPage - 1)) && index <= (9 * (currentPage) + (currentPage - 1)))
+                    ||
+                    (!isAltLayout && index >= 0 && index <= 9)
+                ) {
+                    items.push(el)
+                }
+            })
+        } else if (type === 'search') {
+            filter = 'Search: ' + phrase
+            
+            let filtered = resetSearchedPosts(defaultPosts, inputValue)
+            filtered.forEach((el, index) => {
+                if (
+                    (isAltLayout && index >= (9 * (currentPage - 1) + (currentPage - 1)) && index <= (9 * (currentPage) + (currentPage - 1)))
+                    ||
+                    (!isAltLayout && index >= 0 && index <= 9)
+                ) {
+                    items.push(el)
+                }
+            })
+        } else if (type === 'default') {
+            filter = 'Blog'
+            defaultPosts.forEach((el, index) => {
+                if (
+                    (isAltLayout && index >= (9 * (currentPage - 1) + (currentPage - 1)) && index <= (9 * (currentPage) + (currentPage - 1)))
+                    ||
+                    (!isAltLayout && index >= 0 && index <= 9)
+                ) {
+                    items.push(el)
+                }
+            })
+        }
+
+        datalayerPush(analytics.listView(items, filter))
+    }
 
     return (
         <div>
@@ -116,24 +189,24 @@ export default function Archive({ location, data, cta, cta2, categories, languag
                 ? <>
                     {isAltLayout
                         ? (<>
-                            <PostGrid id='posts' isAltLayout={isAltLayout} data={filtredPosts} from={0} to={9} currentPage={currentPage} />
+                            <PostGrid id='posts' analytics={analytics} isAltLayout={isAltLayout} data={filtredPosts} from={0} to={9} currentPage={currentPage} />
                             {filtredPosts.length < 5
                                 ? null
-                                : <Pagination defaultUrl={defaultUrl} changeCurrentPage={changeCurrentPage} currentPage={currentPage} itemCount={filtredPosts.length} />}
+                                : <Pagination defaultUrl={defaultUrl} changeCurrentPage={setPage} currentPage={currentPage} itemCount={filtredPosts.length} />}
                             <CallToAction data={cta} />
                         </>)
                         : (<>
-                            <PostGrid id='posts' isAltLayout={isAltLayout} data={defaultPosts} from={0} to={3} />
+                            <PostGrid id='posts' analytics={analytics} isAltLayout={isAltLayout} data={defaultPosts} from={0} to={3} />
                             <CallToAction data={cta} />
-                            <PostGrid isDefault={true} isAltLayout={isAltLayout} data={defaultPosts} from={4} to={6} />
+                            <PostGrid analytics={analytics} isDefault={true} isAltLayout={isAltLayout} data={defaultPosts} from={4} to={6} />
                             {defaultPosts.length < 5
                                 ? null
                                 : <CallToAction data={cta2} />
                             }
-                            <PostGrid isDefault={true} isAltLayout={isAltLayout} data={defaultPosts} from={7} to={9} />
+                            <PostGrid analytics={analytics} isDefault={true} isAltLayout={isAltLayout} data={defaultPosts} from={7} to={9} />
                             {defaultPosts.length < 5
                                 ? null
-                                : <Pagination defaultUrl={defaultUrl} changeCurrentPage={changeCurrentPage} currentPage={currentPage} itemCount={defaultPosts.length} />}
+                                : <Pagination defaultUrl={defaultUrl} changeCurrentPage={setPage} currentPage={currentPage} itemCount={defaultPosts.length} />}
                         </>)}
                 </>
                 : <NoPosts id='posts'>

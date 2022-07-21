@@ -13,6 +13,12 @@ export default function Archive({ parentCategories, children, posts, data, locat
     const changeFilters = (slug) => {
         changeCurrentFilter(slug)
         changeCurrentSubFilter('all')
+        datalayerPush(analytics.filter(location, slug + ' | ' + 'all'))
+    }
+
+    const changeSubFilters = (slug) => {
+        datalayerPush(analytics.filter(location, currentFilter + ' | ' + slug))
+        changeCurrentSubFilter(slug)
     }
 
     const [showCount, changeShowCount] = useState(9)
@@ -54,16 +60,16 @@ export default function Archive({ parentCategories, children, posts, data, locat
         changeShowCount(showCount + 4)
 
         if (currentSubFilter === 'all' && currentFilter === 'all') {
-            dataleyerAnalytics(defaultPosts, 'all', showCount+4)
+            dataleyerAnalytics(defaultPosts, 'all', showCount + 4)
         } else {
-            dataleyerAnalytics(defaultPosts, currentFilter + ' | ' + currentSubFilter, showCount+4)
+            dataleyerAnalytics(defaultPosts, currentFilter + ' | ' + currentSubFilter, showCount + 4)
         }
     }
 
     const dataleyerAnalytics = (posts, filter, loadCount) => {
         const showedPosts = []
         posts.forEach((el, index) => {
-            if(loadCount > showCount){
+            if (loadCount > showCount) {
                 if (index <= loadCount && index > showCount) {
                     showedPosts.push(el)
                 }
@@ -85,7 +91,7 @@ export default function Archive({ parentCategories, children, posts, data, locat
                 currentFilter={currentFilter}
                 currentSubFilter={currentSubFilter}
                 changeFilters={changeFilters}
-                changeCurrentSubFilter={changeCurrentSubFilter}
+                changeCurrentSubFilter={changeSubFilters}
             />
             {!!filtredPosts.length
                 ? <>

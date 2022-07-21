@@ -2,9 +2,9 @@ import React from "react"
 import styled from "styled-components"
 import { Container } from "../style"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { Link } from "gatsby"
+import { datalayerPush } from "../helpers/datalayer"
 
-export default function StayInTouch({ data: { sectionTitle, text, socialMediaLinks } }) {
+export default function StayInTouch({ data: { sectionTitle, text, socialMediaLinks }, analytics }) {
     return (
         <Wrapper>
             <Container>
@@ -15,9 +15,9 @@ export default function StayInTouch({ data: { sectionTitle, text, socialMediaLin
                     </div>
                     <Grid count={socialMediaLinks.length}>
                         {socialMediaLinks.map(el => (
-                            <Link aria-label={el.ariaLabel} to={el.socialLink}>
+                            <a target='_blank' rel='noopener' onClick={() => { datalayerPush(analytics.socialMedia(el.ariaLabel, el.socialLink)) }} aria-label={el.ariaLabel} href={el.socialLink}>
                                 <GatsbyImage className="image" image={el.socialIcon.localFile.childImageSharp.gatsbyImageData} alt={el.socialIcon.altText} />
-                            </Link>
+                            </a>
                         ))}
                     </Grid>
                 </Content>

@@ -5,6 +5,7 @@ import Archive from "../components/blog-archive"
 import Seo from "../components/seo"
 import StayInTouch from "../components/stay-in-touch"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/blog-archive'
 
 export default function BlogArchive({ data: { allWpPage, allWpPost, allWpCategory, alternates }, location }) {
   let { blogArchive, language, seo, scryptInjection } = allWpPage.nodes[0]
@@ -14,8 +15,8 @@ export default function BlogArchive({ data: { allWpPage, allWpPost, allWpCategor
     {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Blog Archive'/>
       <Hero data={blogArchive.heroBlog} />
-      <Archive otherData={blogArchive.posts} location={location} cta={blogArchive.callToActionBlog} cta2={blogArchive.callToActionBlogSecond} data={allWpPost} categories={allWpCategory} language={language.slug} />
-      <StayInTouch data={blogArchive.stayInTouch}/>
+      <Archive otherData={blogArchive.posts} location={location} cta={blogArchive.callToActionBlog} cta2={blogArchive.callToActionBlogSecond} data={allWpPost} categories={allWpCategory} language={language.slug} analytics={Analytics}/>
+      <StayInTouch data={blogArchive.stayInTouch} analytics={Analytics}/>
     </main>
   )
 }
@@ -140,6 +141,7 @@ query BlogArcyhiveQuery($id: String!, $templateName: String!, $slug: String!) {
           language{
             slug
           }
+          guid
           blogPost {
             currentPostUrl
             isfeaturedPost
