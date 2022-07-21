@@ -7,7 +7,7 @@ export default ({ analytics, title, button, location }) => (
     <ContentWrapper>
         <Content>
             <Title className="h1 colored" dangerouslySetInnerHTML={{__html: title}}></Title>
-            <Button onClick={() => { datalayerPush(analytics(location)) }} to={button.url} className='button'>
+            <Button onClick={() => { datalayerPush(analytics(location, button.name)) }} to={button.url} className='button'>
                 <span>{button.name}</span>
             </Button>
         </Content>

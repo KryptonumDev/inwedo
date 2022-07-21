@@ -8,7 +8,7 @@ import CallToAction from './cta'
 import TestomontialDividerLogo from './testomontial-divider-logo'
 import TestomontialDividerFoto from './testomontial-divider-foto'
 
-export default function BlogPostContent({ data, quickTitle }) {
+export default function BlogPostContent({ data, quickTitle, analytics, location }) {
     return (
         <Wrapper>
             <BlogPostNav data={data} quickTitle={quickTitle}/>
@@ -20,7 +20,7 @@ export default function BlogPostContent({ data, quickTitle }) {
                     case 'image':
                         return <Image data={el} index={id}/>
                     case 'cta':
-                        return <CallToAction small={true} data={el.callToActionPost} index={id}/>
+                        return <CallToAction small={true} data={el.callToActionPost} index={id} analytics={analytics.cta} location={location} />
                     case 'testomontial':
                         return <TestomontialDividerLogo small={true} data={el.testomontialDividerPost} index={id}/>
                     case "testomontial_photo":

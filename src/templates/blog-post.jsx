@@ -5,18 +5,24 @@ import Hero from "../components/hero/blog-post"
 import BlogAuthorPosts from "../components/blog-author-posts"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/blog-page'
+import { datalayerPush } from "../helpers/datalayer"
 
 export default function BlogPost({ data: { allWpPost, otherPosts, alternates }, location }) {
   let { blogPost, categories, date, authors, language, seo, scryptInjection } = allWpPost.nodes[0]
   let script = parse(scryptInjection.code ? scryptInjection.code : '')
+
+  React.useEffect(() => {
+    datalayerPush(Analytics.productView(allWpPost.nodes[0]))
+  }, [])
 
   return (
     <main id='main'>
     {script}
       <Seo preview={blogPost.previewCard} author={authors.nodes[0]?.author} data={seo} lang={language.slug} alternates={alternates} location={location} type='post' template='Blog Archive' currTemplate={blogPost.previewCard.previewTitle} ogImg={blogPost.previewCard.previewImage.localFile.publicURL}/>
       <Hero data={blogPost.heroPost} categories={categories} date={date} authors={authors} />
-      <BlogPostContent data={blogPost.content} quickTitle={blogPost.quickNavigation.sectionTitle} />
-      <BlogAuthorPosts data={otherPosts.nodes} title={blogPost.otherPosts.sectionTitle} />
+      <BlogPostContent location={location.pathname} analytics={Analytics.cta} data={blogPost.content} quickTitle={blogPost.quickNavigation.sectionTitle} />
+      <BlogAuthorPosts analytics={Analytics} data={otherPosts.nodes} title={blogPost.otherPosts.sectionTitle} />
     </main>
   )
 }
@@ -41,6 +47,7 @@ query BlogPostQuery($id: String!) {
     }
     otherPosts : allWpPost(filter: {id: {ne: $id}}, limit: 3) {
       nodes {
+        guid
         language{
           slug
         }
@@ -94,6 +101,7 @@ query BlogPostQuery($id: String!) {
     }
     allWpPost(filter: {id: {eq: $id}}) {
         nodes{
+          guid
           language {
             slug
             name

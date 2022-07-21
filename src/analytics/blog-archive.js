@@ -60,8 +60,8 @@ export default {
                 'variant': 'post',
                 'price': 'none',
                 'id': el.guid,
-                'dimension1': 'inwedo',
-                'dimension2': '18072022'
+                'dimension1': el.authors.nodes[0].author.userName,
+                'dimension2': el.date
             })
         })
 

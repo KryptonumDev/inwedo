@@ -1,11 +1,13 @@
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
+import { datalayerPush } from "../helpers/datalayer"
 import { Container } from "../style"
 import { urlSystem } from "./../contstants/urlSystem"
 
-export default function BlogAuthorPosts({ data, title, loadMore }) {
+export default function BlogAuthorPosts({ data, title, loadMore, analytics, isArchive }) {
+    const [currentStep, changeCurrentStep] = useState(1)
     const [showCount, setShowCount] = useState(() => {
         if (typeof window !== "undefined") {
             if (window.innerWidth < 1100) {
@@ -24,6 +26,21 @@ export default function BlogAuthorPosts({ data, title, loadMore }) {
         return 3
     })()
 
+    useEffect(() => {
+        datalayerPush(analytics.listView(data, showCount, null))
+    }, [])
+
+    const changeShowCount = () => {
+        if(isArchive){
+            datalayerPush(analytics.loadMore(currentStep))
+            datalayerPush(analytics.listView(data, showCount, step))
+        }
+
+        setShowCount(showCount + step)
+        changeCurrentStep(currentStep+1)
+        
+    }
+
     return (
         <Wrapper>
             <Container>
@@ -33,7 +50,7 @@ export default function BlogAuthorPosts({ data, title, loadMore }) {
                         if (index < showCount) {
                             return (
                                 <Item>
-                                    <Link to={urlSystem['Blog Post'][el.language.slug] + el.blogPost.currentPostUrl}>
+                                    <Link onClick={() => { datalayerPush(analytics.productClick(el, index)) }} to={urlSystem['Blog Post'][el.language.slug] + el.blogPost.currentPostUrl}>
                                         <GatsbyImage className='image' image={el.blogPost.previewCard.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.blogPost.previewCard.previewImage.altText} />
                                         <Content>
                                             <Categories>
@@ -69,7 +86,7 @@ export default function BlogAuthorPosts({ data, title, loadMore }) {
                     ? <>
                         {data.length <= showCount
                             ? null
-                            : <Button className="button" onClick={() => { setShowCount(showCount + step) }}>{loadMore}</Button>}</>
+                            : <Button className="button" onClick={() => { changeShowCount() }}>{loadMore}</Button>}</>
                     : null}
             </Container>
         </Wrapper>

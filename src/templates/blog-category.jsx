@@ -5,6 +5,7 @@ import FAQ from './../components/faq'
 import Hero from "../components/hero/blog-category"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/blog-sub-archive'
 
 export default function BlogCategory({ data: { allWpCategory, allWpPost, alternates }, location }) {
   const category = allWpCategory.nodes[0]
@@ -16,7 +17,7 @@ export default function BlogCategory({ data: { allWpCategory, allWpPost, alterna
     {script}
       <Seo data={category.seo} lang={category.language.slug} alternates={alternates} location={location} type='archive' id={category.id} template='category' currTemplate={category.slug.substr(3)}/>
       <Hero data={category.blogCategory} />
-      <BlogAuthorPosts data={posts} title={category.blogCategory.otherPostsTitle} loadMore={category.blogCategory.viewMoreButtonText} />
+      <BlogAuthorPosts isArchive={true} analytics={Analytics} data={posts} title={category.blogCategory.otherPostsTitle} loadMore={category.blogCategory.viewMoreButtonText} />
       <FAQ data={category.blogCategory.faqCategory} />
     </main>
   )
@@ -83,6 +84,7 @@ query BlogAuthorQuery($id: String!) {
       }
       allWpPost(filter: {categories: {nodes: {elemMatch: {id: {eq: $id}}}}}) {
         nodes {
+          guid
           language{
             slug
           }
