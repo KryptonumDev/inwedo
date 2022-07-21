@@ -64,5 +64,30 @@ export default {
             "buttonName": "About-us",
             "location": "middle of the page"
         }
-    }
+    },
+    technologies: (items) => {
+        const listItems = []
+        items.map((el, index) => {
+            listItems.push({
+                "list": "Services | Team Extensions",
+                'name': el.techologieIcon.altText ? el.techologieIcon.altText : 'technologies alt is empty',
+                'brand ': 'inwedo.com',
+                'position': index + 1,
+                'category': el.techologieIcon.altText ? el.techologieIcon.altText : 'technologies alt is empty',
+                'variant': 'page-site',
+                'price': 'none',
+                'id': el.technologieUrl,
+                'dimension1': 'inwedo',
+                'dimension2': '18072022'
+            })
+        })
+
+        return {
+            'event': 'listView',
+            'ecommerce': {
+                'currencyCode': 'PLN',
+                'impressions': listItems
+            }
+        }
+    },
 }

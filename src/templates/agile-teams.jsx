@@ -27,7 +27,7 @@ const AgileTeamsPage = ({ data: { allWpPage, alternates }, location }) => {
       <OurFocuses data={agileTeams.ourFocusesAgileTeams} />
       <MiniFaq data={agileTeams.miniFaqAgileTeams} />
       <TeamSizes data={agileTeams.teamSizes} />
-      <TechStack data={agileTeams.techStack} />
+      <TechStack data={agileTeams.techStack}  analytics={Analytics.technologies}/>
       <ImageDivider data={agileTeams.imageDivider} />
       <SuccessStories data={agileTeams.successStoriesAgileTeams} analytics={Analytics.successStories} location={location.pathname}/>
       <TwoColumnFlex data={agileTeams.twoColumnFlexAgileTeams} analytics={Analytics.twoColumn} location={location.pathname}/>

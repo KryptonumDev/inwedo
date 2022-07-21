@@ -6,9 +6,11 @@ import { Container } from "../style"
 import { datalayerPush } from './../helpers/datalayer'
 
 export default function TechStack({ data: { sectionTitle, technologies }, analytics }) {
-    
+
     useEffect(() => {
-        datalayerPush(analytics(technologies))
+        if (technologies[0]?.technologieUrl) {
+            datalayerPush(analytics(technologies))
+        }
     }, [])
 
     return (
