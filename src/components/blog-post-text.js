@@ -84,6 +84,7 @@ const Content = styled.div`
         font-weight: 700;
         color: #0B5CD6;
         
+        
         &.button {
             color: #fff;
         }
@@ -91,7 +92,7 @@ const Content = styled.div`
             color: #fff;
         }
 
-        strong{
+        strong, b{
             background: var(--color-accent);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -104,13 +105,21 @@ const Content = styled.div`
         display: grid;
         grid-gap: 16px;
         li{
-            list-style: disc;
+            list-style: auto;
             margin-left: 20px;
 
             font-weight: 300;
             font-size: clamp(14px, 2.08vw, 16px);
             line-height: 160%;
             font-feature-settings: 'ss01' on;
+        }
+    }
+
+    blockquote{
+        margin: 0 0 0 48px;
+
+        p+p{
+            margin-top: 16px;
         }
     }
 `

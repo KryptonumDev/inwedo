@@ -55,9 +55,10 @@ const TextPart = styled.div`
 `
 
 const Grid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 32px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 32px;
     width: fit-content;
     margin: 0 auto;
 

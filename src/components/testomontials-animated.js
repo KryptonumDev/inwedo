@@ -11,8 +11,8 @@ export default function TestomontialsAnimated({ data: { text, seectionTitle, tes
             <Container>
                 <Text className="h3">{text}</Text>
                 <Title className="h4">{seectionTitle}</Title>
-                <Card>
-                    <div class='clutch-widget' data-nofollow='true' data-url='https://widget.clutch.co' data-widget-type='2' data-height='45' data-clutchcompany-id='88412'></div>
+                <Card aria-label='link to clatch review' target='_blank' rel="noopener noreferer" href={card.cardLink}>
+                    <img alt={card.cardImage.altText} src={card.cardImage.localFile.publicURL} />
                 </Card>
                 <Row ref={constraintsRef}>
                     <motion.div drag='x' dragConstraints={constraintsRef} className="slider">
@@ -215,10 +215,10 @@ const Item = styled.div`
     }
 `
 
-const Card = styled.div`
+const Card = styled.a`
     display: block;
     position: absolute;
-    right: -100px;
+    right: -16px;
     top: 0;
     border-radius: 24px;
     background-color: #fff;
@@ -245,7 +245,7 @@ const Card = styled.div`
             max-width: 150px;
         }
         padding: 24px 16px;
-        left: calc(100% + 60px);
+        left: calc(100% - 16px);
         transform: translateX(-75%);
         position: relative;
         display: block;

@@ -18,16 +18,16 @@ const ServicesPage = ({ data: { allWpPage, alternates }, location }) => {
       {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Services' />
       <Hero data={servicesPage.heroServices} analytics={Analytics.hero} location={location.pathname} />
-      {/* <Card>
-        <div class='clutch-widget' data-nofollow='true' data-url='https://widget.clutch.co' data-widget-type='2' data-height='45' data-clutchcompany-id='88412'></div>
-      </Card> */}
+      <Card aria-label='link to clatch review' target='_blank' rel="noopener noreferer" href={servicesPage.card.url}>
+        <img alt={servicesPage.card.image.altText} src={servicesPage.card.image.localFile.publicURL} />
+      </Card>
       <DevelopmentCards data={servicesPage.developmentCards} analytics={Analytics.devCards} location={location.pathname} />
-      <CallToAction data={servicesPage.callToActionServices} analytics={Analytics.cta.first} location={location.pathname}  />
+      <CallToAction data={servicesPage.callToActionServices} analytics={Analytics.cta.first} location={location.pathname} />
       <DevelopmentCards data={servicesPage.developmentCardsSecond} analytics={Analytics.devCards} location={location.pathname} />
-      <CallToAction data={servicesPage.callToActionServicesCopy} analytics={Analytics.cta.second} location={location.pathname}  />
-      <TwoColumnFlex data={servicesPage.twoColumnFlexServices}  analytics={Analytics.twoColumn} />
+      <CallToAction data={servicesPage.callToActionServicesCopy} analytics={Analytics.cta.second} location={location.pathname} />
+      <TwoColumnFlex data={servicesPage.twoColumnFlexServices} analytics={Analytics.twoColumn} />
       <Testomontials data={servicesPage.testomontialsServices} />
-      <TwoColumnFlex data={servicesPage.twoColumnFlexServicesSecond}  analytics={Analytics.twoColumn} />
+      <TwoColumnFlex data={servicesPage.twoColumnFlexServicesSecond} analytics={Analytics.twoColumn} />
     </main>
   )
 }
@@ -36,10 +36,12 @@ export default ServicesPage
 
 const Card = styled.div`
   position: fixed;
-  right: -100px;
+  right: -8px;
   top: 120px;
   padding: 12px 16px;
-  background-color: #fff;
+  border-radius: 8px;
+  background-color: var(--color-white);
+  box-shadow: var(--shadow);
 `
 
 export const query = graphql`
@@ -86,6 +88,15 @@ query ServicesPageQuery($id: String!, $templateName: String!) {
                 childImageSharp {
                   gatsbyImageData(placeholder: BLURRED, quality: 95)
                 }
+              }
+            }
+          }
+          card : cardCopy{
+            url
+            image{
+              altText
+              localFile{
+                publicURL
               }
             }
           }

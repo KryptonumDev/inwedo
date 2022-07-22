@@ -28,6 +28,7 @@ const Background = styled(GatsbyImage)`
     height: 100%;
     box-shadow: var(--shadow);
     min-height: 630px;
+    max-height: 700px;
 
     @media (max-width: 1024px) {
         min-height: 530px;

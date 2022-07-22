@@ -13,8 +13,8 @@ export default function Services({ data: { card, clientsTitle, clientsItems, sec
 
     return (
         <Wrapper>
-            <Card>
-                <div class='clutch-widget' data-nofollow='true' data-url='https://widget.clutch.co' data-widget-type='2' data-height='45' data-clutchcompany-id='88412'></div>
+            <Card target='_blank' rel="noopener noreferer" href={card.url} aria-label='link to clatch review'>
+                <img alt={card.image.altText} src={card.image.localFile.publicURL}/>
             </Card>
             <Container>
                 <h2 className="h3 title">{clientsTitle}</h2>
@@ -85,10 +85,10 @@ const Wrapper = styled.section`
     }
 `
 
-const Card = styled.div`
+const Card = styled.a`
     display: block;
     position: absolute;
-    right: -100px;
+    right: -8px;
     top: 0;
     border-radius: 24px;
     background-color: var(--color-white);

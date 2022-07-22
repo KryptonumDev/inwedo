@@ -49,10 +49,8 @@ const Item = styled.div`
     grid-gap: 32px;
 
     .image{
-        max-width: 48px;
-        width: fit-content;
-        height: fit-content;
-        min-width: fit-content;
+        width: 48px;
+        height: 48px;
     }
 
     h3{

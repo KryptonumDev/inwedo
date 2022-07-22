@@ -6,32 +6,34 @@ import axios from "axios"
 import Select from 'react-select'
 import { motion } from "framer-motion"
 
-export default function ContactForm({ data: { emailInput, interestedInput, messageInput, nameInput, phoneInput, privacyPolice, submit, privacyPolicyErrorText, newsletterAgreement }, lang }) {
+export default function ContactForm({ data: { emailInput, interestedInput, messageInput, nameInput, phoneInput, privacyPolice, submit, privacyPolicyErrorText, newsletterAgreement, succesSubmitText, errorSubmitText }, lang }) {
 
     const { register, handleSubmit, reset, formState: { errors }, control } = useForm({ mode: 'onBlur' })
     const [isSended, changeIsSended] = useState(null)
     const [sendedCount, changeSendedCount] = useState(0)
 
     const Submit = (data) => {
-        axios.post('https://hook.eu1.make.com/w2y1gjybwxxdnf4fxcguccywi36dihlw', {
-            name: data.name,
-            email: data.mail,
-            phone: data.phone,
-            'interested in': data.options,
-            message: data.message,
-            newsletter: data.newsletter,
-            language: lang
-        })
-            .then((res) => {
-                if (res.status === 200) {
-                    changeIsSended('success')
-                    changeSendedCount(sendedCount + 1)
-                    reset()
-                } else {
-                    changeIsSended('error')
-                    changeSendedCount(sendedCount + 1)
-                }
+        if (sendedCount < 3) {
+            axios.post('https://hook.eu1.make.com/w2y1gjybwxxdnf4fxcguccywi36dihlw', {
+                name: data.name,
+                email: data.mail,
+                phone: data.phone,
+                'interested in': data.options,
+                message: data.message,
+                newsletter: data.newsletter,
+                language: lang
             })
+                .then((res) => {
+                    if (res.status === 200) {
+                        changeIsSended('success')
+                        changeSendedCount(sendedCount + 1)
+                        reset()
+                    } else {
+                        changeIsSended('error')
+                        changeSendedCount(sendedCount + 1)
+                    }
+                })
+        }
     }
 
     const options = []
@@ -127,7 +129,29 @@ export default function ContactForm({ data: { emailInput, interestedInput, messa
                     </motion.p>
                 )}
             </label>
-            <button className="button">{submit}</button>
+            <button disabled={sendedCount >= 3} className="button">{submit}</button>
+            {isSended === 'success' && (
+                <motion.p
+                    initial={{ opacity: 0, bottom: -6 }}
+                    animate={{ opacity: 1, bottom: 0 }}
+                    exit={{ opacity: 1, bottom: -6 }}
+                    transition={{ type: 'spring', duration: 0.4 }}
+                    className="successText"
+                >
+                    {succesSubmitText}
+                </motion.p>
+            )}
+            {isSended === 'error' && (
+                <motion.p
+                    initial={{ opacity: 0, bottom: -6 }}
+                    animate={{ opacity: 1, bottom: 0 }}
+                    exit={{ opacity: 1, bottom: -6 }}
+                    transition={{ type: 'spring', duration: 0.4 }}
+                    className="errorSend"
+                >
+                    {errorSubmitText}
+                </motion.p>
+            )}
         </Wrapper>
     )
 }
@@ -135,6 +159,7 @@ export default function ContactForm({ data: { emailInput, interestedInput, messa
 const Wrapper = styled.form`
     display: grid;
     grid-gap: 24px;
+    position: relative;
 
     .react-select__control{
         border-color: #C1D6E9;
@@ -149,13 +174,45 @@ const Wrapper = styled.form`
         cursor: pointer;
     }
 
+    .successText{
+        position: absolute;
+        bottom: 0;
+        transform: translateY(200%);
+        left: 16px;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 24px;
+        letter-spacing: 0.005em;
+
+        &.submit{
+            transform: translateY(150%);
+        }
+    }
+
+    .errorSend{
+        position: absolute;
+        bottom: 0;
+        transform: translateY(200%);
+        left: 16px;
+        font-family: 'Lexend';
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 24px;
+        letter-spacing: 0.005em;
+
+        &.submit{
+            transform: translateY(150%);
+        }
+    }
+
     .errorText{
         position: absolute;
         bottom: 0;
         transform: translateY(100%);
         left: 16px;
-        font-weight: 400;
-        font-size: 12px;
+        font-family: 'Lexend';
+        font-weight: 300;
+        font-size: 14px;
         line-height: 24px;
         letter-spacing: 0.005em;
         color: #EB5757;

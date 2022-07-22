@@ -16,8 +16,12 @@ export default function TestomontialDivider({ data: { testomontialTitle, boldTex
                             <p className="position">{personPosition}</p>
                         </div>
                     </div>
-                    <h2 className="h3">{testomontialTitle}</h2>
-                    <p className="h4">{boldText}</p>
+                    {testomontialTitle
+                        ? <h2 className="h3">{testomontialTitle}</h2>
+                        : null}
+                    {boldText
+                        ? <p className="h4">{boldText}</p>
+                        : null}
                     <p className="p">{plainText}</p>
                 </Card>
             </Container>

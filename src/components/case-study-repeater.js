@@ -136,7 +136,7 @@ const Item = styled.div`
 
     .logo{
         max-width: 136px;
-        max-height: 60px;
+        max-height: 42px;
         width: fit-content;
         height: fit-content;
     }

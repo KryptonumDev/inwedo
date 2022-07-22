@@ -1,5 +1,3 @@
-import { Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../style"
@@ -7,8 +5,8 @@ import { Container } from "../style"
 export default function ClientCases({ data: { sectionTitle, clientsCases, card } }) {
     return (
         <Wrapper>
-            <Card as={card.cardLink ? 'a' : 'div'} aria-label='link to clatch review' href={card.cardLink} target="_blank" rel="noopener noreferrer">
-                <GatsbyImage className="image" image={card.cardImage.localFile.childImageSharp.gatsbyImageData} alt={card.cardImage.altText} />
+            <Card aria-label='link to clatch review' href={card.cardLink} target="_blank" rel="noopener noreferrer">
+                <img alt={card.cardImage.altText} src={card.cardImage.localFile.publicURL} />
             </Card>
             <Container>
                 <h2 className="h4">{sectionTitle}</h2>
@@ -72,7 +70,7 @@ const Clients = styled.div`
     }
 `
 
-const Card = styled(Link)`
+const Card = styled.a`
     display: block;
     position: absolute;
     right: -16px;

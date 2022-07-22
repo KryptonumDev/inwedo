@@ -73,8 +73,7 @@ const Item = styled.div`
     span{
         font-weight: 600;
         font-size: clamp(32px, 5.2vw, 48px);
-        line-height: 50px;
-        max-height: 50px;
+        line-height: 150%;
         text-align: center;
         display: block;
         width: fit-content;

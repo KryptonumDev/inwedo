@@ -266,6 +266,10 @@ const SuccessStories = styled.div`
             max-height: 60px;
             width: fit-content;
             height: fit-content;
+
+            img{
+                width: fit-content;
+            }
         }
 
         @media (max-width: 850px) {

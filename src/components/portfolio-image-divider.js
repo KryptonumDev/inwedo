@@ -18,6 +18,6 @@ const Wrapper = styled.section`
     .image{
         width: 100vw;
         height: fit-content;
-        min-height: clamp(316px, 50vw, 460px);
+        height: clamp(316px, 50vw, 460px);
     }
 `

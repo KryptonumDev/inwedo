@@ -135,5 +135,38 @@ const Grid = styled.div`
                 border-right: unset;
             }
         }
+
+        a{
+            font-family: 'Lexend Deca';
+            font-style: normal;
+            font-weight: 600;
+            font-size: clamp(14px, 2.08vw, 16px);
+            line-height: 150%;
+            background: var(--color-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+
+            border-radius: 2px;
+            position: relative;
+            width: fit-content;
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 0;
+                height: 2px;
+                background: var(--color-accent);
+                transition: width .3s cubic-bezier(0.23, 1, 0.320, 1);
+            }
+
+
+            &::after {
+                width: 100%;
+            }
+        }
     }
 `

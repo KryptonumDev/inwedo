@@ -115,9 +115,8 @@ const List = styled.ul`
         grid-gap: 32px;
 
         .image{
-            width: fit-content;
-            height: fit-content;
-            max-width: 48px;
+            width: 48px;
+            height: 48px;
         }
     }
 

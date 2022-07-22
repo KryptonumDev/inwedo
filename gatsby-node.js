@@ -25,7 +25,7 @@ urlSystem = {
     pl: '/uslugi/warsztaty-discovery-workshops/',
     en: '/services/discovery-workshops/',
     'pl-name': 'Warsztat Discovery Workshops',
-    'en-name': 'Discovery Workshops'
+    'en-name': 'Discovery Workshops' 
   },
   'Product Design': {
     pl: '/uslugi/projektowanie-design-produktu-digital-ux-ui/',

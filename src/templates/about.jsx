@@ -138,9 +138,7 @@ export const query = graphql`
                        cardImage{
                          altText
                          localFile {
-                           childImageSharp {
-                             gatsbyImageData(placeholder: BLURRED, quality: 95)
-                           }
+                           publicURL
                          }
                        }
                      }

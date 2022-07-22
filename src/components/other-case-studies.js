@@ -25,12 +25,6 @@ export default function OtherCaseStudies({ data: { nodes: items }, title, analyt
                                 </div>
                                 <GatsbyImage className="image" image={el.caseStudies.previewCard.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.caseStudies.previewCard.previewImage.altText} />
                                 <div className="content">
-                                    <p className="category">
-                                        {(() => {
-                                            let arr = el.categoriesPortfolio.nodes.filter(inEL => inEL.wpParent === null)
-                                            return arr[0] ? '#' + arr[0].name : null
-                                        })()}
-                                    </p>
                                     <h3>{el.caseStudies.previewCard.previewTitle}</h3>
                                     <p className="p">{el.caseStudies.previewCard.previewText}</p>
                                     <span className="link">{el.caseStudies.previewCard.readMore}</span>
@@ -53,7 +47,7 @@ const Title = styled.h2`
     position: relative;
     padding: 16px 0;
     max-width: 850px;
-    margin: 0 auto 92px auto;
+    margin: 0 auto 28px auto;
 
     &::before{
         content: '';
@@ -71,7 +65,6 @@ const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 48px;
-    margin-top: clamp(32px, 5.2vw, 48px);
 
     @media (max-width: 1100px) {
         grid-template-columns: 1fr 1fr;
@@ -116,7 +109,6 @@ const Item = styled.div`
 
     .image{
         width: 100%;
-        height: 244px;
         border-radius: 8px;
         
         img{

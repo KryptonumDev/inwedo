@@ -83,9 +83,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
               cardImage{
                 altText
                 localFile {
-                  childImageSharp {
-                    gatsbyImageData(placeholder: BLURRED, quality: 95)
-                  }
+                  publicURL
                 }
               }
             }

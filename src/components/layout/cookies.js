@@ -546,6 +546,7 @@ const TypeItem = styled.div`
                 strong{
                     font-size: inherit;
                     line-height: inherit;
+                    display: inline;
                     margin-bottom: 0;
                 }
             }
@@ -600,6 +601,10 @@ const TabContent = styled.div`
         font-weight: 600;
         font-size: clamp(20px, ${26 / 768 * 100}vw, 32px);
         line-height: 151%;
+    }
+    p+p{
+        
+        margin-top: clamp(8px,${120 / 768 * 100}vw,12px);
     }
 `
 
