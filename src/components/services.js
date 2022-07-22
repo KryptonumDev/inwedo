@@ -8,7 +8,7 @@ import { datalayerPush } from './../helpers/datalayer'
 export default function Services({ data: { card, clientsTitle, clientsItems, sectionTitle, sectionText, items }, analytics }) {
 
     useEffect(() => {
-        datalayerPush(analytics(items))
+        datalayerPush(analytics.services(items))
     }, [analytics, items])
 
     return (
@@ -28,8 +28,8 @@ export default function Services({ data: { card, clientsTitle, clientsItems, sec
                 <h2 className="line h4 title">{sectionTitle}</h2>
                 <p className="h1">{sectionText}</p>
                 <Repeater>
-                    {items.map(el => (
-                        <Item to={el.button.url}>
+                    {items.map((el, index) => (
+                        <Item key={el.title} onClick={() => { datalayerPush(analytics.servicesClick(el, index)) }} to={el.button.url}>
                             <PreviewImg image={el.previewImg.localFile.childImageSharp.gatsbyImageData} alt={el.previewImg.altText} />
                             <ItemContent>
                                 <h3 className="line h5">{el.title}</h3>

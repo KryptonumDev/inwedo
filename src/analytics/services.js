@@ -47,6 +47,48 @@ export default {
                 }
             }
         },
+        twoColumnClick: (item) => {
+            return {
+                'event': 'productClick',
+                'ecommerce': {
+                    'click': {
+                        'actionField': {
+                            'list': 'Services'
+                        },
+                        'products': [{
+                            'category': item.title,
+                            'name': item.title,
+                            'price': 'none',
+                            'id': item.button.url,
+                            'variant': 'page-site',
+                            'brand ': 'inwedo.com',
+                            'position': 1
+                        }]
+                    }
+                }
+            }
+        },
+        otherClick: (item, index) => {
+            return {
+                'event': 'productClick',
+                'ecommerce': {
+                    'click': {
+                        'actionField': {
+                            'list': 'Services'
+                        },
+                        'products': [{
+                            'category': item.cardTitle,
+                            'name': item.cardTitle,
+                            'price': 'none',
+                            'id': item.button.url,
+                            'variant': 'page-site',
+                            'brand ': 'inwedo.com',
+                            'position': index + 2
+                        }]
+                    }
+                }
+            }
+        },
         caseStudies: (name, position, url) => {
             let type = 'case studies'
             if (url.includes('/blog/')) {
@@ -84,25 +126,49 @@ export default {
             }
         }
     },
-    twoColumn: (twoColumn) => {
-        return {
-            'event': 'listView',
-            'ecommerce': {
-                'currencyCode': 'PLN',
-                'impressions': {
-                    'list': 'Services',
-                    'name': twoColumn.title,
-                    'brand ': 'inwedo.com',
-                    'position': 1,
-                    'category': twoColumn.title,
-                    'variant': 'page-site',
-                    'price': 'none',
-                    'id': twoColumn.button.url,
-                    'dimension1': 'inwedo',
-                    'dimension2': '18072022'
+    twoColumn: {
+        inView: (twoColumn) => {
+            return {
+                'event': 'listView',
+                'ecommerce': {
+                    'currencyCode': 'PLN',
+                    'impressions': {
+                        'list': 'Services',
+                        'name': twoColumn.title,
+                        'brand ': 'inwedo.com',
+                        'position': 1,
+                        'category': twoColumn.title,
+                        'variant': 'page-site',
+                        'price': 'none',
+                        'id': twoColumn.button.url,
+                        'dimension1': 'inwedo',
+                        'dimension2': '18072022'
+                    }
                 }
             }
-        }
+        },
+        click: (item) => {
+            return {
+                'event': 'productClick',
+                'ecommerce': {
+                    'click': {
+                        'actionField': {
+                            'list': 'Services'
+                        },
+                        'products': [{
+                            'category': item.title,
+                            'name': item.title,
+                            'price': 'none',
+                            'id': item.button.url,
+                            'variant': 'page-site',
+                            'brand ': 'inwedo.com',
+                            'position': 1
+                        }]
+                    }
+                }
+            }
+        },
     }
+
 
 }

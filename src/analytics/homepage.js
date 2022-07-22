@@ -3,7 +3,7 @@ export default {
         return {
             "event": "contact",
             "section": "homepage",
-            "pageURL":  url ? url : '/',
+            "pageURL": url ? url : '/',
             "buttonName": "Book a consultation",
             "location": "top of the page"
         }
@@ -30,6 +30,27 @@ export default {
             'ecommerce': {
                 'currencyCode': 'PLN',
                 'impressions': listItems
+            }
+        }
+    },
+    servicesClick: (item, index) => {
+        return {
+            'event': 'productClick',
+            'ecommerce': {
+                'click': {
+                    'actionField': {
+                        'list': 'Services'
+                    },
+                    'products': [{
+                        'category': item.title,
+                        'name': item.title,
+                        'price': 'none',
+                        'id': item.button.url,
+                        'variant': 'page-site',
+                        'brand ': 'inwedo.com',
+                        'position': index + 1
+                    }]
+                }
             }
         }
     },

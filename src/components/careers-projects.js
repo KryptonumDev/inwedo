@@ -16,7 +16,7 @@ export default function ProjectsYouCanWorkOn({ data: { sectionTitle, seoTitle, b
                     </div>
                     <Grid>
                         {projects.map(el => (
-                            <GatsbyImage className="image" image={el.logo.localFile.childImageSharp.gatsbyImageData} alt={el.logo.altText} />
+                            <img className="image" src={el.logo.localFile.publicURL} alt={el.logo.altText} />
                         ))}
                     </Grid>
                 </Flex>
@@ -103,12 +103,8 @@ const Grid = styled.div`
         width: fit-content;
         height: fit-content;
         display: block;
-
-        img{
             max-height: 34px;
             width: fit-content;
-            margin: 0 auto;
-        }
 
         &:nth-child(1){
             margin-left: -10px;

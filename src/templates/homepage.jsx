@@ -20,7 +20,7 @@ const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
       {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Homepage' />
       <Hero data={homepage.heroHome} analytics={Analytics.hero} location={location.pathname} />
-      <Services data={homepage.services} analytics={Analytics.services} />
+      <Services data={homepage.services} analytics={Analytics} />
       <CallToAction data={homepage.callToAction} analytics={Analytics.cta.first} location={location.pathname} />
       <CaseStudyRepeater data={homepage.caseStudies} analytics={Analytics.caseStudies} location={location.pathname} />
       <CallToAction data={homepage.callToActionCopy} analytics={Analytics.cta.second} location={location.pathname} />

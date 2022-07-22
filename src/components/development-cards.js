@@ -14,7 +14,7 @@ export default function DevelopmentCards({ data: { twoColumn, cards, success }, 
     return (
         <Wrapper>
             <Container>
-                <Flex to={twoColumn.button.url}>
+                <Flex onClick={() => { datalayerPush(analytics.twoColumnClick(twoColumn)) }} to={twoColumn.button.url}>
                     <div className="image">
                         <img className="icon" src={twoColumn.image.localFile.publicURL} alt={twoColumn.image.altText} />
                     </div>
@@ -26,8 +26,8 @@ export default function DevelopmentCards({ data: { twoColumn, cards, success }, 
                     </div>
                 </Flex>
                 <CardsGrid>
-                    {cards.map(el => (
-                        <Card to={el.button.url}>
+                    {cards.map((el, index) => (
+                        <Card key={el.cardTitle} onClick={() => { datalayerPush(analytics.otherClick(el, index)) }} to={el.button.url}>
                             <img className="image" src={el.cardIcon.localFile.publicURL} alt={el.cardIcon.altText} />
                             <div>
                                 <h3 className="h3">{el.cardTitle}</h3>

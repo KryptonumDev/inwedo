@@ -8,13 +8,13 @@ import { datalayerPush } from '../../helpers/datalayer'
 export default function TwoColumnFlex({ data, analytics }) {
 
     useEffect(() => {
-        datalayerPush(analytics(data))
+        datalayerPush(analytics.inView(data))
     }, [])
 
     return (
         <Wrapper>
             <Container>
-                <Flex to={data.button.url}>
+                <Flex onClick={() => {datalayerPush(analytics.click(data))}} to={data.button.url}>
                     <div className="image">
                         <img className="icon" src={data.image.localFile.publicURL} alt={data.image.altText} />
                     </div>

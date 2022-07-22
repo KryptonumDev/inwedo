@@ -337,9 +337,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     logo{
                       altText
                       localFile {
-                        childImageSharp {
-                          gatsbyImageData(placeholder: BLURRED, quality: 95)
-                        }
+                        publicURL
                       }
                     }
                   }
