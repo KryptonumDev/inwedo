@@ -5,7 +5,7 @@ import { Container } from '../../../style'
 import { datalayerPush } from '../../../helpers/datalayer'
 import Analytics from '../../../analytics/header'
 
-export default function Desctop({ headerNavigation, setIsHovered, isHovered, setIsOpen, isOpen, contactLink }) {
+export default function Desctop({ headerNavigation, setIsHovered, isHovered, setIsOpen, isOpen, contactLink, location }) {
     return (
         <Navigation isHovered={isHovered} isOpen={isOpen}>
             <ul>
@@ -13,7 +13,7 @@ export default function Desctop({ headerNavigation, setIsHovered, isHovered, set
                     <li>
                         <details open onMouseEnter={() => { setIsHovered(index) }} onMouseLeave={() => { setIsHovered(false) }}>
                             <Summary isHovered={isHovered} index={index} tabIndex='-1' onClick={(e) => { e.preventDefault() }}>
-                                <Link onClick={() => { setIsHovered(false); datalayerPush(Analytics.mainLinks(index, el.menuTitle)) }} partiallyActive={true} activeClassName="active" onFocus={() => { setIsHovered(index) }} to={el.mainLink.url}>
+                                <Link onClick={() => { setIsHovered(false); datalayerPush(Analytics.mainLinks(index, el.menuTitle, location)) }} partiallyActive={true} activeClassName="active" onFocus={() => { setIsHovered(index) }} to={el.mainLink.url}>
                                     <span>{el.menuTitle}</span>
                                 </Link>
                             </Summary>
@@ -28,7 +28,7 @@ export default function Desctop({ headerNavigation, setIsHovered, isHovered, set
                                                     )
                                                 }
                                                 return (
-                                                    <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false); datalayerPush(Analytics.subLinks(el.menuTitle, subIndex, subEl.name)) }} onFocus={() => { setIsHovered(index) }} className={subEl.isBold + ' nav'} to={subEl.url}>{subEl.name}</Link>
+                                                    <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false); datalayerPush(Analytics.subLinks(el.menuTitle, subIndex, subEl.name, location)) }} onFocus={() => { setIsHovered(index) }} className={subEl.isBold + ' nav'} to={subEl.url}>{subEl.name}</Link>
                                                 )
                                             })}
                                         </div>
@@ -40,7 +40,7 @@ export default function Desctop({ headerNavigation, setIsHovered, isHovered, set
                                                     )
                                                 }
                                                 return (
-                                                    <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false); datalayerPush(Analytics.subLinks(el.menuTitle, subIndex, subEl.name)) }} onFocus={() => { setIsHovered(index) }} className={subEl.isBold + ' nav'} to={subEl.url}>{subEl.name}</Link>
+                                                    <Link activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false); datalayerPush(Analytics.subLinks(el.menuTitle, subIndex, subEl.name, location)) }} onFocus={() => { setIsHovered(index) }} className={subEl.isBold + ' nav'} to={subEl.url}>{subEl.name}</Link>
                                                 )
                                             })}
                                         </div>
@@ -51,7 +51,7 @@ export default function Desctop({ headerNavigation, setIsHovered, isHovered, set
                     </li>
                 ))}
                 <li>
-                    <ContactButton activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false); datalayerPush(Analytics.mainLinks(headerNavigation.length, contactLink.name)) }} onFocus={() => { setIsHovered(false) }} to={contactLink.url}>
+                    <ContactButton activeClassName="active" onClick={() => { setIsHovered(false); setIsOpen(false); datalayerPush(Analytics.mainLinks(headerNavigation.length, contactLink.name, location)); datalayerPush(Analytics.contact(location)) }} onFocus={() => { setIsHovered(false) }} to={contactLink.url}>
                         {contactLink.name}
                     </ContactButton>
                 </li>
@@ -232,25 +232,20 @@ const Navigation = styled.nav`
 const ContactButton = styled(Link)`
     padding: 12px 22px; 
     margin-left: clamp(12px, 2.4vw, 25px);
-
-    @media (max-width: 1024px) {
-        margin-left: 10px;
-    }
-
+    background: var(--color-accent);
+    color: #fff;
+    box-shadow: 0px 2px 21px rgba(13, 150, 225, 0.1);
     border-radius: 6px;
     box-shadow: none;
     transition: opacity .2s cubic-bezier(0.39, 0.575, 0.565, 1);
     position: relative;
 
+    @media (max-width: 1024px) {
+        margin-left: 10px;
+    }
+
     &:hover{
         opacity:.8;
     }
-    background: #FFFFFF;
-    box-shadow: 0px 2px 21px rgba(13, 150, 225, 0.1);
-    color: var(--color-black);
 
-    &.active{
-        background: var(--color-accent);
-        color: #fff;
-    }
 `

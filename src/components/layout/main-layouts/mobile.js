@@ -4,17 +4,17 @@ import styled from "styled-components"
 import { datalayerPush } from '../../../helpers/datalayer'
 import Analytics from '../../../analytics/header'
 
-export default function Mobile({ isOpen, headerNavigation, setIsOpen, contactLink }) {
+export default function Mobile({ isOpen, headerNavigation, setIsOpen, contactLink, location }) {
     return (
         <Navigation isOpen={isOpen}>
             <ul>
                 {headerNavigation.map((el, index) =>
                     <li key={el.menuTitle}>
-                        <Link onClick={() => { datalayerPush(Analytics.mainLinks(index, el.menuTitle)) }} tabIndex={isOpen ? '0' : '-1'} onFocus={() => { setIsOpen(true) }} activeClassName="active" to={el.mainLink.url}><span>{el.menuTitle}</span></Link>
+                        <Link onClick={() => { datalayerPush(Analytics.mainLinks(index, el.menuTitle, location)) }} tabIndex={isOpen ? '0' : '-1'} onFocus={() => { setIsOpen(true) }} activeClassName="active" to={el.mainLink.url}><span>{el.menuTitle}</span></Link>
                     </li>
                 )}
                 <li>
-                    <ContactButton onClick={() => { datalayerPush(Analytics.mainLinks(headerNavigation.length, contactLink.name)) }} tabIndex={isOpen ? '0' : '-1'} onFocus={() => { setIsOpen(true) }} onBlur={() => { setIsOpen(false) }} to={contactLink.url}>
+                    <ContactButton onClick={() => { datalayerPush(Analytics.mainLinks(headerNavigation.length, contactLink.name, location)); datalayerPush(Analytics.contact(location)) }} tabIndex={isOpen ? '0' : '-1'} onFocus={() => { setIsOpen(true) }} onBlur={() => { setIsOpen(false) }} to={contactLink.url}>
                         {contactLink.name}
                     </ContactButton>
                 </li>
@@ -155,9 +155,9 @@ const ContactButton = styled(Link)`
         }
     }
 
-    background: #fff;
     border-radius: 6px;
-    color: #495057;
     box-shadow: 0px 2px 21px rgba(13, 150, 225, 0.07);
+    background: var(--color-accent);
+    color: #fff;
     
 `

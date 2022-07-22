@@ -91,7 +91,7 @@ export default function Header({ location }) {
             <Container>
                 <Content isScrolled={offset} isOpen={isOpen} isHovered={isHovered}>
                     <a className="no-focus" href="#main" aria-label='skip link to main content' />
-                    <Link onClick={() => { datalayerPush(Analytics.mainLinks(-1, 'logo'))}} aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
+                    <Link onClick={() => { datalayerPush(Analytics.mainLinks(-1, 'logo', location.pathname))}} aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
                         <img className="logo" src={siteLogo.localFile.publicURL} alt={siteLogo.altText} />
                     </Link>
                     <MobileButton isScrolled={offset} aria-label='mobile menu burger' isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>
@@ -105,6 +105,7 @@ export default function Header({ location }) {
                         setIsHovered={setIsHovered}
                         setIsOpen={setIsOpen}
                         isScrolled={offset}
+                        location={location.pathname}
                     />
                     <Mobile
                         isOpen={isOpen}
@@ -112,6 +113,7 @@ export default function Header({ location }) {
                         setIsOpen={setIsOpen}
                         contactLink={contactLink}
                         isScrolled={offset}
+                        location={location.pathname}
                     />
                 </Content>
             </Container>

@@ -5,7 +5,7 @@ import { Container } from "../../../style"
 import { datalayerPush } from '../../../helpers/datalayer'
 import Analytics from '../../../analytics/header'
 
-export default function Mobile({ isOpen, backToMainMenu, headerNavigation, setIsHovered, setIsOpen, contactLink, setOpenedTab, openedTab }) {
+export default function Mobile({ isOpen, backToMainMenu, headerNavigation, setIsHovered, setIsOpen, contactLink, setOpenedTab, openedTab, location }) {
 
     return (
         <Navigation isOpen={isOpen}>
@@ -38,24 +38,24 @@ export default function Mobile({ isOpen, backToMainMenu, headerNavigation, setIs
                 {headerNavigation.map((el, index) => (
                     <ul className={index === openedTab ? 'active' : ''}>
                         <li className="main">
-                            <Link tabIndex={openedTab === index ? '0' : '-1'} onFocus={() => { setIsOpen(true); setOpenedTab(index); datalayerPush(Analytics.mainLinks(index, el.menuTitle)) }} onClick={() => { setIsOpen(false); setOpenedTab(false) }} to={el.mainLink.url}>{el.mainLink.name}</Link>
+                            <Link tabIndex={openedTab === index ? '0' : '-1'} onFocus={() => { setIsOpen(true); setOpenedTab(index); datalayerPush(Analytics.mainLinks(index, el.menuTitle, location)) }} onClick={() => { setIsOpen(false); setOpenedTab(false) }} to={el.mainLink.url}>{el.mainLink.name}</Link>
                         </li>
                         {el.firstColumn?.map((subEl, subIndex) => (
                             <li>
                                 {subEl.url
-                                    ? <Link tabIndex={openedTab === index ? '0' : '-1'} onFocus={() => { setIsOpen(true); setOpenedTab(index); datalayerPush(Analytics.subLinks(el.menuTitle, subIndex, subEl.name)) }} onClick={() => { setIsOpen(false); setOpenedTab(false) }} className={subEl.isBold ? 'bold' : 'plain'} to={subEl.url}>{subEl.name}</Link>
+                                    ? <Link tabIndex={openedTab === index ? '0' : '-1'} onFocus={() => { setIsOpen(true); setOpenedTab(index); datalayerPush(Analytics.subLinks(el.menuTitle, subIndex, subEl.name, location)) }} onClick={() => { setIsOpen(false); setOpenedTab(false) }} className={subEl.isBold ? 'bold' : 'plain'} to={subEl.url}>{subEl.name}</Link>
                                     : <span className={subEl.isBold ? 'bold' : 'plain'}>{subEl.name}</span>}
                             </li>
                         ))}
                         {el.secondColumn?.map((subEl, subIndex) => (
                             <li>
                                 {subEl.url
-                                    ? <Link tabIndex={openedTab === index ? '0' : '-1'} onFocus={() => { setIsOpen(true); setOpenedTab(index); datalayerPush(Analytics.subLinks(el.menuTitle, subIndex, subEl.name)) }} onClick={() => { setIsOpen(false); setOpenedTab(false) }} className={subEl.isBold ? 'bold' : 'plain'} to={subEl.url}>{subEl.name}</Link>
+                                    ? <Link tabIndex={openedTab === index ? '0' : '-1'} onFocus={() => { setIsOpen(true); setOpenedTab(index); datalayerPush(Analytics.subLinks(el.menuTitle, subIndex, subEl.name, location)) }} onClick={() => { setIsOpen(false); setOpenedTab(false) }} className={subEl.isBold ? 'bold' : 'plain'} to={subEl.url}>{subEl.name}</Link>
                                     : <span className={subEl.isBold ? 'bold' : 'plain'}>{subEl.name}</span>}
                             </li>
                         ))}
                         <li>
-                            <ContactButton tabIndex={openedTab === index ? '0' : '-1'} onBlur={() => { setOpenedTab(false); datalayerPush(Analytics.mainLinks(headerNavigation.length, contactLink.name)) }} activeClassName="active" onClick={() => { setIsOpen(false); setOpenedTab(false) }} onFocus={() => { setIsOpen(true); setIsHovered(false) }} to={contactLink.url}>
+                            <ContactButton tabIndex={openedTab === index ? '0' : '-1'} onBlur={() => { setOpenedTab(false); datalayerPush(Analytics.mainLinks(headerNavigation.length, contactLink.name, location)); datalayerPush(Analytics.contact(location)) }} activeClassName="active" onClick={() => { setIsOpen(false); setOpenedTab(false) }} onFocus={() => { setIsOpen(true); setIsHovered(false) }} to={contactLink.url}>
                                 {contactLink.name}
                             </ContactButton>
                         </li>
@@ -209,17 +209,12 @@ const ContactButton = styled(Link)`
     justify-content: center !important;
     text-align: center;    
     margin-bottom: 32px;
+    box-shadow: 0px 2px 21px rgba(13, 150, 225, 0.1);
+    background: var(--color-accent);
+    color: #fff;
 
     &:hover{
         opacity:.8;
     }
 
-    background: #FFFFFF;
-    box-shadow: 0px 2px 21px rgba(13, 150, 225, 0.1);
-    color: var(--color-black);
-
-    &.active{
-        background: var(--color-accent);
-        color: #fff;
-    }
 `

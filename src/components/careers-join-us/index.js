@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
+import { datalayerPush } from "../../helpers/datalayer"
 import { Container } from "../../style"
 import Filter from "./filter"
 import Items from "./items"
 
-export default function JoinUs({ data: { sectionTitle, categoryTitle, seniorityTitle, showOfferText, applyOfferText, noPostsText }, offers, seniority, categories }) {
+export default function JoinUs({ data: { sectionTitle, categoryTitle, seniorityTitle, showOfferText, applyOfferText, noPostsText }, offers, seniority, categories, analytics, location }) {
 
     const [activeCategories, setActiveCategories] = useState([])
     const [activeSeniority, setActiveSeniority] = useState([])
@@ -14,10 +15,8 @@ export default function JoinUs({ data: { sectionTitle, categoryTitle, seniorityT
 
     useEffect(() => {
         setFiltredArray(() => {
-            const arr = []
-
             if (activeSeniority.length || activeCategories.length) {
-                return defautlArray.filter(el => {
+                let filtredArr = defautlArray.filter(el => {
                     let isCategory = !activeCategories.length
                     let isSeniority = !activeSeniority.length
 
@@ -40,10 +39,36 @@ export default function JoinUs({ data: { sectionTitle, categoryTitle, seniorityT
                             return true
                         })
                     }
+
                     return (isSeniority && isCategory)
                 })
+                let categoriesString = ''
+                let seniorityString = ''
+                activeCategories?.forEach((el, index) => {
+                    if (index === 0) {
+                        categoriesString += el
+                    } else {
+                        categoriesString += (" | " + el)
+                    }
+                });
+                activeSeniority?.forEach((el, index) => {
+                    if (index > 0) {
+                        seniorityString += (' | ' + el)
+                    } else {
+                        seniorityString += el
+                    }
+                })
+                if (!activeCategories.length) {
+                    categoriesString = 'all'
+                }
+                if (!activeSeniority.length) {
+                    seniorityString = 'all'
+                }
+                datalayerPush(analytics.productListView(filtredArr, categoriesString + ' | ' + seniorityString))
+                return filtredArr
             }
 
+            datalayerPush(analytics.productListView(defautlArray, 'Job Offer'))
             return defautlArray
         })
     }, [activeSeniority, activeCategories])
@@ -52,10 +77,10 @@ export default function JoinUs({ data: { sectionTitle, categoryTitle, seniorityT
         <Wrapper id="offers-listing" >
             <Container>
                 <Title>{sectionTitle}</Title>
-                <Filter title={categoryTitle} filters={categories} set={setActiveCategories} active={activeCategories} />
-                <Filter title={seniorityTitle} filters={seniority} set={setActiveSeniority} active={activeSeniority} />
+                <Filter location={location} analytics={analytics} title={categoryTitle} altFilters={activeSeniority} filters={categories} set={setActiveCategories} active={activeCategories} />
+                <Filter location={location} analytics={analytics} title={seniorityTitle} altFilters={activeCategories} filters={seniority} set={setActiveSeniority} active={activeSeniority} />
                 {!!filtredArray.length
-                    ? <Items data={filtredArray} showOfferText={showOfferText} applyOfferText={applyOfferText} />
+                    ? <Items analytics={analytics.productClick} data={filtredArray} showOfferText={showOfferText} applyOfferText={applyOfferText} />
                     : <NoPosts>
                         <span className='colored'>{noPostsText}</span>
                     </NoPosts>}

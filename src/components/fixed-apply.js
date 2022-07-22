@@ -1,8 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../style"
+import { datalayerPush } from "../helpers/datalayer"
 
-export default function FixedApply({ data: { jobSallary, jobTitle, linkToApply, applyButtonText } }) {
+export default function FixedApply({ data: { jobSallary, jobTitle, linkToApply, applyButtonText }, analytics, location }) {
     return (
         <Wrapper>
             <LocContainer>
@@ -11,7 +12,7 @@ export default function FixedApply({ data: { jobSallary, jobTitle, linkToApply, 
                         <p className="line h4">{jobTitle}</p>
                         <p className="h3">{jobSallary}</p>
                     </div>
-                    <a className="button" href={linkToApply} rel='nofollow noopener' target='_blank'>{applyButtonText}</a>
+                    <a onClick={() => {datalayerPush(analytics.externalLink(applyButtonText, location, linkToApply))}}  className="button" href={linkToApply} rel='nofollow noopener' target='_blank'>{applyButtonText}</a>
                 </Content>
             </LocContainer>
         </Wrapper>

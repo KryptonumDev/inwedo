@@ -1,23 +1,33 @@
 import React from "react"
 import styled from "styled-components"
+import { datalayerPush } from "../../helpers/datalayer"
 
-export default function Filter({ title, filters, active, set }) {
+export default function Filter({ title, altFilters, filters, active, set, location, analytics }) {
 
     const setFilter = (filter) => {
+        let arr = []
         if (active.includes(filter)) {
             const index = active.findIndex(el => el === filter)
             active.splice(index, 1)
-            set([...active])
+            arr = [...active]
         } else {
-            set([...active, filter])
+            arr = [...active, filter]
         }
+
+        set(arr)
+        datalayerPush(analytics.filter(arr, altFilters, location))
+    }
+
+    const setAll = () => {
+        set([])
+        datalayerPush(analytics.filter([], altFilters, location))
     }
 
     return (
         <Wrapper>
             <p>{title}</p>
             <Flex>
-                <Item className={active.length ? '' : 'active'} onClick={() => { set([]) }}>
+                <Item className={active.length ? '' : 'active'} onClick={() => { setAll() }}>
                     All
                 </Item>
                 {filters.map(el => (

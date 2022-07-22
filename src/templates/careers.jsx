@@ -16,6 +16,7 @@ import OnBoarding from "../components/careers-onboarding"
 import FAQ from "../components/faq"
 import JoinUs from "../components/careers-join-us"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/careers'
 
 const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCategoryJob, allWpSeniority }, location }) => {
   let { careersHome, language, seo, scryptInjection } = allWpPage.nodes[0]
@@ -25,10 +26,10 @@ const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCatego
       {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Careers Homepage' />
       <Hero data={careersHome.heroCareers} />
-      <JoinUs data={careersHome.joinUs} offers={allWpJobOffer.nodes} categories={allWpCategoryJob.nodes} seniority={allWpSeniority.nodes} />
-      <ApointmentWithHr data={careersHome.appointmentWithHr} />
+      <JoinUs location={location.pathname} analytics={Analytics} data={careersHome.joinUs} offers={allWpJobOffer.nodes} categories={allWpCategoryJob.nodes} seniority={allWpSeniority.nodes} />
+      <ApointmentWithHr location={location.pathname} analytics={Analytics} data={careersHome.appointmentWithHr} />
       <HowWeWork data={careersHome.howWeWork} />
-      <CareersPaths data={careersHome.careerPaths} />
+      <CareersPaths analytics={Analytics} data={careersHome.careerPaths} />
       <OurCulture data={careersHome.ourCulture} />
       <OurValues data={careersHome.ourValuesCareers} />
       <CallToAction data={careersHome.callToActionCareers} />
@@ -36,7 +37,7 @@ const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCatego
       <Benefits data={careersHome.benefits} />
       <MeetUs data={careersHome.meetUs} />
       <RecruitmentProcess data={careersHome.recruitmentProcess} />
-      <ApointmentWithHr data={careersHome.appointmentWithHr} />
+      <ApointmentWithHr location={location.pathname} analytics={Analytics} data={careersHome.appointmentWithHr} />
       <OnBoarding data={careersHome.onboarding} />
       <CallToAction data={careersHome.callToActionCareersSecond} />
       {careersHome.faqCareers.map(el => (
@@ -64,6 +65,8 @@ query CareersPageQuery($id: String!, $templateName: String!) {
     }
     allWpJobOffer {
       nodes {
+        date(formatString: "DDMMYYYY")
+        guid
         language{
           slug
         }

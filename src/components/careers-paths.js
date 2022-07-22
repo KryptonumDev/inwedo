@@ -1,10 +1,15 @@
 import { Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
+import { datalayerPush } from "../helpers/datalayer"
 import { Container } from "../style"
 
-export default function CareersPaths({ data: { sectionTitle, seoTitle, boldText, plainText, paths } }) {
+export default function CareersPaths({ data: { sectionTitle, seoTitle, boldText, plainText, paths }, analytics }) {
+
+    useEffect(() => {
+        datalayerPush(analytics.careersPath(paths))
+    }, [])
+
     return (
         <Wrapper>
             <Container>

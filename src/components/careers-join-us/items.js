@@ -2,13 +2,14 @@ import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import { urlSystem } from "../../contstants/urlSystem"
+import { datalayerPush } from "../../helpers/datalayer"
 
-export default function Items({ data, showOfferText, applyOfferText }) {
+export default function Items({ data, showOfferText, applyOfferText, analytics }) {
     return (
         <Wrapper>
             {data.map(el => (
                 <Item >
-                    <Link className="wrap" to={urlSystem['Careers Homepage'][el.language.slug] + el.careersPost.currentPostUrl}>
+                    <Link onClick={() => { datalayerPush(analytics(el)) }} className="wrap" to={urlSystem['Careers Homepage'][el.language.slug] + el.careersPost.currentPostUrl}>
                         <div className="names">
                             <h3>{el.careersPost.jobInformation.jobTitle}</h3>
                             <p>{el.careersPost.jobInformation.jobSallary}</p>

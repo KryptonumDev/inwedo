@@ -86,7 +86,7 @@ export default function Header({ location }) {
             <Container>
                 <Content>
                     <a className="no-focus" href="#main" aria-label='skip link to main content' />
-                    <Link onClick={() => { setIsOpen(false); datalayerPush(Analytics.mainLinks(-1, 'logo')) }} onFocus={() => { setIsHovered(false) }} aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
+                    <Link onClick={() => { setIsOpen(false); datalayerPush(Analytics.mainLinks(-1, 'logo', location.pathname)) }} onFocus={() => { setIsHovered(false) }} aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
                         <img className="logo" src={siteLogo.localFile.publicURL} alt={siteLogo.altText} />
                     </Link>
                     <MobileButton aria-label='mobile menu burger' isOpen={isOpen} onClick={() => { setIsOpen(!isOpen); setOpenedTab(false) }}>
@@ -99,6 +99,7 @@ export default function Header({ location }) {
                         isOpen={isOpen}
                         setIsOpen={setIsOpen}
                         contactLink={contactLink}
+                        location={location.pathname}
                     />
                     <Mobile
                         backToMainMenu={backToMainMenu}
@@ -109,6 +110,7 @@ export default function Header({ location }) {
                         contactLink={contactLink}
                         openedTab={openedTab}
                         setOpenedTab={setOpenedTab}
+                        location={location.pathname}
                     />
                 </Content>
             </Container>

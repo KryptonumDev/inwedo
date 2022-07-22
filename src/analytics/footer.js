@@ -2,10 +2,10 @@ export default {
     mainLinks: (position, name) => {
         return {
             'event': 'menu_click',
-            'section': 'footer',
+            'section': 'homepage', // TODO
             'pageURL': '/',
             'buttonName': name,
-            'location': 'menu',
+            'location': 'footer',
             'position': position + 1
         }
     },
@@ -21,14 +21,14 @@ export default {
         return {
             'event': 'SM_click',
             'buttonName': name,
-            'type': 'Let’s stay in touch!',
+            'type': 'footer',
             'pageURL': url ? url : '/',
         }
     },
     contactLinks: (name, url) => {
         return {
             'event': 'contact',
-            'action': 'phone',
+            'action': 'telefon',
             'buttonName': name,
             'pageURL': url ? url : '/',
             'location': 'footer'

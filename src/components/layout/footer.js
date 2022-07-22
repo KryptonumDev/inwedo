@@ -74,7 +74,7 @@ export default function Footer({ location, setIsAllreadyApplied }) {
                         <div className="additional">
                             {additionalInform.map(el => {
                                 if (el.link) {
-                                    return <a onClick={() => { Analytics.contactLinks(el.row, location.pathname) }} href={el.link}>{el.row}</a>
+                                    return <a onClick={() => { datalayerPush(Analytics.contactLinks(el.row, location.pathname)) }} href={el.link}>{el.row}</a>
                                 }
                                 return <p >{el.row}</p>
 

@@ -87,6 +87,10 @@ const GlassCard = styled.div`
         width: fit-content;
         height: fit-content;
 
+        img{
+            max-height: 48px;
+            width: fit-content;
+        }
     }
 
     .h1{

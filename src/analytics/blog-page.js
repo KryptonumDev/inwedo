@@ -21,7 +21,7 @@ export default {
         return {
             'event': 'ViewProduct',
             'ecommerce': {
-                'click': {
+                'detail': {
                     'actionField': {
                         'list': 'Blog'
                     },
@@ -39,7 +39,6 @@ export default {
                 }
             },
         }
-
     },
     productClick: (item, index) => {
         let category = ''

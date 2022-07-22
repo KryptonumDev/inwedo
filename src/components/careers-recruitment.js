@@ -1,10 +1,10 @@
-import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../style"
 import Video from './../images/hr.mp4'
+import { datalayerPush } from "../helpers/datalayer"
 
-export default function RecruitmentProcess({ data: { sectionTitle, seoTitle, boldText, plainText, pathImage, applyButton } }) {
+export default function RecruitmentProcess({ data: { sectionTitle, seoTitle, boldText, plainText, pathImage, applyButton }, analytics, location }) {
     return (
         <Wrapper>
             <Container>
@@ -25,7 +25,7 @@ export default function RecruitmentProcess({ data: { sectionTitle, seoTitle, bol
                 <Image className="tablet" src={pathImage.tablet.localFile.publicURL} alt={pathImage.tablet.altText} />
                 <Image className="mobile" src={pathImage.phone.localFile.publicURL} alt={pathImage.phone.altText} />
                 {applyButton?.name
-                    ? <a className="button" href={applyButton.url}>{applyButton.name}</a>
+                    ? <a onClick={() => {datalayerPush(analytics.externalLink(applyButton.name, location, applyButton.url))}} className="button" rel='nofollow noopener' target='_blank' href={applyButton.url}>{applyButton.name}</a>
                     : null}
             </Container>
         </Wrapper>

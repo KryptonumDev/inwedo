@@ -4,7 +4,7 @@ export default {
             "event": "contact",
             "section": "homepage",
             "pageURL":  url ? url : '/',
-            "buttonName": "Contact us",
+            "buttonName": "Book a consultation",
             "location": "top of the page"
         }
     },
@@ -72,7 +72,7 @@ export default {
                 'pageURL': url ? url : '/',
                 'buttonName': 'Read case study',
                 'location': 'middle of the page',
-                'type': 'post',
+                'type': 'case study',
                 'name': name,
                 'position': '1'
             }
@@ -84,7 +84,7 @@ export default {
                 'pageURL': url ? url : '/',
                 'buttonName': 'Read case study',
                 'location': 'middle of the page',
-                'type': 'post',
+                'type': 'case study',
                 'name': name,
                 'position': '2'
             }
@@ -96,7 +96,7 @@ export default {
                 'pageURL': url ? url : '/',
                 'buttonName': 'Read case study',
                 'location': 'middle of the page',
-                'type': 'post',
+                'type': 'case study',
                 'name': name,
                 'position': '3'
             }

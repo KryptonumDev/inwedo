@@ -21,7 +21,6 @@ export default function Hero({ data: { pageTitle, text, topImage, button }, loca
             <div className="content">
                 <PageTitle>{title}</PageTitle>
                 <Text>{text}</Text>
-                <a href={apply.linkToApply} className="button">{apply.applyButtonText}</a>
             </div>
         </Wrapper>
     )
