@@ -45,13 +45,17 @@ export default {
         }
     },
     successStories: (name, position, url) => {
+        let type = 'case studies'
+        if (url.includes('/blog/')) {
+            type = 'post'
+        }
         return {
             'event': 'learn_more',
             "section": "Services | Agile Teams",
             "pageURL": url ? url : '/',
             'buttonName': 'Read more',
             'location': 'middle of the page',
-            'type': 'post',
+            'type': type,
             'name': name,
             'position': position+1
         }
