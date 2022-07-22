@@ -22,7 +22,7 @@ export default {
     contact: (url) => {
         return {
             'event': 'contact',
-            'section': 'homepage', // TODO
+            'section': 'header',
             'pageURL': url ? url : '/',
             'buttonName': 'Contact us',
             'location': 'Menu'

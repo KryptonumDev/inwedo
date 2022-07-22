@@ -1,9 +1,9 @@
 export default {
-    mainLinks: (position, name) => {
+    mainLinks: (position, name, url) => {
         return {
             'event': 'menu_click',
-            'section': 'homepage', // TODO
-            'pageURL': '/',
+            'section': 'footer',
+            'pageURL': url ? url : '/',
             'buttonName': name,
             'location': 'footer',
             'position': position + 1
