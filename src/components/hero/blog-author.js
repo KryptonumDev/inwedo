@@ -11,7 +11,7 @@ export default function Hero({ data: { author: { userPosition, userName, userBig
                 <Content>
                     <TextPart>
                         <h1 className="h1">{userName}</h1>
-                        <h2 className="h4">{userPosition}</h2>
+                        <p className="h4">{userPosition}</p>
                         <div className="p" dangerouslySetInnerHTML={{ __html: description }}></div>
                     </TextPart>
                     {userBigImage
@@ -81,6 +81,16 @@ const TextPart = styled.div`
 
     .p{
         font-size: clamp(14px, 2.08vw, 16px);
+        font-weight: 300;
+
+        h1,h2,h3,h4,h5,h6{
+            font-size: clamp(16px, ${18 / 768 * 100}vw, 20px);
+            font-weight: 400;
+        }
+
+        * + *{
+            margin-top: 12px;
+        }
     }
 
     a{

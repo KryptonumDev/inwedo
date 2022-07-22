@@ -9,6 +9,8 @@ import { activeLanguage } from './../../helpers/activeLanguage'
 import Desctop from "./main-layouts/desctop"
 import Mobile from "./main-layouts/mobile"
 import scrollLock from './../../helpers/scrollLock'
+import Analytics from './../../analytics/header'
+import { datalayerPush } from "../../helpers/datalayer"
 
 export default function Header({ location }) {
 
@@ -89,7 +91,7 @@ export default function Header({ location }) {
             <Container>
                 <Content isScrolled={offset} isOpen={isOpen} isHovered={isHovered}>
                     <a className="no-focus" href="#main" aria-label='skip link to main content' />
-                    <Link aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
+                    <Link onClick={() => { datalayerPush(Analytics.mainLinks(-1, 'logo'))}} aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
                         <img className="logo" src={siteLogo.localFile.publicURL} alt={siteLogo.altText} />
                     </Link>
                     <MobileButton isScrolled={offset} aria-label='mobile menu burger' isOpen={isOpen} onClick={() => { setIsOpen(!isOpen) }}>

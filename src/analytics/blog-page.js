@@ -13,7 +13,7 @@ export default {
         item.categories.nodes.forEach((el, index) => {
             if (index > 0) {
                 category += (' | ' + el.name.substr(3))
-            } else { 
+            } else {
                 category += el.name.substr(3)
             }
         })
@@ -46,7 +46,7 @@ export default {
         item.categories.nodes.forEach((el, index) => {
             if (index > 0) {
                 category += (' | ' + el.name.substr(3))
-            } else { 
+            } else {
                 category += el.name.substr(3)
             }
         })
@@ -106,4 +106,90 @@ export default {
             }
         }
     },
+    scrollStart: (item) => {
+        let category = ''
+        item.categories.nodes.forEach((el, index) => {
+            if (index > 0) {
+                category += (' | ' + el.name.substr(3))
+            } else {
+                category += el.name.substr(3)
+            }
+        })
+        return {
+            'event': 'addToCart',
+            'ecommerce': {
+                'currencyCode': 'PLN',
+                'add': {
+                    'products': [{
+                        'category': category ? category : 'none',
+                        'name': item.blogPost.previewCard.previewTitle,
+                        'price': 'none', 
+                        'id': item.guid,
+                        'variant': 'post',
+                        'brand ': 'inwedo.com',
+                        'position': 2
+                    }]
+                }
+            }
+        }
+    },
+    scroll: (item, step) => {
+        let category = ''
+        item.categories.nodes.forEach((el, index) => {
+            if (index > 0) {
+                category += (' | ' + el.name.substr(3))
+            } else {
+                category += el.name.substr(3)
+            }
+        })
+        return {
+            'event': 'checkout',
+            'ecommerce': {
+                'checkout': {
+                    'actionField': { 'step': step, },
+                    'products': [{
+                        'category': category ? category : 'none',
+                        'name': item.blogPost.previewCard.previewTitle,
+                        'price': 'none',
+                        'id': item.guid,
+                        'variant': 'post',
+                        'brand ': 'inwedo.com',
+                        'position': 1
+                    }]
+                }
+            }
+        }
+    },
+    scrollEnd: (item) => {
+        let category = ''
+        item.categories.nodes.forEach((el, index) => {
+            if (index > 0) {
+                category += (' | ' + el.name.substr(3))
+            } else {
+                category += el.name.substr(3)
+            }
+        })
+        return {
+            'event': 'transactionComplete',
+            'ecommerce': {
+                'purchase': {
+                    'actionField': {
+                        'id': item.guid + '-' + item.formatedDate,
+                        'revenue': 'none',
+                        'tax': '0',
+                        'shipping': '0'
+                    },
+                    'products': [{
+                        'category': category ? category : 'none',
+                        'name': item.blogPost.previewCard.previewTitle,
+                        'price': 'none',
+                        'id': item.guid,
+                        'variant': 'post',
+                        'brand ': 'inwedo.com',
+                        'quantity': 1
+                    }]
+                }
+            }
+        }
+    }
 }

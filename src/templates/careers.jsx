@@ -148,6 +148,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                         hrAvatar{
                             altText
                             localFile {
+                              publicURL
                               childImageSharp {
                                 gatsbyImageData(placeholder: BLURRED, quality: 95)
                               }

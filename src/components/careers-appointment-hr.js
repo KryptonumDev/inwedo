@@ -12,7 +12,7 @@ export default function ApointmentWithHr({ data: { sectionTitle, hrCard } }) {
                     {hrCard.map(el => (
                         <Item>
                             <div className="flex">
-                                <GatsbyImage className="image" image={el.hrAvatar.localFile.childImageSharp.gatsbyImageData} alt={el.hrAvatar.altText} />
+                                <img className="image" src={el.hrAvatar.localFile.publicURL} alt={el.hrAvatar.altText} />
                                 <div>
                                     <p className="name">{el.hrName}</p>
                                     <p className="position">{el.hrPosition}</p>
@@ -121,6 +121,7 @@ const Item = styled.div`
     .image{
         width: clamp(92px, ${100/768*100}vw, 108px);
         height: clamp(92px, ${100/768*100}vw, 108px);
+            border-radius: 50%;
         position: relative;
 
         &::before {
@@ -132,9 +133,6 @@ const Item = styled.div`
             display: block;
             content: '';
             clear: both;
-        }
-        img{
-            border-radius: 50%;
         }
     }
 

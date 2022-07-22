@@ -8,6 +8,8 @@ import { activeLanguage } from './../../helpers/activeLanguage'
 import Desctop from "./sub-layouts/desctop"
 import Mobile from "./sub-layouts/mobile"
 import scrollLock from './../../helpers/scrollLock'
+import Analytics from './../../analytics/header'
+import { datalayerPush } from "../../helpers/datalayer"
 
 export default function Header({ location }) {
 
@@ -84,7 +86,7 @@ export default function Header({ location }) {
             <Container>
                 <Content>
                     <a className="no-focus" href="#main" aria-label='skip link to main content' />
-                    <Link onClick={() => { setIsOpen(false) }} onFocus={() => { setIsHovered(false) }} aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
+                    <Link onClick={() => { setIsOpen(false); datalayerPush(Analytics.mainLinks(-1, 'logo')) }} onFocus={() => { setIsHovered(false) }} aria-label='homepage link' to={urlSystem['Homepage'][localeData[0].language.slug]}>
                         <img className="logo" src={siteLogo.localFile.publicURL} alt={siteLogo.altText} />
                     </Link>
                     <MobileButton aria-label='mobile menu burger' isOpen={isOpen} onClick={() => { setIsOpen(!isOpen); setOpenedTab(false) }}>

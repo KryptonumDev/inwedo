@@ -9,12 +9,29 @@ export default {
             'position': position + 1
         }
     },
-    socialMedia: (buttonName, url, extenalUrl) => {
+    externalLink: (buttonName, url, extenalUrl) => {
         return {
             'event': 'Links_external',
             'buttonName': buttonName,
-            'pageURL': url,
+            'pageURL': url ? url : '/',
             'externalURL': extenalUrl
+        }
+    },
+    socialMedia: (name, url) => {
+        return {
+            'event': 'SM_click',
+            'buttonName': name,
+            'type': 'Let’s stay in touch!',
+            'pageURL': url ? url : '/',
+        }
+    },
+    contactLinks: (name, url) => {
+        return {
+            'event': 'contact',
+            'action': 'phone',
+            'buttonName': name,
+            'pageURL': url ? url : '/',
+            'location': 'footer'
         }
     }
 }

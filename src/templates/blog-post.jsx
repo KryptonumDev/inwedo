@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import { graphql } from "gatsby"
 import BlogPostContent from "../components/blog-post-content"
 import Hero from "../components/hero/blog-post"
@@ -7,19 +7,61 @@ import Seo from "../components/seo"
 import parse from 'html-react-parser'
 import Analytics from './../analytics/blog-page'
 import { datalayerPush } from "../helpers/datalayer"
+import { getScrollPercent } from '../helpers/scrollPercentage'
 
 export default function BlogPost({ data: { allWpPost, otherPosts, alternates }, location }) {
   let { blogPost, categories, date, authors, language, seo, scryptInjection } = allWpPost.nodes[0]
   let script = parse(scryptInjection.code ? scryptInjection.code : '')
 
+  const startScrol = useRef(false)
+  const firstScroll = useRef(false)
+  const secondScroll = useRef(false)
+  const thirdScroll = useRef(false)
+  const minutScroll = useRef(false)
+
+  const handleScroll = () => {
+    let percentage = getScrollPercent()
+    if (percentage > 0 && !startScrol.current) {
+      startScrol.current = true
+      datalayerPush(Analytics.scrollStart(allWpPost.nodes[0]))
+    }
+    if (percentage >= 33 && !firstScroll.current) {
+      firstScroll.current = true
+      datalayerPush(Analytics.scroll(allWpPost.nodes[0], 1))
+    }
+    if (percentage >= 66 && !secondScroll.current) {
+      secondScroll.current = true
+      datalayerPush(Analytics.scroll(allWpPost.nodes[0], 2))
+    }
+    if (percentage >= 99 && !thirdScroll.current) {
+      thirdScroll.current = true
+      datalayerPush(Analytics.scroll(allWpPost.nodes[0], 3))
+      if (minutScroll) {
+        datalayerPush(Analytics.scrollEnd(allWpPost.nodes[0]))
+      }
+    }
+  };
+
   React.useEffect(() => {
     datalayerPush(Analytics.productView(allWpPost.nodes[0]))
+    window.addEventListener("scroll", handleScroll);
+
+    setTimeout(() => {
+      minutScroll.current = true
+      if (thirdScroll.current) {
+        datalayerPush(Analytics.scrollEnd(allWpPost.nodes[0]))
+      }
+    }, 60000)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [])
 
   return (
     <main id='main'>
-    {script}
-      <Seo preview={blogPost.previewCard} author={authors.nodes[0]?.author} data={seo} lang={language.slug} alternates={alternates} location={location} type='post' template='Blog Archive' currTemplate={blogPost.previewCard.previewTitle} ogImg={blogPost.previewCard.previewImage.localFile.publicURL}/>
+      {script}
+      <Seo preview={blogPost.previewCard} author={authors.nodes[0]?.author} data={seo} lang={language.slug} alternates={alternates} location={location} type='post' template='Blog Archive' currTemplate={blogPost.previewCard.previewTitle} ogImg={blogPost.previewCard.previewImage.localFile.publicURL} />
       <Hero data={blogPost.heroPost} categories={categories} date={date} authors={authors} />
       <BlogPostContent location={location.pathname} analytics={Analytics.cta} data={blogPost.content} quickTitle={blogPost.quickNavigation.sectionTitle} />
       <BlogAuthorPosts analytics={Analytics} data={otherPosts.nodes} title={blogPost.otherPosts.sectionTitle} />
@@ -237,6 +279,7 @@ query BlogPostQuery($id: String!) {
               }
             }
             date(formatString: "MMMM DD YYYY")
+            formatedDate : date(formatString: "DDMMYYYY")
             authors {
               nodes {
                 language{

@@ -7,6 +7,7 @@ import { Container } from "../../style"
 import { activeLanguage } from './../../helpers/activeLanguage'
 import Analytics from './../../analytics/footer'
 import { datalayerPush } from '../../helpers/datalayer'
+import scrollLock from "../../helpers/scrollLock"
 
 export default function Footer({ location, setIsAllreadyApplied }) {
 
@@ -65,7 +66,7 @@ export default function Footer({ location, setIsAllreadyApplied }) {
     return (
         <Wrapper>
             <Container>
-                <Link aria-label="link to homepage" to={urlSystem['Homepage'][localeData[0].language.slug]}>
+                <Link onClick={() => { datalayerPush(Analytics.mainLinks(-1, 'logo')) }} aria-label="link to homepage" to={urlSystem['Homepage'][localeData[0].language.slug]}>
                     <img className="logo" src={siteLogo.localFile.publicURL} alt={siteLogo.altText} />
                 </Link>
                 <Content>
@@ -73,7 +74,7 @@ export default function Footer({ location, setIsAllreadyApplied }) {
                         <div className="additional">
                             {additionalInform.map(el => {
                                 if (el.link) {
-                                    return <a href={el.link}>{el.row}</a>
+                                    return <a onClick={() => { Analytics.contactLinks(el.row, location.pathname) }} href={el.link}>{el.row}</a>
                                 }
                                 return <p >{el.row}</p>
 
@@ -81,7 +82,7 @@ export default function Footer({ location, setIsAllreadyApplied }) {
                         </div>
                         <Social>
                             {socialLinks.map(el => (
-                                <a onClick={() => { datalayerPush(Analytics.socialMedia(el.ariaLabel, location.pathname, el.link)) }} rel="me" target='_blank' href={el.link} aria-label={el.ariaLabel}>
+                                <a onClick={() => { datalayerPush(Analytics.socialMedia(el.ariaLabel, el.link)) }} rel="me" target='_blank' href={el.link} aria-label={el.ariaLabel}>
                                     <img className="social" src={el.icon.localFile.publicURL} alt={el.icon.altText} />
                                 </a>
                             ))}
@@ -104,7 +105,7 @@ export default function Footer({ location, setIsAllreadyApplied }) {
                         {copyright.additionalLinks.map((el, index) => (
                             <li><Link onClick={() => { datalayerPush(Analytics.mainLinks(index, el.name)) }} activeClassName="active" to={el.url}>{el.name}</Link></li>
                         ))}
-                        <li><button onClick={() => {setIsAllreadyApplied(false)}}>{copyright.cookieText}</button></li>
+                        <li><button onClick={() => { setIsAllreadyApplied(false); scrollLock.enable() }}>{copyright.cookieText}</button></li>
                     </ul>
                 </Copyright>
             </Container>

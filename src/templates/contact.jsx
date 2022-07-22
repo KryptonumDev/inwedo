@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Content from "../components/contact-content"
 import Seo from "../components/seo"
 import parse from 'html-react-parser'
+import Analytics from './../analytics/contact'
 
 const ContactPage = ({ data: { allWpPage, alternates }, location }) => {
   let { contactPage, language, seo, scryptInjection } = allWpPage.nodes[0]
@@ -11,7 +12,7 @@ const ContactPage = ({ data: { allWpPage, alternates }, location }) => {
     <main id='main'>
     {script}
       <Seo data={seo} lang={language.slug} alternates={alternates} location={location} type='Contact' />
-      <Content data={contactPage} lang={language.slug}/>
+      <Content analytics={Analytics} data={contactPage} lang={language.slug} location={location.pathname}/>
     </main>
   )
 }
@@ -105,6 +106,7 @@ query CPageQuery($id: String!, $templateName: String!) {
                 personAvatar {
                   altText
                   localFile {
+                    publicURL
                     childImageSharp {
                       gatsbyImageData(placeholder: BLURRED, quality: 95)
                     }

@@ -5,6 +5,7 @@ import { activeLanguage } from "../../helpers/activeLanguage"
 import Arrow from './../../images/cookie-arrow.png'
 import { getCookie, setCookie } from './../../helpers/cookie-manager'
 import { datalayerArguments } from "../../helpers/datalayer"
+import scrollLock from './../../helpers/scrollLock'
 
 export default function CokieBanner({ location, setIsAllreadyApplied, isAlreadyApplied }) {
 
@@ -104,10 +105,12 @@ export default function CokieBanner({ location, setIsAllreadyApplied, isAlreadyA
         }
         if (getCookie('statistics')) {
         }
+        scrollLock.disable()
         setIsAllreadyApplied(true)
     }
 
     const rejectCookie = () => {
+        scrollLock.disable()
         setIsAllreadyApplied(true)
         datalayerArguments('consent', 'update', {
             'ad_storage': "denied",
@@ -116,6 +119,9 @@ export default function CokieBanner({ location, setIsAllreadyApplied, isAlreadyA
             'personalization_storage': "denied",
             'security_storage': "granted",
         });
+        activeCookie.forEach(el => {
+            setCookie(el.name, 'denied', 365)
+        })
     }
 
     useEffect(() => {
@@ -131,6 +137,7 @@ export default function CokieBanner({ location, setIsAllreadyApplied, isAlreadyA
                 });
                 datalayerArguments("set", "ads_data_redaction", true);
 
+                scrollLock.disable()
                 return true
             }
 
@@ -144,6 +151,7 @@ export default function CokieBanner({ location, setIsAllreadyApplied, isAlreadyA
             });
             datalayerArguments("set", "ads_data_redaction", true);
 
+            scrollLock.enable()
             return false
         })
     }, [])

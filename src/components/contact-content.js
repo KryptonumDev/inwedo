@@ -1,10 +1,10 @@
-import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { datalayerPush } from "../helpers/datalayer"
 import { Container } from "../style"
 import ContactForm from "./forms/contact-page"
 
-export default function Content({ data: { textUnderTitle, pageTitle, form, contactPerson, map }, lang }) {
+export default function Content({ data: { textUnderTitle, pageTitle, form, contactPerson, map }, lang, analytics, location }) {
     return (
         <Wrapper>
             <Container>
@@ -27,12 +27,12 @@ export default function Content({ data: { textUnderTitle, pageTitle, form, conta
                         <Person>
                             <p className="h3">{contactPerson.sectionTitle}</p>
                             <div className="content">
-                                <GatsbyImage className="image" image={contactPerson.personAvatar.localFile.childImageSharp.gatsbyImageData} alt={contactPerson.personAvatar.altText} />
+                                <img className="image" src={contactPerson.personAvatar.localFile.publicURL} alt={contactPerson.personAvatar.altText} />
                                 <div>
                                     <p className="h4">{contactPerson.personName}</p>
                                     <p className="p">{contactPerson.personPosition}</p>
-                                    <a className="p link" href={'mailto:' + contactPerson.personEmail}>{contactPerson.personEmail}</a>
-                                    <a className="p link" href={'tel:' + contactPerson.personPhone}>{contactPerson.personPhone}</a>
+                                    <a className="p link" onClick={() => {datalayerPush(analytics.contactLinks(contactPerson.personEmail, location, 'email'))}} href={'mailto:' + contactPerson.personEmail}>{contactPerson.personEmail}</a>
+                                    <a className="p link" onClick={() => {datalayerPush(analytics.contactLinks(contactPerson.personPhone, location, 'phone'))}} href={'tel:' + contactPerson.personPhone}>{contactPerson.personPhone}</a>
                                 </div>
                             </div>
                         </Person>
@@ -101,10 +101,9 @@ const Person = styled.div`
         .image{
             width: fit-content;
             height: fit-content;
-
-            img{
-                border-radius: 50%;
-            }
+            border-radius: 50%;
+            width: clamp(92px, ${100/768*100}vw, 108px);
+            height: clamp(92px, ${100/768*100}vw, 108px);
         }
 
         a{
