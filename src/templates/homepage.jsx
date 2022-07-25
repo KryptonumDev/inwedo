@@ -14,7 +14,6 @@ import Analytics from './../analytics/homepage'
 const IndexPage = ({ data: { allWpPage, alternates }, location }) => {
   let { homepage, language, seo, scryptInjection } = allWpPage.nodes[0]
   let script = parse(scryptInjection.code ? scryptInjection.code : '')
-  debugger
   return (
     <main id='main'>
       {script}
