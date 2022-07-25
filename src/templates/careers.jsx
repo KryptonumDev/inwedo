@@ -18,7 +18,7 @@ import JoinUs from "../components/careers-join-us"
 import parse from 'html-react-parser'
 import Analytics from './../analytics/careers'
 
-const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCategoryJob, allWpSeniority }, location }) => {
+const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCategoryJob, allWpSeniority, allWpCareerPath }, location }) => {
   let { careersHome, language, seo, scryptInjection } = allWpPage.nodes[0]
   let script = parse(scryptInjection.code ? scryptInjection.code : '')
   return (
@@ -29,7 +29,7 @@ const CareersPage = ({ data: { allWpPage, alternates, allWpJobOffer, allWpCatego
       <JoinUs location={location.pathname} analytics={Analytics} data={careersHome.joinUs} offers={allWpJobOffer.nodes} categories={allWpCategoryJob.nodes} seniority={allWpSeniority.nodes} />
       <ApointmentWithHr location={location.pathname} analytics={Analytics} data={careersHome.appointmentWithHr} />
       <HowWeWork data={careersHome.howWeWork} />
-      <CareersPaths analytics={Analytics} data={careersHome.careerPaths} />
+      <CareersPaths analytics={Analytics} data={careersHome.careerPaths} items={allWpCareerPath.nodes}/>
       <OurCulture data={careersHome.ourCulture} />
       <OurValues data={careersHome.ourValuesCareers} />
       <CallToAction data={careersHome.callToActionCareers} />
@@ -51,6 +51,26 @@ export default CareersPage
 
 export const query = graphql`
 query CareersPageQuery($id: String!, $templateName: String!) {
+  allWpCareerPath {
+    nodes{
+      language{
+        slug
+      }
+      path : careerth_path{
+        currentPostUrl
+        previewInformation{
+          icon{
+            altText
+            localFile{
+              publicURL
+            }
+          }
+          title
+          linkText
+        }
+      }
+    }
+  }
     allWpCategoryJob {
       nodes {
         slug
@@ -209,19 +229,6 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                   seoTitle
                   boldText
                   plainText
-                  paths{
-                    title
-                    link{
-                      name
-                      url
-                    }
-                    icon{
-                      altText
-                      localFile{
-                        publicURL
-                      }
-                    }
-                  }
                 }
                 ourCulture{
                   sectionTitle

@@ -1,5 +1,4 @@
 import { Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useEffect } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
@@ -9,7 +8,7 @@ export default function TechStack({ data: { sectionTitle, technologies }, analyt
 
     useEffect(() => {
         if (technologies[0]?.technologieUrl) {
-            datalayerPush(analytics(technologies))
+            datalayerPush(analytics.inView(technologies))
         }
     }, [])
 
@@ -18,17 +17,17 @@ export default function TechStack({ data: { sectionTitle, technologies }, analyt
             <Container>
                 <h2 className="h3">{sectionTitle}</h2>
                 <TechnologiesGrid>
-                    {technologies.map(el => (
-                        <>
+                    {technologies.map((el,index) => (
+                        <React.Fragment key={el.techologieIcon.altText}>
                             {el.technologieUrl
-                                ? <TechnologiesLink to={el.technologieUrl} aria-label='link to technology page'>
+                                ? <TechnologiesLink onClick={() => {datalayerPush(analytics.onClick(el, index))}} to={el.technologieUrl} aria-label='link to technology page'>
                                     <img className="image" src={el.techologieIcon.localFile.publicURL} alt={el.techologieIcon.altText} />
                                 </TechnologiesLink>
                                 : <TechnologiesItem>
                                     <img className="image" src={el.techologieIcon.localFile.publicURL} alt={el.techologieIcon.altText} />
                                 </TechnologiesItem>
                             }
-                        </>
+                        </React.Fragment>
                     ))}
                 </TechnologiesGrid>
             </Container>

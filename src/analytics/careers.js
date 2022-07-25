@@ -1,3 +1,5 @@
+import { urlSystem } from "../contstants/urlSystem";
+
 export default {
     filter: (categoryFilters, seniorityFilters, url) => {
         let categories = ''
@@ -139,13 +141,13 @@ export default {
         items.map((el, index) => {
             listItems.push({
                 'list': 'Careers pathes',
-                'name': el.title,
+                'name': el.path.previewInformation.title,
                 'brand ': 'inwedo.com',
                 'position': index + 1,
-                'category': el.title,
+                'category': el.path.previewInformation.title,
                 'variant': 'page-site',
                 'price': 'none',
-                'id': el.link.url,
+                'id': urlSystem['Careers Path'][el.language.slug],
                 'dimension1': 'inwedo',
                 'dimension2': '18072022'
             })

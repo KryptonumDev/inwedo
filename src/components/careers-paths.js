@@ -1,15 +1,16 @@
 import { Link } from "gatsby"
 import React, { useEffect } from "react"
 import styled from "styled-components"
+import { urlSystem } from "../contstants/urlSystem"
 import { datalayerPush } from "../helpers/datalayer"
 import { Container } from "../style"
 
-export default function CareersPaths({ data: { sectionTitle, seoTitle, boldText, plainText, paths }, analytics }) {
+export default function CareersPaths({ data: { sectionTitle, seoTitle, boldText, plainText, paths }, analytics, items }) {
 
     useEffect(() => {
-        datalayerPush(analytics.careersPath(paths))
+        datalayerPush(analytics.careersPath(items))
     }, [])
-
+    
     return (
         <Wrapper>
             <Container>
@@ -21,14 +22,14 @@ export default function CareersPaths({ data: { sectionTitle, seoTitle, boldText,
                         <div className="p" dangerouslySetInnerHTML={{ __html: plainText }}></div>
                     </div>
                     <div className="grid">
-                        {paths.map(el => (
-                            <Link className="item" to={el.link.url}>
+                        {items.map(el => (
+                            <Link className="item" to={urlSystem['Careers Path'][el.language.slug]}>
                                 <div className="icon-wrapper">
-                                    <img className="icon" src={el.icon.localFile.publicURL} alt={el.icon.altText} />
+                                    <img className="icon" src={el.path.previewInformation.icon.localFile.publicURL} alt={el.path.previewInformation.icon.altText} />
                                 </div>
                                 <div>
-                                    <h4 className="h4">{el.title}</h4>
-                                    <p className="link">{el.link.name}</p>
+                                    <h4 className="h4">{el.path.previewInformation.title}</h4>
+                                    <p className="link">{el.path.previewInformation.linkText}</p>
                                 </div>
                             </Link>
                         ))}

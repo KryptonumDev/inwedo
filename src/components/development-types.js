@@ -7,7 +7,7 @@ import { datalayerPush } from './../helpers/datalayer'
 export default function DevelopmentTypes({ data: { sectionTitle, text, types }, analytics }) {
 
     useEffect(() => {
-        datalayerPush(analytics(types))
+        datalayerPush(analytics.inView(types))
     }, [])
 
     return (
@@ -16,8 +16,8 @@ export default function DevelopmentTypes({ data: { sectionTitle, text, types }, 
                 <h2 className="h4 line">{sectionTitle}</h2>
                 <p className="h3">{text}</p>
                 <TypesGrid>
-                    {types.map(el => (
-                        <TypesItem to={el.button.url}>
+                    {types.map((el, index) => (
+                        <TypesItem onClick={() => { datalayerPush(analytics.onClick(el, index)) }} key={el.typeTitle} to={el.button.url}>
                             <Image>
                                 <img className="image" src={el.typeIcon.localFile.publicURL} alt={el.typeIcon.altText} />
                             </Image>

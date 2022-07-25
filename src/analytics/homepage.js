@@ -1,3 +1,5 @@
+import { urlsMapping } from './../contstants/urlMapping'
+
 export default {
     hero: (url) => {
         return {
@@ -18,7 +20,7 @@ export default {
                 'position': index + 1,
                 'category': el.title,
                 'variant': 'page-site',
-                'price': 'none',
+                'price': urlsMapping[el.button.url],
                 'id': el.button.url,
                 'dimension1': 'inwedo',
                 'dimension2': '18072022'
@@ -44,7 +46,7 @@ export default {
                     'products': [{
                         'category': item.title,
                         'name': item.title,
-                        'price': 'none',
+                        'price': urlsMapping[item.button.url],
                         'id': item.button.url,
                         'variant': 'page-site',
                         'brand ': 'inwedo.com',

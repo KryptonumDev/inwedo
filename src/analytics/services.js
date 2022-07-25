@@ -1,3 +1,5 @@
+import { urlsMapping } from "../contstants/urlMapping"
+
 export default {
     hero: (url) => {
         return {
@@ -19,7 +21,7 @@ export default {
                 'position': 1,
                 'category': twoColumn.title,
                 'variant': 'page-site',
-                'price': 'none',
+                'price': urlsMapping[twoColumn.button.url],
                 'id': twoColumn.button.url,
                 'dimension1': 'inwedo',
                 'dimension2': '18072022'
@@ -32,7 +34,7 @@ export default {
                     'position': index + 2,
                     'category': el.cardTitle,
                     'variant': 'page-site',
-                    'price': 'none',
+                    'price': urlsMapping[el.button.url],
                     'id': el.button.url,
                     'dimension1': 'inwedo',
                     'dimension2': '18072022'
@@ -58,7 +60,7 @@ export default {
                         'products': [{
                             'category': item.title,
                             'name': item.title,
-                            'price': 'none',
+                            'price': urlsMapping[item.button.url],
                             'id': item.button.url,
                             'variant': 'page-site',
                             'brand ': 'inwedo.com',
@@ -79,7 +81,7 @@ export default {
                         'products': [{
                             'category': item.cardTitle,
                             'name': item.cardTitle,
-                            'price': 'none',
+                            'price': urlsMapping[item.button.url],
                             'id': item.button.url,
                             'variant': 'page-site',
                             'brand ': 'inwedo.com',
@@ -139,7 +141,7 @@ export default {
                         'position': 1,
                         'category': twoColumn.title,
                         'variant': 'page-site',
-                        'price': 'none',
+                        'price': urlsMapping[twoColumn.button.url],
                         'id': twoColumn.button.url,
                         'dimension1': 'inwedo',
                         'dimension2': '18072022'
@@ -158,7 +160,7 @@ export default {
                         'products': [{
                             'category': item.title,
                             'name': item.title,
-                            'price': 'none',
+                            'price': urlsMapping[item.button.url],
                             'id': item.button.url,
                             'variant': 'page-site',
                             'brand ': 'inwedo.com',

@@ -7,7 +7,7 @@ import { datalayerPush } from './../helpers/datalayer'
 export default function RelatedServices({ data: { sectionTitle, services }, analytics }) {
 
     useEffect(() => {
-        datalayerPush(analytics(services))
+        datalayerPush(analytics.inView(services))
     }, [])
 
     return (
@@ -15,8 +15,8 @@ export default function RelatedServices({ data: { sectionTitle, services }, anal
             <Container>
                 <Title className="h2">{sectionTitle}</Title>
                 <Grid>
-                    {services.map(el => (
-                        <Item to={el.button.url}>
+                    {services.map((el, index) => (
+                        <Item key={el.servisTitle} onClick={() => { datalayerPush(analytics.onClick(el, index)) }} to={el.button.url}>
                             <ImageWrapper>
                                 <img className="image" src={el.servisIcon.localFile.publicURL} alt={el.servisIcon.altText} />
                             </ImageWrapper>

@@ -1,3 +1,5 @@
+import { urlsMapping } from './../contstants/urlMapping'
+
 export default {
     hero: (url) => {
         return {
@@ -8,28 +10,51 @@ export default {
             "location": "top of the page"
         }
     },
-    technologies: (items) => {
-        const listItems = []
-        items.map((el, index) => {
-            listItems.push({
-                'list': 'Services | Web App',
-                'name': el.cardTitle,
-                'brand ': 'inwedo.com',
-                'position': index + 1,
-                'category': el.cardTitle,
-                'variant': 'page-site',
-                'price': 'none',
-                'id': el.button.url,
-                'dimension1': 'inwedo',
-                'dimension2': '18072022'
+    technologies: {
+        inView: (items) => {
+            const listItems = []
+            items.map((el, index) => {
+                listItems.push({
+                    'list': 'Services | Web App',
+                    'name': el.cardTitle,
+                    'brand ': 'inwedo.com',
+                    'position': index + 1,
+                    'category': el.cardTitle,
+                    'variant': 'page-site',
+                    'price': urlsMapping[el.button.url],
+                    'id': el.button.url,
+                    'dimension1': 'inwedo',
+                    'dimension2': '18072022'
+                })
             })
-        })
-
-        return {
-            'event': 'listView',
-            'ecommerce': {
-                'currencyCode': 'PLN',
-                'impressions': listItems
+    
+            return {
+                'event': 'listView',
+                'ecommerce': {
+                    'currencyCode': 'PLN',
+                    'impressions': listItems
+                }
+            }
+        },
+        onClick: (item, index) => {
+            return {
+                'event': 'productClick',
+                'ecommerce': {
+                    'click': {
+                        'actionField': {
+                            'list': 'Services | Web App'
+                        },
+                        'products': [{
+                            'category': item.cardTitle,
+                            'name': item.cardTitle,
+                            'price': urlsMapping[item.button.url],
+                            'id': item.button.url,
+                            'variant': 'page-site',
+                            'brand ': 'inwedo.com',
+                            'position': index + 1
+                        }]
+                    }
+                }
             }
         }
     },
@@ -69,29 +94,52 @@ export default {
             'position': position + 1
         }
     },
-    developmentTypes: (items) => {
-        const listItems = []
-        items.map((el, index) => {
-            listItems.push({
-                'list': 'Services | Web App',
-                'name': el.typeTitle,
-                'brand ': 'inwedo.com',
-                'position': index + 1,
-                'category': el.typeTitle,
-                'variant': 'page-site',
-                'price': 'none',
-                'id': el.button.url,
-                'dimension1': 'inwedo',
-                'dimension2': '18072022'
+    developmentTypes: {
+        inView: (items) => {
+            const listItems = []
+            items.map((el, index) => {
+                listItems.push({
+                    'list': 'Services | Web App',
+                    'name': el.typeTitle,
+                    'brand ': 'inwedo.com',
+                    'position': index + 1,
+                    'category': el.typeTitle,
+                    'variant': 'page-site',
+                    'price': urlsMapping[el.button.url],
+                    'id': el.button.url,
+                    'dimension1': 'inwedo',
+                    'dimension2': '18072022'
+                })
             })
-        })
-
-        return {
-            'event': 'listView',
-            'ecommerce': {
-                'currencyCode': 'PLN',
-                'impressions': listItems
+    
+            return {
+                'event': 'listView',
+                'ecommerce': {
+                    'currencyCode': 'PLN',
+                    'impressions': listItems
+                }
+            }
+        },
+        onClick: (item, index) => {
+            return {
+                'event': 'productClick',
+                'ecommerce': {
+                    'click': {
+                        'actionField': {
+                            'list': 'Services | Web App'
+                        },
+                        'products': [{
+                            'category': item.typeTitle,
+                            'name': item.typeTitle,
+                            'price': urlsMapping[item.button.url],
+                            'id': item.button.url,
+                            'variant': 'page-site',
+                            'brand ': 'inwedo.com',
+                            'position': index + 1
+                        }]
+                    }
+                }
             }
         }
-    },
+    }
 }

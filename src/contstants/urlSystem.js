@@ -72,18 +72,6 @@ export const urlSystem = {
     'pl-name': 'Polityka Prywatności',
     'en-name': 'Privacy Policy'
   },
-  'Cookie Policy': {
-    pl: '/polityka-pliki-cookie/',
-    en: '/cookie-policy/',
-    'pl-name': 'Polityka Pliki Cookie',
-    'en-name': 'Cookie Policy'
-  },
-  'Terms And Conditions': {
-    pl: '/zasady-warunki/',
-    en: '/terms-and-conditions/',
-    'pl-name': 'Zasady Warunki',
-    'en-name': 'Terms And Conditions'
-  },
   "Careers Homepage": {
     pl: '/kariera/',
     en: '/careers/',
