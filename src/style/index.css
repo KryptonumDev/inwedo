@@ -49,7 +49,7 @@ button {
     color: var(--color-black);
     /* ios image stretch fix */
     align-items: flex-start; 
-    
+     
 }
 
 *:focus {
