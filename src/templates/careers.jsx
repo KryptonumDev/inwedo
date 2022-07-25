@@ -132,7 +132,7 @@ query CareersPageQuery($id: String!, $templateName: String!) {
                     altText
                     localFile {
                       childImageSharp {
-                        gatsbyImageData(placeholder: BLURRED, quality: 95)
+                        gatsbyImageData(placeholder: BLURRED, quality: 99)
                       }
                     }
                   }

@@ -20,7 +20,7 @@ export default function Pagination({ defaultUrl, currentPage, itemCount, changeC
         changeCurrentPage(page)
 
 
-        const href = document.getElementById("posts")
+        const href = document.getElementById("filter")
         const offsetTop = href.offsetTop
 
         setTimeout(() => {

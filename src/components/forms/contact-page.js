@@ -5,11 +5,12 @@ import Arrow from './../../images/select-arrow.svg'
 import axios from "axios"
 import Select from 'react-select'
 import { motion } from "framer-motion"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ContactForm({ data: { emailInput, interestedInput, messageInput, nameInput, phoneInput, privacyPolice, submit, privacyPolicyErrorText, newsletterAgreement, succesSubmitText, errorSubmitText }, lang }) {
 
     const { register, handleSubmit, reset, formState: { errors }, control } = useForm({ mode: 'onBlur' })
-    const [isSended, changeIsSended] = useState(null)
     const [sendedCount, changeSendedCount] = useState(0)
 
     const Submit = (data) => {
@@ -25,11 +26,27 @@ export default function ContactForm({ data: { emailInput, interestedInput, messa
             })
                 .then((res) => {
                     if (res.status === 200) {
-                        changeIsSended('success')
+                        toast.success(succesSubmitText, {
+                            position: "top-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        })
                         changeSendedCount(sendedCount + 1)
                         reset()
                     } else {
-                        changeIsSended('error')
+                        toast.error(errorSubmitText, {
+                            position: "top-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        })
                         changeSendedCount(sendedCount + 1)
                     }
                 })
@@ -44,9 +61,10 @@ export default function ContactForm({ data: { emailInput, interestedInput, messa
 
     return (
         <Wrapper arrow={Arrow} onSubmit={handleSubmit((data) => Submit(data))}>
+        <ToastContainer />
             <label>
                 <span>{nameInput.label}</span>
-                <input className={errors.name ? 'error' : null} {...register('name', { required: true, pattern: /^[a-z ,.'-]+$/i })} placeholder={nameInput.placeholder} />
+                <input onClick={() => {}} className={errors.name ? 'error' : null} {...register('name', { required: true, pattern: /^[a-z ,.'-]+$/i })} placeholder={nameInput.placeholder} />
                 {errors.name && (
                     <motion.p
                         initial={{ opacity: 0, bottom: -6 }}
@@ -130,28 +148,6 @@ export default function ContactForm({ data: { emailInput, interestedInput, messa
                 )}
             </label>
             <button disabled={sendedCount >= 3} className="button">{submit}</button>
-            {isSended === 'success' && (
-                <motion.p
-                    initial={{ opacity: 0, bottom: -6 }}
-                    animate={{ opacity: 1, bottom: 0 }}
-                    exit={{ opacity: 1, bottom: -6 }}
-                    transition={{ type: 'spring', duration: 0.4 }}
-                    className="successText"
-                >
-                    {succesSubmitText}
-                </motion.p>
-            )}
-            {isSended === 'error' && (
-                <motion.p
-                    initial={{ opacity: 0, bottom: -6 }}
-                    animate={{ opacity: 1, bottom: 0 }}
-                    exit={{ opacity: 1, bottom: -6 }}
-                    transition={{ type: 'spring', duration: 0.4 }}
-                    className="errorSend"
-                >
-                    {errorSubmitText}
-                </motion.p>
-            )}
         </Wrapper>
     )
 }
@@ -177,11 +173,12 @@ const Wrapper = styled.form`
     .successText{
         position: absolute;
         bottom: 0;
-        transform: translateY(200%);
+        transform: translateY(120%);
         left: 16px;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 24px;
+        font-family: 'Lexend';
+        font-weight: 300;
+        font-size: clamp(12px, ${13 / 768 * 100}vw, 14px);
+        line-height: 140%;
         letter-spacing: 0.005em;
 
         &.submit{
@@ -192,12 +189,12 @@ const Wrapper = styled.form`
     .errorSend{
         position: absolute;
         bottom: 0;
-        transform: translateY(200%);
+        transform: translateY(120%);
         left: 16px;
         font-family: 'Lexend';
         font-weight: 300;
-        font-size: 14px;
-        line-height: 24px;
+        font-size: clamp(12px, ${13 / 768 * 100}vw, 14px);
+        line-height: 140%;
         letter-spacing: 0.005em;
 
         &.submit{
@@ -365,7 +362,7 @@ const Wrapper = styled.form`
         }
     }
 
-    button{
+    .button{
         width: 100%;
         text-align: center;
         justify-content: center;

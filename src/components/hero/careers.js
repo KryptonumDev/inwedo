@@ -8,7 +8,10 @@ import Video from './../../images/careers.mp4'
 export default function Hero({ data: { pageTitle, textUnderTitle, button, backgroundImage } }) {
     return (
         <Wrapper>
-            <Background src={Video} type="video/mp4" loop autoPlay muted playsinline />
+            <Background>
+                <video src={Video} type="video/mp4" loop autoPlay muted playsinline />
+                <GatsbyImage image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
+            </Background>
             <Container>
                 <Content>
                     <h1>{pageTitle}</h1>
@@ -21,22 +24,55 @@ export default function Hero({ data: { pageTitle, textUnderTitle, button, backgr
 }
 
 const Wrapper = styled.section`
-    min-height: 686px;
+    min-height: 733.5px;
     position: relative;
     margin-top: 81px;
     display: flex;
+
+    @media (max-width: 640px){
+        min-height: 660px;
+    }
 `
 
-const Background = styled.video`
+const Background = styled.div`
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     right: 0;
     top: 0;
     bottom: 0;
-    z-index: -1;
     width: 1304px;
-    height: fit-content;
+    z-index: -1;
+
+    video{
+        z-index: -1;
+        width: 1304px;
+        height: fit-content;
+
+        @media (max-width: 640px) {
+            display: none;
+        }
+    }
+
+    img{
+        display: none;
+
+        @media (max-width: 640px) {
+            display: block;
+            height: 660px;
+            width: 100%;
+        }
+    }
+
+    &::after{
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #00000064;
+    }
 `
 
 const Content = styled.div`

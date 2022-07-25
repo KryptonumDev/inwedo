@@ -34,14 +34,21 @@ const ServicesPage = ({ data: { allWpPage, alternates }, location }) => {
 
 export default ServicesPage
 
-const Card = styled.div`
+const Card = styled.a`
   position: fixed;
-  right: -8px;
+  right: -120px;
   top: 120px;
   padding: 12px 16px;
   border-radius: 8px;
   background-color: var(--color-white);
   box-shadow: var(--shadow);
+  z-index: 998;
+  transition: right .3s cubic-bezier(0.39, 0.575, 0.565, 1); 
+  cursor: pointer;
+
+  &:hover{
+    right: -16px;
+  }
 `
 
 export const query = graphql`

@@ -27,6 +27,8 @@ const Wrapper = styled.section`
     padding: clamp(90px, 11.71vw, 200px) 0 clamp(40px, 9.765vw, 110px) 0;
     border-radius: 24.5221px;
     box-shadow: var(--shadow);
+    position: relative;
+    z-index: 999;
 `
 
 const Content = styled.div`

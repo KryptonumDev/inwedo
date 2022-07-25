@@ -170,8 +170,7 @@ const Item = styled.div`
             margin-right: 8px;
         }
 
-        &.first{
-            margin-top: clamp(0px, ${4 / 768 * 100}vw, 8px);
+        &.link{
             font-weight: 600;
             font-size: clamp(14px, ${15 / 768 * 100}vw, 16px);
             line-height: 160%;
@@ -179,6 +178,11 @@ const Item = styled.div`
             svg{
                 margin-right: 16px;
             }
+
+        }
+
+        &.first{
+            margin-top: clamp(0px, ${4 / 768 * 100}vw, 8px);
         }
     }
 

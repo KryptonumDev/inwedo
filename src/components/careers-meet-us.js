@@ -49,6 +49,7 @@ export default function MeetUs({ data: { link, icons, image, testomontialsFirstR
 
 const Wrapper = styled.section`
     margin-top: var(--margin-section);
+    overflow-x: hidden;
 `
 
 const Title = styled.h2`
@@ -79,6 +80,14 @@ const Flex = styled(Link)`
     grid-template-columns: 1fr 1fr;
     align-items: center;
     grid-gap: clamp(32px, ${72 / 768 * 100}vw, 128px);
+
+    &:hover{
+        .link{
+            &::after{
+                width: 100%;
+            }
+        }
+    }
 
     .image{
         box-shadow: var(--shadow);

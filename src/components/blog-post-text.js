@@ -71,6 +71,16 @@ const Content = styled.div`
         font-size: clamp(14px, 2.08vw, 16px);
         line-height: 160%;
         font-feature-settings: 'ss01' on;
+
+        .alignleft{
+            float: left;
+            margin-right: 16px;
+        }
+
+        .alignright{
+            float: right;
+            margin-left: 16px;
+        }
     }
 
     strong{

@@ -70,7 +70,7 @@ export default function Filter({ activeSearch, defaultPosts, setInputValue, inpu
             event.preventDefault()
             setSearch()
 
-            const href = document.getElementById("posts")
+            const href = document.getElementById("filter")
             const offsetTop = href.offsetTop
 
             window.scroll({
@@ -84,7 +84,7 @@ export default function Filter({ activeSearch, defaultPosts, setInputValue, inpu
         if (typeof window !== "undefined") {
             setSearch()
 
-            const href = document.getElementById("posts")
+            const href = document.getElementById("filter")
             const offsetTop = href.offsetTop
 
             window.scroll({
@@ -95,7 +95,7 @@ export default function Filter({ activeSearch, defaultPosts, setInputValue, inpu
     }
 
     return (
-        <Wrapper matchingArticle={matchingArticle} input={inputValue} postNumber={searchResults}>
+        <Wrapper id='filter' matchingArticle={matchingArticle} input={inputValue} postNumber={searchResults}>
             <Container>
                 <Content>
                     <Grid>

@@ -1,5 +1,5 @@
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import { Container } from "../style"
 import Quote from './../images/quote.png'
@@ -35,7 +35,7 @@ export default function OnBoarding({ data: { testomontialsRepeater, sectionTitle
                             </Item>
                         ))}
                     </Items>
-                    <Card>
+                    <Card id='card'>
                         <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                         <h3 className="line h4">{seoTitle}</h3>
                         <p className="h3">{boldText}</p>
@@ -91,20 +91,10 @@ const Title = styled.h2`
 
 const Flex = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto auto;
     align-items: start;
-    grid-gap: clamp(32px, ${32 / 768 * 100}vw, 100px);
+    grid-gap: clamp(32px, ${72 / 768 * 100}vw, 100px);
     position: relative;
-
-    /* &::after{
-        content: "";
-        position: absolute;
-        bottom: -32px;
-        left: -32px;
-        right: -32px;
-        height: 700px;
-        background: linear-gradient(180deg, rgba(248, 249, 250, 0) 0%, #F8F9FA 100%);
-    } */
     
     .slider{
         display: none;
@@ -120,6 +110,7 @@ const Flex = styled.div`
 
             .slick-dots{
                 padding-bottom: 24px;
+
                 button{
                     &::before{
                         border-radius: 50%;
@@ -225,8 +216,9 @@ const Item = styled.div`
 const Card = styled.div`
     position: sticky;
     z-index: 100;
-    top: 64px;
+    top: 91px;
     align-self: start;
+    width: 551px;
 
     @media (max-width: 1024px){
         max-width: 570px;
@@ -240,7 +232,6 @@ const Card = styled.div`
 
     .image{
         margin-bottom: 32px;
-        width: 100%;
         height: fit-content;
         img{
             border-radius: 8px;
@@ -251,15 +242,16 @@ const Card = styled.div`
         opacity: .55;
         margin-bottom: 16px;
         font-size: clamp(14px, ${16 / 768 * 100}vw, 18px);
+        text-transform: uppercase;
     }
 
     .h3{
         margin-bottom: 16px;
-        font-size: clamp(20px, ${2 / 768 * 100}vw, 24px);
+        font-size: clamp(20px, ${22 / 768 * 100}vw, 24px);
     }
 
     .p{
         margin-bottom: 16px;
-        font-size: clamp(14px, ${16 / 768 * 100}vw, 18px);
+        font-size: clamp(14px, ${15 / 768 * 100}vw, 16px);
     }
 `
