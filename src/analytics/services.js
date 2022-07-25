@@ -6,7 +6,6 @@ export default {
             "event": "contact",
             "section": "services",
             "pageURL": url ? url : '/',
-            "pageURL": "/",
             "buttonName": "Let’s talk",
             "location": "top of the page"
         }

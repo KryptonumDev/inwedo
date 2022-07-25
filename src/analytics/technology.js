@@ -1,3 +1,5 @@
+import { urlsMapping } from "../contstants/urlMapping"
+
 export default {
     hero: (url) => {
         return {
@@ -56,29 +58,52 @@ export default {
             'position': position
         }
     },
-    technologies: (items) => {
-        const listItems = []
-        items.map((el, index) => {
-            listItems.push({
-                'list': "Services | Technology",
-                'name': el.techologieIcon.altText ? el.techologieIcon.altText : 'technologies alt is empty',
-                'brand ': 'inwedo.com',
-                'position': index + 1,
-                'category': el.techologieIcon.altText ? el.techologieIcon.altText : 'technologies alt is empty',
-                'variant': 'page-site',
-                'price': 'none',
-                'id': el.technologieUrl,
-                'dimension1': 'inwedo',
-                'dimension2': '18072022'
+    technologies: {
+        inView: (items) => {
+            const listItems = []
+            items.map((el, index) => {
+                listItems.push({
+                    'list': "Services | Technology",
+                    'name': el.techologieIcon.altText ? el.techologieIcon.altText : 'technologies alt is empty',
+                    'brand ': 'inwedo.com',
+                    'position': index + 1,
+                    'category': el.techologieIcon.altText ? el.techologieIcon.altText : 'technologies alt is empty',
+                    'variant': 'page-site',
+                    'price': 'none',
+                    'id': el.technologieUrl,
+                    'dimension1': 'inwedo',
+                    'dimension2': '18072022'
+                })
             })
-        })
 
-        return {
-            'event': 'listView',
-            'ecommerce': {
-                'currencyCode': 'PLN',
-                'impressions': listItems
+            return {
+                'event': 'listView',
+                'ecommerce': {
+                    'currencyCode': 'PLN',
+                    'impressions': listItems
+                }
+            }
+        },
+        onClick: (item, index) => {
+            return {
+                'event': 'productClick',
+                'ecommerce': {
+                    'click': {
+                        'actionField': {
+                            'list': 'Services | Technology'
+                        },
+                        'products': [{
+                            'category': item.techologieIcon.altText ? item.techologieIcon.altText : 'technologies alt is empty',
+                            'name': item.techologieIcon.altText ? item.techologieIcon.altText : 'technologies alt is empty',
+                            'price': urlsMapping[item.technologieUrl],
+                            'id': item.technologieUrl,
+                            'variant': 'page-site',
+                            'brand ': 'inwedo.com',
+                            'position': index + 1
+                        }]
+                    }
+                }
             }
         }
-    },
+    }
 }
