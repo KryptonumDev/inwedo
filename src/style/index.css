@@ -47,6 +47,9 @@ button {
     list-style: none;
     font-family: 'Lexend Deca', sans-serif;
     color: var(--color-black);
+    /* ios image stretch fix */
+    align-items: flex-start; 
+    
 }
 
 *:focus {

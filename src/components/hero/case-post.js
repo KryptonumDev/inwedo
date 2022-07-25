@@ -82,14 +82,15 @@ const GlassCard = styled.div`
     .logo{
         margin-bottom: clamp(24px, 4.68vw, 48px); 
         max-width: clamp(120px, 23.43vw, 240px);
-        max-height: 48px;
         display: block;
         width: fit-content;
         height: fit-content;
 
         img{
             max-height: 48px;
+            max-width: 100%;
             width: fit-content;
+            height: fit-content;
         }
     }
 
