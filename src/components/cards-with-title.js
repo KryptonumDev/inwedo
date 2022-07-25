@@ -7,7 +7,7 @@ import { datalayerPush } from './../helpers/datalayer'
 export default function CardsWithTitle({ data: { sectionTitle, text, cards }, analytics }) {
 
     useEffect(() => {
-        datalayerPush(analytics(cards))
+        datalayerPush(analytics.inView(cards))
     }, [])
 
     return (
@@ -16,8 +16,8 @@ export default function CardsWithTitle({ data: { sectionTitle, text, cards }, an
                 <h2 className="h2">{sectionTitle}</h2>
                 <p className="p">{text}</p>
                 <Grid>
-                    {cards.map(el => (
-                        <Item to={el.button.url}>
+                    {cards.map((el, index) => (
+                        <Item key={el.cardTitle} to={el.button.url} onClick={() => { datalayerPush(analytics.onClick(el, index)) }}>
                             <img className="image" src={el.icon.localFile.publicURL} alt={el.icon.altText} />
                             <div>
                                 <h3 className="h2">{el.cardTitle}</h3>

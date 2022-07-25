@@ -41,7 +41,7 @@ export default {
                 'position': index + 1,
                 'category': category ? category : 'none',
                 'variant': 'post',
-                'price': 'none',
+                'price': el.caseStudies.wordCount ? el.caseStudies.wordCount : 'word count field is empty',
                 'id': el.guid,
                 'dimension1': 'inwedo',
                 'dimension2': '18072022'
@@ -76,7 +76,7 @@ export default {
                     'products': [{
                         'category': category ? category : 'none',
                         'name': item.caseStudies.previewCard.previewTitle,
-                        'price': 'none',
+                        'price': item.caseStudies.wordCount ? item.caseStudies.wordCount : 'word count field is empty',
                         'id': item.guid,
                         'variant': 'post',
                         'brand ': 'inwedo.com',
@@ -105,7 +105,7 @@ export default {
                     'products': [{
                         'category': category ? category : 'none',
                         'name': item.caseStudies.previewCard.previewTitle,
-                        'price': 'none',
+                        'price': item.caseStudies.wordCount ? item.caseStudies.wordCount : 'word count field is empty',
                         'id': item.guid,
                         'variant': 'post',
                         'brand ': 'inwedo.com',

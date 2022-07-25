@@ -1,7 +1,7 @@
 export default {
     mainLinks: (position, name, url) => {
         return {
-            'event': 'menu_click',
+            'event': name.toLowerCase().replace(/ /g,"_"),
             'section': 'footer',
             'pageURL': url ? url : '/',
             'buttonName': name,

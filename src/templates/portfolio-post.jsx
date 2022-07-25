@@ -112,6 +112,7 @@ query PortfolioPageQuery($id: String!) {
           opengraphModifiedTime
         }
         caseStudies {
+          wordCount
           templateName
           previewCard{
             previewTitle
@@ -355,6 +356,7 @@ query PortfolioPageQuery($id: String!) {
           }
         }
         caseStudies {
+          wordCount
           templateName
           currentPostUrl
           previewCard {

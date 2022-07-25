@@ -90,9 +90,9 @@ export default {
                 }
             }
         },
-        caseStudies: (name, position, url) => {
+        caseStudies: (name, position, url, link) => {
             let type = 'case studies'
-            if (url.includes('/blog/')) {
+            if (link.includes('/blog/')) {
                 type = 'post'
             }
             return {

@@ -211,6 +211,7 @@ query PortfolioArchivePageQuery($id: String!, $templateName: String!, $slug: Str
             }
           }
           caseStudies {
+            wordCount
             currentPostUrl
             previewCard {
               previewTitle
