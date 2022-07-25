@@ -23,7 +23,7 @@ export default function ClientCases({ data: { sectionTitle, clientsCases, card }
 }
 
 const Wrapper = styled.section`
-    margin-top: var(--margin-section);
+    margin-top: clamp(108px, ${108 / 768 * 100}vw, 128px);
     position: relative;
 
     .h4{
@@ -74,7 +74,7 @@ const Card = styled.a`
     display: block;
     position: absolute;
     right: -16px;
-    top: 0;
+    top: -96px;
     border-radius: 24px;
     background-color: var(--color-white);
     box-shadow: var(--shadow);
@@ -95,7 +95,6 @@ const Card = styled.a`
         }
         padding: 24px 16px;
         right: -8px;
-        top: -32px;
     }
 
     @media (max-width: 1200px) {
@@ -103,7 +102,6 @@ const Card = styled.a`
             max-width: 100px;
         }
         padding: 16px;
-        top: -56px;
     }
 
     @media (max-width: 640px) {

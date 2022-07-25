@@ -163,13 +163,11 @@ const GlassCard = styled.div`
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 48px;
-            height: 48px;
             border-radius: 5px;
 
             .tech-logo{
-                width: 100%;
-                height: fit-content;
+                width: 48px;
+                height: 48px;
                 border-radius: 5px;
                 filter: grayscale(1);
                 box-shadow: 0px 11px 25px rgba(0, 0, 0, 0.04);

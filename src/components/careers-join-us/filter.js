@@ -7,11 +7,9 @@ export default function Filter({ title, altFilters, filters, active, set, locati
     const setFilter = (filter) => {
         let arr = []
         if (active.includes(filter)) {
-            const index = active.findIndex(el => el === filter)
-            active.splice(index, 1)
-            arr = [...active]
+            arr = []
         } else {
-            arr = [...active, filter]
+            arr = [filter]
         }
 
         set(arr)

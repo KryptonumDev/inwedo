@@ -125,10 +125,8 @@ const Item = styled.div`
             width: fit-content;
 
             .image{
-                width: fit-content;
-                height: fit-content;
-                max-width: 36px;
-                max-height: 36px;
+                width: 36px;
+                height: 36px;
                 filter: grayscale(1);
             }
         }

@@ -181,7 +181,7 @@ const LocContainer = styled(Container)`
 const Item = styled.blockquote`
     box-sizing: border-box;
     background-color: var(--color-white);
-    box-shadow: 0px 2px 21px rgba(13, 150, 225, 0.07);
+    box-shadow: 0px 6px 9px rgb(0 0 0 / 7%);
     height: 100%;
 
     width: calc(100% - 24px) !important;

@@ -10,7 +10,9 @@ export default function TestomontialDivider({ data: { testomontialText, personNa
             <Container>
                 <Card quote={Quote}>
                     <div className="flex">
-                        <GatsbyImage className="image" image={companyLogo.localFile.childImageSharp.gatsbyImageData} alt={companyLogo.altText} />
+                        {companyLogo.localFile
+                            ? <GatsbyImage className="image" image={companyLogo.localFile.childImageSharp.gatsbyImageData} alt={companyLogo.altText} />
+                            : null}
                         <div>
                             <p className="name">{personName}</p>
                             <p className="position">{personPosition}</p>

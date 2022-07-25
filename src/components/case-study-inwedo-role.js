@@ -90,7 +90,7 @@ const Item = styled.div`
     .image{
         margin-bottom: clamp(24px, 3.9vw, 36px);
         width: fit-content;
-        max-width: clamp(50px, 8.3vw, 80px);
-        height: fit-content;
+        width: clamp(48px, 8.3vw, 56px);
+        height: clamp(48px, 8.3vw, 56px);
     }
 `

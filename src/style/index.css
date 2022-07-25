@@ -11,7 +11,7 @@
     --margin-m: clamp(24px, 4.16vw, 32px);
     --margin-s: 16px;
 
-    --shadow: 0px 4px 9px 2px rgba(34, 60, 80, 0.06);
+    --shadow: 0px 4px 9px 2px rgba(34, 60, 80, 0.08);
 
     --toastify-color-progress-success: var(--color-accent) !important;
     --toastify-color-progress-error: var(--toastify-color-error);
